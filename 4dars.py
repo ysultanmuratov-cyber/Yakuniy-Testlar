@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Quiz Bot Style", layout="centered")
@@ -7,120 +6,116 @@ st.set_page_config(page_title="Quiz Bot Style", layout="centered")
 # 2. Telegram Quiz dizayni (CSS)
 st.markdown("""
     <style>
-    .stApp { background-color: #e6ebf0; } /* Telegram foni rangi */
+    .stApp { background-color: #e6ebf0; }
     
-    /* Quiz konteyneri */
     .quiz-card {
         background-color: white;
-        padding: 20px;
+        padding: 25px;
         border-radius: 12px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        margin-bottom: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        max-width: 500px;
+        margin: auto;
     }
     
-    /* Savol matni */
     .question-header {
         font-weight: bold;
-        font-size: 18px;
+        font-size: 19px;
         color: #000;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 
-    /* Radio tugmalarni Telegram uslubiga keltirish */
-    div[role="radiogroup"] label {
-        padding: 10px 0;
-        font-size: 16px !important;
-        border-bottom: 1px solid #f0f0f0;
+    /* Radio tugmalarni chiroyli qilish */
+    div[role="radiogroup"] {
+        padding: 5px;
     }
     
-    /* Natija foizlari ko'rinishi */
+    div[role="radiogroup"] label {
+        font-size: 17px !important;
+        color: #333 !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Natija foizlari (Progress Bar) */
     .stat-row {
         display: flex;
-        align-items: center;
-        padding: 8px 0;
-        font-size: 15px;
+        flex-direction: column;
+        margin-bottom: 15px;
     }
-    .progress-bar {
-        height: 8px;
-        border-radius: 4px;
+    .label-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+    .bar-bg {
+        height: 10px;
         background-color: #f0f0f0;
-        flex-grow: 1;
-        margin: 0 10px;
+        border-radius: 5px;
+        width: 100%;
         overflow: hidden;
     }
-    .progress-fill { height: 100%; border-radius: 4px; }
-    
-    /* Tugmalar */
+    .bar-fill { height: 100%; border-radius: 5px; }
+
+    /* Tugma */
     .stButton button {
-        background-color: #0088cc !important; /* Telegram ko'k rangi */
-        color: white !important;
-        border-radius: 8px !important;
         width: 100%;
+        background-color: #0088cc !important;
+        color: white !important;
+        border-radius: 10px !important;
+        height: 45px;
+        font-weight: bold;
         border: none;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# 3. Holatlarni boshqarish
-if 'step' not in st.session_state: st.session_state.step = "start"
+# 3. Holatni saqlash
 if 'answered' not in st.session_state: st.session_state.answered = False
 
-# --- BOSHLANG'ICH EKRAN ---
-if st.session_state.step == "start":
-    st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
-    st.write("📋 **Moliyaviy savodxonlik 1-70**")
-    st.write("1 ta savol · Har bir savol uchun 10 soniya")
-    if st.button("Testni boshlash"):
-        st.session_state.step = "quiz"
-        st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
+# --- QUIZ EKRANI ---
+st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+st.markdown('<div class="question-header">[1/1] Kredit stavkasi nima?</div>', unsafe_allow_html=True)
 
-# --- TEST EKRANI ---
-elif st.session_state.step == "quiz":
-    st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
-    st.markdown('<div class="question-header">[1/1] Kredit stavkasi nima?</div>', unsafe_allow_html=True)
+options = ["Daromad solig'i", "Kredit berish narxi", "Kredit miqdori", "Bank balansidagi mablag'"]
+correct_ans = "Kredit berish narxi"
+
+# JAVOB BERILMAGAN HOLAT
+if not st.session_state.answered:
+    # Radio tugma faqat javob berilmaganda ko'rinadi
+    choice = st.radio("Tanlang:", options, index=None, key="quiz_opt", label_visibility="collapsed")
     
-    options = ["Daromad solig'i", "Kredit berish narxi", "Kredit miqdori", "Bank balansidagi mablag'"]
-    correct_ans = "Kredit berish narxi"
-    
-    # Videodagi kabi radio tugmalar
-    choice = st.radio("", options, index=None, key="quiz_radio", disabled=st.session_state.answered, label_visibility="collapsed")
-    
-    if choice and not st.session_state.answered:
+    if choice:
         st.session_state.answered = True
+        st.session_state.user_choice = choice
         st.rerun()
 
-    # Agar javob berilgan bo'lsa, natijani foizlarda ko'rsatish (Telegram uslubida)
-    if st.session_state.answered:
-        st.write("---")
-        for opt in options:
-            percent = 100 if opt == correct_ans else 0
-            color = "#4CAF50" if opt == correct_ans else "#e0e0e0"
-            icon = "✔️" if opt == correct_ans else ""
-            
-            st.markdown(f"""
-                <div class="stat-row">
-                    <div style="width: 30px;">{percent}%</div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: {percent}%; background-color: {color};"></div></div>
-                    <div>{opt} {icon}</div>
-                </div>
-            """, unsafe_allow_html=True)
+# JAVOB BERILGAN HOLAT (Natija videodagidek chiqadi)
+else:
+    for opt in options:
+        # To'g'ri yoki noto'g'ri ekanligini aniqlash
+        is_correct = (opt == correct_ans)
+        is_user_choice = (opt == st.session_state.user_choice)
         
-        time.sleep(1)
-        if st.button("Yakunlash"):
-            st.session_state.step = "result"
-            st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# --- NATIJA EKRANI ---
-elif st.session_state.step == "result":
-    st.balloons()
-    st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
-    st.write("🏁 **Test yakunlandi!**")
-    st.write("Siz 1 ta savolga javob berdingiz:")
-    st.markdown("✅ To'g'ri: **1** | ❌ Xato: **0**")
-    if st.button("Qaytadan urinish"):
-        st.session_state.step = "start"
+        # Foiz va ranglar
+        percent = 100 if is_correct else 0
+        fill_color = "#4CAF50" if is_correct else "#e0e0e0"
+        text_suffix = "✔️" if is_correct else ("❌" if is_user_choice else "")
+        
+        st.markdown(f"""
+            <div class="stat-row">
+                <div class="label-row">
+                    <span>{opt} {text_suffix}</span>
+                    <span>{percent}%</span>
+                </div>
+                <div class="bar-bg">
+                    <div class="bar-fill" style="width: {percent}%; background-color: {fill_color};"></div>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    st.write("")
+    if st.button("Keyingi savol ➔"):
         st.session_state.answered = False
         st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
