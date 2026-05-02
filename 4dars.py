@@ -104,27 +104,33 @@ else:
             st.subheader(f"Savol {q_idx + 1} / {total_qs}")
             st.write(f"**{current_q['q']}**")
             
-            # Javob berilgan bo'lsa radio bosib bo'lmaydigan qilinadi
-            ans = st.radio("Javobni tanlang:", current_q['o'], 
-                           index=None, key=f"q_{q_idx}", 
-                           disabled=st.session_state.answered)
-            
+            # Variantlarni rang bilan ko'rsatish
+            for variant in current_q['o']:
+                if st.session_state.answered:
+                    if variant == current_q['a']:
+                        # To'g'ri javob har doim yashil fonda
+                        st.markdown(f'<p style="background-color:#d4edda; color:#155724; padding:10px; border-radius:5px; border:1px solid #c3e6cb;"><b>✅ {variant}</b></p>', unsafe_allow_html=True)
+                    elif variant == st.session_state.get('last_user_choice') and variant != current_q['a']:
+                        # Foydalanuvchi tanlagan xato javob qizil fonda
+                        st.markdown(f'<p style="background-color:#f8d7da; color:#721c24; padding:10px; border-radius:5px; border:1px solid #f5c6cb;"><b>❌ {variant}</b></p>', unsafe_allow_html=True)
+                    else:
+                        # Qolgan neytral variantlar
+                        st.text(f"⚪ {variant}")
+                else:
+                    pass # Tekshirishdan oldin radio ishlatiladi
+
             if not st.session_state.answered:
+                ans = st.radio("Javobni tanlang:", current_q['o'], index=None, key=f"q_{q_idx}")
                 if st.button("Tekshirish ✅"):
                     if ans:
                         st.session_state.answered = True
+                        st.session_state.last_user_choice = ans
                         if ans == current_q['a']:
                             st.session_state.user_score += 1
                         st.rerun()
                     else:
                         st.warning("Iltimos, variantlardan birini tanlang!")
             else:
-                # Rangli xabar chiqarish
-                if ans == current_q['a']:
-                    st.success(f"To'g'ri! ✅ Javob: {current_q['a']}")
-                else:
-                    st.error(f"Xato! ❌ Siz tanladingiz: {ans}. To'g'ri javob: {current_q['a']}")
-                
                 if st.button("Keyingi savol ➡️"):
                     st.session_state.current_q_index += 1
                     st.session_state.answered = False
@@ -135,7 +141,7 @@ else:
             if st.session_state.user_score == total_qs:
                 st.balloons()
             if st.button("Bosh sahifaga qaytish"):
-                for key in ['test_started', 'current_q_index', 'user_score', 'active_questions', 'answered']:
+                for key in ['test_started', 'current_q_index', 'user_score', 'active_questions', 'answered', 'last_user_choice']:
                     if key in st.session_state:
                         del st.session_state[key]
                 st.rerun()
