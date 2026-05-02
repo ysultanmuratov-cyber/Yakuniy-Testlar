@@ -1,137 +1,82 @@
 import streamlit as st
-import random
-import time
 
-# --- SAHIFA SOZLAMALARI ---
-st.set_page_config(page_title="Testlar Markazi", layout="centered")
+# Sahifa sozlamalari
+st.set_page_config(page_title="Testlar Markazi", page_icon="🎯")
 
-# --- SAVOLLAR BAZASI ---
-if 'quiz_data' not in st.session_state:
-    st.session_state.quiz_data = {
-        "PYTHON": [
-            {"q": "Python qaysi yili yaratilgan?", "o": ["1991", "1985", "2000", "2010"], "a": "1991"},
-            {"q": "O'zgaruvchi turini aniqlash funksiyasi?", "o": ["type()", "id()", "print()", "input()"],
-             "a": "type()"},
-            {"q": "Ro'yxatga oxiridan element qo'shish usuli?", "o": ["append()", "add()", "push()", "insert()"],
-             "a": "append()"},
-            {"q": "Qaysi operator darajaga ko'taradi?", "o": ["**", "^", "//", "%"], "a": "**"},
-            {"q": "Lug'at (dictionary) qaysi qavslar bilan yoziladi?", "o": ["{}", "[]", "()", "<>"], "a": "{}"},
-            {"q": "O'zgarmas ro'yxat turi nima deyiladi?", "o": ["tuple", "list", "set", "dictionary"], "a": "tuple"},
-            {"q": "Qatorni ekranga chiqarish funksiyasi?", "o": ["print()", "echo()", "write()", "output()"],
-             "a": "print()"},
-            {"q": "Butun son turi qanday belgilanadi?", "o": ["int", "float", "str", "bool"], "a": "int"},
-            {"q": "Shartli operatorni ko'rsating?", "o": ["if", "for", "while", "def"], "a": "if"},
-            {"q": "Funksiya yaratish kalit so'zi?", "o": ["def", "func", "function", "create"], "a": "def"}
-        ],
-        "Differensial tenglamalar": [
-            {"q": "y' = f(x,y) qanday tenglama?", "o": ["1-tartibli", "2-tartibli", "Bernoulli", "Chiziqli"],
-             "a": "1-tartibli"},
-            {"q": "Puasson formulasi nima uchun ishlatiladi?", "o": ["Ehtimollik", "Integral", "Hajm", "Tezlik"],
-             "a": "Ehtimollik"},
-            {"q": "Bernoulli tenglamasi qaysi ko'rinishda?",
-             "o": ["y' + Py = Qy^n", "y' = f(x)", "y'' + p = 0", "y = kx+b"], "a": "y' + Py = Qy^n"},
-            {"q": "Chiziqli differensial tenglamaning tartibi nimaga bog'liq?",
-             "o": ["Yuqori hosilaga", "Erkli o'zgaruvchiga", "Yechim soniga", "Integralga"], "a": "Yuqori hosilaga"},
-            {"q": "Garmonik tebranish tenglamasi qanday tartibli?",
-             "o": ["2-tartibli", "1-tartibli", "3-tartibli", "4-tartibli"], "a": "2-tartibli"},
-            {"q": "Differensial tenglamaning umumiy yechimi nimani o'z ichiga oladi?",
-             "o": ["O'zgarmas C ni", "Faqat sonlarni", "Faqat x ni", "Integralni"], "a": "O'zgarmas C ni"},
-            {"q": "y'' + w^2y = 0 tenglamaning yechimi?", "o": ["Sinus/Kosinus", "Eksponenta", "Logarifm", "Polinom"],
-             "a": "Sinus/Kosinus"},
-            {"q": "Koshi masalasi nimani topishni talab qiladi?",
-             "o": ["Xususiy yechimni", "Umumiy yechimni", "Integralni", "Limitni"], "a": "Xususiy yechimni"},
-            {"q": "Eyler usuli nima uchun qo'llaniladi?",
-             "o": ["Sonli yechish", "Aniq integrallash", "Hosila olish", "Soddalashtirish"], "a": "Sonli yechish"},
-            {"q": "Bir jinsli tenglamada f(tx, ty) nimaga teng?", "o": ["f(x,y)", "t*f(x,y)", "f(x)/t", "0"],
-             "a": "f(x,y)"}
-        ],
-        "Moliyaviy savodxonlik": [
-            {"q": "Inflyatsiya nima?", "o": ["Narx oshishi", "Narx tushishi", "Soliq", "Qarz"], "a": "Narx oshishi"},
-            {"q": "Aktiv nima?", "o": ["Daromad keltiruvchi", "Xarajat keltiruvchi", "Qarz", "Soliq"],
-             "a": "Daromad keltiruvchi"},
-            {"q": "Passiv nima?", "o": ["Xarajat keltiruvchi", "Daromad keltiruvchi", "Mulk", "Sarmoya"],
-             "a": "Xarajat keltiruvchi"},
-            {"q": "Diversifikatsiya nima?", "o": ["Xavfni bo'lish", "Pul yig'ish", "Kredit olish", "Soliq to'lash"],
-             "a": "Xavfni bo'lish"},
-            {"q": "Murakkab foiz nima?", "o": ["Foizdan foiz", "Oddiy foiz", "Kredit foizi", "Soliq turi"],
-             "a": "Foizdan foiz"},
-            {"q": "Likvidlik nima?", "o": ["Tez pulga aylanish", "Qarz miqdori", "Soliq stavkasi", "Foyda foizi"],
-             "a": "Tez pulga aylanish"},
-            {"q": "Budjet nima?", "o": ["Kirim va chiqim rejasi", "Faqat daromad", "Soliq yig'indisi", "Bank hisobi"],
-             "a": "Kirim va chiqim rejasi"},
-            {"q": "Keshbek (Cashback) nima?",
-             "o": ["Pulning bir qismini qaytishi", "Qarz olish", "Soliq to'lash", "Xizmat haqi"],
-             "a": "Pulning bir qismini qaytishi"},
-            {"q": "Depozit nima?", "o": ["Bankdagi omonat", "Kredit", "Soliq", "Sug'urta"], "a": "Bankdagi omonat"},
-            {"q": "Aktsiya nima?", "o": ["Ulishli qimmatli qog'oz", "Qarz qog'ozi", "Soliq kvitansiyasi", "Shartnoma"],
-             "a": "Ulishli qimmatli qog'oz"}
-        ]
-    }
+# 1. ADMIN TOMONIDAN BELGILANGAN FOYDALANUVCHILAR (Login va Parollar)
+# Haqiqiy loyihada bularni Streamlit Secrets-ga qo'yish yaxshi,
+# lekin hozircha kod ichida ro'yxat qilib turamiz:
+users_db = {
+    "Murat": "12062006",
+    "Bekchon": "Beko1212x",
+}
 
-# --- SESSION STATE INICIALIZATSIYA ---
-if 'step' not in st.session_state:
-    st.session_state.step = "main"
-if 'score' not in st.session_state:
-    st.session_state.score = 0
-if 'current_idx' not in st.session_state:
-    st.session_state.current_idx = 0
+# Session state orqali login holatini tekshirish
+if 'logged_in' not in st.session_state:
+    st.session_state.logged_in = False
 
-# --- 1. ASOSIY SAHIFA ---
-if st.session_state.step == "main":
-    st.title("🎯 Testlar Markazi")
-    subject = st.selectbox("Fanni tanlang:", list(st.session_state.quiz_data.keys()))
+# --- KIRISH OYNASI ---
+if not st.session_state.logged_in:
+    st.title("🎯 Testlar Markaziga Kirish")
+    st.info("Testni boshlash uchun administrator tomonidan berilgan ma'lumotlarni kiriting.")
 
-    if st.button("Testni boshlash", use_container_width=True):
-        st.session_state.selected_subject = subject
-        st.session_state.questions = list(st.session_state.quiz_data[subject])
-        random.shuffle(st.session_state.questions)
-        st.session_state.current_idx = 0
-        st.session_state.score = 0
-        st.session_state.step = "quiz"
-        st.rerun()
+    # Uchta qator (talabingiz bo'yicha)
+    full_name = st.text_input("1. Ism va Familiyangizni kiriting:", placeholder="Masalan: Ali Valiyev")
+    user_login = st.text_input("2. Login:", placeholder="Loginni kiriting")
+    user_password = st.text_input("3. Parol:", type="password", placeholder="Parolni kiriting")
 
-# --- 2. TEST SAHIFASI ---
-elif st.session_state.step == "quiz":
-    q_num = st.session_state.current_idx
-    questions = st.session_state.questions
-
-    if q_num < len(questions):
-        st.subheader(f"{q_num + 1}-savol")
-        st.write(questions[q_num]['q'])
-
-        # Variantlar
-        options = list(questions[q_num]['o'])
-        # Optionlarni faqat bir marta aralashtirish uchun keshlaymiz
-        if f"opt_{q_num}" not in st.session_state:
-            random.shuffle(options)
-            st.session_state[f"opt_{q_num}"] = options
-
-        selected_opt = st.radio("Javobni tanlang:", st.session_state[f"opt_{q_num}"], index=None)
-
-        if st.button("Javobni tasdiqlash", use_container_width=True):
-            if selected_opt == questions[q_num]['a']:
-                st.success("To'g'ri!")
-                st.session_state.score += 1
-            else:
-                st.error(f"Noto'g'ri! To'g'ri javob: {questions[q_num]['a']}")
-
-            time.sleep(1)  # Natijani ko'rib olish uchun kichik tanaffus
-            st.session_state.current_idx += 1
+    if st.button("Tizimga kirish"):
+        if full_name and user_login in users_db and users_db[user_login] == user_password:
+            st.session_state.logged_in = True
+            st.session_state.user_full_name = full_name
             st.rerun()
+        elif not full_name:
+            st.error("Iltimos, ism va familiyangizni kiriting!")
+        else:
+            st.error("Login yoki parol xato! Iltimos, adminga murojaat qiling.")
 
-        if st.button("Testni yakunlash"):
-            st.session_state.step = "result"
-            st.rerun()
-    else:
-        st.session_state.step = "result"
+# --- TEST OYNASI (Faqat login qilgandan keyin ko'rinadi) ---
+else:
+    st.sidebar.write(f"👤 Foydalanuvchi: **{st.session_state.user_full_name}**")
+    if st.sidebar.button("Chiqish"):
+        st.session_state.logged_in = False
         st.rerun()
 
-# --- 3. NATIJA SAHIFASI ---
-elif st.session_state.step == "result":
-    st.title("📊 Natijangiz")
-    st.balloons()  # Bayramona effekt
-    st.header(f"Siz 10 tadan {st.session_state.score} ta to'g'ri topdingiz!")
+    st.title("🎯 Python Bo'yicha Testlar")
+    st.write(f"Xush kelibsiz, **{st.session_state.user_full_name}**! Bilimingizni sinab ko'ring.")
 
-    if st.button("Bosh menyuga qaytish", use_container_width=True):
-        st.session_state.step = "main"
-        st.rerun()
+    # Test savollari (Namuna sifatida)
+    questions = [
+        {
+            "savol": "Python-da ro'yxatga element qo'shish uchun qaysi metod ishlatiladi?",
+            "variantlar": ["add()", "append()", "insert_all()", "push()"],
+            "javob": "append()"
+        },
+        {
+            "savol": "NumPy kutubxonasi nima uchun ishlatiladi?",
+            "variantlar": ["Veb-sayt yaratish", "Matematik hisoblashlar va massivlar", "O'yin yaratish",
+                           "Rasm tahrirlash"],
+            "javob": "Matematik hisoblashlar va massivlar"
+        }
+    ]
+
+    score = 0
+    user_answers = []
+
+    for i, q in enumerate(questions):
+        st.subheader(f"{i + 1}-savol: {q['savol']}")
+        ans = st.radio(f"Variantni tanlang ({i}):", q['variantlar'], key=f"q{i}")
+        user_answers.append(ans)
+
+    if st.button("Natijani tekshirish"):
+        for i, q in enumerate(questions):
+            if user_answers[i] == q['javob']:
+                score += 1
+
+        st.divider()
+        if score == len(questions):
+            st.balloons()
+            st.success(
+                f"Ajoyib natija, {st.session_state.user_full_name}! Siz hamma savolga to'g'ri javob berdingiz: {score}/{len(questions)}")
+        else:
+            st.info(f"Yaxshi, {st.session_state.user_full_name}. Sizning natijangiz: {score}/{len(questions)}")
