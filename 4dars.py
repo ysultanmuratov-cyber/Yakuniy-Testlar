@@ -9,7 +9,7 @@ users_db = {
     "Murat": "12062006"
 }
 
-# Login va Test holatini saqlash
+# Holatlarni boshqarish
 if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
 if 'test_started' not in st.session_state:
@@ -18,6 +18,8 @@ if 'current_q_index' not in st.session_state:
     st.session_state.current_q_index = 0
 if 'user_score' not in st.session_state:
     st.session_state.user_score = 0
+if 'answered' not in st.session_state:
+    st.session_state.answered = False
 
 # --- KIRISH OYNASI ---
 if not st.session_state.logged_in:
@@ -46,7 +48,6 @@ else:
         option = st.selectbox("Fanni tanlang:", ["PYTHON", "Differensial tenglamalar", "Moliyaviy savodxonlik"])
         
         if st.button("Testni boshlash"):
-            # MURAT YUBORGAN SAVOLLAR BAZASI
             quiz_data = {
                 "PYTHON": [
                     {"q": "Python qaysi yili yaratilgan?", "o": ["1991", "1985", "2000", "2010"], "a": "1991"},
@@ -85,21 +86,16 @@ else:
                     {"q": "Aktsiya nima?", "o": ["Ulishli qimmatli qog'oz", "Qarz qog'ozi", "Soliq kvitansiyasi", "Shartnoma"], "a": "Ulishli qimmatli qog'oz"}
                 ]
             }
-            
-            # Savollarni aralashtirish
-            selected_qs = quiz_data[option]
+            selected_qs = list(quiz_data[option])
             random.shuffle(selected_qs)
-            
-            # Variantlarni har bir savol ichida aralashtirish
             for item in selected_qs:
+                item['o'] = list(item['o'])
                 random.shuffle(item['o'])
-                
             st.session_state.active_questions = selected_qs
             st.session_state.test_started = True
             st.rerun()
 
     else:
-        # TEST JARAYONI (Bitta-bitta savol ko'rsatish)
         q_idx = st.session_state.current_q_index
         total_qs = len(st.session_state.active_questions)
         
@@ -108,25 +104,38 @@ else:
             st.subheader(f"Savol {q_idx + 1} / {total_qs}")
             st.write(f"**{current_q['q']}**")
             
-            ans = st.radio("Javobni tanlang:", current_q['o'], index=None, key=f"q_{q_idx}")
+            # Javob berilgan bo'lsa radio bosib bo'lmaydigan qilinadi
+            ans = st.radio("Javobni tanlang:", current_q['o'], 
+                           index=None, key=f"q_{q_idx}", 
+                           disabled=st.session_state.answered)
             
-            if st.button("Keyingi savol ➡️"):
-                if ans:
-                    if ans == current_q['a']:
-                        st.session_state.user_score += 1
-                    st.session_state.current_q_index += 1
-                    st.rerun()
+            if not st.session_state.answered:
+                if st.button("Tekshirish ✅"):
+                    if ans:
+                        st.session_state.answered = True
+                        if ans == current_q['a']:
+                            st.session_state.user_score += 1
+                        st.rerun()
+                    else:
+                        st.warning("Iltimos, variantlardan birini tanlang!")
+            else:
+                # Rangli xabar chiqarish
+                if ans == current_q['a']:
+                    st.success(f"To'g'ri! ✅ Javob: {current_q['a']}")
                 else:
-                    st.warning("Iltimos, javobni belgilang!")
+                    st.error(f"Xato! ❌ Siz tanladingiz: {ans}. To'g'ri javob: {current_q['a']}")
+                
+                if st.button("Keyingi savol ➡️"):
+                    st.session_state.current_q_index += 1
+                    st.session_state.answered = False
+                    st.rerun()
         else:
-            # NATIJA OYNASI
             st.title("🏁 Test tugadi!")
             st.success(f"Siz {total_qs} tadan {st.session_state.user_score} ta to'g'ri javob berdingiz!")
             if st.session_state.user_score == total_qs:
                 st.balloons()
-            
             if st.button("Bosh sahifaga qaytish"):
-                for key in ['test_started', 'current_q_index', 'user_score', 'active_questions']:
+                for key in ['test_started', 'current_q_index', 'user_score', 'active_questions', 'answered']:
                     if key in st.session_state:
                         del st.session_state[key]
                 st.rerun()
