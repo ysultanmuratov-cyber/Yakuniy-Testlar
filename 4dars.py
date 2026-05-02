@@ -4,140 +4,161 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# 2. DIZAYNNI TUZATISH (CSS)
+# 2. Variantlar orasidagi masofani kamaytirilgan dizayn (CSS)
 st.markdown("""
     <style>
-    /* Umumiy fon */
     .stApp { background-color: #f8f9fa; }
     
     /* Savol qolipi */
     .question-container {
         background-color: white;
-        padding: 25px;
-        border-radius: 15px 15px 0 0;
-        border-top: 10px solid #4CAF50;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        margin-bottom: 0px !important;
+        padding: 20px;
+        border-radius: 15px;
+        border-top: 8px solid #4CAF50;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 15px; /* Masofa kamaytirildi */
     }
     
-    /* Variant tugmalari - Yopishgan va to'liq kenglikda */
+    /* Variant tugmalari - Ixchamroq dizayn */
     div.stButton > button {
-        width: 100% !important;
-        text-align: left !important;
-        padding: 18px 25px !important;
-        border-radius: 0px !important; /* Burchaklarni yo'qotish */
-        border: 0.5px solid #ddd !important;
-        background-color: white !important;
-        color: #333 !important;
-        font-size: 19px !important;
-        margin: 0 !important;
-        display: block !important;
+        width: 100%;
+        text-align: left;
+        padding: 12px 20px; /* Ichki masofa kamaytirildi */
+        border-radius: 10px;
+        border: 1.5px solid #eee;
+        background-color: white;
+        color: #333;
+        font-size: 17px !important;
+        margin-bottom: -5px; /* Tugmalar orasidagi vertikal masofa qisqartirildi */
+        transition: 0.2s;
     }
     
-    /* Birinchi va oxirgi tugma burchaklarini yumshatish */
-    div.stButton:first-child > button { border-radius: 0px !important; }
-    div.stButton:last-child > button { border-radius: 0 0 15px 15px !important; }
+    /* Tugmalar joylashgan konteyner masofasi */
+    .stElementContainer {
+        margin-bottom: -10px !important; /* Streamlit elementlari orasidagi bo'shliqni yo'qotish */
+    }
 
-    /* To'g'ri javob yashil yonishi */
+    /* To'g'ri va noto'g'ri javob ranglari */
     .correct-btn button {
-        background-color: #28a745 !important;
-        color: white !important;
-        border-color: #1e7e34 !important;
+        background-color: #d4edda !important;
+        border-color: #28a745 !important;
+        color: #155724 !important;
     }
-
-    /* Noto'g'ri javob qizil yonishi */
     .wrong-btn button {
-        background-color: #dc3545 !important;
-        color: white !important;
-        border-color: #bd2130 !important;
+        background-color: #f8d7da !important;
+        border-color: #dc3545 !important;
+        color: #721c24 !important;
     }
-
-    /* Elementlar orasidagi bo'shliqni yo'qotish */
-    .element-container { margin-bottom: -1px !important; }
+    
+    /* Boshqaruv tugmalari (Pastdagilar) */
+    .nav-btn button {
+        height: 45px !important;
+        margin-top: 20px !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
 # 3. Holatlarni boshqarish
 if 'logged_in' not in st.session_state: st.session_state.logged_in = False
-if 'test_active' not in st.session_state: st.session_state.test_active = False
-if 'q_idx' not in st.session_state: st.session_state.q_idx = 0
-if 'score' not in st.session_state: st.session_state.score = 0
+if 'test_started' not in st.session_state: st.session_state.test_started = False
+if 'current_q_index' not in st.session_state: st.session_state.current_q_index = 0
+if 'user_score' not in st.session_state: st.session_state.user_score = 0
 if 'answered' not in st.session_state: st.session_state.answered = False
-if 'sel_opt' not in st.session_state: st.session_state.sel_opt = None
+if 'selected_option' not in st.session_state: st.session_state.selected_option = None
 
 # --- KIRISH ---
 if not st.session_state.logged_in:
     st.title("🎯 Kirish")
+    u_login = st.text_input("Login:", value="Murat")
     u_pass = st.text_input("Parol:", type="password")
     if st.button("KIRISH"):
-        if u_pass == "12062006":
+        if u_login == "Murat" and u_pass == "12062006":
             st.session_state.logged_in = True
             st.rerun()
         else: st.error("Xato!")
 
-# --- TEST ---
+# --- MENYU ---
 else:
-    if not st.session_state.test_active:
+    if not st.session_state.test_started:
         st.title("🚀 Bo'limni tanlang")
-        ms_all = [
-            {"q": "Passivlar nima?", "o": ["Bankdagi depozitlar", "Qarzdorlik majburiyatlari", "Moliyaviy reja", "Soliq imtiyozlari"], "a": "Qarzdorlik majburiyatlari"},
-            {"q": "Aktivlar nima?", "o": ["Qarzlar", "Shaxsiy mulk", "Soliqlar", "Xarajatlar"], "a": "Shaxsiy mulk"},
-            {"q": "Kredit stavkasi nima?", "o": ["Kredit miqdori", "Kredit berish narxi", "Bank balansi", "Soliq turi"], "a": "Kredit berish narxi"}
-        ]
-        if st.button("BOSHLASH"):
-            st.session_state.questions = ms_all # Fayldagi 300 ta savolni shu yerga qo'shing
-            random.shuffle(st.session_state.questions)
-            st.session_state.test_active = True
-            st.rerun()
-    else:
-        curr_idx = st.session_state.q_idx
-        q_list = st.session_state.questions
         
-        if curr_idx < len(q_list):
-            curr_q = q_list[curr_idx]
+        # Jami 300 tacha savollar bazasi
+        ms_all = [
+            {"q": "Budjetni rejalashtirishda asosiy maqsad nima?", "o": ["Daromadlarni oshirish", "Xarajatlarni kamaytirish", "Moliyaviy barqarorlikni ta’minlash", "Bank kreditini olish"], "a": "Moliyaviy barqarorlikni ta’minlash"},
+            {"q": "Kredit stavkasi nima?", "o": ["Kredit miqdori", "Kredit berish narxi, foizda ifodalangan", "Bank balansidagi mablag‘", "Daromad solig‘i"], "a": "Kredit berish narxi, foizda ifodalangan"},
+            {"q": "Pul oqimi deganda nima tushuniladi?", "o": ["Kreditlar miqdori", "Tashkilotning kassa mablag‘lari harakati", "Dividendlar darajasi", "Bank foiz stavkalari"], "a": "Tashkilotning kassa mablag‘lari harakati"},
+            {"q": "Aktivlar deganda nimani tushuniladi?", "o": ["Qarzdorlik majburiyatlari", "Shaxsiy va korporativ mulk", "Faqat pul mablag‘lari", "Daromad manbalari"], "a": "Shaxsiy va korporativ mulk"},
+            {"q": "Passivlar nima?", "o": ["Bankdagi depozitlar", "Qarzdorlik majburiyatlari", "Moliyaviy reja", "Soliq imtiyozlari"], "a": "Qarzdorlik majburiyatlari"},
+            # Qolgan barcha savollar shu yerda davom etadi
+        ]
+        
+        blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"])
+        
+        if st.button("🚀 BOSHLASH"):
+            if blok == "1-70": st.session_state.active_questions = ms_all[0:70]
+            elif blok == "71-140": st.session_state.active_questions = ms_all[70:140]
+            elif blok == "141-210": st.session_state.active_questions = ms_all[140:210]
+            else: st.session_state.active_questions = ms_all[210:]
             
-            # Natija (Yuqorida)
+            random.shuffle(st.session_state.active_questions)
+            st.session_state.test_started = True
+            st.rerun()
+
+    # --- TEST ISHLASH ---
+    else:
+        q_idx = st.session_state.current_q_index
+        questions = st.session_state.active_questions
+        curr = questions[q_idx]
+        
+        # Natija (Yuqorida)
+        if st.session_state.answered:
+            if st.session_state.selected_option == curr['a']:
+                st.success(f"✅ TO‘G‘RI JAVOB!")
+            else:
+                st.error(f"❌ NOTO‘G‘RI! To‘g‘ri javob: {curr['a']}")
+
+        # Savol qutisi
+        st.markdown(f"""
+            <div class="question-container">
+                <div style="color:#888; font-size:13px; margin-bottom:5px;">Savol {q_idx + 1} / {len(questions)}</div>
+                <div style="font-size:20px; font-weight:700; line-height:1.2;">{curr['q']}</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        # Variant tugmalari (Juda yaqin joylashgan)
+        for option in curr['o']:
             if st.session_state.answered:
-                if st.session_state.sel_opt == curr_q['a']:
-                    st.success("✅ TO'G'RI JAVOB!")
+                if option == curr['a']:
+                    st.markdown('<div class="correct-btn">', unsafe_allow_html=True)
+                elif option == st.session_state.selected_option:
+                    st.markdown('<div class="wrong-btn">', unsafe_allow_html=True)
                 else:
-                    st.error(f"❌ NOTO'G'RI! To'g'ri: {curr_q['a']}")
-
-            # Savol qutisi
-            st.markdown(f"""
-                <div class="question-container">
-                    <div style="color:#888; font-size:13px;">Savol {curr_idx + 1} / {len(q_list)}</div>
-                    <div style="font-size:22px; font-weight:700;">{curr_q['q']}</div>
-                </div>
-            """, unsafe_allow_html=True)
+                    st.markdown('<div>', unsafe_allow_html=True)
+            else:
+                st.markdown('<div>', unsafe_allow_html=True)
             
-            # Variantlar - To'g'ridan-to'g'ri yopishgan tugmalar
-            for opt in curr_q['o']:
-                btn_style = "<div>"
-                if st.session_state.answered:
-                    if opt == curr_q['a']: btn_style = '<div class="correct-btn">'
-                    elif opt == st.session_state.sel_opt: btn_style = '<div class="wrong-btn">'
-                
-                st.markdown(btn_style, unsafe_allow_html=True)
-                if st.button(opt, key=f"opt_{opt}_{curr_idx}", disabled=st.session_state.answered):
-                    st.session_state.answered = True
-                    st.session_state.sel_opt = opt
-                    if opt == curr_q['a']: st.session_state.score += 1
-                    st.rerun()
-                st.markdown('</div>', unsafe_allow_html=True)
+            if st.button(option, key=f"btn_{option}_{q_idx}", disabled=st.session_state.answered):
+                st.session_state.answered = True
+                st.session_state.selected_option = option
+                if option == curr['a']:
+                    st.session_state.user_score += 1
+                st.rerun()
+            
+            st.markdown('</div>', unsafe_allow_html=True)
 
-            # Boshqaruv
-            st.write("---")
-            c1, c2 = st.columns(2)
-            with c1:
-                if st.session_state.answered:
-                    if st.button("Keyingi ➔"):
-                        st.session_state.q_idx += 1
-                        st.session_state.answered = False
-                        st.session_state.sel_opt = None
-                        st.rerun()
-            with c2:
-                if st.button("🏠 Menyuga"):
-                    for k in ['test_active','q_idx','score','questions','answered','sel_opt']:
-                        if k in st.session_state: del st.session_state[k]
+        # Pastki boshqaruv
+        st.markdown('<div class="nav-btn">', unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.session_state.answered:
+                if st.button("Keyingi ➔"):
+                    st.session_state.current_q_index += 1
+                    st.session_state.answered = False
+                    st.session_state.selected_option = None
                     st.rerun()
+        with col2:
+            if st.button("🏠 Menyuga"):
+                for k in ['test_started','current_q_index','user_score','active_questions','answered','selected_option']:
+                    if k in st.session_state: del st.session_state[k]
+                st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
