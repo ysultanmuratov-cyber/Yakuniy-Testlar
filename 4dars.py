@@ -4,7 +4,7 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# 2. Maxsus dizayn (CSS) - Variantlar yopishgan va rangli effektli
+# 2. Optimal dizayn (CSS) - Variantlar jipslashgan va rangli effektli
 st.markdown("""
     <style>
     .stApp { background-color: #f8f9fa; }
@@ -19,12 +19,12 @@ st.markdown("""
         margin-bottom: 10px;
     }
     
-    /* Variant tugmalari - Ixcham va yopishgan */
+    /* Variant tugmalari - Yopishgan va to'liq kenglikda */
     div.stButton > button {
         width: 100% !important;
         text-align: left !important;
         padding: 12px 20px !important;
-        border-radius: 0px !important; /* Tugmalar yopishishi uchun */
+        border-radius: 0px !important;
         border: 0.5px solid #eee !important;
         background-color: white !important;
         color: #333 !important;
@@ -33,10 +33,10 @@ st.markdown("""
         display: block !important;
     }
     
-    /* Elementlar orasidagi bo'shliqni yo'qotish */
+    /* Elementlar orasidagi masofani yo'qotish */
     .stElementContainer { margin-bottom: -10px !important; }
 
-    /* To'g'ri javob foni yashil yonishi */
+    /* To'g'ri javob foni yashil */
     .correct-btn button {
         background-color: #d4edda !important;
         border-color: #28a745 !important;
@@ -44,7 +44,7 @@ st.markdown("""
         font-weight: bold !important;
     }
 
-    /* Noto'g'ri javob foni qizil yonishi */
+    /* Noto'g'ri javob foni qizil */
     .wrong-btn button {
         background-color: #f8d7da !important;
         border-color: #dc3545 !important;
@@ -52,10 +52,10 @@ st.markdown("""
     }
     
     /* Navigatsiya tugmalari */
-    .nav-btn button {
-        height: 50px !important;
-        margin-top: 25px !important;
-        border-radius: 10px !important;
+    .nav-btn button { 
+        height: 50px !important; 
+        margin-top: 25px !important; 
+        border-radius: 10px !important; 
     }
     </style>
     """, unsafe_allow_html=True)
@@ -71,7 +71,7 @@ if 'selected_option' not in st.session_state: st.session_state.selected_option =
 # --- KIRISH ---
 if not st.session_state.logged_in:
     st.title("🎯 Kirish")
-    u_pass = st.text_input("Parolni kiriting:", type="password")
+    u_pass = st.text_input("Parol:", type="password", placeholder="12062006")
     if st.button("KIRISH"):
         if u_pass == "12062006":
             st.session_state.logged_in = True
@@ -83,30 +83,35 @@ else:
     if not st.session_state.test_started:
         st.title("🚀 Test blokini tanlang")
         
-        # Barcha 300 tacha savollar bazasi (Fayldagi ma'lumotlar asosida)
+        # --- BARCHA SAVOLLAR BAZASI ---
+        # Bu yerda 300 ta savol bo'lishi kerak. Men namunani ko'paytirib berdim
         ms_all = [
             {"q": "Budjetni rejalashtirishda asosiy maqsad nima?", "o": ["Daromadlarni oshirish", "Xarajatlarni kamaytirish", "Moliyaviy barqarorlikni ta’minlash", "Bank kreditini olish"], "a": "Moliyaviy barqarorlikni ta’minlash"},
             {"q": "Kredit stavkasi nima?", "o": ["Kredit miqdori", "Kredit berish narxi, foizda ifodalangan", "Bank balansidagi mablag‘", "Daromad solig‘i"], "a": "Kredit berish narxi, foizda ifodalangan"},
             {"q": "Passivlar nima?", "o": ["Bankdagi depozitlar", "Qarzdorlik majburiyatlari", "Moliyaviy reja", "Soliq imtiyozlari"], "a": "Qarzdorlik majburiyatlari"},
             {"q": "Aktivlar nima?", "o": ["Qarzlar", "Shaxsiy mulk", "Soliqlar", "Xarajatlar"], "a": "Shaxsiy mulk"},
             {"q": "Inflyatsiya nima?", "o": ["Narxlar oshishi", "Foiz tushishi", "Kredit kamayishi", "Eksport ortishi"], "a": "Narxlar oshishi"},
-            # --- BU YERGA QOLGAN 295 TA SAVOLNI QO'SHASIZ ---
+            {"q": "Likvidlik nima?", "o": ["Pulning qadri", "Aktivning tez naqd pulga aylanishi", "Bank qarzi", "Soliq imtiyozi"], "a": "Aktivning tez naqd pulga aylanishi"},
+            {"q": "Dividend nima?", "o": ["Ish haqi", "Aksiya bo‘yicha olinadigan foyda", "Bank foizi", "Kredit turi"], "a": "Aksiya bo‘yicha olinadigan foyda"},
+            # --- SHU YERDAN BOSHLAB QOLGAN SAVOLLARNI NUSXALAB QO'SHASIZ ---
         ]
         
-        blok = st.radio("Blokni tanlang:", ["1-70", "71-140", "141-210", "211-300"])
+        # Agar savollaringiz soni 300 taga yetmasa, bloklar bo'sh qolmasligi uchun 
+        # testni blok tanlamasdan hamma savollarni chiqaradigan qilib sozlash mumkin.
+        blok = st.radio("Blokni tanlang:", ["1-70", "71-140", "141-210", "211-300", "Hamma savollar"])
         
         if st.button("🚀 BOSHLASH"):
-            # Bloklar bo'yicha ajratish
             if blok == "1-70": st.session_state.active_questions = ms_all[0:70]
             elif blok == "71-140": st.session_state.active_questions = ms_all[70:140]
             elif blok == "141-210": st.session_state.active_questions = ms_all[140:210]
-            else: st.session_state.active_questions = ms_all[210:]
+            elif blok == "211-300": st.session_state.active_questions = ms_all[210:300]
+            else: st.session_state.active_questions = ms_all # Bor hamma savollar
             
             random.shuffle(st.session_state.active_questions)
             st.session_state.test_started = True
             st.rerun()
 
-    # --- TEST ISHLASH JARAYONI ---
+    # --- TEST JARAYONI ---
     else:
         q_idx = st.session_state.current_q_index
         questions = st.session_state.active_questions
@@ -114,14 +119,12 @@ else:
         if q_idx < len(questions):
             curr = questions[q_idx]
             
-            # Natija (Savol ustida)
             if st.session_state.answered:
                 if st.session_state.selected_option == curr['a']:
                     st.success("✅ TO'G'RI JAVOB!")
                 else:
                     st.error(f"❌ NOTO'G'RI! To'g'ri: {curr['a']}")
 
-            # Savol blokini chizish
             st.markdown(f"""
                 <div class="question-container">
                     <div style="color:#888; font-size:13px; margin-bottom:5px;">Savol {q_idx + 1} / {len(questions)}</div>
@@ -129,7 +132,6 @@ else:
                 </div>
             """, unsafe_allow_html=True)
             
-            # Variant tugmalari
             for option in curr['o']:
                 btn_class = "<div>"
                 if st.session_state.answered:
@@ -144,7 +146,6 @@ else:
                     st.rerun()
                 st.markdown('</div>', unsafe_allow_html=True)
 
-            # Navigatsiya
             st.markdown('<div class="nav-btn">', unsafe_allow_html=True)
             col1, col2 = st.columns(2)
             with col1:
@@ -163,7 +164,7 @@ else:
         else:
             st.balloons()
             st.success(f"🏁 Tugadi! Natija: {st.session_state.user_score} / {len(questions)}")
-            if st.button("Qaytadan boshlash"):
+            if st.button("🏠 Bosh sahifaga qaytish"):
                 for k in ['test_started','current_q_index','user_score','active_questions','answered','selected_option']:
                     if k in st.session_state: del st.session_state[k]
                 st.rerun()
