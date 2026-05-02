@@ -3,77 +3,79 @@ import streamlit as st
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Quiz Bot Style", layout="centered")
 
-# 2. Telegram Quiz dizayni (CSS)
+# 2. Telegram Quiz dizayni (CSS) - Faqat kerakli elementlar qoldirildi
 st.markdown("""
     <style>
+    /* Umumiy fon kulrang */
     .stApp { background-color: #e6ebf0; }
     
+    /* Barcha elementlarni o'rab turuvchi yagona oq karta */
     .quiz-card {
         background-color: white;
         padding: 25px;
         border-radius: 12px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         max-width: 500px;
-        margin: auto;
+        margin: 20px auto;
     }
     
+    /* Savol sarlavhasi */
     .question-header {
         font-weight: bold;
-        font-size: 19px;
+        font-size: 18px;
         color: #000;
         margin-bottom: 20px;
     }
 
-    /* Radio tugmalarni chiroyli qilish */
-    div[role="radiogroup"] {
-        padding: 5px;
-    }
-    
+    /* Radio variantlar orasidagi masofa */
     div[role="radiogroup"] label {
-        font-size: 17px !important;
-        color: #333 !important;
-        margin-bottom: 10px !important;
+        padding: 12px 0 !important;
+        border-bottom: 1px solid #f8f8f8;
     }
 
-    /* Natija foizlari (Progress Bar) */
+    /* Natija foizlari dizayni */
     .stat-row {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 15px;
+        margin-bottom: 18px;
     }
     .label-row {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 5px;
+        margin-bottom: 6px;
         font-size: 16px;
+        color: #333;
     }
     .bar-bg {
-        height: 10px;
-        background-color: #f0f0f0;
-        border-radius: 5px;
+        height: 8px;
+        background-color: #f0f2f5;
+        border-radius: 4px;
         width: 100%;
-        overflow: hidden;
     }
-    .bar-fill { height: 100%; border-radius: 5px; }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
 
-    /* Tugma */
+    /* "Keyingi" tugmasi dizayni */
     .stButton button {
-        width: 100%;
         background-color: #0088cc !important;
         color: white !important;
-        border-radius: 10px !important;
+        border-radius: 8px !important;
+        width: 100%;
         height: 45px;
         font-weight: bold;
         border: none;
+        margin-top: 10px;
     }
+    
+    /* Ortiqcha oq tugma chiqishining oldini olish */
+    div.stSelectbox, div.stTextInput, div.stMultiSelect { display: none; }
     </style>
     """, unsafe_allow_html=True)
 
 # 3. Holatni saqlash
 if 'answered' not in st.session_state: st.session_state.answered = False
 
-# --- QUIZ EKRANI ---
+# --- ASOSIY KARTA ---
 st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+
+# Savol matni
 st.markdown('<div class="question-header">[1/1] Kredit stavkasi nima?</div>', unsafe_allow_html=True)
 
 options = ["Daromad solig'i", "Kredit berish narxi", "Kredit miqdori", "Bank balansidagi mablag'"]
@@ -81,30 +83,33 @@ correct_ans = "Kredit berish narxi"
 
 # JAVOB BERILMAGAN HOLAT
 if not st.session_state.answered:
-    # Radio tugma faqat javob berilmaganda ko'rinadi
-    choice = st.radio("Tanlang:", options, index=None, key="quiz_opt", label_visibility="collapsed")
+    # Radio tugmalar yordamida tanlov (oq tugmalarsiz toza variantlar)
+    choice = st.radio("", options, index=None, key="quiz_opt", label_visibility="collapsed")
     
     if choice:
         st.session_state.answered = True
         st.session_state.user_choice = choice
         st.rerun()
 
-# JAVOB BERILGAN HOLAT (Natija videodagidek chiqadi)
+# JAVOB BERILGAN HOLAT
 else:
     for opt in options:
-        # To'g'ri yoki noto'g'ri ekanligini aniqlash
         is_correct = (opt == correct_ans)
         is_user_choice = (opt == st.session_state.user_choice)
         
-        # Foiz va ranglar
+        # Telegram uslubidagi foizlar
         percent = 100 if is_correct else 0
         fill_color = "#4CAF50" if is_correct else "#e0e0e0"
-        text_suffix = "✔️" if is_correct else ("❌" if is_user_choice else "")
+        
+        # Belgi qo'shish (To'g'ri bo'lsa qushcha, xato bo'lsa krestik)
+        icon = ""
+        if is_correct: icon = "✔️"
+        elif is_user_choice: icon = "❌"
         
         st.markdown(f"""
             <div class="stat-row">
                 <div class="label-row">
-                    <span>{opt} {text_suffix}</span>
+                    <span>{opt} {icon}</span>
                     <span>{percent}%</span>
                 </div>
                 <div class="bar-bg">
@@ -113,9 +118,8 @@ else:
             </div>
         """, unsafe_allow_html=True)
     
-    st.write("")
     if st.button("Keyingi savol ➔"):
         st.session_state.answered = False
         st.rerun()
 
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True) # Karta yopilishi
