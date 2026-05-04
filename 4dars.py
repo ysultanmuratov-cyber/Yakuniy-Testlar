@@ -231,7 +231,14 @@ if not st.session_state.logged_in:
             st.rerun()
         else:
             st.error("Login yoki parol xato!")
-            
+            # Muallif ma'lumotlari
+    st.markdown("""
+        <div style="text-align: center; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px;">
+            <p style="margin: 0; font-size: 14px; color: #666;">Yaratuvchi : <b>Murat Sultanov</b></p>
+            <p style="margin: 0; font-size: 14px; color: #666;">Murojat uchun : <b>@murat_sultanov</b></p>
+        </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown('</div>', unsafe_allow_html=True)
 # --- MENYU ---
 else:
