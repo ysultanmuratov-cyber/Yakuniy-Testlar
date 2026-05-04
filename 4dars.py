@@ -370,7 +370,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
     
     # 1. Foydalanuvchilar bazasi (Siz ko'rsatgan variantda, o'zgarishsiz)
-  users = {
+users = {
     "Murat": "12062006",
     "Nilufar": "Nilufar0455",
     "Radjabboyeva_m": "12345678",
