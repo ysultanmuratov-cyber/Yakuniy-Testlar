@@ -241,20 +241,24 @@ else:
         blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"])
         
         if st.button("🚀 BOSHLA"):
+            # Tanlangan blokni nusxalab olish (asli o'zgarmasligi uchun)
             if blok == "1-70":
-                st.session_state.active_questions = st.session_state.ms_1_70
+                questions = list(st.session_state.ms_1_70)
             elif blok == "71-140":
-                st.session_state.active_questions = st.session_state.ms_71_140
+                questions = list(st.session_state.ms_71_140)
             elif blok == "141-210":
-                st.session_state.active_questions = st.session_state.ms_141_210
-            else:
-                st.session_state.active_questions = st.session_state.ms_1_70 
+                questions = list(st.session_state.ms_141_210)
             
-            random.shuffle(st.session_state.active_questions)
+            # 1. Savollar tartibini aralashtirish
+            random.shuffle(questions)
+            
+            # 2. Har bir savol ichidagi variantlarni ham aralashtirish
+            for q in questions:
+                random.shuffle(q['o'])
+                
+            st.session_state.active_questions = questions
             st.session_state.test_started = True
             st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
-
    # --- TEST JARAYONI ---
     else:
         q_idx = st.session_state.current_q_index
