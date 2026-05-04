@@ -4,60 +4,88 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# Yangilangan Cinematic CSS
+# Yangilangan Cinematic CSS (Logotip va Ikonkalar bilan)
 st.markdown("""
-    <style>
-    /* Sahifa umumiy ko'rinishi */
-    .block-container {
-        padding-top: 2rem !important;
-        max-width: 500px !important;
-    }
-    
-    header {visibility: hidden;}
+    <style>
+    /* 1. SAHIFA UMUMIY SOZLAMALARI */
+    .block-container {
+        padding-top: 1rem !important; /* Yuqoridagi bo'shliqni minimal qildik */
+        max-width: 500px !important;
+    }
+    header {visibility: hidden;}
+    .stApp { background-color: #F8FAFC !important; }
 
-    /* TUGMA DIZAYNI - Mashhur saytlardagidek */
-    div[data-testid="stButton"] button {
-        width: 100% !important;
-        background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
-        color: white !important;
-        border-radius: 10px !important;
-        height: 50px !important;
-        font-weight: 600 !important;
-        font-size: 17px !important;
-        border: none !important;
-        letter-spacing: 0.5px !important; /* Harflar orasidagi masofa */
-        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2) !important;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Yumshoq animatsiya */
-        cursor: pointer !important;
-    }
+    /* 2. LOGOTIP UCHUN PREMIUM DIZAYN */
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0 25px 0;
+    }
 
-    /* Ustiga borganda (Mashhur effekt) */
-    div[data-testid="stButton"] button:hover {
-        background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
-        box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35) !important;
-        transform: translateY(-1px) scale(1.01) !important; /* Bir ozgina kattalashish */
-    }
+    .main-logo {
+        width: 160px; /* Logotip o'lchami */
+        filter: drop-shadow(0 8px 15px rgba(0,0,0,0.08));
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-    /* Bosilganda */
-    div[data-testid="stButton"] button:active {
-        transform: translateY(1px) scale(0.99) !important;
-        box-shadow: 0 2px 10px rgba(0, 136, 204, 0.2) !important;
-    }
+    .main-logo:hover {
+        transform: scale(1.03) translateY(-2px);
+        filter: drop-shadow(0 12px 25px rgba(0,0,0,0.12));
+    }
 
-    /* Inputlar dizaynini ham tugmaga moslash */
-    .stTextInput input {
-        border-radius: 10px !important;
-        border: 1px solid #e0e0e0 !important;
-        padding: 12px !important;
-        transition: border 0.3s ease !important;
-    }
+    /* 3. TUGMA DIZAYNI - Mashhur saytlardagidek */
+    div[data-testid="stButton"] button {
+        width: 100% !important;
+        background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
+        color: white !important;
+        border-radius: 12px !important;
+        height: 52px !important;
+        font-weight: 600 !important;
+        font-size: 17px !important;
+        border: none !important;
+        letter-spacing: 0.5px !important;
+        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2) !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        cursor: pointer !important;
+    }
 
-    .stTextInput input:focus {
-        border: 1px solid #0088cc !important;
-        box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1) !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+    div[data-testid="stButton"] button:hover {
+        background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
+        box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35) !important;
+        transform: translateY(-1px) scale(1.01) !important;
+    }
+
+    /* 4. INPUTLAR VA BOSHQALAR */
+    .stTextInput input {
+        border-radius: 12px !important;
+        border: 1px solid #e2e8f0 !important;
+        padding: 12px !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .stTextInput input:focus {
+        border: 1px solid #0088cc !important;
+        box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1) !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# 5. PYTHON QISMIDA LOGOTIPNI CHIQARISH
+# Rasm fayli nomini 'image_3abe9f.png' deb ko'rsatdim
+st.markdown("""
+    <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/murat-sultanov/logos/main/urdu_test_markazi.png" class="main-logo" alt="UrDU Test Markazi">
+    </div>
+""", unsafe_allow_html=True)
+
+# Sarlavha (Raketa bilan)
+st.markdown("""
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
+        <span style="font-size: 32px;">🚀</span>
+        <h1 style="margin: 0; font-size: 28px; font-weight: 800; color: #1E293B;">Bo'limni tanlang</h1>
+    </div>
+""", unsafe_allow_html=True)
 
 # 3. Savollar Bazasi
 # 1-70 bloki
