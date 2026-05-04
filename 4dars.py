@@ -4,57 +4,95 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# Yangilangan Cinematic CSS
 st.markdown("""
     <style>
-    /* Sahifa umumiy ko'rinishi */
+    /* 1. Umumiy sahifa va Shriftlar */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+    .stApp {
+        background: radial-gradient(circle at top right, #1e293b, #0f172a); /* Cinematic gradient fon */
+        font-family: 'Inter', sans-serif !important;
+    }
+
     .block-container {
         padding-top: 2rem !important;
-        max-width: 500px !important;
+        max-width: 550px !important;
     }
-    
+
     header {visibility: hidden;}
 
-    /* TUGMA DIZAYNI - Mashhur saytlardagidek */
-    div[data-testid="stButton"] button {
-        width: 100% !important;
-        background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
-        color: white !important;
-        border-radius: 10px !important;
-        height: 50px !important;
-        font-weight: 600 !important;
-        font-size: 17px !important;
-        border: none !important;
-        letter-spacing: 0.5px !important; /* Harflar orasidagi masofa */
-        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2) !important;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Yumshoq animatsiya */
+    /* 2. Premium Quiz Card (Glassmorphism effekt) */
+    .quiz-card {
+        background: rgba(255, 255, 255, 0.03) !important;
+        backdrop-filter: blur(15px) !important; /* Shishasimon effekt */
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding: 30px !important;
+        border-radius: 24px !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+        margin-bottom: 25px !important;
+    }
+
+    /* 3. Matnlar uslubi */
+    h1, h2, h3 {
+        color: #ffffff !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.02em !important;
+    }
+    
+    p, label, .stMarkdown {
+        color: #94a3b8 !important; /* Yumshoq kulrang matn */
+        font-weight: 400 !important;
+    }
+
+    /* 4. Radio Tugmalar (Variantlar) dizayni */
+    div[data-testid="stRadio"] > label {
+        background: rgba(255, 255, 255, 0.05) !important;
+        padding: 12px 20px !important;
+        border-radius: 12px !important;
+        border: 1px solid transparent !important;
+        transition: all 0.3s ease !important;
+        margin-bottom: 10px !important;
         cursor: pointer !important;
     }
 
-    /* Ustiga borganda (Mashhur effekt) */
+    div[data-testid="stRadio"] > label:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(0, 136, 204, 0.4) !important;
+    }
+
+    /* 5. ASOSIY TUGMA (Apple/SaaS style) */
+    div[data-testid="stButton"] button {
+        width: 100% !important;
+        background: #ffffff !important; /* Oq tugma to'q fonda juda qimmat ko'rinadi */
+        color: #0f172a !important;
+        border-radius: 14px !important;
+        height: 54px !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        border: none !important;
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+    }
+
     div[data-testid="stButton"] button:hover {
-        background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
-        box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35) !important;
-        transform: translateY(-1px) scale(1.01) !important; /* Bir ozgina kattalashish */
+        transform: translateY(-2px) !important;
+        box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2) !important;
+        background: #f8fafc !important;
     }
 
-    /* Bosilganda */
-    div[data-testid="stButton"] button:active {
-        transform: translateY(1px) scale(0.99) !important;
-        box-shadow: 0 2px 10px rgba(0, 136, 204, 0.2) !important;
-    }
-
-    /* Inputlar dizaynini ham tugmaga moslash */
-    .stTextInput input {
-        border-radius: 10px !important;
-        border: 1px solid #e0e0e0 !important;
-        padding: 12px !important;
-        transition: border 0.3s ease !important;
-    }
-
-    .stTextInput input:focus {
-        border: 1px solid #0088cc !important;
-        box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1) !important;
+    /* 6. Footer (Elegant style) */
+    .footer {
+        position: fixed;
+        left: 0; bottom: 0;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.8) !important;
+        backdrop-filter: blur(10px) !important;
+        text-align: center;
+        padding: 15px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        z-index: 9999;
     }
     </style>
     """, unsafe_allow_html=True)
