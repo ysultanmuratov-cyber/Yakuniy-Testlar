@@ -203,14 +203,19 @@ if 'selected_option' not in st.session_state: st.session_state.selected_option =
 if not st.session_state.logged_in:
     st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
     st.title("🎯 Kirish")
+    
+    # Login va Parol kiritish joylari
+    u_login = st.text_input("Foydalanuvchi nomi (Login):")
     u_pass = st.text_input("Parol:", type="password")
+    
     if st.button("KIRISH"):
-        if u_pass == "12062006":
+        # Login "Murat" va Parol "12062006" bo'lgandagina kiradi
+        if u_login == "Murat" and u_pass == "12062006":
             st.session_state.logged_in = True
             st.rerun()
-        else: st.error("Xato!")
+        else:
+            st.error("Login yoki parol xato!")
     st.markdown('</div>', unsafe_allow_html=True)
-
 # --- MENYU ---
 else:
     if not st.session_state.test_started:
