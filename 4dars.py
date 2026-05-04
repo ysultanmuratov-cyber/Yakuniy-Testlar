@@ -4,15 +4,16 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# 2. Yangilangan CSS (Tepadagi bo'shliqni yo'qotish va Card dizayni)
+# 2. Yangilangan CSS (Tepadagi bo'shliq, Card va Footer dizayni)
 st.markdown("""
     <style>
-    /* Sahifa tepasidagi bo'shliqni majburan yo'qotish */
+    /* Sahifa tepasidagi bo'shliqni yo'qotish */
     .block-container {
         padding-top: 1rem !important;
-        padding-bottom: 0rem !important;
+        padding-bottom: 5rem !important; /* Footer uchun joy qoldiramiz */
         max-width: 600px !important;
     }
+    
     header {visibility: hidden;} /* Streamlit yuqori chizig'ini yashirish */
     .stApp { background-color: #e6ebf0 !important; }
     
@@ -39,6 +40,27 @@ st.markdown("""
         font-weight: bold;
         border: none;
         margin-top: 10px;
+    }
+
+    /* Fixed Footer (Pastki panel) dizayni */
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        color: #333;
+        text-align: center;
+        padding: 12px 0;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 9999;
+    }
+    .footer a {
+        text-decoration: none;
+        color: #0088cc !important;
+        font-weight: bold;
+        margin: 0 15px;
+        font-size: 15px;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -493,3 +515,11 @@ else:
                 st.session_state.answered = False
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
+            # Doimiy ko'rinib turadigan mualliflik paneli (Footer)
+st.markdown(f"""
+    <div class="footer">
+        <p style="margin-bottom: 5px; font-size: 14px; color: #666;">Yaratuvchi: <b>Murat Sultanov</b></p>
+        <a href="https://t.me/murat_sultanov" target="_blank">✈️ @murat_sultanov</a>
+        <a href="https://instagram.com/muratsultanov__" target="_blank">📸 @muratsultanov__</a>
+    </div>
+    """, unsafe_allow_html=True)
