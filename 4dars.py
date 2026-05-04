@@ -467,7 +467,7 @@ else:
             
             # 1. Test oynasini (quiz-card) yopuvchi DIV
             # Bu qator if q_idx < len(questions) blokining oxirida bo'lishi kerak
-            st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
         # 2. --- NATIJALAR SAHIFASI ---
         # Bu 'else' yuqoridagi 'if q_idx < len(questions):' bilan aynan bir xil chiziqda bo'lishi shart
