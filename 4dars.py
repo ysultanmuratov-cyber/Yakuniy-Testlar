@@ -4,40 +4,42 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# To'liq Premium CSS
+# To'liq Premium CSS (Yuqoriga surilgan varianti)
 st.markdown("""
     <style>
-    /* 1. SAHIFA UMUMIY SOZLAMALARI */
+    /* 1. SAHIFA UMUMIY SOZLAMALARI - BUTUN BLOKNI TEPAGA SURISH */
     .main .block-container {
-        padding-top: 1rem !important; /* Yuqoridagi bo'shliqni minimal qilish */
-        padding-bottom: 2rem !important;
-        max-width: 460px !important; /* Ixcham kenglik */
+        padding-top: 0rem !important; /* Tepadagi bo'shliqni nolga tushirish */
+        margin-top: -55px !important; /* Hamma narsani shundayligicha tepaga surish */
+        padding-bottom: 1rem !important;
+        max-width: 460px !important;
     }
     
     header {visibility: hidden;}
     footer {visibility: hidden;}
 
     .stApp {
-        background-color: #F8FAFC !important; /* Toza va zamonaviy fon */
+        background-color: #F8FAFC !important;
     }
 
-    /* Elementlar orasidagi masofani yaqinlashtirish */
+    /* Elementlar orasidagi masofani yaqinlashtirish (shakli o'zgarmaydi) */
     [data-testid="stVerticalBlock"] > div {
         padding-top: 0rem !important;
-        gap: 0.8rem !important; 
+        gap: 0.6rem !important; 
     }
 
-    /* 2. LOGOTIP DIZAYNI (Eski Kirish yozuvi o'rniga) */
+    /* 2. LOGOTIP DIZAYNI */
     .logo-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 10px 0 20px 0;
+        padding: 0px 0px 10px 0px !important; /* Ortiqcha paddingni olib tashladik */
     }
 
     .main-logo {
-        width: 220px !important; /* Logo o'lchami */
+        width: 220px !important; 
         filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));
+        mix-blend-mode: multiply;
         transition: all 0.4s ease;
     }
     
@@ -45,7 +47,7 @@ st.markdown("""
         transform: scale(1.02);
     }
 
-    /* 3. TUGMA DIZAYNI (Premium Cinematic) */
+    /* 3. TUGMA DIZAYNI */
     div[data-testid="stButton"] button {
         width: 100% !important;
         background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
@@ -55,64 +57,28 @@ st.markdown("""
         font-weight: 700 !important;
         font-size: 16px !important;
         border: none !important;
-        letter-spacing: 0.5px !important;
         box-shadow: 0 4px 15px rgba(0, 136, 204, 0.25) !important;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        margin-top: 10px !important;
+        margin-top: 5px !important; /* Masofani biroz kamaytirdik */
     }
 
-    div[data-testid="stButton"] button:hover {
-        background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
-        box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35) !important;
-        transform: translateY(-1px);
-    }
-
-    div[data-testid="stButton"] button:active {
-        transform: translateY(1px) scale(0.98);
-    }
-
-    /* 4. INPUTLAR (Login va Parol) */
+    /* 4. INPUTLAR */
     .stTextInput input {
         border-radius: 12px !important;
         border: 1.5px solid #E2E8F0 !important;
         padding: 12px !important;
         background-color: white !important;
-        transition: all 0.3s ease !important;
     }
 
-    .stTextInput input:focus {
-        border-color: #0088cc !important;
-        box-shadow: 0 0 0 3px rgba(0, 136, 204, 0.1) !important;
-    }
+    /* 6. MATNLAR - MASOFANI TARTIBLASH */
+    h1, h2, h3 { color: #1E293B !important; font-weight: 800 !important; margin-bottom: 2px !important; }
+    p, label { color: #475569 !important; font-size: 15px !important; margin-bottom: 2px !important; }
 
-    /* 5. VARIANTLAR (Radio buttons) */
-    div[data-testid="stRadio"] > div {
-        gap: 8px !important;
-    }
-
-    div[data-testid="stRadio"] label {
-        background-color: #FFFFFF !important;
-        border: 1.5px solid #E2E8F0 !important;
-        padding: 12px 18px !important;
-        border-radius: 12px !important;
-        transition: all 0.2s ease !important;
-    }
-
-    div[data-testid="stRadio"] label:hover {
-        border-color: #0088cc !important;
-        background-color: #F0F9FF !important;
-    }
-
-    /* 6. MATNLAR */
-    h1, h2, h3 { color: #1E293B !important; font-weight: 800 !important; }
-    p, label { color: #475569 !important; font-size: 15px !important; }
-
-    /* Footer dizayni */
+    /* Footer dizayni ko'rinishi uchun masofa */
     .footer-text {
         text-align: center;
         color: #64748B !important;
         font-size: 14px !important;
-        margin-top: 20px;
+        margin-top: 10px !important;
     }
 
     </style>
