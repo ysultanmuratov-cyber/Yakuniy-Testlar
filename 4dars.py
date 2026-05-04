@@ -440,7 +440,12 @@ if not st.session_state.logged_in:
     u_login = st.text_input("Foydalanuvchi nomi (Login):")
     u_pass = st.text_input("Parol:", type="password")
 
-    if st.button("KIRISH"):
+    # Kirish yozuvi o'rniga logotip
+    st.markdown("""
+        <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/murat-sultanov/logos/main/urdu_test_markazi.png" class="main-logo">
+        </div>
+    """, unsafe_allow_html=True)
         if u_login in users and users[u_login] == u_pass:
             st.session_state.logged_in = True
             st.rerun()
