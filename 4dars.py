@@ -331,7 +331,7 @@ if 'ms_211_300' not in st.session_state:
         {"q": "Plastik kartalar orqali amalga oshiriladigan operatsiyalar qaysilar?", "o": ["A) Naqd pul yechish, to‘lovlarni amalga oshirish, hisobni nazorat qilish", "B) Faqat depozit qo‘yish", "C) Faqat kredit berish", "D) Inflyatsiyani kamaytirish"], "a": "A) Naqd pul yechish, to‘lovlarni amalga oshirish, hisobni nazorat qilish"},
         {"q": "Bank hisobvarag‘iga mablag‘ kiritishning asosiy usullari qaysilar?", "o": ["A) Naqd pul, elektron pul, boshqa banklar orqali o‘tkazmalar", "B) Faqat naqd pul", "C) Faqat boshqa bank orqali", "D) Faqat valyuta ayirboshlash"], "a": "A) Naqd pul, elektron pul, boshqa banklar orqali o‘tkazmalar"},
         {"q": "Kredit operatsiyalarida foiz stavkasini tanlash nima muhim?", "o": ["A) Chunki foiz stavkasi qarzning umumiy qiymatini belgilaydi va byudjetga ta’sir qiladi", "B) Foizlar avtomatik hisoblanadi", "C) Xarajatlar oshadi", "D) Naqd pul kamayadi"], "a": "A) Chunki foiz stavkasi qarzning umumiy qiymatini belgilaydi va byudjetga ta’sir qiladi"}
-]
+    ]
 
 # 4. Holatlarni boshqarish
 if 'logged_in' not in st.session_state: st.session_state.logged_in = False
