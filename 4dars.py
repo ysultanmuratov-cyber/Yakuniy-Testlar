@@ -4,25 +4,32 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# 2. Mobil va Dark Mode uchun optimallashgan CSS
+# 2. Yangilangan CSS (Tepadagi bo'shliqni yo'qotish va Card dizayni)
 st.markdown("""
     <style>
-    /* Sahifa tepasidagi oq bo'shliqni yo'qotish */
+    /* Sahifa tepasidagi bo'shliqni majburan yo'qotish */
     .block-container {
         padding-top: 1rem !important;
         padding-bottom: 0rem !important;
+        max-width: 600px !important;
     }
+    header {visibility: hidden;} /* Streamlit yuqori chizig'ini yashirish */
     .stApp { background-color: #e6ebf0 !important; }
-    h1, h2, h3, p, span, div, label { color: #333333 !important; }
+    
+    /* Savol turadigan oq quti (Card) dizayni */
     .quiz-card {
         background-color: white !important;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        max-width: 500px;
-        margin: auto;
+        padding: 25px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+        color: #333333 !important;
+        margin-bottom: 20px !important;
     }
-    div[data-testid="stWidgetLabel"] { display: none !important; }
+    
+    /* Barcha matnlarni qora rangda qilish */
+    h1, h2, h3, p, span, div, label { color: #333333 !important; }
+    
+    /* Tugmalar dizayni */
     .stButton button {
         width: 100%;
         background-color: #0088cc !important;
@@ -35,7 +42,6 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
-
 # 3. Savollar Bazasi
 # 1-70 bloki
 if 'ms_1_70' not in st.session_state:
