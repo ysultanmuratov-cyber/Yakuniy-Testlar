@@ -6,12 +6,9 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 
 st.markdown("""
     <style>
-    /* 1. Umumiy sahifa va Shriftlar */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-
+    /* 1. Fonni biroz ochroq va boyroq qilish */
     .stApp {
-        background: radial-gradient(circle at top right, #1e293b, #0f172a); /* Cinematic gradient fon */
-        font-family: 'Inter', sans-serif !important;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
     }
 
     .block-container {
@@ -21,78 +18,70 @@ st.markdown("""
 
     header {visibility: hidden;}
 
-    /* 2. Premium Quiz Card (Glassmorphism effekt) */
-    .quiz-card {
-        background: rgba(255, 255, 255, 0.03) !important;
-        backdrop-filter: blur(15px) !important; /* Shishasimon effekt */
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        padding: 30px !important;
-        border-radius: 24px !important;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
-        margin-bottom: 25px !important;
-    }
-
-    /* 3. Matnlar uslubi */
-    h1, h2, h3 {
-        color: #ffffff !important;
-        font-weight: 800 !important;
-        letter-spacing: -0.02em !important;
-    }
-    
-    p, label, .stMarkdown {
-        color: #94a3b8 !important; /* Yumshoq kulrang matn */
-        font-weight: 400 !important;
-    }
-
-    /* 4. Radio Tugmalar (Variantlar) dizayni */
-    div[data-testid="stRadio"] > label {
-        background: rgba(255, 255, 255, 0.05) !important;
-        padding: 12px 20px !important;
-        border-radius: 12px !important;
-        border: 1px solid transparent !important;
-        transition: all 0.3s ease !important;
-        margin-bottom: 10px !important;
-        cursor: pointer !important;
-    }
-
-    div[data-testid="stRadio"] > label:hover {
+    /* 2. Variantlar (Radio) dizaynini majburiy o'zgartirish */
+    div[data-testid="stRadio"] label {
         background: rgba(255, 255, 255, 0.1) !important;
-        border: 1px solid rgba(0, 136, 204, 0.4) !important;
+        color: white !important;
+        padding: 15px 25px !important;
+        border-radius: 15px !important;
+        margin-bottom: 10px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        transition: all 0.3s ease !important;
+        display: flex !important;
+        align-items: center !important;
     }
 
-    /* 5. ASOSIY TUGMA (Apple/SaaS style) */
-    div[data-testid="stButton"] button {
+    div[data-testid="stRadio"] label:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        transform: translateX(5px) !important;
+        border-color: #0088cc !important;
+    }
+
+    /* Tanlangan variantni ajratib ko'rsatish */
+    div[data-testid="stRadio"] label[data-selected="true"] {
+        background: #0088cc !important;
+        border-color: #00aaff !important;
+    }
+
+    /* 3. ASOSIY TUGMA (BOSHLA) - Premium ko'rinish */
+    div.stButton > button {
         width: 100% !important;
-        background: #ffffff !important; /* Oq tugma to'q fonda juda qimmat ko'rinadi */
-        color: #0f172a !important;
-        border-radius: 14px !important;
-        height: 54px !important;
-        font-weight: 700 !important;
-        font-size: 16px !important;
-        border: none !important;
-        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1) !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        background: white !important;
+        color: #1e293b !important;
+        border-radius: 12px !important;
+        height: 55px !important;
+        font-weight: 800 !important;
+        font-size: 18px !important;
         text-transform: uppercase !important;
-        letter-spacing: 1px !important;
+        letter-spacing: 1.5px !important;
+        border: none !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3) !important;
+        margin-top: 20px !important;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
     }
 
-    div[data-testid="stButton"] button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2) !important;
+    div.stButton > button:hover {
+        transform: translateY(-3px) scale(1.02) !important;
+        box-shadow: 0 15px 35px rgba(255,255,255,0.15) !important;
         background: #f8fafc !important;
     }
 
-    /* 6. Footer (Elegant style) */
+    /* 4. Matnlar */
+    h1, h2, h3 {
+        color: white !important;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+    }
+    
+    .stMarkdown p {
+        color: #cbd5e1 !important;
+        font-size: 18px !important;
+    }
+
+    /* 5. Footer (Elegant) */
     .footer {
-        position: fixed;
-        left: 0; bottom: 0;
-        width: 100%;
-        background: rgba(15, 23, 42, 0.8) !important;
+        background: rgba(15, 23, 42, 0.9) !important;
         backdrop-filter: blur(10px) !important;
-        text-align: center;
-        padding: 15px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        z-index: 9999;
+        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
     </style>
     """, unsafe_allow_html=True)
