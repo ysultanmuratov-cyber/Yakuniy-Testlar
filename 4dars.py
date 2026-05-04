@@ -4,76 +4,57 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# 2. Yangilangan CSS
+# Yangilangan Cinematic CSS
 st.markdown("""
     <style>
-    /* Sahifa tepasidagi bo'shliqni yo'qotish */
+    /* Sahifa umumiy ko'rinishi */
     .block-container {
-        padding-top: 1rem !important;
-        padding-bottom: 5rem !important;
-        max-width: 600px !important;
+        padding-top: 2rem !important;
+        max-width: 500px !important;
     }
     
     header {visibility: hidden;}
 
-    .stApp {
-        background-image: url("FON_RASMI_LINKI");
-        background-size: cover;
-        background-position: center;
-    }
-
-    .quiz-card {
-        background-color: white !important;
-        padding: 25px !important;
-        border-radius: 12px !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
-        color: #333333 !important;
-        margin-bottom: 20px !important;
-    }
-    
-    /* Bo'sh cardlarni yashirish */
-    .quiz-card:empty {
-        display: none !important;
-    }
-
-    h1, h2, h3, p, span, div, label { color: #333333 !important; }
-    
-    /* --- TUGMALAR UCHUN YANGILANGAN CINEMATIC USLUB --- */
-    .stButton button {
-        width: 100%;
-        background-color: #0088cc !important;
+    /* TUGMA DIZAYNI - Mashhur saytlardagidek */
+    div[data-testid="stButton"] button {
+        width: 100% !important;
+        background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
         color: white !important;
-        border-radius: 12px !important; /* Biroz yumshoqroq burchaklar */
-        height: 52px; /* Cinematic ko'rinish uchun biroz balandroq */
-        font-weight: bold;
-        font-size: 18px !important;
+        border-radius: 10px !important;
+        height: 50px !important;
+        font-weight: 600 !important;
+        font-size: 17px !important;
         border: none !important;
-        margin-top: 15px;
-        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3) !important; /* Moviy soya */
-        transition: all 0.3s ease-in-out !important; /* Silliq harakat */
+        letter-spacing: 0.5px !important; /* Harflar orasidagi masofa */
+        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2) !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Yumshoq animatsiya */
+        cursor: pointer !important;
     }
 
-    /* Tugma ustiga borgandagi effekt */
-    .stButton button:hover {
-        background-color: #0077b3 !important;
-        box-shadow: 0 6px 20px rgba(0, 119, 179, 0.4) !important;
-        transform: translateY(-2px); /* Yuqoriga biroz siljish */
+    /* Ustiga borganda (Mashhur effekt) */
+    div[data-testid="stButton"] button:hover {
+        background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
+        box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35) !important;
+        transform: translateY(-1px) scale(1.01) !important; /* Bir ozgina kattalashish */
     }
 
-    /* Tugma bosilgandagi effekt */
-    .stButton button:active {
-        transform: translateY(1px);
+    /* Bosilganda */
+    div[data-testid="stButton"] button:active {
+        transform: translateY(1px) scale(0.99) !important;
+        box-shadow: 0 2px 10px rgba(0, 136, 204, 0.2) !important;
     }
 
-    .footer {
-        position: fixed;
-        left: 0; bottom: 0;
-        width: 100%;
-        background-color: white;
-        text-align: center;
-        padding: 12px 0;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-        z-index: 9999;
+    /* Inputlar dizaynini ham tugmaga moslash */
+    .stTextInput input {
+        border-radius: 10px !important;
+        border: 1px solid #e0e0e0 !important;
+        padding: 12px !important;
+        transition: border 0.3s ease !important;
+    }
+
+    .stTextInput input:focus {
+        border: 1px solid #0088cc !important;
+        box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1) !important;
     }
     </style>
     """, unsafe_allow_html=True)
