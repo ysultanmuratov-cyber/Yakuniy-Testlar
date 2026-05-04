@@ -436,7 +436,7 @@ else:
                         st.rerun()
             
             # --- JAVOB KO'RSATILGAN HOLAT ---
-            else:
+     else:
                 for opt in curr['o']:
                     if opt == curr['a']:
                         st.success(f"To'g'ri javob: {opt} ✔️")
