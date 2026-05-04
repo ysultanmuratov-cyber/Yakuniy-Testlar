@@ -6,82 +6,87 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 
 st.markdown("""
     <style>
-    /* 1. Fonni biroz ochroq va boyroq qilish */
+    /* 1. Sahifa foni - Yorqin va toza (Premium minimalizm) */
     .stApp {
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+        background-color: #F8FAFC !important;
     }
 
     .block-container {
         padding-top: 2rem !important;
-        max-width: 550px !important;
+        max-width: 500px !important;
     }
 
     header {visibility: hidden;}
 
-    /* 2. Variantlar (Radio) dizaynini majburiy o'zgartirish */
+    /* 2. Asosiy Card dizayni */
+    .quiz-card {
+        background: white !important;
+        padding: 30px !important;
+        border-radius: 20px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+        border: 1px solid #E2E8F0 !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* 3. Radio Variantlar - Eng muhim qismi */
+    div[data-testid="stRadio"] > div {
+        gap: 12px !important;
+    }
+
     div[data-testid="stRadio"] label {
-        background: rgba(255, 255, 255, 0.1) !important;
-        color: white !important;
-        padding: 15px 25px !important;
-        border-radius: 15px !important;
-        margin-bottom: 10px !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        transition: all 0.3s ease !important;
-        display: flex !important;
-        align-items: center !important;
+        background-color: #FFFFFF !important;
+        border: 2px solid #F1F5F9 !important;
+        padding: 15px 20px !important;
+        border-radius: 12px !important;
+        color: #1E293B !important;
+        font-weight: 500 !important;
+        transition: all 0.2s ease !important;
+        cursor: pointer !important;
     }
 
+    /* Variant ustiga borganda */
     div[data-testid="stRadio"] label:hover {
-        background: rgba(255, 255, 255, 0.2) !important;
-        transform: translateX(5px) !important;
         border-color: #0088cc !important;
+        background-color: #F0F9FF !important;
     }
 
-    /* Tanlangan variantni ajratib ko'rsatish */
-    div[data-testid="stRadio"] label[data-selected="true"] {
-        background: #0088cc !important;
-        border-color: #00aaff !important;
+    /* Tanlangan variantni ko'k qilish */
+    div[data-testid="stRadio"] input:checked + div[data-testid="stMarkdownContainer"] p {
+        color: #0088cc !important;
+        font-weight: bold !important;
     }
 
-    /* 3. ASOSIY TUGMA (BOSHLA) - Premium ko'rinish */
+    /* 4. ASOSIY TUGMA (BOSHLA) - Cinematic Blue */
     div.stButton > button {
         width: 100% !important;
-        background: white !important;
-        color: #1e293b !important;
+        background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
+        color: white !important;
         border-radius: 12px !important;
-        height: 55px !important;
-        font-weight: 800 !important;
+        height: 54px !important;
+        font-weight: 700 !important;
         font-size: 18px !important;
-        text-transform: uppercase !important;
-        letter-spacing: 1.5px !important;
         border: none !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3) !important;
-        margin-top: 20px !important;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        box-shadow: 0 8px 20px rgba(0, 136, 204, 0.25) !important;
+        margin-top: 15px !important;
+        transition: all 0.3s ease !important;
     }
 
     div.stButton > button:hover {
-        transform: translateY(-3px) scale(1.02) !important;
-        box-shadow: 0 15px 35px rgba(255,255,255,0.15) !important;
-        background: #f8fafc !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 12px 25px rgba(0, 136, 204, 0.35) !important;
     }
 
-    /* 4. Matnlar */
+    /* 5. Sarlavhalar */
     h1, h2, h3 {
-        color: white !important;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
-    }
-    
-    .stMarkdown p {
-        color: #cbd5e1 !important;
-        font-size: 18px !important;
+        color: #0F172A !important;
+        font-family: 'Inter', sans-serif !important;
     }
 
-    /* 5. Footer (Elegant) */
+    /* Footer */
     .footer {
-        background: rgba(15, 23, 42, 0.9) !important;
-        backdrop-filter: blur(10px) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+        background: white !important;
+        border-top: 1px solid #E2E8F0 !important;
+        color: #64748B !important;
     }
     </style>
     """, unsafe_allow_html=True)
