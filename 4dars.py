@@ -372,7 +372,6 @@ if not st.session_state.logged_in:
         <br>
     """, unsafe_allow_html=True)
     
-    # Foydalanuvchilar bazasi
     users = {
         "Murat": "12062006", "Nilufar": "Nilufar0455", "Radjabboyeva_m": "12345678",
         "Minjiq_qiz": "Minjiq_qiz1234", "Lola": "Lola0504", "341241101229": "Oydin005",
@@ -416,23 +415,6 @@ else:
             st.session_state.test_started = True
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
-    
-    else:
-        # --- TEST JARAYONI (Bu qism o'zgarishsiz qoladi) ---
-        q_idx = st.session_state.current_q_index
-        questions = st.session_state.active_questions
-        # ... qolgan test kodingiz shu yerdan davom etadi
-  # --- TEST JARAYONI ---
-    else:
-        q_idx = st.session_state.current_q_index
-        questions = st.session_state.active_questions
-        
-        if q_idx < len(questions):
-            curr = questions[q_idx]
-            st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
-            st.markdown(f"<h3>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
-            st.markdown(f"<p style='font-size: 18px; font-weight: bold;'>{curr['q']}</p>", unsafe_allow_html=True)
-
             # --- SAVOL BERILAYOTGAN HOLAT ---
             if not st.session_state.answered:
                 ans = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
