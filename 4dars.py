@@ -7,6 +7,11 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 # 2. Mobil va Dark Mode uchun optimallashgan CSS
 st.markdown("""
     <style>
+    /* Sahifa tepasidagi oq bo'shliqni yo'qotish */
+    .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 0rem !important;
+    }
     .stApp { background-color: #e6ebf0 !important; }
     h1, h2, h3, p, span, div, label { color: #333333 !important; }
     .quiz-card {
@@ -238,35 +243,45 @@ else:
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
-    # --- TEST JARAYONI ---
+   # --- TEST JARAYONI ---
     else:
         q_idx = st.session_state.current_q_index
         questions = st.session_state.active_questions
         
+        # Test hali tugamagan bo'lsa
         if q_idx < len(questions):
             curr = questions[q_idx]
             st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+            
+            # Savol raqami va matni
             st.markdown(f'<div style="font-weight:bold; font-size:18px; margin-bottom:15px;">[{q_idx + 1}/{len(questions)}] {curr["q"]}</div>', unsafe_allow_html=True)
 
+            # Javob berilmagan holat
             if not st.session_state.answered:
-                choice = st.radio("T", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
+                choice = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
                 if choice:
                     st.session_state.answered = True
                     st.session_state.selected_option = choice
-                    if choice == curr['a']: st.session_state.user_score += 1
+                    if choice == curr['a']:
+                        st.session_state.user_score += 1
                     st.rerun()
+            
+            # Javob berilganidan keyingi holat (Natijani ko'rsatish)
             else:
                 for opt in curr['o']:
                     is_correct = (opt == curr['a'])
                     is_user_choice = (opt == st.session_state.selected_option)
+                    
+                    # Vizual effektlar
                     percent = 100 if is_correct else 0
                     fill_color = "#4CAF50" if is_correct else "#cccccc"
                     icon = "✔️" if is_correct else ("❌" if is_user_choice else "")
+                    text_weight = "bold" if is_correct or is_user_choice else "normal"
                     
                     st.markdown(f"""
                         <div style="margin-bottom: 12px;">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                                <span style="color: #333; font-weight: 500;">{opt} {icon}</span>
+                                <span style="color: #333; font-weight: {text_weight};">{opt} {icon}</span>
                                 <span style="color: #333;">{percent}%</span>
                             </div>
                             <div style="height: 10px; background-color: #eee; border-radius: 5px; overflow: hidden;">
@@ -275,18 +290,36 @@ else:
                         </div>
                     """, unsafe_allow_html=True)
                 
-                if st.button("Keyingi savol ➔"):
-                    st.session_state.current_q_index += 1
-                    st.session_state.answered = False
-                    st.session_state.selected_option = None
-                    st.rerun()
+                # Navigatsiya tugmalari
+                col1, col2 = st.columns(2)
+                with col1:
+                    if st.button("Keyingi savol ➔"):
+                        st.session_state.current_q_index += 1
+                        st.session_state.answered = False
+                        st.session_state.selected_option = None
+                        st.rerun()
+                with col2:
+                    if st.button("🏠 MENU"):
+                        st.session_state.test_started = False
+                        st.session_state.current_q_index = 0
+                        st.session_state.user_score = 0
+                        st.session_state.answered = False
+                        st.session_state.selected_option = None
+                        st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
+
+        # Test yakunlangan bo'lsa
         else:
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
-            st.write(f"Natijangiz: **{st.session_state.user_score}/{len(questions)}**")
-            if st.button("🏠 Menyuga qaytish"):
-                for k in ['test_started','current_q_index','user_score','answered','selected_option']:
-                    if k in st.session_state:
-                        del st.session_state[k]
+            st.balloons()
+            st.markdown(f"<h3>Test yakunlandi!</h3>", unsafe_allow_html=True)
+            st.markdown(f"<p style='font-size: 20px;'>Sizning natijangiz: <b>{st.session_state.user_score} / {len(questions)}</b></p>", unsafe_allow_html=True)
+            
+            if st.button("🏠 ASOSIY MENYUGA QAYTISH"):
+                st.session_state.test_started = False
+                st.session_state.current_q_index = 0
+                st.session_state.user_score = 0
+                st.session_state.answered = False
+                st.session_state.selected_option = None
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
