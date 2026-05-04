@@ -4,7 +4,7 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# 2. Telegram Quiz dizayni (CSS)
+# 2. Telegram Quiz dizayni (CSS) - Bo'sh oq joyni yo'qotish bilan
 st.markdown("""
     <style>
     .stApp { background-color: #e6ebf0; }
@@ -17,6 +17,11 @@ st.markdown("""
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         max-width: 500px;
         margin: auto;
+    }
+    
+    /* O'sha siz aytgan yuqoridagi bo'sh oq joyni o'chirish */
+    div[data-testid="stWidgetLabel"] {
+        display: none !important;
     }
     
     .question-header {
@@ -34,7 +39,7 @@ st.markdown("""
         border-bottom: 1px solid #f8f8f8;
     }
 
-    /* Natija foizlari (Progress Bar) */
+    /* Natija foizlari */
     .stat-row {
         display: flex;
         flex-direction: column;
@@ -103,7 +108,7 @@ else:
         blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"])
         
         if st.button("🚀 BOSHLASH"):
-            st.session_state.active_questions = ms_all # Jami 300 ta savolni shu yerga qo'shishingiz mumkin
+            st.session_state.active_questions = ms_all 
             random.shuffle(st.session_state.active_questions)
             st.session_state.test_started = True
             st.rerun()
@@ -120,7 +125,8 @@ else:
             st.markdown(f'<div class="question-header">[{q_idx + 1}/{len(questions)}] {curr["q"]}</div>', unsafe_allow_html=True)
 
             if not st.session_state.answered:
-                choice = st.radio("", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
+                # Label visibilitycollapsed bo'lsa ham, CSS orqali uni butunlay o'chiramiz
+                choice = st.radio("Seçim", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
                 if choice:
                     st.session_state.answered = True
                     st.session_state.selected_option = choice
