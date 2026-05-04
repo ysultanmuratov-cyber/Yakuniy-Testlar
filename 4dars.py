@@ -400,6 +400,8 @@ else:
                 questions = list(st.session_state.ms_71_140)
             elif blok == "141-210":
                 questions = list(st.session_state.ms_141_210)
+            elif blok == "211-300":
+                questions = list(st.session_state.ms_211_300)
             
             # 1. Savollar tartibini aralashtirish
             random.shuffle(questions)
