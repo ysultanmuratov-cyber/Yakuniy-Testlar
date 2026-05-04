@@ -389,16 +389,16 @@ users = {
     "Xudayberganova": "Sevinch"
 }
     
-    u_login = st.text_input("Foydalanuvchi nomi (Login):")
-    u_pass = st.text_input("Parol:", type="password")
-    
-    if st.button("KIRISH"):
-        # 2. To'g'ridan-to'g'ri lug'atdan tekshirish (Hech qanday o'zgartirishlarsiz)
-        if u_login in users and users[u_login] == u_pass:
-            st.session_state.logged_in = True
-            st.rerun()
-        else:
-            st.error("Login yoki parol xato!")
+u_login = st.text_input("Foydalanuvchi nomi (Login):")
+u_pass = st.text_input("Parol:", type="password")
+
+if st.button("KIRISH"):
+    # 2. To'g'ridan-to'g'ri lug'atdan tekshirish (Hech qanday o'zgartirishlarsiz)
+    if u_login in users and users[u_login] == u_pass:
+        st.session_state.logged_in = True
+        st.rerun()
+    else:
+        st.error("Login yoki parol xato!")
 
 # --- MENYU ---
 else:
