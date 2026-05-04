@@ -222,7 +222,7 @@ if not st.session_state.logged_in:
         "Radjabboyeva_m": "12345678",
         "Minjiq_qiz": "Minjiq_qiz1234",
         "Lola": "Lola0504",
-        "341241101229": "oydin005",
+        "341241101229": "Oydin005",
         "Sultanovamarufa": "02112006Sm",
         "Shahriyor": "Poxxuy"
     }
