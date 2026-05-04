@@ -370,24 +370,24 @@ st.markdown("""
 """, unsafe_allow_html=True)
     
     # 1. Foydalanuvchilar bazasi (Siz ko'rsatgan variantda, o'zgarishsiz)
-      users = {
-        "Murat": "12062006",
-        "Nilufar": "Nilufar0455",
-        "Radjabboyeva_m": "12345678",
-        "Minjiq_qiz": "Minjiq_qiz1234",
-        "Lola": "Lola0504",
-        "341241101229": "Oydin005",
-        "Sultanovamarufa": "02112006Sm",
-        "Shahriyor": "Poxxuy",
-        "Ixtiyor": "200606",
-        "Xudayberganovaf": "Farangiz0616",
-        "Urunbayevasevinch": "Sevinch07042005",
-        "Abdullayev": "Kamol05",
-        "Ixlos": "Ixlos05",
-        "Gulsanam": "2810xaydarova",
-        "Samandarov": "Shoxrux06",
-        "Xudayberganova": "Sevinch"
-    }
+  users = {
+    "Murat": "12062006",
+    "Nilufar": "Nilufar0455",
+    "Radjabboyeva_m": "12345678",
+    "Minjiq_qiz": "Minjiq_qiz1234",
+    "Lola": "Lola0504",
+    "341241101229": "Oydin005",
+    "Sultanovamarufa": "02112006Sm",
+    "Shahriyor": "Poxxuy",
+    "Ixtiyor": "200606",
+    "Xudayberganovaf": "Farangiz0616",
+    "Urunbayevasevinch": "Sevinch07042005",
+    "Abdullayev": "Kamol05",
+    "Ixlos": "Ixlos05",
+    "Gulsanam": "2810xaydarova",
+    "Samandarov": "Shoxrux06",
+    "Xudayberganova": "Sevinch"
+}
     
     u_login = st.text_input("Foydalanuvchi nomi (Login):")
     u_pass = st.text_input("Parol:", type="password")
