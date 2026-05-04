@@ -232,7 +232,8 @@ if not st.session_state.logged_in:
         "Abdullayev": "Kamol05",
         "Ixlos": "Ixlos05",
         "Gulsanam": "2810xaydarova",
-        "Samandarov": "Shoxrux06"
+        "Samandarov": "Shoxrux06",
+        "Xudayberganova": "Sevinch"
     }
     
     u_login = st.text_input("Foydalanuvchi nomi (Login):")
