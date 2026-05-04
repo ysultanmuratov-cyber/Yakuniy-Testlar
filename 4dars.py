@@ -254,23 +254,63 @@ else:
         q_idx = st.session_state.current_q_index
         questions = st.session_state.active_questions
         
-        # Test hali tugamagan bo'lsa
         if q_idx < len(questions):
             curr = questions[q_idx]
-            st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
             
-            # Savol raqami va matni
-            st.markdown(f'<div style="font-weight:bold; font-size:18px; margin-bottom:15px;">[{q_idx + 1}/{len(questions)}] {curr["q"]}</div>', unsafe_allow_html=True)
+            # SAVOLNI QUTI (CARD) ICHIGA SOLISH
+            st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+            st.markdown(f"<h3>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
+            st.markdown(f"<p style='font-size: 18px; font-weight: bold;'>{curr['q']}</p>", unsafe_allow_html=True)
 
-            # Javob berilmagan holat
             if not st.session_state.answered:
-                choice = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
-                if choice:
-                    st.session_state.answered = True
-                    st.session_state.selected_option = choice
-                    if choice == curr['a']:
-                        st.session_state.user_score += 1
-                    st.rerun()
+                ans = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
+                if st.button("TASDIQLASH"):
+                    if ans:
+                        st.session_state.answered = True
+                        st.session_state.selected_option = ans
+                        if ans == curr['a']: st.session_state.user_score += 1
+                        st.rerun()
+                    else:
+                        st.warning("Iltimos, variantni tanlang!")
+            else:
+                # Natijani ko'rsatish
+                for opt in curr['o']:
+                    if opt == curr['a']:
+                        st.success(f"To'g'ri javob: {opt} ✔️")
+                    elif opt == st.session_state.selected_option:
+                        st.error(f"Sizning javobingiz: {opt} ❌")
+                    else:
+                        st.write(opt)
+                
+                # Tugmalar: Keyingi va Menyu
+                col1, col2 = st.columns(2)
+                with col1:
+                    if st.button("Keyingi ➔"):
+                        st.session_state.current_q_index += 1
+                        st.session_state.answered = False
+                        st.session_state.selected_option = None
+                        st.rerun()
+                with col2:
+                    if st.button("🏠 MENU"):
+                        st.session_state.test_started = False
+                        st.session_state.current_q_index = 0
+                        st.session_state.user_score = 0
+                        st.session_state.answered = False
+                        st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True) # Card tugashi
+        else:
+            # Yakuniy natija qutisi
+            st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
+            st.balloons()
+            st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
+            st.markdown(f"<h1>{st.session_state.user_score} / {len(questions)}</h1>", unsafe_allow_html=True)
+            if st.button("🏠 ASOSIY MENYUGA QAYTISH"):
+                st.session_state.test_started = False
+                st.session_state.current_q_index = 0
+                st.session_state.user_score = 0
+                st.session_state.answered = False
+                st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
             
             # Javob berilganidan keyingi holat (Natijani ko'rsatish)
             else:
