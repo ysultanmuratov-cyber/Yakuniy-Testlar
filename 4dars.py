@@ -4,88 +4,111 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# Yangilangan Cinematic CSS (Logotip va Ikonkalar bilan)
+# 2. Yangilangan To'liq CSS
 st.markdown("""
     <style>
     /* 1. SAHIFA UMUMIY SOZLAMALARI */
-    .block-container {
-        padding-top: 1rem !important; /* Yuqoridagi bo'shliqni minimal qildik */
-        max-width: 500px !important;
+    .main .block-container {
+        padding-top: 0rem !important; /* Yuqoridagi bo'shliqni yo'qotish */
+        padding-bottom: 2rem !important;
+        max-width: 460px !important; /* Ixcham kenglik */
     }
+    
     header {visibility: hidden;}
-    .stApp { background-color: #F8FAFC !important; }
+    footer {visibility: hidden;}
 
-    /* 2. LOGOTIP UCHUN PREMIUM DIZAYN */
+    .stApp {
+        background-color: #F8FAFC !important; /* Toza va zamonaviy fon */
+    }
+
+    /* Elementlar orasidagi masofani yaqinlashtirish */
+    [data-testid="stVerticalBlock"] > div {
+        padding-top: 0rem !important;
+        gap: 0.8rem !important; 
+    }
+
+    /* 2. LOGOTIP DIZAYNI */
     .logo-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 10px 0 25px 0;
+        padding: 20px 0 10px 0;
     }
 
     .main-logo {
-        width: 160px; /* Logotip o'lchami */
-        filter: drop-shadow(0 8px 15px rgba(0,0,0,0.08));
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 200px !important;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));
+        transition: all 0.4s ease;
     }
-
+    
     .main-logo:hover {
-        transform: scale(1.03) translateY(-2px);
-        filter: drop-shadow(0 12px 25px rgba(0,0,0,0.12));
+        transform: scale(1.02);
     }
 
-    /* 3. TUGMA DIZAYNI - Mashhur saytlardagidek */
+    /* 3. TUGMA DIZAYNI (Premium Cinematic) */
     div[data-testid="stButton"] button {
         width: 100% !important;
         background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
         color: white !important;
         border-radius: 12px !important;
-        height: 52px !important;
-        font-weight: 600 !important;
-        font-size: 17px !important;
+        height: 50px !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
         border: none !important;
         letter-spacing: 0.5px !important;
-        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2) !important;
+        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.25) !important;
         transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        cursor: pointer !important;
+        margin-top: 10px !important;
     }
 
     div[data-testid="stButton"] button:hover {
         background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
         box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35) !important;
-        transform: translateY(-1px) scale(1.01) !important;
+        transform: translateY(-1px);
     }
 
-    /* 4. INPUTLAR VA BOSHQALAR */
+    div[data-testid="stButton"] button:active {
+        transform: translateY(1px) scale(0.98);
+    }
+
+    /* 4. INPUTLAR (Login va Parol) */
     .stTextInput input {
         border-radius: 12px !important;
-        border: 1px solid #e2e8f0 !important;
+        border: 1.5px solid #E2E8F0 !important;
         padding: 12px !important;
+        background-color: white !important;
         transition: all 0.3s ease !important;
     }
 
     .stTextInput input:focus {
-        border: 1px solid #0088cc !important;
-        box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1) !important;
+        border-color: #0088cc !important;
+        box-shadow: 0 0 0 3px rgba(0, 136, 204, 0.1) !important;
     }
+
+    /* 5. VARIANTLAR (Radio buttons) */
+    div[data-testid="stRadio"] > div {
+        gap: 8px !important;
+    }
+
+    div[data-testid="stRadio"] label {
+        background-color: #FFFFFF !important;
+        border: 1.5px solid #E2E8F0 !important;
+        padding: 12px 18px !important;
+        border-radius: 12px !important;
+        transition: all 0.2s ease !important;
+    }
+
+    div[data-testid="stRadio"] label:hover {
+        border-color: #0088cc !important;
+        background-color: #F0F9FF !important;
+    }
+
+    /* 6. MATNLAR */
+    h1, h2, h3 { color: #1E293B !important; font-weight: 800 !important; }
+    p, label { color: #475569 !important; font-size: 15px !important; }
+
     </style>
     """, unsafe_allow_html=True)
-
-# 5. PYTHON QISMIDA LOGOTIPNI CHIQARISH
-# Rasm fayli nomini 'image_3abe9f.png' deb ko'rsatdim
-st.markdown("""
-    <div class="logo-container">
-        <img src="https://raw.githubusercontent.com/murat-sultanov/logos/main/urdu_test_markazi.png" class="main-logo" alt="UrDU Test Markazi">
-    </div>
-""", unsafe_allow_html=True)
-
-# Sarlavha (Raketa bilan)
-st.markdown("""
-    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
-        <span style="font-size: 32px;">🚀</span>
-        <h1 style="margin: 0; font-size: 28px; font-weight: 800; color: #1E293B;">Bo'limni tanlang</h1>
-    </div>
-""", unsafe_allow_html=True)
 
 # 3. Savollar Bazasi
 # 1-70 bloki
