@@ -215,17 +215,23 @@ if not st.session_state.logged_in:
     st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
     st.title("🎯 Kirish")
     
-    # Login va Parol kiritish joylari
+    # 1. Foydalanuvchilar bazasi (Xohlagancha qo'shishingiz mumkin)
+    users = {
+        "Murat": "12062006",
+        "nilufar": "0455"
+    }
+    
     u_login = st.text_input("Foydalanuvchi nomi (Login):")
     u_pass = st.text_input("Parol:", type="password")
     
     if st.button("KIRISH"):
-        # Login "Murat" va Parol "12062006" bo'lgandagina kiradi
-        if u_login == "Murat" and u_pass == "12062006":
+        # 2. Lug'atdan tekshirish
+        if u_login in users and users[u_login] == u_pass:
             st.session_state.logged_in = True
             st.rerun()
         else:
             st.error("Login yoki parol xato!")
+            
     st.markdown('</div>', unsafe_allow_html=True)
 # --- MENYU ---
 else:
