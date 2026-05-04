@@ -4,60 +4,92 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# Yangilangan Cinematic CSS
+# Yangilangan Cinematic CSS (Ikonkalar bilan)
 st.markdown("""
     <style>
     /* Sahifa umumiy ko'rinishi */
     .block-container {
-        padding-top: 2rem !important;
+        padding-top: 1rem !important;
         max-width: 500px !important;
     }
     
     header {visibility: hidden;}
+
+    /* 1. RAKETA VA KITOB IKONKALARI UCHUN DIZAYN */
+    /* Rasmlarni biroz yaltiroq va zamonaviy qilish */
+    img {
+        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15)) brightness(1.05);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Ikonkaga borganda u biroz kattalashib, nur sochadi */
+    img:hover {
+        transform: scale(1.1) rotate(5deg);
+        filter: drop-shadow(0 8px 20px rgba(0, 136, 204, 0.3)) brightness(1.2);
+    }
+
+    /* Sarlavha yonidagi raketa uchun maxsus animatsiya */
+    .premium-rocket {
+        animation: rocket-float 3s ease-in-out infinite;
+    }
+
+    @keyframes rocket-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px) translateX(3px); }
+    }
 
     /* TUGMA DIZAYNI - Mashhur saytlardagidek */
     div[data-testid="stButton"] button {
         width: 100% !important;
         background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
         color: white !important;
-        border-radius: 10px !important;
-        height: 50px !important;
+        border-radius: 12px !important;
+        height: 52px !important;
         font-weight: 600 !important;
         font-size: 17px !important;
         border: none !important;
-        letter-spacing: 0.5px !important; /* Harflar orasidagi masofa */
+        letter-spacing: 0.5px !important;
         box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2) !important;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Yumshoq animatsiya */
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
         cursor: pointer !important;
     }
 
-    /* Ustiga borganda (Mashhur effekt) */
     div[data-testid="stButton"] button:hover {
         background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
         box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35) !important;
-        transform: translateY(-1px) scale(1.01) !important; /* Bir ozgina kattalashish */
+        transform: translateY(-1px) scale(1.01) !important;
     }
 
-    /* Bosilganda */
     div[data-testid="stButton"] button:active {
         transform: translateY(1px) scale(0.99) !important;
-        box-shadow: 0 2px 10px rgba(0, 136, 204, 0.2) !important;
     }
 
-    /* Inputlar dizaynini ham tugmaga moslash */
+    /* Inputlar dizayni */
     .stTextInput input {
         border-radius: 10px !important;
         border: 1px solid #e0e0e0 !important;
         padding: 12px !important;
         transition: border 0.3s ease !important;
     }
-
-    .stTextInput input:focus {
-        border: 1px solid #0088cc !important;
-        box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1) !important;
-    }
     </style>
     """, unsafe_allow_html=True)
+
+# PYTHON QISMIDA RASMLARNI MANA BUNDAY CHIQARING:
+# Sarlavha uchun raketa
+st.markdown(f"""
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <img src="RAKETA_LINKI" class="premium-rocket" width="50">
+        <h1>Bo'limni tanlang</h1>
+    </div>
+""", unsafe_allow_html=True)
+
+# Bo'lim nomi uchun kitoblar
+st.markdown(f"""
+    <div style="display: flex; align-items: center; gap: 12px; margin-top: 10px;">
+        <img src="KITOB_LINKI" width="35">
+        <h3 style="margin: 0;">Moliyaviy savodxonlik</h3>
+    </div>
+""", unsafe_allow_html=True)
 # 3. Savollar Bazasi
 # 1-70 bloki
 if 'ms_1_70' not in st.session_state:
