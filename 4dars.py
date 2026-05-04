@@ -218,7 +218,7 @@ if not st.session_state.logged_in:
     # 1. Foydalanuvchilar bazasi (Xohlagancha qo'shishingiz mumkin)
     users = {
         "Murat": "12062006",
-        "nilufar": "0455"
+        "nilufar": "Nilufar0455"
     }
     
     u_login = st.text_input("Foydalanuvchi nomi (Login):")
