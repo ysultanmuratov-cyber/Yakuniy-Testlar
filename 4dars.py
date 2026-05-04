@@ -464,7 +464,7 @@ else:
                         st.session_state.user_score = 0
                         st.session_state.answered = False
                         st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
         # --- NATIJALAR SAHIFASI ---
         else:
