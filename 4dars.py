@@ -57,7 +57,7 @@ st.markdown("""
         box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1) !important;
     }
     </style>
-    """, unsafe_allow_html=True) bu kod ancha yaxshi
+    """, unsafe_allow_html=True)
 
 # 5. PYTHON QISMIDA ULARNI ISHLATISH (Broken Image o'rniga)
 st.markdown("""
