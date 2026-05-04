@@ -419,13 +419,13 @@ if 'selected_option' not in st.session_state: st.session_state.selected_option =
 # --- ASOSIY MANTIQIY ZANJIR ---
 
 # 1. Foydalanuvchi tizimga kirmagan bo'lsa
-if not st.session_state.logged_in:
+if not st.session_state.get('logged_in', False):
+    # Eski "Kirish" yozuvi o'rniga UrDU logotipi
     st.markdown("""
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <img src="https://cdn-icons-png.flaticon.com/512/3039/3039453.png" width="50">
-            <h1 style="margin: 0; font-size: 42px; font-family: 'Arial Black'; color: #333;">Kirish</h1>
+        <div class="logo-container" style="text-align: center; padding-bottom: 20px;">
+            <img src="https://raw.githubusercontent.com/murat-sultanov/logos/main/urdu_test_markazi.png" 
+                 class="main-logo" style="width: 220px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));">
         </div>
-        <br>
     """, unsafe_allow_html=True)
     
     users = {
@@ -440,47 +440,51 @@ if not st.session_state.logged_in:
     u_login = st.text_input("Foydalanuvchi nomi (Login):")
     u_pass = st.text_input("Parol:", type="password")
 
-    # Kirish yozuvi o'rniga logotip
-    st.markdown("""
-        <div class="logo-container">
-            <img src="https://raw.githubusercontent.com/murat-sultanov/logos/main/urdu_test_markazi.png" class="main-logo">
-        </div>
-    """, unsafe_allow_html=True)
-if u_login in users and users[u_login] == u_pass:
+    # KIRISH TUGMASI VA UNING MANTIQI (Indentatsiya to'g'irlandi)
+    if st.button("KIRISH"):
+        if u_login in users and users[u_login] == u_pass:
             st.session_state.logged_in = True
             st.rerun()
-else:
+        else:
             st.error("Login yoki parol xato!")
 
 # 2. Foydalanuvchi tizimga kirgan bo'lsa
 else:
-    if not st.session_state.test_started:
+    if not st.session_state.get('test_started', False):
         # --- MENYU QISMI ---
         st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+        # Logotip menyuda ham tepada ko'rinishi uchun (ixtiyoriy)
+        st.markdown("""
+            <div style="text-align: center;">
+                <img src="https://raw.githubusercontent.com/murat-sultanov/logos/main/urdu_test_markazi.png" style="width: 150px;">
+            </div>
+        """, unsafe_allow_html=True)
+        
         st.title("🚀 Bo'limni tanlang")
         st.markdown("### 📚 Moliyaviy savodxonlik") 
         
         blok = st.radio("Tanlang:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
         
         if st.button("🚀 BOSHLA"):
-            if blok == "1-70": questions = list(st.session_state.ms_1_70)
-            elif blok == "71-140": questions = list(st.session_state.ms_71_140)
-            elif blok == "141-210": questions = list(st.session_state.ms_141_210)
-            elif blok == "211-300": questions = list(st.session_state.ms_211_300)
+            if blok == "1-70": st.session_state.active_questions = list(st.session_state.ms_1_70)
+            elif blok == "71-140": st.session_state.active_questions = list(st.session_state.ms_71_140)
+            elif blok == "141-210": st.session_state.active_questions = list(st.session_state.ms_141_210)
+            elif blok == "211-300": st.session_state.active_questions = list(st.session_state.ms_211_300)
             
-            random.shuffle(questions)
-            for q in questions:
+            random.shuffle(st.session_state.active_questions)
+            for q in st.session_state.active_questions:
                 random.shuffle(q['o'])
                 
-            st.session_state.active_questions = questions
             st.session_state.test_started = True
+            st.session_state.current_q_index = 0
+            st.session_state.user_score = 0
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
         
     else:
         # --- TEST JARAYONI ---
-        q_idx = st.session_state.current_q_index
-        questions = st.session_state.active_questions
+        q_idx = st.session_state.get('current_q_index', 0)
+        questions = st.session_state.get('active_questions', [])
         
         if q_idx < len(questions):
             curr = questions[q_idx]
@@ -488,7 +492,7 @@ else:
             st.markdown(f"<h3>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
             st.markdown(f"<p style='font-size: 18px; font-weight: bold;'>{curr['q']}</p>", unsafe_allow_html=True)
 
-            if not st.session_state.answered:
+            if not st.session_state.get('answered', False):
                 ans = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
                 
                 col_a, col_b = st.columns([1, 1])
@@ -503,14 +507,14 @@ else:
                         else:
                             st.warning("Iltimos, variantni tanlang!")
                 with col_b:
-                    if st.button("🛑 TESTNI TO'XTATISH"):
+                    if st.button("🛑 TO'XTATISH"):
                         st.session_state.current_q_index = len(questions)
                         st.rerun()
             else:
                 for opt in curr['o']:
                     if opt == curr['a']:
                         st.success(f"To'g'ri javob: {opt} ✔️")
-                    elif opt == st.session_state.selected_option:
+                    elif opt == st.session_state.get('selected_option'):
                         st.error(f"Sizning javobingiz: {opt} ❌")
                     else:
                         st.write(opt)
@@ -543,7 +547,7 @@ else:
             st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
             st.markdown(f"<h1>Natija: {st.session_state.user_score} / {len(questions)}</h1>", unsafe_allow_html=True)
             
-            if st.button("🏠 ASOSIY MENYUGA QAYTISH"):
+            if st.button("🏠 ASOSIY MENUGA QAYTISH"):
                 st.session_state.test_started = False
                 st.session_state.current_q_index = 0
                 st.session_state.user_score = 0
@@ -551,9 +555,9 @@ else:
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
 
-# 3. Footer
+# 3. Footer (Har doim ko'rinadi)
 st.markdown(f"""
-    <div class="footer">
+    <div class="footer" style="text-align: center; padding-top: 40px; padding-bottom: 20px;">
         <p style="margin: 0; font-size: 13px; color: #666; font-family: sans-serif;">Yaratuvchi: <b>Murat Sultanov</b></p>
         <div style="margin-top: 8px; display: flex; justify-content: center; align-items: center; gap: 20px;">
             <a href="https://t.me/murat_sultanov" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #0088cc; text-decoration: none;">
