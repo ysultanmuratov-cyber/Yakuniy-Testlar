@@ -420,22 +420,22 @@ if 'selected_option' not in st.session_state: st.session_state.selected_option =
 
 # 1. Foydalanuvchi tizimga kirmagan bo'lsa
 if not st.session_state.get('logged_in', False):
-    
-    # Rasmni o'rtaga olish va fonini silliqlash
-    col1, col2, col3 = st.columns([1, 2, 1]) # O'rtadagi ustunni kattaroq qilamiz
-    with col2:
-        st.image("sayt.jpg", use_container_width=True) # width o'rniga use_container_width ishlatdik
-    
-    # Orqa fon bilinmasligi uchun CSS (buni CSS qismiga qo'shib qo'ying)
+    # Logotipni markazga olish va fonni shaffof qilish
     st.markdown("""
-        <style>
-        [data-testid="stImage"] img {
-            mix-blend-mode: multiply; /* Oq fonni shaffof qiladi */
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        </style>
+        <div style="display: flex; justify-content: center; align-items: center; padding: 20px 0;">
+            <div style="
+                background-color: white; 
+                padding: 20px; 
+                border-radius: 20px; 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+                mix-blend-mode: multiply;
+                width: 280px;
+                text-align: center;
+            ">
+                <img src="https://raw.githubusercontent.com/ysultanmuratov-cyber/Yakuniy-Testlar/main/sayt.jpg" 
+                     style="width: 100%; height: auto; display: block;">
+            </div>
+        </div>
     """, unsafe_allow_html=True)
     
     users = {
