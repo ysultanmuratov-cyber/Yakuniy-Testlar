@@ -446,7 +446,7 @@ if not st.session_state.logged_in:
             <img src="https://raw.githubusercontent.com/murat-sultanov/logos/main/urdu_test_markazi.png" class="main-logo">
         </div>
     """, unsafe_allow_html=True)
-        if u_login in users and users[u_login] == u_pass:
+if u_login in users and users[u_login] == u_pass:
             st.session_state.logged_in = True
             st.rerun()
         else:
