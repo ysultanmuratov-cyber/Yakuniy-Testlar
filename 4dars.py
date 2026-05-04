@@ -420,8 +420,23 @@ if 'selected_option' not in st.session_state: st.session_state.selected_option =
 
 # 1. Foydalanuvchi tizimga kirmagan bo'lsa
 if not st.session_state.get('logged_in', False):
-    # Eski st.markdown blokini o'chirib, o'rniga shuni qo'ying:
-    st.image("sayt.jpg", use_container_width=False, width=220)
+    
+    # Rasmni o'rtaga olish va fonini silliqlash
+    col1, col2, col3 = st.columns([1, 2, 1]) # O'rtadagi ustunni kattaroq qilamiz
+    with col2:
+        st.image("sayt.jpg", use_container_width=True) # width o'rniga use_container_width ishlatdik
+    
+    # Orqa fon bilinmasligi uchun CSS (buni CSS qismiga qo'shib qo'ying)
+    st.markdown("""
+        <style>
+        [data-testid="stImage"] img {
+            mix-blend-mode: multiply; /* Oq fonni shaffof qiladi */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        </style>
+    """, unsafe_allow_html=True)
     
     users = {
         "Murat": "12062006", "Nilufar": "Nilufar0455", "Radjabboyeva_m": "12345678",
