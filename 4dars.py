@@ -313,7 +313,7 @@ else:
             st.markdown('</div>', unsafe_allow_html=True)
             
             # Javob berilganidan keyingi holat (Natijani ko'rsatish)
-            else:
+           else:
                 for opt in curr['o']:
                     is_correct = (opt == curr['a'])
                     is_user_choice = (opt == st.session_state.selected_option)
