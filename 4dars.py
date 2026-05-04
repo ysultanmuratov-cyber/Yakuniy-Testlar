@@ -225,7 +225,7 @@ if not st.session_state.logged_in:
         "341241101229": "Oydin005",
         "Sultanovamarufa": "02112006Sm",
         "Shahriyor": "Poxxuy",
-        "Ixtiyor": "Ixtiyor06",
+        "Ixtiyor": "200606",
         "Xudayberganovaf": "Farangiz0616",
         "Urunbayevasevinch": "Sevinch07042005",
         "Abdullayev": "Kamol05",
