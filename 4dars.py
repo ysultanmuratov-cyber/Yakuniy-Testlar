@@ -1,118 +1,162 @@
-import streamlit as st
+[03/05/2026 01:42] Murat: import streamlit as st
+import random
 
 # 1. Sahifa sozlamalari
-st.set_page_config(page_title="Quiz Bot Style", layout="centered")
+st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# 2. Telegram uslubidagi TOZA dizayn (CSS)
+# 2. Variantlar orasidagi masofani kamaytirilgan dizayn (CSS)
 st.markdown("""
     <style>
-    /* Umumiy fon */
-    .stApp { background-color: #e6ebf0; }
+    .stApp { background-color: #f8f9fa; }
     
-    /* Streamlit'ning hamma ortiqcha elementlarini yashirish */
-    #MainMenu, footer, header {visibility: hidden;}
-    .block-container {padding-top: 2rem;}
-
-    /* Quiz kartasi */
-    .quiz-container {
+    /* Savol qolipi */
+    .question-container {
         background-color: white;
-        padding: 24px;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        max-width: 450px;
-        margin: auto;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        padding: 20px;
+        border-radius: 15px;
+        border-top: 8px solid #4CAF50;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 15px; /* Masofa kamaytirildi */
     }
-
-    .q-header {
-        font-weight: 700;
-        font-size: 17px;
-        color: #000;
-        margin-bottom: 20px;
-    }
-
-    /* Variantlar dizayni */
-    .option-row {
-        display: flex;
-        align-items: center;
-        padding: 12px 0;
-        border-bottom: 1px solid #f2f2f2;
-        cursor: pointer;
-    }
-    .option-row:last-child { border-bottom: none; }
     
-    .radio-circle {
-        width: 20px;
-        height: 20px;
-        border: 2px solid #b1b1b1;
-        border-radius: 50%;
-        margin-right: 15px;
-        flex-shrink: 0;
-    }
-
-    /* Natija foizlari va progress bar */
-    .res-row { margin-bottom: 15px; }
-    .res-label { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 15px; }
-    .res-bar-bg { height: 6px; background-color: #f0f2f5; border-radius: 3px; width: 100%; }
-    .res-bar-fill { height: 100%; border-radius: 3px; }
-
-    /* "Keyingi" tugmasi */
+    /* Variant tugmalari - Ixchamroq dizayn */
     div.stButton > button {
         width: 100%;
-        background-color: #0088cc !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 8px !important;
-        height: 44px;
-        font-weight: 600;
-        margin-top: 15px;
+        text-align: left;
+        padding: 12px 20px; /* Ichki masofa kamaytirildi */
+        border-radius: 10px;
+        border: 1.5px solid #eee;
+        background-color: white;
+        color: #333;
+        font-size: 17px !important;
+        margin-bottom: -5px; /* Tugmalar orasidagi vertikal masofa qisqartirildi */
+        transition: 0.2s;
+    }
+    
+    /* Tugmalar joylashgan konteyner masofasi */
+    .stElementContainer {
+        margin-bottom: -10px !important; /* Streamlit elementlari orasidagi bo'shliqni yo'qotish */
+    }
+
+    /* To'g'ri va noto'g'ri javob ranglari */
+    .correct-btn button {
+        background-color: #d4edda !important;
+        border-color: #28a745 !important;
+        color: #155724 !important;
+    }
+    .wrong-btn button {
+        background-color: #f8d7da !important;
+        border-color: #dc3545 !important;
+        color: #721c24 !important;
+    }
+    
+    /* Boshqaruv tugmalari (Pastdagilar) */
+    .nav-btn button {
+        height: 45px !important;
+        margin-top: 20px !important;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# 3. Holatni boshqarish
-if 'ans' not in st.session_state: st.session_state.ans = False
+# 3. Holatlarni boshqarish
+if 'logged_in' not in st.session_state: st.session_state.logged_in = False
+if 'test_started' not in st.session_state: st.session_state.test_started = False
+if 'current_q_index' not in st.session_state: st.session_state.current_q_index = 0
+if 'user_score' not in st.session_state: st.session_state.user_score = 0
+if 'answered' not in st.session_state: st.session_state.answered = False
+if 'selected_option' not in st.session_state: st.session_state.selected_option = None
 
-# --- ASOSIY EKRAN ---
-# Barcha savollarni bitta HTML blok ichida chiqaramiz
-st.markdown('<div class="quiz-container">', unsafe_allow_html=True)
-st.markdown('<div class="q-header">[1/1] Kredit stavkasi nima?</div>', unsafe_allow_html=True)
-
-opts = ["Daromad solig'i", "Kredit berish narxi", "Kredit miqdori", "Bank balansidagi mablag'"]
-corr = "Kredit berish narxi"
-
-if not st.session_state.ans:
-    # JAVOB BERILMAGAN: Variantlarni radio doirachalari bilan chizish
-    # Streamlit radio'sini yashirin holda ishlatamiz
-    sel = st.radio("", opts, index=None, key="q_real", label_visibility="collapsed")
-    
-    if sel:
-        st.session_state.ans = True
-        st.session_state.sel_val = sel
-        st.rerun()
+# --- KIRISH ---
+if not st.session_state.logged_in:
+    st.title("🎯 Kirish")
+    u_login = st.text_input("Login:", value="Murat")
+    u_pass = st.text_input("Parol:", type="password")
+    if st.button("KIRISH"):
+        if u_login == "Murat" and u_pass == "12062006":
+            st.session_state.logged_in = True
+            st.rerun()
+        else: st.error("Xato!")
+[03/05/2026 01:42] Murat: # --- MENYU ---
 else:
-    # JAVOB BERILGAN: Natijalarni foizli progress bar bilan chizish
-    for o in opts:
-        is_c = (o == corr)
-        is_u = (o == st.session_state.sel_val)
-        p = 100 if is_c else 0
-        clr = "#4CAF50" if is_c else "#e0e0e0"
-        icon = "✔️" if is_c else ("❌" if is_u else "")
+    if not st.session_state.test_started:
+        st.title("🚀 Bo'limni tanlang")
         
+        # Jami 300 tacha savollar bazasi
+        ms_all = [
+            {"q": "Budjetni rejalashtirishda asosiy maqsad nima?", "o": ["Daromadlarni oshirish", "Xarajatlarni kamaytirish", "Moliyaviy barqarorlikni ta’minlash", "Bank kreditini olish"], "a": "Moliyaviy barqarorlikni ta’minlash"},
+            {"q": "Kredit stavkasi nima?", "o": ["Kredit miqdori", "Kredit berish narxi, foizda ifodalangan", "Bank balansidagi mablag‘", "Daromad solig‘i"], "a": "Kredit berish narxi, foizda ifodalangan"},
+            {"q": "Pul oqimi deganda nima tushuniladi?", "o": ["Kreditlar miqdori", "Tashkilotning kassa mablag‘lari harakati", "Dividendlar darajasi", "Bank foiz stavkalari"], "a": "Tashkilotning kassa mablag‘lari harakati"},
+            {"q": "Aktivlar deganda nimani tushuniladi?", "o": ["Qarzdorlik majburiyatlari", "Shaxsiy va korporativ mulk", "Faqat pul mablag‘lari", "Daromad manbalari"], "a": "Shaxsiy va korporativ mulk"},
+            {"q": "Passivlar nima?", "o": ["Bankdagi depozitlar", "Qarzdorlik majburiyatlari", "Moliyaviy reja", "Soliq imtiyozlari"], "a": "Qarzdorlik majburiyatlari"},
+            # Qolgan barcha savollar shu yerda davom etadi
+        ]
+        
+        blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"])
+        
+        if st.button("🚀 BOSHLASH"):
+            if blok == "1-70": st.session_state.active_questions = ms_all[0:70]
+            elif blok == "71-140": st.session_state.active_questions = ms_all[70:140]
+            elif blok == "141-210": st.session_state.active_questions = ms_all[140:210]
+            else: st.session_state.active_questions = ms_all[210:]
+            
+            random.shuffle(st.session_state.active_questions)
+            st.session_state.test_started = True
+            st.rerun()
+
+    # --- TEST ISHLASH ---
+    else:
+        q_idx = st.session_state.current_q_index
+        questions = st.session_state.active_questions
+        curr = questions[q_idx]
+        
+        # Natija (Yuqorida)
+        if st.session_state.answered:
+            if st.session_state.selected_option == curr['a']:
+                st.success(f"✅ TO‘G‘RI JAVOB!")
+            else:
+                st.error(f"❌ NOTO‘G‘RI! To‘g‘ri javob: {curr['a']}")
+
+        # Savol qutisi
         st.markdown(f"""
-            <div class="res-row">
-                <div class="res-label">
-                    <span>{o} {icon}</span>
-                    <span style="font-weight:600;">{p}%</span>
-                </div>
-                <div class="res-bar-bg">
-                    <div class="res-bar-fill" style="width: {p}%; background-color: {clr};"></div>
-                </div>
+            <div class="question-container">
+                <div style="color:#888; font-size:13px; margin-bottom:5px;">Savol {q_idx + 1} / {len(questions)}</div>
+                <div style="font-size:20px; font-weight:700; line-height:1.2;">{curr['q']}</div>
             </div>
         """, unsafe_allow_html=True)
-    
-    if st.button("Keyingi savol ➔"):
-        st.session_state.ans = False
-        st.rerun()
-
-st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Variant tugmalari (Juda yaqin joylashgan)
+        for option in curr['o']:
+            if st.session_state.answered:
+                if option == curr['a']:
+                    st.markdown('<div class="correct-btn">', unsafe_allow_html=True)
+                elif option == st.session_state.selected_option:
+                    st.markdown('<div class="wrong-btn">', unsafe_allow_html=True)
+                else:
+                    st.markdown('<div>', unsafe_allow_html=True)
+            else:
+                st.markdown('<div>', unsafe_allow_html=True)
+            
+            if st.button(option, key=f"btn_{option}_{q_idx}", disabled=st.session_state.answered):
+                st.session_state.answered = True
+                st.session_state.selected_option = option
+                if option == curr['a']:
+                    st.session_state.user_score += 1
+                st.rerun()
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+[03/05/2026 01:42] Murat: # Pastki boshqaruv
+        st.markdown('<div class="nav-btn">', unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.session_state.answered:
+                if st.button("Keyingi ➔"):
+                    st.session_state.current_q_index += 1
+                    st.session_state.answered = False
+                    st.session_state.selected_option = None
+                    st.rerun()
+        with col2:
+            if st.button("🏠 Menyuga"):
+                for k in ['test_started','current_q_index','user_score','active_questions','answered','selected_option']:
+                    if k in st.session_state: del st.session_state[k]
+                st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
