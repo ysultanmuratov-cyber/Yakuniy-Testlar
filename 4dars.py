@@ -15,12 +15,11 @@ st.markdown("""
     }
     
     header {visibility: hidden;}
-    .stApp { background-color: #e6ebf0 !important; }
-    
-    /* Bo'sh elementlarni yashirish - aynan shu qismni <style> ichiga qo'ying */
-    div[data-testid="stVerticalBlock"] > div:empty {
-        display: none !important;
-    }
+   .stApp {
+    background-image: url("FON_RASMI_LINKI");
+    background-size: cover;
+    background-position: center;
+}
 
     .quiz-card {
         background-color: white !important;
