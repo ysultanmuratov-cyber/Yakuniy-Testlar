@@ -416,7 +416,7 @@ else:
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
             # --- SAVOL BERILAYOTGAN HOLAT ---
-            if not st.session_state.answered:
+    if not st.session_state.answered:
                 ans = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
                 
                 col_a, col_b = st.columns([1, 1])
