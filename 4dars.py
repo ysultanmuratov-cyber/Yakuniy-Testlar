@@ -64,6 +64,15 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
+/* Bo'sh div elementlarini yashirish */
+div[data-testid="stVerticalBlock"] > div:empty {
+    display: none !important;
+}
+
+/* Yoki agar u card bo'lsa, uni topib o'chirish */
+.quiz-card:empty {
+    display: none !important;
+}
 # 3. Savollar Bazasi
 # 1-70 bloki
 if 'ms_1_70' not in st.session_state:
