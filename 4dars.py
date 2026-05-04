@@ -5,6 +5,31 @@ import random
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
 # 2. Yangilangan CSS
+/* Kirish tugmasi uchun maxsus uslub */
+div.stButton > button:first-child {
+    background-color: #007bff; /* Moviy rang */
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 12px; /* Burchaklarni yumshatish */
+    padding: 10px 24px;
+    width: 100%; /* Tugmani to'liq kenglikda qilish */
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); /* Soyali effekt */
+    transition: all 0.3s ease;
+}
+
+/* Tugma ustiga borganda effekt */
+div.stButton > button:first-child:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 20px rgba(0, 86, 179, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Bosilgandagi effekt */
+div.stButton > button:first-child:active {
+    transform: translateY(1px);
+}
 st.markdown("""
     <style>
     /* Sahifa tepasidagi bo'shliqni yo'qotish */
