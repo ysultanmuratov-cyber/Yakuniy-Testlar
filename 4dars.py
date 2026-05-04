@@ -267,9 +267,9 @@ if 'ms_141_210' not in st.session_state:
         {"q": "Onlayn xarid paytida shaxsiy karta ma’lumotlarini so‘rayotgan shubhali saytga nimalar qilish kerak?", "o": ["A) Hech qanday ma’lumot bermaslik, saytni tekshirish va xavfsiz manbadan foydalanish", "B) Darhol karta ma’lumotini kiritish", "C) Xarajatlarni oshirish", "D) Pulni inflyatsiyaga bog‘lash"], "a": "A) Hech qanday ma’lumot bermaslik, saytni tekshirish va xavfsiz manbadan foydalanish"},
         {"q": "Moliyaviy firibgarlikni oldini olish uchun shaxsiy byudjetni qanday boshqarish tavsiya etiladi?", "o": ["A) Mablag‘ni faqat tekshirilgan manbalarda saqlash va shubhali investitsiyalardan saqlanish", "B) Har qanday investitsiyaga mablag‘ yuborish", "C) Naqd pulni oshirish", "D) Inflyatsiya tufayli qarz olish"], "a": "A) Mablag‘ni faqat tekshirilgan manbalarda saqlash va shubhali investitsiyalardan saqlanish"},
     ]
-    # 211-271 bloki
-if 'ms_211_271' not in st.session_state:
-    st.session_state.ms_211_271 = [
+    # 211-300 bloki
+if 'ms_211_300' not in st.session_state:
+    st.session_state.ms_211_300 = [
         {"q": "Sizning do‘stingiz “tezkor boyib ketish” imkoniyati bilan sizni firibgarlik sxemasiga jalb qilmoqchi. Siz nima qilasiz?", "o": ["A) Mablag‘ni bermasdan rad etish, do‘stni ogohlantirish va moliyaviy xavfsizlikni saqlash", "B) Darhol mablag‘ni yuborish", "C) Faqat qarz olish", "D) Inflyatsiya tufayli kutish"], "a": "A) Mablag‘ni bermasdan rad etish, do‘stni ogohlantirish va moliyaviy xavfsizlikni saqlash"},
         {"q": "Siz bankdan shaxsiy kredit olmoqchisiz. Nima sababdan kreditning yillik foiz stavkasini va umumiy qaytariladigan summani oldindan hisoblash muhim?", "o": ["A) Chunki bu sizning moliyaviy imkoniyatingizni aniqlash va qarz yukini boshqarish imkonini beradi", "B) Chunki faqat bank foyda oladi", "C) Chunki qarz avtomatik daromad keltiradi", "D) Chunki inflyatsiya foizga ta’sir qilmaydi"], "a": "A) Chunki bu sizning moliyaviy imkoniyatingizni aniqlash va qarz yukini boshqarish imkonini beradi"},
         {"q": "Kredit olishda “amortizatsiya jadvali” nima uchun muhim?", "o": ["A) Chunki u har oy to‘lanadigan asosiy qarz va foiz summasini ko‘rsatadi, shaxsiy byudjetni boshqarishni osonlashtiradi", "B) Chunki foiz stavkasi oshadi", "C) Chunki qarz avtomatik kamayadi", "D) Chunki inflyatsiya barqaror bo‘ladi"], "a": "A) Chunki u har oy to‘lanadigan asosiy qarz va foiz summasini ko‘rsatadi, shaxsiy byudjetni boshqarishni osonlashtiradi"},
