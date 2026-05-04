@@ -4,20 +4,24 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# 2. Yangilangan CSS (Tepadagi bo'shliq, Card va Footer dizayni)
+# 2. Yangilangan CSS
 st.markdown("""
     <style>
     /* Sahifa tepasidagi bo'shliqni yo'qotish */
     .block-container {
         padding-top: 1rem !important;
-        padding-bottom: 5rem !important; /* Footer uchun joy qoldiramiz */
+        padding-bottom: 5rem !important;
         max-width: 600px !important;
     }
     
-    header {visibility: hidden;} /* Streamlit yuqori chizig'ini yashirish */
+    header {visibility: hidden;}
     .stApp { background-color: #e6ebf0 !important; }
     
-    /* Savol turadigan oq quti (Card) dizayni */
+    /* Bo'sh elementlarni yashirish - aynan shu qismni <style> ichiga qo'ying */
+    div[data-testid="stVerticalBlock"] > div:empty {
+        display: none !important;
+    }
+
     .quiz-card {
         background-color: white !important;
         padding: 25px !important;
@@ -27,10 +31,13 @@ st.markdown("""
         margin-bottom: 20px !important;
     }
     
-    /* Barcha matnlarni qora rangda qilish */
+    /* Bo'sh cardlarni yashirish */
+    .quiz-card:empty {
+        display: none !important;
+    }
+
     h1, h2, h3, p, span, div, label { color: #333333 !important; }
     
-    /* Tugmalar dizayni */
     .stButton button {
         width: 100%;
         background-color: #0088cc !important;
@@ -42,37 +49,18 @@ st.markdown("""
         margin-top: 10px;
     }
 
-    /* Fixed Footer (Pastki panel) dizayni */
     .footer {
         position: fixed;
-        left: 0;
-        bottom: 0;
+        left: 0; bottom: 0;
         width: 100%;
         background-color: white;
-        color: #333;
         text-align: center;
         padding: 12px 0;
         box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
         z-index: 9999;
     }
-    .footer a {
-        text-decoration: none;
-        color: #0088cc !important;
-        font-weight: bold;
-        margin: 0 15px;
-        font-size: 15px;
-    }
     </style>
     """, unsafe_allow_html=True)
-/* Bo'sh div elementlarini yashirish */
-div[data-testid="stVerticalBlock"] > div:empty {
-    display: none !important;
-}
-
-/* Yoki agar u card bo'lsa, uni topib o'chirish */
-.quiz-card:empty {
-    display: none !important;
-}
 # 3. Savollar Bazasi
 # 1-70 bloki
 if 'ms_1_70' not in st.session_state:
