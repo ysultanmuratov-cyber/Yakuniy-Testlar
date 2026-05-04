@@ -4,12 +4,12 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# 2. Yangilangan To'liq CSS
+# To'liq Premium CSS
 st.markdown("""
     <style>
     /* 1. SAHIFA UMUMIY SOZLAMALARI */
     .main .block-container {
-        padding-top: 0rem !important; /* Yuqoridagi bo'shliqni yo'qotish */
+        padding-top: 1rem !important; /* Yuqoridagi bo'shliqni minimal qilish */
         padding-bottom: 2rem !important;
         max-width: 460px !important; /* Ixcham kenglik */
     }
@@ -27,16 +27,16 @@ st.markdown("""
         gap: 0.8rem !important; 
     }
 
-    /* 2. LOGOTIP DIZAYNI */
+    /* 2. LOGOTIP DIZAYNI (Eski Kirish yozuvi o'rniga) */
     .logo-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 20px 0 10px 0;
+        padding: 10px 0 20px 0;
     }
 
     .main-logo {
-        width: 200px !important;
+        width: 220px !important; /* Logo o'lchami */
         filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));
         transition: all 0.4s ease;
     }
@@ -107,9 +107,16 @@ st.markdown("""
     h1, h2, h3 { color: #1E293B !important; font-weight: 800 !important; }
     p, label { color: #475569 !important; font-size: 15px !important; }
 
+    /* Footer dizayni */
+    .footer-text {
+        text-align: center;
+        color: #64748B !important;
+        font-size: 14px !important;
+        margin-top: 20px;
+    }
+
     </style>
     """, unsafe_allow_html=True)
-
 # 3. Savollar Bazasi
 # 1-70 bloki
 if 'ms_1_70' not in st.session_state:
