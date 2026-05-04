@@ -215,7 +215,7 @@ if not st.session_state.logged_in:
     st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
     st.title("🎯 Kirish")
     
-    # 1. Foydalanuvchilar bazasi (Xohlagancha qo'shishingiz mumkin)
+    # 1. Foydalanuvchilar bazasi (Siz ko'rsatgan variantda, o'zgarishsiz)
     users = {
         "Murat": "12062006",
         "Nilufar": "Nilufar0455",
@@ -237,20 +237,20 @@ if not st.session_state.logged_in:
     u_pass = st.text_input("Parol:", type="password")
     
     if st.button("KIRISH"):
-        # 2. Lug'atdan tekshirish
+        # 2. To'g'ridan-to'g'ri lug'atdan tekshirish (Hech qanday o'zgartirishlarsiz)
         if u_login in users and users[u_login] == u_pass:
             st.session_state.logged_in = True
             st.rerun()
         else:
             st.error("Login yoki parol xato!")
-            # Muallif ma'lumotlari
+
+    # Muallif ma'lumotlari
     st.markdown("""
         <div style="text-align: center; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px;">
             <p style="margin: 0; font-size: 14px; color: #666;">Yaratuvchi : <b>Murat Sultanov</b></p>
             <p style="margin: 0; font-size: 14px; color: #666;">Murojat uchun : <b>@murat_sultanov</b></p>
         </div>
     """, unsafe_allow_html=True)
-    
     st.markdown('</div>', unsafe_allow_html=True)
 # --- MENYU ---
 else:
