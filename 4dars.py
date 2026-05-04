@@ -4,91 +4,57 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
+# Yangilangan Cinematic CSS
 st.markdown("""
     <style>
-    /* 1. Yuqoridagi bo'shliqni majburiy nolga tushirish */
-    .main .block-container {
-        padding-top: 0rem !important;
-        padding-bottom: 3rem !important;
-        max-width: 480px !important; /* Ixchamroq kenglik */
+    /* Sahifa umumiy ko'rinishi */
+    .block-container {
+        padding-top: 2rem !important;
+        max-width: 500px !important;
     }
-
-    /* Streamlit'ning yashirin paddinglarini o'chirish */
-    [data-testid="stVerticalBlock"] > div {
-        padding-top: 0rem !important;
-        gap: 0.5rem !important; /* Elementlar orasini yaqinlashtirish */
-    }
-
+    
     header {visibility: hidden;}
-    footer {visibility: hidden;}
 
-    /* 2. Fon va Umumiy ko'rinish */
-    .stApp {
-        background-color: #F1F5F9 !important;
-    }
-
-    /* 3. Quiz Card - Ixcham va yaqin */
-    .quiz-card {
-        background: white !important;
-        padding: 20px !important; /* Ichki bo'shliqni kamaytirdik */
-        border-radius: 16px !important;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important;
-        border: 1px solid #E2E8F0 !important;
-        margin-top: 0px !important;
-    }
-
-    /* 4. Variantlar (Radio) - Masofani ixchamlashtirish */
-    div[data-testid="stRadio"] > div {
-        gap: 8px !important; /* Variantlar orasini yaqinlashtirish */
-    }
-
-    div[data-testid="stRadio"] label {
-        background-color: #FFFFFF !important;
-        border: 1.5px solid #E2E8F0 !important;
-        padding: 10px 15px !important; /* Kichikroq padding */
-        border-radius: 10px !important;
-        margin-bottom: 0px !important;
-        transition: all 0.2s ease !important;
-    }
-
-    div[data-testid="stRadio"] label:hover {
-        border-color: #0088cc !important;
-        background-color: #F8FAFC !important;
-    }
-
-    /* 5. Tugmalar (Tasdiqlash va To'xtatish) */
-    .stButton button {
+    /* TUGMA DIZAYNI - Mashhur saytlardagidek */
+    div[data-testid="stButton"] button {
         width: 100% !important;
+        background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
+        color: white !important;
         border-radius: 10px !important;
-        height: 45px !important; /* Balandlikni ixchamlashtirdik */
-        font-weight: 700 !important;
-        font-size: 15px !important;
-        transition: all 0.2s ease !important;
-    }
-
-    /* Tasdiqlash tugmasi (Moviy) */
-    div[data-testid="stHorizontalBlock"] div:nth-child(1) button {
-        background: #0088cc !important;
-        color: white !important;
+        height: 50px !important;
+        font-weight: 600 !important;
+        font-size: 17px !important;
         border: none !important;
+        letter-spacing: 0.5px !important; /* Harflar orasidagi masofa */
+        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2) !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Yumshoq animatsiya */
+        cursor: pointer !important;
     }
 
-    /* To'xtatish tugmasi (Qizil/To'q) */
-    div[data-testid="stHorizontalBlock"] div:nth-child(2) button {
-        background: #1E293B !important;
-        color: white !important;
-        border: none !important;
+    /* Ustiga borganda (Mashhur effekt) */
+    div[data-testid="stButton"] button:hover {
+        background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
+        box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35) !important;
+        transform: translateY(-1px) scale(1.01) !important; /* Bir ozgina kattalashish */
     }
 
-    /* 6. Matnlar o'lchami */
-    h3 { margin-bottom: 5px !important; font-size: 20px !important; }
-    p { margin-top: 0px !important; font-size: 16px !important; color: #334155 !important; }
+    /* Bosilganda */
+    div[data-testid="stButton"] button:active {
+        transform: translateY(1px) scale(0.99) !important;
+        box-shadow: 0 2px 10px rgba(0, 136, 204, 0.2) !important;
+    }
 
-    /* Footer - Ixcham */
-    .footer {
-        padding: 10px 0 !important;
-        background: white !important;
-        border-top: 1px solid #E2E8F0 !important;
+    /* Inputlar dizaynini ham tugmaga moslash */
+    .stTextInput input {
+        border-radius: 10px !important;
+        border: 1px solid #e0e0e0 !important;
+        padding: 12px !important;
+        transition: border 0.3s ease !important;
+    }
+
+    .stTextInput input:focus {
+        border: 1px solid #0088cc !important;
+        box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1) !important;
     }
     </style>
     """, unsafe_allow_html=True)
