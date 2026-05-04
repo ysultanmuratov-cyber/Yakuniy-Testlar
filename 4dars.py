@@ -413,32 +413,38 @@ else:
             st.session_state.active_questions = questions
             st.session_state.test_started = True
             st.rerun()
-   # --- TEST JARAYONI ---
+  # --- TEST JARAYONI ---
     else:
         q_idx = st.session_state.current_q_index
         questions = st.session_state.active_questions
         
-        # 1. Test davom etayotgan bo'lsa (Savollarni ko'rsatish)
         if q_idx < len(questions):
             curr = questions[q_idx]
             st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
             st.markdown(f"<h3>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
             st.markdown(f"<p style='font-size: 18px; font-weight: bold;'>{curr['q']}</p>", unsafe_allow_html=True)
 
-            # Savolga hali javob berilmagan bo'lsa
+            # --- SAVOL BERILAYOTGAN HOLAT ---
             if not st.session_state.answered:
                 ans = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
-                if st.button("TASDIQLASH"):
-                    if ans:
-                        st.session_state.answered = True
-                        st.session_state.selected_option = ans
-                        if ans == curr['a']: 
-                            st.session_state.user_score += 1
+                
+                col_a, col_b = st.columns([1, 1])
+                with col_a:
+                    if st.button("✅ TASDIQLASH"):
+                        if ans:
+                            st.session_state.answered = True
+                            st.session_state.selected_option = ans
+                            if ans == curr['a']: 
+                                st.session_state.user_score += 1
+                            st.rerun()
+                        else:
+                            st.warning("Iltimos, variantni tanlang!")
+                with col_b:
+                    if st.button("🛑 TESTNI TO'XTATISH"):
+                        st.session_state.current_q_index = len(questions)
                         st.rerun()
-                    else:
-                        st.warning("Iltimos, variantni tanlang!")
             
-            # Savolga javob berilgan bo'lsa (Natijani ko'rsatish)
+            # --- JAVOB KO'RSATILGAN HOLAT ---
             else:
                 for opt in curr['o']:
                     if opt == curr['a']:
@@ -448,7 +454,8 @@ else:
                     else:
                         st.write(opt)
                 
-                col1, col2 = st.columns(2)
+                # SIZNING RASMINGIZDAGI QISM SHU YERDA:
+                col1, col2, col3 = st.columns(3)
                 with col1:
                     if st.button("Keyingi ➔"):
                         st.session_state.current_q_index += 1
@@ -456,6 +463,10 @@ else:
                         st.session_state.selected_option = None
                         st.rerun()
                 with col2:
+                    if st.button("📊 NATIJA"):
+                        st.session_state.current_q_index = len(questions)
+                        st.rerun()
+                with col3:
                     if st.button("🏠 MENU"):
                         st.session_state.test_started = False
                         st.session_state.current_q_index = 0
@@ -464,12 +475,12 @@ else:
                         st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
 
-        # 2. Hamma savollar tugagan bo'lsa (Yakuniy natija)
+        # --- NATIJALAR SAHIFASI ---
         else:
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
             st.balloons()
             st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
-            st.markdown(f"<h1>{st.session_state.user_score} / {len(questions)}</h1>", unsafe_allow_html=True)
+            st.markdown(f"<h1>Natija: {st.session_state.user_score} / {len(questions)}</h1>", unsafe_allow_html=True)
             if st.button("🏠 ASOSIY MENYUGA QAYTISH"):
                 st.session_state.test_started = False
                 st.session_state.current_q_index = 0
