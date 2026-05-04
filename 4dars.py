@@ -360,9 +360,14 @@ if 'answered' not in st.session_state: st.session_state.answered = False
 if 'selected_option' not in st.session_state: st.session_state.selected_option = None
 
 # --- KIRISH ---
-if not st.session_state.logged_in:
-    st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
-    st.title("🎯 Kirish")
+# Kirish sarlavhasini chiroyli qilish
+st.markdown("""
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/3039/3039453.png" width="50">
+        <h1 style="margin: 0; font-size: 42px; font-family: 'Arial Black'; color: #333;">Kirish</h1>
+    </div>
+    <br>
+""", unsafe_allow_html=True)
     
     # 1. Foydalanuvchilar bazasi (Siz ko'rsatgan variantda, o'zgarishsiz)
     users = {
