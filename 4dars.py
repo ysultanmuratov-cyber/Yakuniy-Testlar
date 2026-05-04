@@ -390,7 +390,12 @@ else:
     if not st.session_state.test_started:
         st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
         st.title("🚀 Bo'limni tanlang")
-        blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"])
+        
+        # "Blok:" yozuvi o'rniga yangi sarlavha
+        st.markdown("### 📚 Moliyaviy savodxonlik") 
+        
+        # st.radio ichidagi "Blok:" yozuvini olib tashlaymiz (label_visibility="collapsed")
+        blok = st.radio("Tanlang:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
         
         if st.button("🚀 BOSHLA"):
             # Tanlangan blokni nusxalab olish (asli o'zgarmasligi uchun)
