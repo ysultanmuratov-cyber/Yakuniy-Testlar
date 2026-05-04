@@ -4,14 +4,20 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# 2. Telegram Quiz dizayni (CSS) - Bo'sh oq joyni yo'qotish bilan
+# 2. Mobil va Dark Mode uchun optimallashgan CSS
 st.markdown("""
     <style>
-    .stApp { background-color: #e6ebf0; }
+    /* Umumiy fon rangi */
+    .stApp { background-color: #e6ebf0 !important; }
+    
+    /* Sarlavhalar va matnlar rangini majburiy qora qilish */
+    h1, h2, h3, p, span, div, label {
+        color: #333333 !important;
+    }
     
     /* Quiz kartasi */
     .quiz-card {
-        background-color: white;
+        background-color: white !important;
         padding: 25px;
         border-radius: 12px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -19,56 +25,36 @@ st.markdown("""
         margin: auto;
     }
     
-    /* O'sha siz aytgan yuqoridagi bo'sh oq joyni o'chirish */
+    /* Radio variantlar matni */
+    div[role="radiogroup"] label p {
+        color: #333333 !important;
+        font-size: 17px !important;
+    }
+    
+    /* Ortig'cha oq joyni yo'qotish */
     div[data-testid="stWidgetLabel"] {
         display: none !important;
     }
     
-    .question-header {
-        font-weight: bold;
-        font-size: 19px;
-        color: #000;
-        margin-bottom: 20px;
-    }
-
-    /* Radio variantlar dizayni */
-    div[role="radiogroup"] label {
-        font-size: 17px !important;
-        color: #333 !important;
-        padding: 10px 0 !important;
-        border-bottom: 1px solid #f8f8f8;
-    }
-
-    /* Natija foizlari */
-    .stat-row {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 15px;
-    }
-    .label-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 5px;
-        font-size: 16px;
-    }
-    .bar-bg {
-        height: 10px;
-        background-color: #f0f0f0;
-        border-radius: 5px;
-        width: 100%;
-        overflow: hidden;
-    }
-    .bar-fill { height: 100%; border-radius: 5px; transition: width 0.5s; }
-
-    /* Keyingi tugmasi */
+    /* Keyingi/Boshlash tugmasi */
     .stButton button {
         width: 100%;
         background-color: #0088cc !important;
         color: white !important;
         border-radius: 10px !important;
-        height: 45px;
+        height: 48px;
         font-weight: bold;
         border: none;
+        margin-top: 10px;
+    }
+
+    /* Progress bar va foizlar */
+    .label-row span {
+        color: #333333 !important;
+        font-weight: 600;
+    }
+    .bar-bg {
+        background-color: #eeeeee !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -83,6 +69,7 @@ if 'selected_option' not in st.session_state: st.session_state.selected_option =
 
 # --- KIRISH ---
 if not st.session_state.logged_in:
+    st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
     st.title("🎯 Kirish")
     u_login = st.text_input("Login:", value="Murat")
     u_pass = st.text_input("Parol:", type="password")
@@ -91,10 +78,12 @@ if not st.session_state.logged_in:
             st.session_state.logged_in = True
             st.rerun()
         else: st.error("Xato!")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # --- MENYU ---
 else:
     if not st.session_state.test_started:
+        st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
         st.title("🚀 Bo'limni tanlang")
         
         ms_all = [
@@ -107,11 +96,12 @@ else:
         
         blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"])
         
-        if st.button("🚀 BOSHLASH"):
+        if st.button("🚀 BOSHLA"):
             st.session_state.active_questions = ms_all 
             random.shuffle(st.session_state.active_questions)
             st.session_state.test_started = True
             st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
 
     # --- TEST ISHLASH ---
     else:
@@ -125,8 +115,7 @@ else:
             st.markdown(f'<div class="question-header">[{q_idx + 1}/{len(questions)}] {curr["q"]}</div>', unsafe_allow_html=True)
 
             if not st.session_state.answered:
-                # Label visibilitycollapsed bo'lsa ham, CSS orqali uni butunlay o'chiramiz
-                choice = st.radio("Seçim", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
+                choice = st.radio("Tanlang", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
                 if choice:
                     st.session_state.answered = True
                     st.session_state.selected_option = choice
@@ -137,17 +126,17 @@ else:
                     is_correct = (opt == curr['a'])
                     is_user_choice = (opt == st.session_state.selected_option)
                     percent = 100 if is_correct else 0
-                    fill_color = "#4CAF50" if is_correct else "#e0e0e0"
+                    fill_color = "#4CAF50" if is_correct else "#cccccc"
                     icon = "✔️" if is_correct else ("❌" if is_user_choice else "")
                     
                     st.markdown(f"""
-                        <div class="stat-row">
-                            <div class="label-row">
-                                <span>{opt} {icon}</span>
-                                <span>{percent}%</span>
+                        <div style="margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span style="color: #333; font-weight: 500;">{opt} {icon}</span>
+                                <span style="color: #333;">{percent}%</span>
                             </div>
-                            <div class="bar-bg">
-                                <div class="bar-fill" style="width: {percent}%; background-color: {fill_color};"></div>
+                            <div style="height: 10px; background-color: #eee; border-radius: 5px; overflow: hidden;">
+                                <div style="width: {percent}%; height: 100%; background-color: {fill_color};"></div>
                             </div>
                         </div>
                     """, unsafe_allow_html=True)
@@ -159,8 +148,11 @@ else:
                     st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
         else:
-            st.success(f"🏁 Test tugadi! Natija: {st.session_state.user_score}/{len(questions)}")
+            st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
+            st.title("🏁 Test tugadi!")
+            st.write(f"Natijangiz: **{st.session_state.user_score}/{len(questions)}**")
             if st.button("🏠 Menyuga qaytish"):
                 for k in ['test_started','current_q_index','user_score','answered','selected_option']:
                     del st.session_state[k]
                 st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
