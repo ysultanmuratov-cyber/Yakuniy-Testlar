@@ -465,11 +465,12 @@ else:
                         st.session_state.answered = False
                         st.rerun()
             
-            # DIV ni yopish rerun-dan tashqarida va hamma tugmalardan keyin bo'lishi shart
-        st.markdown('</div>', unsafe_allow_html=True)
+            # 1. Test oynasini (quiz-card) yopuvchi DIV
+            # Bu qator if q_idx < len(questions) blokining oxirida bo'lishi kerak
+            st.markdown('</div>', unsafe_allow_html=True)
 
-        # --- NATIJALAR SAHIFASI ---
-        # Bu else yuqoridagi 'if q_idx < len(questions):' bilan bir xil chiziqda bo'lsin
+        # 2. --- NATIJALAR SAHIFASI ---
+        # Bu 'else' yuqoridagi 'if q_idx < len(questions):' bilan aynan bir xil chiziqda bo'lishi shart
         else:
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
             st.balloons()
@@ -484,7 +485,7 @@ else:
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
 
-# Footer har doim eng chekkada (hech qanday if-else ichida emas) bo'lishi kerak
+# 3. Footer - Bu barcha if-else bloklaridan TASHQARIDA, eng chap chekkada bo'lishi shart
 st.markdown(f"""
     <div class="footer">
         <p style="margin: 0; font-size: 13px; color: #666; font-family: sans-serif;">Yaratuvchi: <b>Murat Sultanov</b></p>
