@@ -5,31 +5,6 @@ import random
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
 # 2. Yangilangan CSS
-/* Kirish tugmasi uchun maxsus uslub */
-div.stButton > button:first-child {
-    background-color: #007bff; /* Moviy rang */
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 12px; /* Burchaklarni yumshatish */
-    padding: 10px 24px;
-    width: 100%; /* Tugmani to'liq kenglikda qilish */
-    border: none;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); /* Soyali effekt */
-    transition: all 0.3s ease;
-}
-
-/* Tugma ustiga borganda effekt */
-div.stButton > button:first-child:hover {
-    background-color: #0056b3;
-    box-shadow: 0 6px 20px rgba(0, 86, 179, 0.4);
-    transform: translateY(-2px);
-}
-
-/* Bosilgandagi effekt */
-div.stButton > button:first-child:active {
-    transform: translateY(1px);
-}
 st.markdown("""
     <style>
     /* Sahifa tepasidagi bo'shliqni yo'qotish */
@@ -40,11 +15,12 @@ st.markdown("""
     }
     
     header {visibility: hidden;}
-   .stApp {
-    background-image: url("FON_RASMI_LINKI");
-    background-size: cover;
-    background-position: center;
-}
+
+    .stApp {
+        background-image: url("FON_RASMI_LINKI");
+        background-size: cover;
+        background-position: center;
+    }
 
     .quiz-card {
         background-color: white !important;
@@ -62,15 +38,31 @@ st.markdown("""
 
     h1, h2, h3, p, span, div, label { color: #333333 !important; }
     
+    /* --- TUGMALAR UCHUN YANGILANGAN CINEMATIC USLUB --- */
     .stButton button {
         width: 100%;
         background-color: #0088cc !important;
         color: white !important;
-        border-radius: 10px !important;
-        height: 48px;
+        border-radius: 12px !important; /* Biroz yumshoqroq burchaklar */
+        height: 52px; /* Cinematic ko'rinish uchun biroz balandroq */
         font-weight: bold;
-        border: none;
-        margin-top: 10px;
+        font-size: 18px !important;
+        border: none !important;
+        margin-top: 15px;
+        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3) !important; /* Moviy soya */
+        transition: all 0.3s ease-in-out !important; /* Silliq harakat */
+    }
+
+    /* Tugma ustiga borgandagi effekt */
+    .stButton button:hover {
+        background-color: #0077b3 !important;
+        box-shadow: 0 6px 20px rgba(0, 119, 179, 0.4) !important;
+        transform: translateY(-2px); /* Yuqoriga biroz siljish */
+    }
+
+    /* Tugma bosilgandagi effekt */
+    .stButton button:active {
+        transform: translateY(1px);
     }
 
     .footer {
