@@ -449,7 +449,7 @@ if not st.session_state.logged_in:
 if u_login in users and users[u_login] == u_pass:
             st.session_state.logged_in = True
             st.rerun()
-        else:
+else:
             st.error("Login yoki parol xato!")
 
 # 2. Foydalanuvchi tizimga kirgan bo'lsa
