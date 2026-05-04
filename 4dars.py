@@ -515,11 +515,19 @@ else:
                 st.session_state.answered = False
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
-            # Doimiy ko'rinib turadigan mualliflik paneli (Footer)
+            # Doimiy ko'rinib turadigan footer (Original logotiplar bilan)
 st.markdown(f"""
     <div class="footer">
-        <p style="margin-bottom: 5px; font-size: 14px; color: #666;">Yaratuvchi: <b>Murat Sultanov</b></p>
-        <a href="https://t.me/murat_sultanov" target="_blank">✈️ @murat_sultanov</a>
-        <a href="https://instagram.com/muratsultanov__" target="_blank">📸 @muratsultanov__</a>
+        <p style="margin: 0; font-size: 13px; color: #666; font-family: sans-serif;">Yaratuvchi: <b>Murat Sultanov</b></p>
+        <div style="margin-top: 8px; display: flex; justify-content: center; align-items: center; gap: 20px;">
+            <a href="https://t.me/murat_sultanov" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #0088cc; text-decoration: none;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" height="20">
+                <span>@murat_sultanov</span>
+            </a>
+            <a href="https://instagram.com/muratsultanov__" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #E1306C; text-decoration: none;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="20" height="20">
+                <span>@muratsultanov__</span>
+            </a>
+        </div>
     </div>
     """, unsafe_allow_html=True)
