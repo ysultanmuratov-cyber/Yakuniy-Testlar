@@ -360,79 +360,68 @@ if 'answered' not in st.session_state: st.session_state.answered = False
 if 'selected_option' not in st.session_state: st.session_state.selected_option = None
 
 # --- KIRISH ---
-# Kirish sarlavhasini chiroyli qilish
-st.markdown("""
-    <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://cdn-icons-png.flaticon.com/512/3039/3039453.png" width="50">
-        <h1 style="margin: 0; font-size: 42px; font-family: 'Arial Black'; color: #333;">Kirish</h1>
-    </div>
-    <br>
-""", unsafe_allow_html=True)
-    
-    # 1. Foydalanuvchilar bazasi (Siz ko'rsatgan variantda, o'zgarishsiz)
-users = {
-    "Murat": "12062006",
-    "Nilufar": "Nilufar0455",
-    "Radjabboyeva_m": "12345678",
-    "Minjiq_qiz": "Minjiq_qiz1234",
-    "Lola": "Lola0504",
-    "341241101229": "Oydin005",
-    "Sultanovamarufa": "02112006Sm",
-    "Shahriyor": "Poxxuy",
-    "Ixtiyor": "200606",
-    "Xudayberganovaf": "Farangiz0616",
-    "Urunbayevasevinch": "Sevinch07042005",
-    "Abdullayev": "Kamol05",
-    "Ixlos": "Ixlos05",
-    "Gulsanam": "2810xaydarova",
-    "Samandarov": "Shoxrux06",
-    "Xudayberganova": "Sevinch"
-}
-    
-u_login = st.text_input("Foydalanuvchi nomi (Login):")
-u_pass = st.text_input("Parol:", type="password")
+# --- ASOSIY MANTIQIY ZANJIR ---
 
-if st.button("KIRISH"):
-    # 2. To'g'ridan-to'g'ri lug'atdan tekshirish (Hech qanday o'zgartirishlarsiz)
-    if u_login in users and users[u_login] == u_pass:
-        st.session_state.logged_in = True
-        st.rerun()
-    else:
-        st.error("Login yoki parol xato!")
+# 1. Foydalanuvchi tizimga kirmagan bo'lsa (FAQAT KIRISH OYNASI)
+if not st.session_state.logged_in:
+    st.markdown("""
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/3039/3039453.png" width="50">
+            <h1 style="margin: 0; font-size: 42px; font-family: 'Arial Black'; color: #333;">Kirish</h1>
+        </div>
+        <br>
+    """, unsafe_allow_html=True)
+    
+    # Foydalanuvchilar bazasi
+    users = {
+        "Murat": "12062006", "Nilufar": "Nilufar0455", "Radjabboyeva_m": "12345678",
+        "Minjiq_qiz": "Minjiq_qiz1234", "Lola": "Lola0504", "341241101229": "Oydin005",
+        "Sultanovamarufa": "02112006Sm", "Shahriyor": "Poxxuy", "Ixtiyor": "200606",
+        "Xudayberganovaf": "Farangiz0616", "Urunbayevasevinch": "Sevinch07042005",
+        "Abdullayev": "Kamol05", "Ixlos": "Ixlos05", "Gulsanam": "2810xaydarova",
+        "Samandarov": "Shoxrux06", "Xudayberganova": "Sevinch"
+    }
+    
+    u_login = st.text_input("Foydalanuvchi nomi (Login):")
+    u_pass = st.text_input("Parol:", type="password")
 
-# --- MENYU ---
+    if st.button("KIRISH"):
+        if u_login in users and users[u_login] == u_pass:
+            st.session_state.logged_in = True
+            st.rerun()
+        else:
+            st.error("Login yoki parol xato!")
+
+# 2. Foydalanuvchi tizimga kirgan bo'lsa (MENYU YOKI TEST)
 else:
     if not st.session_state.test_started:
+        # --- MENYU QISMI ---
         st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
         st.title("🚀 Bo'limni tanlang")
-        
-        # "Blok:" yozuvi o'rniga yangi sarlavha
         st.markdown("### 📚 Moliyaviy savodxonlik") 
         
-        # st.radio ichidagi "Blok:" yozuvini olib tashlaymiz (label_visibility="collapsed")
         blok = st.radio("Tanlang:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
         
         if st.button("🚀 BOSHLA"):
-            # Tanlangan blokni nusxalab olish (asli o'zgarmasligi uchun)
-            if blok == "1-70":
-                questions = list(st.session_state.ms_1_70)
-            elif blok == "71-140":
-                questions = list(st.session_state.ms_71_140)
-            elif blok == "141-210":
-                questions = list(st.session_state.ms_141_210)
-            elif blok == "211-300":
-                questions = list(st.session_state.ms_211_300)
+            if blok == "1-70": questions = list(st.session_state.ms_1_70)
+            elif blok == "71-140": questions = list(st.session_state.ms_71_140)
+            elif blok == "141-210": questions = list(st.session_state.ms_141_210)
+            elif blok == "211-300": questions = list(st.session_state.ms_211_300)
             
-            # 1. Savollar tartibini aralashtirish
             random.shuffle(questions)
-            
-            # 2. Har bir savol ichidagi variantlarni ham aralashtirish
             for q in questions:
                 random.shuffle(q['o'])
                 
             st.session_state.active_questions = questions
             st.session_state.test_started = True
             st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    else:
+        # --- TEST JARAYONI (Bu qism o'zgarishsiz qoladi) ---
+        q_idx = st.session_state.current_q_index
+        questions = st.session_state.active_questions
+        # ... qolgan test kodingiz shu yerdan davom etadi
   # --- TEST JARAYONI ---
     else:
         q_idx = st.session_state.current_q_index
