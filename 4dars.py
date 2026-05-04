@@ -466,7 +466,7 @@ else:
                         st.rerun()
             
             # DIV ni yopish rerun-dan tashqarida va hamma tugmalardan keyin bo'lishi shart
-            st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
         # --- NATIJALAR SAHIFASI ---
         # Bu else yuqoridagi 'if q_idx < len(questions):' bilan bir xil chiziqda bo'lsin
