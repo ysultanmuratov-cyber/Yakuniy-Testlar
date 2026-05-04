@@ -4,76 +4,90 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# Yangilangan Cinematic CSS (Ikonkalar bilan)
+# Yangilangan Cinematic & Premium CSS
 st.markdown("""
     <style>
-    /* Sahifa umumiy ko'rinishi */
+    /* 1. SAHIFA UMUMIY SOZLAMALARI */
     .block-container {
         padding-top: 1rem !important;
         max-width: 500px !important;
     }
-    
     header {visibility: hidden;}
+    .stApp { background-color: #F8FAFC !important; }
 
-    /* 1. RAKETA VA KITOB IKONKALARI UCHUN DIZAYN */
-    /* Rasmlarni biroz yaltiroq va zamonaviy qilish */
-    img {
-        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15)) brightness(1.05);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Ikonkaga borganda u biroz kattalashib, nur sochadi */
-    img:hover {
-        transform: scale(1.1) rotate(5deg);
-        filter: drop-shadow(0 8px 20px rgba(0, 136, 204, 0.3)) brightness(1.2);
-    }
-
-    /* Sarlavha yonidagi raketa uchun maxsus animatsiya */
-    .premium-rocket {
+    /* 2. PREMIUM IKONKALAR UCHUN ANIMATSIYA */
+    /* Raketa uchun cinematic suzish effekti */
+    .rocket-icon {
+        display: inline-block;
+        font-size: 50px;
+        filter: drop-shadow(0 10px 15px rgba(0, 136, 204, 0.3));
         animation: rocket-float 3s ease-in-out infinite;
+        cursor: default;
     }
 
     @keyframes rocket-float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px) translateX(3px); }
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-12px) rotate(8deg); }
     }
 
-    /* TUGMA DIZAYNI - Mashhur saytlardagidek */
+    /* Kitoblar uchun yaltiroq effekt */
+    .book-icon {
+        display: inline-block;
+        font-size: 28px;
+        margin-right: 10px;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        transition: all 0.3s ease;
+    }
+    
+    .book-icon:hover {
+        transform: scale(1.2) rotate(-5deg);
+    }
+
+    /* 3. TUGMA DIZAYNI - Eng yuqori sifatli (SaaS Style) */
     div[data-testid="stButton"] button {
         width: 100% !important;
         background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
         color: white !important;
-        border-radius: 12px !important;
-        height: 52px !important;
-        font-weight: 600 !important;
+        border-radius: 14px !important;
+        height: 54px !important;
+        font-weight: 700 !important;
         font-size: 17px !important;
         border: none !important;
-        letter-spacing: 0.5px !important;
-        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2) !important;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        cursor: pointer !important;
+        letter-spacing: 0.8px !important;
+        box-shadow: 0 8px 20px rgba(0, 136, 204, 0.25) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
     div[data-testid="stButton"] button:hover {
         background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
-        box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35) !important;
-        transform: translateY(-1px) scale(1.01) !important;
+        box-shadow: 0 12px 28px rgba(0, 136, 204, 0.4) !important;
+        transform: translateY(-2px) scale(1.02) !important;
     }
 
-    div[data-testid="stButton"] button:active {
-        transform: translateY(1px) scale(0.99) !important;
-    }
-
-    /* Inputlar dizayni */
+    /* 4. INPUTLAR */
     .stTextInput input {
-        border-radius: 10px !important;
-        border: 1px solid #e0e0e0 !important;
-        padding: 12px !important;
-        transition: border 0.3s ease !important;
+        border-radius: 12px !important;
+        border: 1px solid #E2E8F0 !important;
+        padding: 14px !important;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02) !important;
     }
     </style>
     """, unsafe_allow_html=True)
 
+# 5. PYTHON QISMIDA ULARNI ISHLATISH (Broken Image o'rniga)
+st.markdown("""
+    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+        <div class="rocket-icon">🚀</div>
+        <h1 style="margin: 0; font-size: 36px; font-weight: 800; color: #1E293B;">Bo'limni tanlang</h1>
+    </div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+        <div class="book-icon">📚</div>
+        <h3 style="margin: 0; font-size: 22px; font-weight: 600; color: #334155;">Moliyaviy savodxonlik</h3>
+    </div>
+""", unsafe_allow_html=True)
 # PYTHON QISMIDA RASMLARNI MANA BUNDAY CHIQARING:
 # Sarlavha uchun raketa
 st.markdown(f"""
