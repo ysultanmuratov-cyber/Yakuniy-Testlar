@@ -464,10 +464,10 @@ else:
                         st.session_state.user_score = 0
                         st.session_state.answered = False
                         st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
+                        st.markdown('</div>', unsafe_allow_html=True)
 
         # --- NATIJALAR SAHIFASI ---
-else:
+    else:
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
             st.balloons()
             st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
