@@ -219,7 +219,7 @@ if not st.session_state.logged_in:
     users = {
         "Murat": "12062006",
         "Nilufar": "Nilufar0455",
-        "radjabboyeva_m": "12345678"
+        "Radjabboyeva_m": "12345678"
     }
     
     u_login = st.text_input("Foydalanuvchi nomi (Login):")
