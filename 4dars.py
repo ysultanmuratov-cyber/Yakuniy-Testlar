@@ -359,10 +359,9 @@ if 'user_score' not in st.session_state: st.session_state.user_score = 0
 if 'answered' not in st.session_state: st.session_state.answered = False
 if 'selected_option' not in st.session_state: st.session_state.selected_option = None
 
-# --- KIRISH ---
 # --- ASOSIY MANTIQIY ZANJIR ---
 
-# 1. Foydalanuvchi tizimga kirmagan bo'lsa (FAQAT KIRISH OYNASI)
+# 1. Foydalanuvchi tizimga kirmagan bo'lsa
 if not st.session_state.logged_in:
     st.markdown("""
         <div style="display: flex; align-items: center; gap: 15px;">
@@ -391,7 +390,7 @@ if not st.session_state.logged_in:
         else:
             st.error("Login yoki parol xato!")
 
-# 2. Foydalanuvchi tizimga kirgan bo'lsa (MENYU YOKI TEST)
+# 2. Foydalanuvchi tizimga kirgan bo'lsa
 else:
     if not st.session_state.test_started:
         # --- MENYU QISMI ---
@@ -415,8 +414,19 @@ else:
             st.session_state.test_started = True
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
-            # --- SAVOL BERILAYOTGAN HOLAT ---
-    if not st.session_state.answered:
+        
+    else:
+        # --- TEST JARAYONI ---
+        q_idx = st.session_state.current_q_index
+        questions = st.session_state.active_questions
+        
+        if q_idx < len(questions):
+            curr = questions[q_idx]
+            st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+            st.markdown(f"<h3>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
+            st.markdown(f"<p style='font-size: 18px; font-weight: bold;'>{curr['q']}</p>", unsafe_allow_html=True)
+
+            if not st.session_state.answered:
                 ans = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
                 
                 col_a, col_b = st.columns([1, 1])
@@ -434,10 +444,8 @@ else:
                     if st.button("🛑 TESTNI TO'XTATISH"):
                         st.session_state.current_q_index = len(questions)
                         st.rerun()
-            
-            # --- JAVOB KO'RSATILGAN HOLAT ---
-    else:
-            for opt in curr['o']:
+            else:
+                for opt in curr['o']:
                     if opt == curr['a']:
                         st.success(f"To'g'ri javob: {opt} ✔️")
                     elif opt == st.session_state.selected_option:
@@ -445,19 +453,18 @@ else:
                     else:
                         st.write(opt)
                 
-                # SIZNING RASMINGIZDAGI QISM SHU YERDA:
-    col1, col2, col3 = st.columns(3)
-    with col1:
+                col1, col2, col3 = st.columns(3)
+                with col1:
                     if st.button("Keyingi ➔"):
                         st.session_state.current_q_index += 1
                         st.session_state.answered = False
                         st.session_state.selected_option = None
                         st.rerun()
-    with col2:
+                with col2:
                     if st.button("📊 NATIJA"):
                         st.session_state.current_q_index = len(questions)
                         st.rerun()
-    with col3:
+                with col3:
                     if st.button("🏠 MENU"):
                         st.session_state.test_started = False
                         st.session_state.current_q_index = 0
@@ -465,13 +472,10 @@ else:
                         st.session_state.answered = False
                         st.rerun()
             
-            # 1. Test oynasini (quiz-card) yopuvchi DIV
-            # Bu qator if q_idx < len(questions) blokining oxirida bo'lishi kerak
-    st.markdown('</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
 
-        # 2. --- NATIJALAR SAHIFASI ---
-        # Bu 'else' yuqoridagi 'if q_idx < len(questions):' bilan aynan bir xil chiziqda bo'lishi shart
         else:
+            # --- NATIJALAR SAHIFASI ---
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
             st.balloons()
             st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
@@ -485,7 +489,7 @@ else:
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
 
-# 3. Footer - Bu barcha if-else bloklaridan TASHQARIDA, eng chap chekkada bo'lishi shart
+# 3. Footer
 st.markdown(f"""
     <div class="footer">
         <p style="margin: 0; font-size: 13px; color: #666; font-family: sans-serif;">Yaratuvchi: <b>Murat Sultanov</b></p>
