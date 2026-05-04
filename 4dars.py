@@ -447,17 +447,17 @@ else:
                 
                 # SIZNING RASMINGIZDAGI QISM SHU YERDA:
     col1, col2, col3 = st.columns(3)
-                with col1:
+    with col1:
                     if st.button("Keyingi ➔"):
                         st.session_state.current_q_index += 1
                         st.session_state.answered = False
                         st.session_state.selected_option = None
                         st.rerun()
-                with col2:
+    with col2:
                     if st.button("📊 NATIJA"):
                         st.session_state.current_q_index = len(questions)
                         st.rerun()
-                with col3:
+    with col3:
                     if st.button("🏠 MENU"):
                         st.session_state.test_started = False
                         st.session_state.current_q_index = 0
