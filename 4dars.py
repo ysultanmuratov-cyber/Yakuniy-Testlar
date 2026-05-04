@@ -420,13 +420,8 @@ if 'selected_option' not in st.session_state: st.session_state.selected_option =
 
 # 1. Foydalanuvchi tizimga kirmagan bo'lsa
 if not st.session_state.get('logged_in', False):
-    # Eski "Kirish" yozuvi o'rniga UrDU logotipi
-    st.markdown("""
-        <div class="logo-container" style="text-align: center; padding-bottom: 20px;">
-            <img src="https://raw.githubusercontent.com/murat-sultanov/logos/main/urdu_test_markazi.png" 
-                 class="main-logo" style="width: 220px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));">
-        </div>
-    """, unsafe_allow_html=True)
+    # Eski st.markdown blokini o'chirib, o'rniga shuni qo'ying:
+    st.image("sayt.jpg", use_container_width=False, width=220)
     
     users = {
         "Murat": "12062006", "Nilufar": "Nilufar0455", "Radjabboyeva_m": "12345678",
