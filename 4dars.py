@@ -59,36 +59,6 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# 5. PYTHON QISMIDA ULARNI ISHLATISH (Broken Image o'rniga)
-st.markdown("""
-    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-        <div class="rocket-icon">🚀</div>
-        <h1 style="margin: 0; font-size: 36px; font-weight: 800; color: #1E293B;">Bo'limni tanlang</h1>
-    </div>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-        <div class="book-icon">📚</div>
-        <h3 style="margin: 0; font-size: 22px; font-weight: 600; color: #334155;">Moliyaviy savodxonlik</h3>
-    </div>
-""", unsafe_allow_html=True)
-# PYTHON QISMIDA RASMLARNI MANA BUNDAY CHIQARING:
-# Sarlavha uchun raketa
-st.markdown(f"""
-    <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="RAKETA_LINKI" class="premium-rocket" width="50">
-        <h1>Bo'limni tanlang</h1>
-    </div>
-""", unsafe_allow_html=True)
-
-# Bo'lim nomi uchun kitoblar
-st.markdown(f"""
-    <div style="display: flex; align-items: center; gap: 12px; margin-top: 10px;">
-        <img src="KITOB_LINKI" width="35">
-        <h3 style="margin: 0;">Moliyaviy savodxonlik</h3>
-    </div>
-""", unsafe_allow_html=True)
 # 3. Savollar Bazasi
 # 1-70 bloki
 if 'ms_1_70' not in st.session_state:
