@@ -1,4 +1,4 @@
-[03/05/2026 01:42] Murat: import streamlit as st
+
 import random
 
 # 1. Sahifa sozlamalari
