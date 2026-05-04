@@ -7,82 +7,33 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 # To'liq Premium CSS (Yuqoriga surilgan varianti)
 st.markdown("""
     <style>
-    /* 1. SAHIFA UMUMIY SOZLAMALARI - BUTUN BLOKNI TEPAGA SURISH */
-    .main .block-container {
-        padding-top: 0rem !important; /* Tepadagi bo'shliqni nolga tushirish */
-        margin-top: -55px !important; /* Hamma narsani shundayligicha tepaga surish */
-        padding-bottom: 1rem !important;
-        max-width: 460px !important;
-    }
-    
-    header {visibility: hidden;}
-    footer {visibility: hidden;}
-
+    /* Sahifani eng yuqoriga majburan ko'tarish */
     .stApp {
-        background-color: #F8FAFC !important;
-    }
-
-    /* Elementlar orasidagi masofani yaqinlashtirish (shakli o'zgarmaydi) */
-    [data-testid="stVerticalBlock"] > div {
-        padding-top: 0rem !important;
-        gap: 0.6rem !important; 
-    }
-
-    /* 2. LOGOTIP DIZAYNI */
-    .logo-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0px 0px 10px 0px !important; /* Ortiqcha paddingni olib tashladik */
-    }
-
-    .main-logo {
-        width: 220px !important; 
-        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));
-        mix-blend-mode: multiply;
-        transition: all 0.4s ease;
+        margin-top: -100px !important; /* Bu qiymatni oshirsangiz yanada tepaga chiqadi */
     }
     
-    .main-logo:hover {
-        transform: scale(1.02);
+    .main .block-container {
+        padding-top: 0rem !important;
+        padding-bottom: 0rem !important;
     }
 
-    /* 3. TUGMA DIZAYNI */
-    div[data-testid="stButton"] button {
-        width: 100% !important;
-        background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
-        color: white !important;
-        border-radius: 12px !important;
-        height: 50px !important;
-        font-weight: 700 !important;
-        font-size: 16px !important;
-        border: none !important;
-        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.25) !important;
-        margin-top: 5px !important; /* Masofani biroz kamaytirdik */
+    /* Tepadagi ortiqcha bo'sh joylarni (header) butunlay yo'q qilish */
+    header, [data-testid="stHeader"] {
+        display: none !important;
     }
 
-    /* 4. INPUTLAR */
-    .stTextInput input {
-        border-radius: 12px !important;
-        border: 1.5px solid #E2E8F0 !important;
-        padding: 12px !important;
-        background-color: white !important;
+    /* Elementlar orasini yanada zich qilish */
+    [data-testid="stVerticalBlock"] {
+        gap: 0.2rem !important;
     }
-
-    /* 6. MATNLAR - MASOFANI TARTIBLASH */
-    h1, h2, h3 { color: #1E293B !important; font-weight: 800 !important; margin-bottom: 2px !important; }
-    p, label { color: #475569 !important; font-size: 15px !important; margin-bottom: 2px !important; }
-
-    /* Footer dizayni ko'rinishi uchun masofa */
-    .footer-text {
-        text-align: center;
-        color: #64748B !important;
-        font-size: 14px !important;
-        margin-top: 10px !important;
+    
+    /* Logotipni tepaga taqash */
+    .logo-container {
+        margin-top: 0px !important;
+        padding-top: 0px !important;
     }
-
     </style>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 # 3. Savollar Bazasi
 # 1-70 bloki
 if 'ms_1_70' not in st.session_state:
