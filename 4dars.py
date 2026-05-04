@@ -464,14 +464,18 @@ else:
                         st.session_state.user_score = 0
                         st.session_state.answered = False
                         st.rerun()
-                        st.markdown('</div>', unsafe_allow_html=True)
+            
+            # DIV ni yopish rerun-dan tashqarida va hamma tugmalardan keyin bo'lishi shart
+            st.markdown('</div>', unsafe_allow_html=True)
 
         # --- NATIJALAR SAHIFASI ---
-    else:
+        # Bu else yuqoridagi 'if q_idx < len(questions):' bilan bir xil chiziqda bo'lsin
+        else:
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
             st.balloons()
             st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
             st.markdown(f"<h1>Natija: {st.session_state.user_score} / {len(questions)}</h1>", unsafe_allow_html=True)
+            
             if st.button("🏠 ASOSIY MENYUGA QAYTISH"):
                 st.session_state.test_started = False
                 st.session_state.current_q_index = 0
@@ -479,7 +483,8 @@ else:
                 st.session_state.answered = False
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
-            # Doimiy ko'rinib turadigan footer (Original logotiplar bilan)
+
+# Footer har doim eng chekkada (hech qanday if-else ichida emas) bo'lishi kerak
 st.markdown(f"""
     <div class="footer">
         <p style="margin: 0; font-size: 13px; color: #666; font-family: sans-serif;">Yaratuvchi: <b>Murat Sultanov</b></p>
@@ -494,4 +499,4 @@ st.markdown(f"""
             </a>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
