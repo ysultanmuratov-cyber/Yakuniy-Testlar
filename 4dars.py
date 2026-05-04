@@ -6,87 +6,89 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 
 st.markdown("""
     <style>
-    /* 1. Sahifa foni - Yorqin va toza (Premium minimalizm) */
-    .stApp {
-        background-color: #F8FAFC !important;
+    /* 1. Yuqoridagi bo'shliqni majburiy nolga tushirish */
+    .main .block-container {
+        padding-top: 0rem !important;
+        padding-bottom: 3rem !important;
+        max-width: 480px !important; /* Ixchamroq kenglik */
     }
 
-    .block-container {
-        padding-top: 2rem !important;
-        max-width: 500px !important;
+    /* Streamlit'ning yashirin paddinglarini o'chirish */
+    [data-testid="stVerticalBlock"] > div {
+        padding-top: 0rem !important;
+        gap: 0.5rem !important; /* Elementlar orasini yaqinlashtirish */
     }
 
     header {visibility: hidden;}
+    footer {visibility: hidden;}
 
-    /* 2. Asosiy Card dizayni */
-    .quiz-card {
-        background: white !important;
-        padding: 30px !important;
-        border-radius: 20px !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
-        border: 1px solid #E2E8F0 !important;
-        margin-bottom: 20px !important;
+    /* 2. Fon va Umumiy ko'rinish */
+    .stApp {
+        background-color: #F1F5F9 !important;
     }
 
-    /* 3. Radio Variantlar - Eng muhim qismi */
+    /* 3. Quiz Card - Ixcham va yaqin */
+    .quiz-card {
+        background: white !important;
+        padding: 20px !important; /* Ichki bo'shliqni kamaytirdik */
+        border-radius: 16px !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important;
+        border: 1px solid #E2E8F0 !important;
+        margin-top: 0px !important;
+    }
+
+    /* 4. Variantlar (Radio) - Masofani ixchamlashtirish */
     div[data-testid="stRadio"] > div {
-        gap: 12px !important;
+        gap: 8px !important; /* Variantlar orasini yaqinlashtirish */
     }
 
     div[data-testid="stRadio"] label {
         background-color: #FFFFFF !important;
-        border: 2px solid #F1F5F9 !important;
-        padding: 15px 20px !important;
-        border-radius: 12px !important;
-        color: #1E293B !important;
-        font-weight: 500 !important;
+        border: 1.5px solid #E2E8F0 !important;
+        padding: 10px 15px !important; /* Kichikroq padding */
+        border-radius: 10px !important;
+        margin-bottom: 0px !important;
         transition: all 0.2s ease !important;
-        cursor: pointer !important;
     }
 
-    /* Variant ustiga borganda */
     div[data-testid="stRadio"] label:hover {
         border-color: #0088cc !important;
-        background-color: #F0F9FF !important;
+        background-color: #F8FAFC !important;
     }
 
-    /* Tanlangan variantni ko'k qilish */
-    div[data-testid="stRadio"] input:checked + div[data-testid="stMarkdownContainer"] p {
-        color: #0088cc !important;
-        font-weight: bold !important;
-    }
-
-    /* 4. ASOSIY TUGMA (BOSHLA) - Cinematic Blue */
-    div.stButton > button {
+    /* 5. Tugmalar (Tasdiqlash va To'xtatish) */
+    .stButton button {
         width: 100% !important;
-        background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
-        color: white !important;
-        border-radius: 12px !important;
-        height: 54px !important;
+        border-radius: 10px !important;
+        height: 45px !important; /* Balandlikni ixchamlashtirdik */
         font-weight: 700 !important;
-        font-size: 18px !important;
+        font-size: 15px !important;
+        transition: all 0.2s ease !important;
+    }
+
+    /* Tasdiqlash tugmasi (Moviy) */
+    div[data-testid="stHorizontalBlock"] div:nth-child(1) button {
+        background: #0088cc !important;
+        color: white !important;
         border: none !important;
-        box-shadow: 0 8px 20px rgba(0, 136, 204, 0.25) !important;
-        margin-top: 15px !important;
-        transition: all 0.3s ease !important;
     }
 
-    div.stButton > button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 12px 25px rgba(0, 136, 204, 0.35) !important;
+    /* To'xtatish tugmasi (Qizil/To'q) */
+    div[data-testid="stHorizontalBlock"] div:nth-child(2) button {
+        background: #1E293B !important;
+        color: white !important;
+        border: none !important;
     }
 
-    /* 5. Sarlavhalar */
-    h1, h2, h3 {
-        color: #0F172A !important;
-        font-family: 'Inter', sans-serif !important;
-    }
+    /* 6. Matnlar o'lchami */
+    h3 { margin-bottom: 5px !important; font-size: 20px !important; }
+    p { margin-top: 0px !important; font-size: 16px !important; color: #334155 !important; }
 
-    /* Footer */
+    /* Footer - Ixcham */
     .footer {
+        padding: 10px 0 !important;
         background: white !important;
         border-top: 1px solid #E2E8F0 !important;
-        color: #64748B !important;
     }
     </style>
     """, unsafe_allow_html=True)
