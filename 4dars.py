@@ -4,75 +4,60 @@ import random
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
 
-# Yangilangan Cinematic & Premium CSS
+# Yangilangan Cinematic CSS
 st.markdown("""
-    <style>
-    /* 1. SAHIFA UMUMIY SOZLAMALARI */
-    .block-container {
-        padding-top: 1rem !important;
-        max-width: 500px !important;
-    }
-    header {visibility: hidden;}
-    .stApp { background-color: #F8FAFC !important; }
+    <style>
+    /* Sahifa umumiy ko'rinishi */
+    .block-container {
+        padding-top: 2rem !important;
+        max-width: 500px !important;
+    }
+    
+    header {visibility: hidden;}
 
-    /* 2. PREMIUM IKONKALAR UCHUN ANIMATSIYA */
-    /* Raketa uchun cinematic suzish effekti */
-    .rocket-icon {
-        display: inline-block;
-        font-size: 50px;
-        filter: drop-shadow(0 10px 15px rgba(0, 136, 204, 0.3));
-        animation: rocket-float 3s ease-in-out infinite;
-        cursor: default;
-    }
+    /* TUGMA DIZAYNI - Mashhur saytlardagidek */
+    div[data-testid="stButton"] button {
+        width: 100% !important;
+        background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
+        color: white !important;
+        border-radius: 10px !important;
+        height: 50px !important;
+        font-weight: 600 !important;
+        font-size: 17px !important;
+        border: none !important;
+        letter-spacing: 0.5px !important; /* Harflar orasidagi masofa */
+        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2) !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Yumshoq animatsiya */
+        cursor: pointer !important;
+    }
 
-    @keyframes rocket-float {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(-12px) rotate(8deg); }
-    }
+    /* Ustiga borganda (Mashhur effekt) */
+    div[data-testid="stButton"] button:hover {
+        background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
+        box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35) !important;
+        transform: translateY(-1px) scale(1.01) !important; /* Bir ozgina kattalashish */
+    }
 
-    /* Kitoblar uchun yaltiroq effekt */
-    .book-icon {
-        display: inline-block;
-        font-size: 28px;
-        margin-right: 10px;
-        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-        transition: all 0.3s ease;
-    }
-    
-    .book-icon:hover {
-        transform: scale(1.2) rotate(-5deg);
-    }
+    /* Bosilganda */
+    div[data-testid="stButton"] button:active {
+        transform: translateY(1px) scale(0.99) !important;
+        box-shadow: 0 2px 10px rgba(0, 136, 204, 0.2) !important;
+    }
 
-    /* 3. TUGMA DIZAYNI - Eng yuqori sifatli (SaaS Style) */
-    div[data-testid="stButton"] button {
-        width: 100% !important;
-        background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%) !important;
-        color: white !important;
-        border-radius: 14px !important;
-        height: 54px !important;
-        font-weight: 700 !important;
-        font-size: 17px !important;
-        border: none !important;
-        letter-spacing: 0.8px !important;
-        box-shadow: 0 8px 20px rgba(0, 136, 204, 0.25) !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    }
+    /* Inputlar dizaynini ham tugmaga moslash */
+    .stTextInput input {
+        border-radius: 10px !important;
+        border: 1px solid #e0e0e0 !important;
+        padding: 12px !important;
+        transition: border 0.3s ease !important;
+    }
 
-    div[data-testid="stButton"] button:hover {
-        background: linear-gradient(135deg, #0099dd 0%, #0066bb 100%) !important;
-        box-shadow: 0 12px 28px rgba(0, 136, 204, 0.4) !important;
-        transform: translateY(-2px) scale(1.02) !important;
-    }
-
-    /* 4. INPUTLAR */
-    .stTextInput input {
-        border-radius: 12px !important;
-        border: 1px solid #E2E8F0 !important;
-        padding: 14px !important;
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02) !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+    .stTextInput input:focus {
+        border: 1px solid #0088cc !important;
+        box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1) !important;
+    }
+    </style>
+    """, unsafe_allow_html=True) bu kod ancha yaxshi
 
 # 5. PYTHON QISMIDA ULARNI ISHLATISH (Broken Image o'rniga)
 st.markdown("""
