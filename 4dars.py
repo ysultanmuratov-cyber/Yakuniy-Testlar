@@ -519,7 +519,7 @@ else:
             st.markdown('</div>', unsafe_allow_html=True)
 
         else:
-           else:
+           
             # --- NATIJALAR SAHIFASI ---
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
             st.balloons()
