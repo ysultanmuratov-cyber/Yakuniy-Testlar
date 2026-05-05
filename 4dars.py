@@ -273,6 +273,7 @@ if 'ms_141_210' not in st.session_state:
         {"q": "Onlayn xarid paytida shaxsiy karta ma’lumotlarini so‘rayotgan shubhali saytga nimalar qilish kerak?", "o": ["A) Hech qanday ma’lumot bermaslik, saytni tekshirish va xavfsiz manbadan foydalanish", "B) Darhol karta ma’lumotini kiritish", "C) Xarajatlarni oshirish", "D) Pulni inflyatsiyaga bog‘lash"], "a": "A) Hech qanday ma’lumot bermaslik, saytni tekshirish va xavfsiz manbadan foydalanish"},
         {"q": "Moliyaviy firibgarlikni oldini olish uchun shaxsiy byudjetni qanday boshqarish tavsiya etiladi?", "o": ["A) Mablag‘ni faqat tekshirilgan manbalarda saqlash va shubhali investitsiyalardan saqlanish", "B) Har qanday investitsiyaga mablag‘ yuborish", "C) Naqd pulni oshirish", "D) Inflyatsiya tufayli qarz olish"], "a": "A) Mablag‘ni faqat tekshirilgan manbalarda saqlash va shubhali investitsiyalardan saqlanish"},
     ]
+    
     # 211-300 bloki
 if 'ms_211_300' not in st.session_state:
     st.session_state.ms_211_300 = [
@@ -338,6 +339,21 @@ if 'ms_211_300' not in st.session_state:
         {"q": "Bank hisobvarag‘iga mablag‘ kiritishning asosiy usullari qaysilar?", "o": ["A) Naqd pul, elektron pul, boshqa banklar orqali o‘tkazmalar", "B) Faqat naqd pul", "C) Faqat boshqa bank orqali", "D) Faqat valyuta ayirboshlash"], "a": "A) Naqd pul, elektron pul, boshqa banklar orqali o‘tkazmalar"},
         {"q": "Kredit operatsiyalarida foiz stavkasini tanlash nima muhim?", "o": ["A) Chunki foiz stavkasi qarzning umumiy qiymatini belgilaydi va byudjetga ta’sir qiladi", "B) Foizlar avtomatik hisoblanadi", "C) Xarajatlar oshadi", "D) Naqd pul kamayadi"], "a": "A) Chunki foiz stavkasi qarzning umumiy qiymatini belgilaydi va byudjetga ta’sir qiladi"}
     ]
+    # Differensial tenglamalar bloklari
+if 'dt_1_70' not in st.session_state:
+    st.session_state.dt_1_70 = [
+        {"q": "1-savol matni?", "o": ["V1", "V2", "V3", "V4"], "a": "V1"},
+        # Bu yerda 70 tagacha savol bo'ladi
+    ]
+
+if 'dt_71_140' not in st.session_state:
+    st.session_state.dt_71_140 = [] # 71-140 savollar
+
+if 'dt_141_210' not in st.session_state:
+    st.session_state.dt_141_210 = [] # 141-210 savollar
+
+if 'dt_211_300' not in st.session_state:
+    st.session_state.dt_211_300 = [] # 211-300 savollar
 
 # 4. Holatlarni boshqarish
 if 'logged_in' not in st.session_state: st.session_state.logged_in = False
