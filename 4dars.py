@@ -371,6 +371,7 @@ if not st.session_state.get('logged_in', False):
     if st.button("KIRISH"):
         if u_login in users and users[u_login] == u_pass:
             st.session_state.logged_in = True
+            st.session_state.u_login = u_login
             st.rerun()
         else:
             st.error("Login yoki parol xato!")
