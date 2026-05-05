@@ -479,14 +479,18 @@ else:
                             st.rerun()
                         else:
                             st.warning("Iltimos, variantni tanlang!")
+                
                 with col_b:
                     if st.button("🛑 TO'XTATISH"):
-        # To'xtatganda ham savollar va fan aniq bo'lishi uchun sessiyaga yozamiz
-                       st.session_state.current_q_index = len(st.session_state.get('active_questions', []))
-                       st.rerun()
-                  else:  
-                       for opt in curr['o']:
-                 if opt == curr['a']:
+                        # To'xtatganda sessiyadan savollar uzunligini olib, oxirgi sahifaga o'tamiz
+                        questions_len = len(st.session_state.get('active_questions', []))
+                        st.session_state.current_q_index = questions_len
+                        st.rerun()
+            
+            else:  
+                # Javob berilgandan keyin natijani ko'rsatish
+                for opt in curr['o']:
+                    if opt == curr['a']:
                         st.success(f"To'g'ri javob: {opt} ✔️")
                     elif opt == st.session_state.get('selected_option'):
                         st.error(f"Sizning javobingiz: {opt} ❌")
@@ -518,7 +522,12 @@ else:
             # --- NATIJALAR SAHIFASI ---
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
             st.balloons()
-            save_log(st.session_state.u_login, fan, st.session_state.user_score, len(questions))
+            
+            # Xatolik chiqmasligi uchun foydalanuvchi va fan nomini xavfsiz olish
+            u_name = st.session_state.get('u_login', 'Guest')
+            # 'fan' o'zgaruvchisi selectbox-dan keladi
+            save_log(u_name, fan, st.session_state.user_score, len(questions))
+            
             st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
             st.markdown(f"<h1>Natija: {st.session_state.user_score} / {len(questions)}</h1>", unsafe_allow_html=True)
             
