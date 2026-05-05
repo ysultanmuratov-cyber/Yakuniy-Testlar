@@ -380,7 +380,7 @@ if not st.session_state.get('logged_in', False):
 else:
     # --- ADMIN PANEL BOSHLANISHI ---
     # Bu yerda o'zingizni loginngizni yozing (masalan, "Murat")
-    if st.session_state.get('u_login') == "Murat":
+    if st.session_state.get('u_login') == "admin":
         with st.expander("🛡️ ADMIN PANEL (Foydalanuvchilar harakati)"):
             if os.path.exists("user_logs.csv"):
                 df = pd.read_csv("user_logs.csv")
