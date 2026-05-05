@@ -431,6 +431,7 @@ else:
 
             # 3. BOSHLA tugmasi va mantiqi
             if st.button("🚀 BOSHLA"):
+                st.session_state.current_fan = fan
                 # Tanlangan fanga qarab savollarni yuklash
                 if fan == "Moliyaviy savodxonlik":
                     if blok == "1-70": st.session_state.active_questions = list(st.session_state.ms_1_70)
