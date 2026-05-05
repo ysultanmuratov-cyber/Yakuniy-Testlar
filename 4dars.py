@@ -335,25 +335,48 @@ if 'selected_option' not in st.session_state: st.session_state.selected_option =
 
 # --- ASOSIY MANTIQIY ZANJIR ---
 
+# 1. Foydalanuvchi tizimga kirmagan bo'lsa
+if not st.session_state.get('logged_in', False):
+    # Kirish oynasidagi logotip
+    st.image("sayt.jpg", width=260)
+    
+    users = {
+        "Murat": "12062006", "Nilufar": "Nilufar0455", "Radjabboyeva_m": "12345678",
+        "Minjiq_qiz": "Minjiq_qiz1234", "Lola": "Lola0504", "341241101229": "Oydin005",
+        "Sultanovamarufa": "02112006Sm", "Shahriyor": "Poxxuy", "Ixtiyor": "200606",
+        "Xudayberganovaf": "Farangiz0616", "Urunbayevasevinch": "Sevinch07042005",
+        "Abdullayev": "Kamol05", "Ixlos": "Ixlos05", "Gulsanam": "2810xaydarova",
+        "Samandarov": "Shoxrux06", "Xudayberganova": "Sevinch", "Erkayev": "Akmal06"
+    }
+    
+    u_login = st.text_input("Foydalanuvchi nomi (Login):")
+    u_pass = st.text_input("Parol:", type="password")
+
+    if st.button("KIRISH"):
+        if u_login in users and users[u_login] == u_pass:
+            st.session_state.logged_in = True
+            st.rerun()
+        else:
+            st.error("Login yoki parol xato!")
+
 # 2. Foydalanuvchi tizimga kirgan bo'lsa
 else:
     if not st.session_state.get('test_started', False):
         # --- MENYU QISMI ---
         st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
         
-        # Elementlarni o'rtaga surish uchun 3 ta ustun yaratamiz
-        # [1, 2, 1] nisbati o'rtadagi ustunni markazga oladi
-        col1, col2, col3 = st.columns([1, 2, 1])
+        # Elementlarni o'rtaga surish uchun ustunlar
+        col1, col2, col3 = st.columns([1, 3, 1])
         
         with col2:
-            # Logotipni o'rtaga qo'yish
+            # Logotipni markazga olish
             st.image("sayt.jpg", use_container_width=True)
             
-            # Sarlavhalarni o'rtaga olish
-            st.markdown("<h1 style='text-align: center;'>🚀 Bo'limni tanlang</h1>", unsafe_allow_html=True)
-            st.markdown("<h3 style='text-align: center;'>📚 Moliyaviy savodxonlik</h3>", unsafe_allow_html=True)
+            # Sarlavhalarni markazlashtirish
+            st.markdown("<h2 style='text-align: center; margin-top: 0;'>🚀 Bo'limni tanlang</h2>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; font-size: 18px; color: #475569;'>📚 Moliyaviy savodxonlik</p>", unsafe_allow_html=True)
             
-            # Radio tugmalar (Variantlar)
+            # Radio tugmalar
             blok = st.radio("Tanlang:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
             
             # BOSHLA tugmasi
@@ -371,154 +394,96 @@ else:
                 st.session_state.current_q_index = 0
                 st.session_state.user_score = 0
                 st.rerun()
-                
-        st.markdown('</div>', unsafe_allow_html=True)
-    
-    users = {
-        "Murat": "12062006", "Nilufar": "Nilufar0455", "Radjabboyeva_m": "12345678",
-        "Minjiq_qiz": "Minjiq_qiz1234", "Lola": "Lola0504", "341241101229": "Oydin005",
-        "Sultanovamarufa": "02112006Sm", "Shahriyor": "Poxxuy", "Ixtiyor": "200606",
-        "Xudayberganovaf": "Farangiz0616", "Urunbayevasevinch": "Sevinch07042005",
-        "Abdullayev": "Kamol05", "Ixlos": "Ixlos05", "Gulsanam": "2810xaydarova",
-        "Samandarov": "Shoxrux06", "Xudayberganova": "Sevinch", "Erkayev": "Akmal06"
-    }
-    
-    u_login = st.text_input("Foydalanuvchi nomi (Login):")
-    u_pass = st.text_input("Parol:", type="password")
-
-    # KIRISH TUGMASI VA UNING MANTIQI (Indentatsiya to'g'irlandi)
-    if st.button("KIRISH"):
-        if u_login in users and users[u_login] == u_pass:
-            st.session_state.logged_in = True
-            st.rerun()
-        else:
-            st.error("Login yoki parol xato!")
-
-# 2. Foydalanuvchi tizimga kirgan bo'lsa
-else:
-if not st.session_state.get('test_started', False):
-    # --- MENYU QISMI ---
-    st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
-    
-    # Elementlarni o'rtaga surish uchun ustunlar
-    col1, col2, col3 = st.columns([1, 3, 1])
-    
-    with col2:
-        # Logotipni markazga olish
-        st.image("sayt.jpg", use_container_width=True)
-        
-        # Sarlavhalarni markazlashtirish
-        st.markdown("<h2 style='text-align: center; margin-top: 0;'>🚀 Bo'limni tanlang</h2>", unsafe_allow_html=True)
-        st.markdown("<p style='text-align: center; font-size: 18px; color: #475569;'>📚 Moliyaviy savodxonlik</p>", unsafe_allow_html=True)
-        
-        # Radio tugmalar
-        blok = st.radio("Tanlang:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
-        
-        # BOSHLA tugmasi
-        if st.button("🚀 BOSHLA"):
-            if blok == "1-70": st.session_state.active_questions = list(st.session_state.ms_1_70)
-            elif blok == "71-140": st.session_state.active_questions = list(st.session_state.ms_71_140)
-            elif blok == "141-210": st.session_state.active_questions = list(st.session_state.ms_141_210)
-            elif blok == "211-300": st.session_state.active_questions = list(st.session_state.ms_211_300)
-            
-            random.shuffle(st.session_state.active_questions)
-            for q in st.session_state.active_questions:
-                random.shuffle(q['o'])
-                
-            st.session_state.test_started = True
-            st.session_state.current_q_index = 0
-            st.session_state.user_score = 0
-            st.rerun()
-    
-    st.markdown('</div>', unsafe_allow_html=True)
-    
-else:
-    # --- TEST JARAYONI ---
-    q_idx = st.session_state.get('current_q_index', 0)
-    questions = st.session_state.get('active_questions', [])
-    
-    if q_idx < len(questions):
-        curr = questions[q_idx]
-        st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
-        st.markdown(f"<h3 style='text-align: center;'>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
-        st.markdown(f"<p style='font-size: 18px; font-weight: bold; text-align: center;'>{curr['q']}</p>", unsafe_allow_html=True)
-
-        if not st.session_state.get('answered', False):
-            ans = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
-            
-            col_a, col_b = st.columns([1, 1])
-            with col_a:
-                if st.button("✅ TASDIQLASH"):
-                    if ans:
-                        st.session_state.answered = True
-                        st.session_state.selected_option = ans
-                        if ans == curr['a']: 
-                            st.session_state.user_score += 1
-                        st.rerun()
-                    else:
-                        st.warning("Iltimos, variantni tanlang!")
-            with col_b:
-                if st.button("🛑 TO'XTATISH"):
-                    st.session_state.current_q_index = len(questions)
-                    st.rerun()
-        else:
-            for opt in curr['o']:
-                if opt == curr['a']:
-                    st.success(f"To'g'ri javob: {opt} ✔️")
-                elif opt == st.session_state.get('selected_option'):
-                    st.error(f"Sizning javobingiz: {opt} ❌")
-                else:
-                    st.write(opt)
-            
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                if st.button("Keyingi ➔"):
-                    st.session_state.current_q_index += 1
-                    st.session_state.answered = False
-                    st.session_state.selected_option = None
-                    st.rerun()
-            with col2:
-                if st.button("📊 NATIJA"):
-                    st.session_state.current_q_index = len(questions)
-                    st.rerun()
-            with col3:
-                if st.button("🏠 MENU"):
-                    st.session_state.test_started = False
-                    st.session_state.current_q_index = 0
-                    st.session_state.user_score = 0
-                    st.session_state.answered = False
-                    st.rerun()
         
         st.markdown('</div>', unsafe_allow_html=True)
-
+        
     else:
-        # --- NATIJALAR SAHIFASI ---
-        st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
-        st.balloons()
-        st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
-        st.markdown(f"<h1>Natija: {st.session_state.user_score} / {len(questions)}</h1>", unsafe_allow_html=True)
+        # --- TEST JARAYONI ---
+        q_idx = st.session_state.get('current_q_index', 0)
+        questions = st.session_state.get('active_questions', [])
         
-        if st.button("🏠 ASOSIY MENUGA QAYTISH"):
-            st.session_state.test_started = False
-            st.session_state.current_q_index = 0
-            st.session_state.user_score = 0
-            st.session_state.answered = False
-            st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
+        if q_idx < len(questions):
+            curr = questions[q_idx]
+            st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+            st.markdown(f"<h3 style='text-align: center;'>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
+            st.markdown(f"<p style='font-size: 18px; font-weight: bold; text-align: center;'>{curr['q']}</p>", unsafe_allow_html=True)
+
+            if not st.session_state.get('answered', False):
+                ans = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
+                
+                col_a, col_b = st.columns([1, 1])
+                with col_a:
+                    if st.button("✅ TASDIQLASH"):
+                        if ans:
+                            st.session_state.answered = True
+                            st.session_state.selected_option = ans
+                            if ans == curr['a']: 
+                                st.session_state.user_score += 1
+                            st.rerun()
+                        else:
+                            st.warning("Iltimos, variantni tanlang!")
+                with col_b:
+                    if st.button("🛑 TO'XTATISH"):
+                        st.session_state.current_q_index = len(questions)
+                        st.rerun()
+            else:
+                for opt in curr['o']:
+                    if opt == curr['a']:
+                        st.success(f"To'g'ri javob: {opt} ✔️")
+                    elif opt == st.session_state.get('selected_option'):
+                        st.error(f"Sizning javobingiz: {opt} ❌")
+                    else:
+                        st.write(opt)
+                
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    if st.button("Keyingi ➔"):
+                        st.session_state.current_q_index += 1
+                        st.session_state.answered = False
+                        st.session_state.selected_option = None
+                        st.rerun()
+                with col2:
+                    if st.button("📊 NATIJA"):
+                        st.session_state.current_q_index = len(questions)
+                        st.rerun()
+                with col3:
+                    if st.button("🏠 MENU"):
+                        st.session_state.test_started = False
+                        st.session_state.current_q_index = 0
+                        st.session_state.user_score = 0
+                        st.session_state.answered = False
+                        st.rerun()
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+
+        else:
+            # --- NATIJALAR SAHIFASI ---
+            st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
+            st.balloons()
+            st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
+            st.markdown(f"<h1>Natija: {st.session_state.user_score} / {len(questions)}</h1>", unsafe_allow_html=True)
+            
+            if st.button("🏠 ASOSIY MENUGA QAYTISH"):
+                st.session_state.test_started = False
+                st.session_state.current_q_index = 0
+                st.session_state.user_score = 0
+                st.session_state.answered = False
+                st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
 
 # 3. Footer (Har doim ko'rinadi)
 st.markdown(f"""
-<div class="footer" style="text-align: center; padding-top: 20px; padding-bottom: 20px;">
-    <p style="margin: 0; font-size: 13px; color: #64748B; font-family: sans-serif;">Yaratuvchi: <b>Murat Sultanov</b></p>
-    <div style="margin-top: 8px; display: flex; justify-content: center; align-items: center; gap: 20px;">
-        <a href="https://t.me/murat_sultanov" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #0088cc; text-decoration: none; font-size: 14px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="18" height="18">
-            <span>@murat_sultanov</span>
-        </a>
-        <a href="https://instagram.com/muratsultanov__" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #E1306C; text-decoration: none; font-size: 14px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="18" height="18">
-            <span>@muratsultanov__</span>
-        </a>
+    <div class="footer" style="text-align: center; padding-top: 20px; padding-bottom: 20px;">
+        <p style="margin: 0; font-size: 13px; color: #64748B; font-family: sans-serif;">Yaratuvchi: <b>Murat Sultanov</b></p>
+        <div style="margin-top: 8px; display: flex; justify-content: center; align-items: center; gap: 20px;">
+            <a href="https://t.me/murat_sultanov" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #0088cc; text-decoration: none; font-size: 14px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="18" height="18">
+                <span>@murat_sultanov</span>
+            </a>
+            <a href="https://instagram.com/muratsultanov__" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #E1306C; text-decoration: none; font-size: 14px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="18" height="18">
+                <span>@muratsultanov__</span>
+            </a>
+        </div>
     </div>
-</div>
 """, unsafe_allow_html=True)
