@@ -517,6 +517,7 @@ else:
             # --- NATIJALAR SAHIFASI ---
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
             st.balloons()
+            save_log(st.session_state.u_login, fan, st.session_state.user_score, len(questions))
             st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
             st.markdown(f"<h1>Natija: {st.session_state.user_score} / {len(questions)}</h1>", unsafe_allow_html=True)
             
