@@ -380,12 +380,9 @@ else:
     if not st.session_state.get('test_started', False):
         # --- MENYU QISMI ---
         st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
-        # Logotip menyuda ham tepada ko'rinishi uchun (ixtiyoriy)
-        st.markdown("""
-            <div style="text-align: center;">
-                <img src="https://raw.githubusercontent.com/murat-sultanov/logos/main/urdu_test_markazi.png" style="width: 150px;">
-            </div>
-        """, unsafe_allow_html=True)
+        
+        # MANA SHU YERNI O'ZGARTIRING:
+        st.image("sayt.jpg", width=180) 
         
         st.title("🚀 Bo'limni tanlang")
         st.markdown("### 📚 Moliyaviy savodxonlik") 
