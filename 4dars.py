@@ -1,5 +1,19 @@
 import streamlit as st
 import random
+import pandas as pd
+from datetime import datetime
+import os
+
+def save_log(user, subject, score, total):
+    log_file = "user_logs.csv"
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    new_data = pd.DataFrame([[now, user, subject, score, total]], 
+                            columns=['Vaqt', 'Foydalanuvchi', 'Fan', 'Ball', 'Jami'])
+    
+    if not os.path.isfile(log_file):
+        new_data.to_csv(log_file, index=False)
+    else:
+        new_data.to_csv(log_file, mode='a', header=False, index=False)
 
 # 1. Sahifa sozlamalari
 st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="centered")
