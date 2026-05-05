@@ -480,13 +480,13 @@ else:
                         else:
                             st.warning("Iltimos, variantni tanlang!")
                 with col_b:
-    if st.button("🛑 TO'XTATISH"):
+                    if st.button("🛑 TO'XTATISH"):
         # To'xtatganda ham savollar va fan aniq bo'lishi uchun sessiyaga yozamiz
-        st.session_state.current_q_index = len(st.session_state.get('active_questions', []))
-        st.rerun()
-            else:
-                for opt in curr['o']:
-                    if opt == curr['a']:
+                       st.session_state.current_q_index = len(st.session_state.get('active_questions', []))
+                       st.rerun()
+                  else:  
+                       for opt in curr['o']:
+                 if opt == curr['a']:
                         st.success(f"To'g'ri javob: {opt} ✔️")
                     elif opt == st.session_state.get('selected_option'):
                         st.error(f"Sizning javobingiz: {opt} ❌")
