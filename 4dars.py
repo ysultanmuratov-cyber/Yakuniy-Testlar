@@ -335,25 +335,44 @@ if 'selected_option' not in st.session_state: st.session_state.selected_option =
 
 # --- ASOSIY MANTIQIY ZANJIR ---
 
-# 1. Foydalanuvchi tizimga kirmagan bo'lsa
-if not st.session_state.get('logged_in', False):
-    # Logotipni markazga olish va fonni shaffof qilish
-    st.markdown("""
-        <div style="display: flex; justify-content: center; align-items: center; padding: 20px 0;">
-            <div style="
-                background-color: white; 
-                padding: 20px; 
-                border-radius: 20px; 
-                box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-                mix-blend-mode: multiply;
-                width: 280px;
-                text-align: center;
-            ">
-                <img src="https://raw.githubusercontent.com/ysultanmuratov-cyber/Yakuniy-Testlar/main/sayt.jpg" 
-                     style="width: 100%; height: auto; display: block;">
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
+# 2. Foydalanuvchi tizimga kirgan bo'lsa
+else:
+    if not st.session_state.get('test_started', False):
+        # --- MENYU QISMI ---
+        st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+        
+        # Elementlarni o'rtaga surish uchun 3 ta ustun yaratamiz
+        # [1, 2, 1] nisbati o'rtadagi ustunni markazga oladi
+        col1, col2, col3 = st.columns([1, 2, 1])
+        
+        with col2:
+            # Logotipni o'rtaga qo'yish
+            st.image("sayt.jpg", use_container_width=True)
+            
+            # Sarlavhalarni o'rtaga olish
+            st.markdown("<h1 style='text-align: center;'>🚀 Bo'limni tanlang</h1>", unsafe_allow_html=True)
+            st.markdown("<h3 style='text-align: center;'>📚 Moliyaviy savodxonlik</h3>", unsafe_allow_html=True)
+            
+            # Radio tugmalar (Variantlar)
+            blok = st.radio("Tanlang:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
+            
+            # BOSHLA tugmasi
+            if st.button("🚀 BOSHLA"):
+                if blok == "1-70": st.session_state.active_questions = list(st.session_state.ms_1_70)
+                elif blok == "71-140": st.session_state.active_questions = list(st.session_state.ms_71_140)
+                elif blok == "141-210": st.session_state.active_questions = list(st.session_state.ms_141_210)
+                elif blok == "211-300": st.session_state.active_questions = list(st.session_state.ms_211_300)
+                
+                random.shuffle(st.session_state.active_questions)
+                for q in st.session_state.active_questions:
+                    random.shuffle(q['o'])
+                    
+                st.session_state.test_started = True
+                st.session_state.current_q_index = 0
+                st.session_state.user_score = 0
+                st.rerun()
+                
+        st.markdown('</div>', unsafe_allow_html=True)
     
     users = {
         "Murat": "12062006", "Nilufar": "Nilufar0455", "Radjabboyeva_m": "12345678",
