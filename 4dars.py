@@ -378,7 +378,29 @@ if not st.session_state.get('logged_in', False):
 
 # 2. Foydalanuvchi tizimga kirgan bo'lsa
 else:
+    # --- ADMIN PANEL BOSHLANISHI ---
+    # Bu yerda o'zingizni loginngizni yozing (masalan, "Murat")
+    if st.session_state.get('u_login') == "Murat":
+        with st.expander("🛡️ ADMIN PANEL (Foydalanuvchilar harakati)"):
+            if os.path.exists("user_logs.csv"):
+                df = pd.read_csv("user_logs.csv")
+                st.dataframe(df, use_container_width=True)
+                
+                if st.button("🗑️ Loglarni tozalash"):
+                    os.remove("user_logs.csv")
+                    st.rerun()
+            else:
+                st.info("Hozircha hech qanday harakat qayd etilmadi.")
+            
+            if st.button("⬅️ Tizimdan chiqish"):
+                st.session_state.logged_in = False
+                st.rerun()
+        st.divider() # Panel va test orasini ajratish
+    # --- ADMIN PANEL TUGASHI ---
+
+    # Test jarayoni boshlanadi
     if not st.session_state.get('test_started', False):
+        # ... (bu yerda eski menyu kodingiz davom etadi)
         # --- MENYU QISMI ---
         st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
 
