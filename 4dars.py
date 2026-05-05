@@ -400,28 +400,36 @@ else:
         # --- MENYU QISMI ---
         st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
         
-        # MANA SHU YERNI O'ZGARTIRING:
-        st.image("sayt.jpg", width=180) 
+        # Elementlarni o'rtaga surish uchun ustunlar
+        col1, col2, col3 = st.columns([1, 3, 1])
         
-        st.title("🚀 Bo'limni tanlang")
-        st.markdown("### 📚 Moliyaviy savodxonlik") 
-        
-        blok = st.radio("Tanlang:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
-        
-        if st.button("🚀 BOSHLA"):
-            if blok == "1-70": st.session_state.active_questions = list(st.session_state.ms_1_70)
-            elif blok == "71-140": st.session_state.active_questions = list(st.session_state.ms_71_140)
-            elif blok == "141-210": st.session_state.active_questions = list(st.session_state.ms_141_210)
-            elif blok == "211-300": st.session_state.active_questions = list(st.session_state.ms_211_300)
+        with col2:
+            # Logotipni markazga olish
+            st.image("sayt.jpg", use_container_width=True)
             
-            random.shuffle(st.session_state.active_questions)
-            for q in st.session_state.active_questions:
-                random.shuffle(q['o'])
+            # Sarlavhalarni markazlashtirish
+            st.markdown("<h2 style='text-align: center; margin-top: 0;'>🚀 Bo'limni tanlang</h2>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; font-size: 18px; color: #475569;'>📚 Moliyaviy savodxonlik</p>", unsafe_allow_html=True)
+            
+            # Radio tugmalar
+            blok = st.radio("Tanlang:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
+            
+            # BOSHLA tugmasi
+            if st.button("🚀 BOSHLA"):
+                if blok == "1-70": st.session_state.active_questions = list(st.session_state.ms_1_70)
+                elif blok == "71-140": st.session_state.active_questions = list(st.session_state.ms_71_140)
+                elif blok == "141-210": st.session_state.active_questions = list(st.session_state.ms_141_210)
+                elif blok == "211-300": st.session_state.active_questions = list(st.session_state.ms_211_300)
                 
-            st.session_state.test_started = True
-            st.session_state.current_q_index = 0
-            st.session_state.user_score = 0
-            st.rerun()
+                random.shuffle(st.session_state.active_questions)
+                for q in st.session_state.active_questions:
+                    random.shuffle(q['o'])
+                    
+                st.session_state.test_started = True
+                st.session_state.current_q_index = 0
+                st.session_state.user_score = 0
+                st.rerun()
+        
         st.markdown('</div>', unsafe_allow_html=True)
         
     else:
@@ -432,8 +440,8 @@ else:
         if q_idx < len(questions):
             curr = questions[q_idx]
             st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
-            st.markdown(f"<h3>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
-            st.markdown(f"<p style='font-size: 18px; font-weight: bold;'>{curr['q']}</p>", unsafe_allow_html=True)
+            st.markdown(f"<h3 style='text-align: center;'>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
+            st.markdown(f"<p style='font-size: 18px; font-weight: bold; text-align: center;'>{curr['q']}</p>", unsafe_allow_html=True)
 
             if not st.session_state.get('answered', False):
                 ans = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
@@ -500,15 +508,15 @@ else:
 
 # 3. Footer (Har doim ko'rinadi)
 st.markdown(f"""
-    <div class="footer" style="text-align: center; padding-top: 40px; padding-bottom: 20px;">
-        <p style="margin: 0; font-size: 13px; color: #666; font-family: sans-serif;">Yaratuvchi: <b>Murat Sultanov</b></p>
+    <div class="footer" style="text-align: center; padding-top: 20px; padding-bottom: 20px;">
+        <p style="margin: 0; font-size: 13px; color: #64748B; font-family: sans-serif;">Yaratuvchi: <b>Murat Sultanov</b></p>
         <div style="margin-top: 8px; display: flex; justify-content: center; align-items: center; gap: 20px;">
-            <a href="https://t.me/murat_sultanov" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #0088cc; text-decoration: none;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" height="20">
+            <a href="https://t.me/murat_sultanov" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #0088cc; text-decoration: none; font-size: 14px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="18" height="18">
                 <span>@murat_sultanov</span>
             </a>
-            <a href="https://instagram.com/muratsultanov__" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #E1306C; text-decoration: none;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="20" height="20">
+            <a href="https://instagram.com/muratsultanov__" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #E1306C; text-decoration: none; font-size: 14px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="18" height="18">
                 <span>@muratsultanov__</span>
             </a>
         </div>
