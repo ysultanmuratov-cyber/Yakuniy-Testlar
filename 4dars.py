@@ -364,37 +364,56 @@ if not st.session_state.get('logged_in', False):
 else:
     if not st.session_state.get('test_started', False):
         # --- MENYU QISMI ---
-        st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+
+# Elementlarni o'rtaga surish uchun ustunlar
+col1, col2, col3 = st.columns([1, 3, 1])
+
+with col2:
+    # Logotipni markazga olish
+    st.image("sayt.jpg", use_container_width=True)
+    
+    # Sarlavhani markazlashtirish
+    st.markdown("<h2 style='text-align: center; margin-top: 0;'>🚀 Fan va Bo'limni tanlang</h2>", unsafe_allow_html=True)
+    
+    # 1. Fan tanlash menyusi
+    fan = st.selectbox("Fanni tanlang:", 
+                       ["Moliyaviy savodxonlik", "Differensial tenglamalar", "Python Dasturlash"])
+    
+    # 2. Bo'lim tanlash (Fan turiga qarab o'zgaradi)
+    if fan == "Moliyaviy savodxonlik":
+        st.markdown("<p style='text-align: center; color: #475569;'>📚 Bo'limni tanlang:</p>", unsafe_allow_html=True)
+        blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
+    elif fan == "Differensial tenglamalar":
+        st.markdown("<p style='text-align: center; color: #475569;'>📐 Differensial tenglamalar testi</p>", unsafe_allow_html=True)
+        blok = "Diff_Tenglamalar"
+    else:
+        st.markdown("<p style='text-align: center; color: #475569;'>🐍 Python dasturlash testi</p>", unsafe_allow_html=True)
+        blok = "Python_Test"
+
+    # 3. BOSHLA tugmasi va mantiqi
+    if st.button("🚀 BOSHLA"):
+        # Tanlangan fanga qarab savollarni yuklash
+        if fan == "Moliyaviy savodxonlik":
+            if blok == "1-70": st.session_state.active_questions = list(st.session_state.ms_1_70)
+            elif blok == "71-140": st.session_state.active_questions = list(st.session_state.ms_71_140)
+            elif blok == "141-210": st.session_state.active_questions = list(st.session_state.ms_141_210)
+            elif blok == "211-300": st.session_state.active_questions = list(st.session_state.ms_211_300)
+        elif fan == "Differensial tenglamalar":
+            st.session_state.active_questions = list(st.session_state.diff_tenglamalar)
+        elif fan == "Python Dasturlash":
+            st.session_state.active_questions = list(st.session_state.python_testlar)
         
-        # Elementlarni o'rtaga surish uchun ustunlar
-        col1, col2, col3 = st.columns([1, 3, 1])
-        
-        with col2:
-            # Logotipni markazga olish
-            st.image("sayt.jpg", use_container_width=True)
+        # Savollarni aralashtirish
+        random.shuffle(st.session_state.active_questions)
+        for q in st.session_state.active_questions:
+            random.shuffle(q['o'])
             
-            # Sarlavhalarni markazlashtirish
-            st.markdown("<h2 style='text-align: center; margin-top: 0;'>🚀 Bo'limni tanlang</h2>", unsafe_allow_html=True)
-            st.markdown("<p style='text-align: center; font-size: 18px; color: #475569;'>📚 Moliyaviy savodxonlik</p>", unsafe_allow_html=True)
-            
-            # Radio tugmalar
-            blok = st.radio("Tanlang:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
-            
-            # BOSHLA tugmasi
-            if st.button("🚀 BOSHLA"):
-                if blok == "1-70": st.session_state.active_questions = list(st.session_state.ms_1_70)
-                elif blok == "71-140": st.session_state.active_questions = list(st.session_state.ms_71_140)
-                elif blok == "141-210": st.session_state.active_questions = list(st.session_state.ms_141_210)
-                elif blok == "211-300": st.session_state.active_questions = list(st.session_state.ms_211_300)
-                
-                random.shuffle(st.session_state.active_questions)
-                for q in st.session_state.active_questions:
-                    random.shuffle(q['o'])
-                    
-                st.session_state.test_started = True
-                st.session_state.current_q_index = 0
-                st.session_state.user_score = 0
-                st.rerun()
+        st.session_state.test_started = True
+        st.session_state.current_q_index = 0
+        st.session_state.user_score = 0
+        st.rerun()
+
         
         st.markdown('</div>', unsafe_allow_html=True)
         
