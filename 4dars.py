@@ -519,26 +519,34 @@ else:
             st.markdown('</div>', unsafe_allow_html=True)
 
         else:
+           else:
             # --- NATIJALAR SAHIFASI ---
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
             st.balloons()
             
-            # Xatolik chiqmasligi uchun foydalanuvchi va fan nomini xavfsiz olish
-            u_name = st.session_state.get('u_login', 'Guest')
-            # 'fan' o'zgaruvchisi selectbox-dan keladi
-            save_log(u_name, fan, st.session_state.user_score, len(questions))
+            # Xatolikni oldini olish uchun sessiyadan ma'lumotlarni xavfsiz olamiz
+            # Agar 'fan' topilmasa, 'Noma'lum fan' deb yozadi
+            current_user = st.session_state.get('u_login', 'Mehmon')
+            current_subject = fan if 'fan' in locals() else "Aniqlanmagan fan"
+            current_score = st.session_state.get('user_score', 0)
+            total_questions = len(questions) if 'questions' in locals() else 0
+            
+            # Ma'lumotlarni yozish (faqat bir marta)
+            if 'log_saved' not in st.session_state:
+                save_log(current_user, current_subject, current_score, total_questions)
+                st.session_state.log_saved = True # Qayta-qayta yozmaslik uchun
             
             st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
-            st.markdown(f"<h1>Natija: {st.session_state.user_score} / {len(questions)}</h1>", unsafe_allow_html=True)
+            st.markdown(f"<h1>Natija: {current_score} / {total_questions}</h1>", unsafe_allow_html=True)
             
             if st.button("🏠 ASOSIY MENUGA QAYTISH"):
                 st.session_state.test_started = False
                 st.session_state.current_q_index = 0
                 st.session_state.user_score = 0
                 st.session_state.answered = False
+                if 'log_saved' in st.session_state: del st.session_state.log_saved
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
-
 # 3. Footer (Har doim ko'rinadi)
 st.markdown(f"""
     <div class="footer" style="text-align: center; padding-top: 20px; padding-bottom: 20px;">
