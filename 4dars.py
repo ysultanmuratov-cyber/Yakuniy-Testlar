@@ -980,7 +980,648 @@ if 'dt_1_70' not in st.session_state:
     ]
 
 if 'dt_71_140' not in st.session_state:
-    st.session_state.dt_71_140 = [] # 71-140 savollar
+    st.session_state.dt_71_140 = [
+        {
+            "q": "Differensial tenglamaning integral chizig'i deb nimaga aytiladi?",
+            "o": [
+                "Differensial tenglama yechimining grafigiga",
+                "Yechimdan olingan ikkinchi tartibli hosilaning grafigiga",
+                "Yechimning hosilasining grafigiga",
+                "Yechimdan olingan integralning grafigiga"
+            ],
+            "a": "Differensial tenglama yechimining grafigiga"
+        },
+        {
+            "q": "Ushbu $y^{(n)} = f(x, y', \dots, y^{(n-1)})$ tenglama uchun qo'yilgan boshlang'ich shart qaysi javobda berilgan?",
+            "o": [
+                "$y(x_0) = y_0, y'(x_0) = y'_0, \dots, y^{(n-1)}(x_0) = y_0^{(n-1)}$",
+                "$y(x_0) = y_0, y'(x_0) = y'_0, \dots, y^{(n-2)}(x_0) = y_0^{(n-2)}$",
+                "$y(x_0) = y_0, y'(x_0) = y'_0, \dots, y^{(n-3)}(x_0) = y_0^{(n-3)}$",
+                "$y(x_0) = y_0, y'(x_0) = y'_0, \dots, y^{(n-4)}(x_0) = y_0^{(n-4)}$"
+            ],
+            "a": "$y(x_0) = y_0, y'(x_0) = y'_0, \dots, y^{(n-1)}(x_0) = y_0^{(n-1)}$"
+        },
+        {
+            "q": "Ushbu $y'' = xy'$ tenglamaning tartibini qaysi almashtirish yordamida pasaytirish mumkin?",
+            "o": ["$z = y'$", "$z = y$", "$z = -y$", "$z = y^2$"],
+            "a": "$z = y'$"
+        },
+        {
+            "q": "Agar $f(x,y)$ funksiya $\\forall \\lambda > 0$ uchun $f(\\lambda x, \\lambda y) = \\lambda^k f(x,y)$ shartni qanoatlantirsa, $y' = f(x,y)$ tenglamaga...",
+            "o": [
+                "$k$-darajali bir jinsli differensial tenglama deyiladi",
+                "$k$-darajali Bernulli tenglamasi deyiladi",
+                "$k$-darajali bir jinslimas differensial tenglama deyiladi",
+                "$k$-darajali Rikkati tenglamasi deyiladi"
+            ],
+            "a": "$k$-darajali bir jinsli differensial tenglama deyiladi"
+        },
+        {
+            "q": "Rikkati tenglamasining bitta $y_1(x)$ yechimi ma'lum bo'lsa, uning umumiy yechimini topish uchun qanday almashtirish bajarish lozim?",
+            "o": [
+                "$y = y_1(x) + u(x)$",
+                "$y = y_1(x)u(x)$",
+                "$y = y_1^2(x) + u(x)$",
+                "$y = y_1^2(x)u(x)$"
+            ],
+            "a": "$y = y_1(x) + u(x)$"
+        },
+        {
+            "q": "Rikkati tenglamasi kvadraturada ... integrallanuvchi degan jumla qaysi javobda noto'g'ri berilgan?",
+            "o": ["har doim", "bitta xususiy yechim berilganda", "ikkita xususiy yechim berilganda", "uchta xususiy yechim berilganda"],
+            "a": "har doim"
+        },
+        {
+            "q": "$D$ sohada o'zgarmasdan farqli garmonik bo'lgan $u(x)$ funksiya o'zining ekstremum qiymatiga ... erishadi.",
+            "o": ["sohaning chegarasida", "sohaning ichida", "sohaning tashqarisida", "sohaning markazida"],
+            "a": "sohaning chegarasida"
+        },
+        {
+            "q": "Agar oddiy differensial tenglamalar sistemasiga erkli o'zgaruvchi oshkor ravishda kirmasa, bunday sistemaga...",
+            "o": ["muxtor sistema deyiladi", "normal sistema deyiladi", "maxsus sistema deyiladi", "oddiy sistema deyiladi"],
+            "a": "muxtor sistema deyiladi"
+        },
+        {
+            "q": "Ushbu $L(p) = p^n + a_1 p^{n-1} + \\dots + a_{n-1}p + a_n$ ko'phad turg'un bo'ladi, agarda...",
+            "o": [
+                "$a_1, a_2, \\dots, a_n$ koeffitsiyentlari musbat bo'lsa",
+                "$a_1, a_2, \\dots, a_n$ koeffitsiyentlari manfiy bo'lsa",
+                "$a_1, a_2, \\dots, a_n$ koeffitsiyentlari teng bo'lsa",
+                "$a_1, a_2, \\dots, a_n$ koeffitsiyentlari nol bo'lsa"
+            ],
+            "a": "$a_1, a_2, \\dots, a_n$ koeffitsiyentlari musbat bo'lsa"
+        },
+        {
+            "q": "Agar tekislikda bir parametrli silliq $l$ chiziqlar oilasi $\\Phi(x, y, a) = 0$ ($a$ - parametr) berilgan bo'lsa, u holda bu oila chiziqlarini o'zgarmas $\\alpha$ burchak ostida kesib o'tuvchi $l_1$ chiziq berilgan oilaning...",
+            "o": ["izogonal trayektoriyasi deyiladi", "oddiy trayektoriyasi deyiladi", "maxsus trayektoriyasi deyiladi", "umumiy trayektoriyasi deyiladi"],
+            "a": "izogonal trayektoriyasi deyiladi"
+        },
+        {
+            "q": "Agar bir vaqtda nolga teng bo‘lmagan shunday $\\alpha_1, \\alpha_2, \\dots, \\alpha_k$ o‘zgarmas sonlar mavjud bo‘lsaki, biror $I$ intervalda ushbu $\\alpha_1 \\varphi_1(x) + \\alpha_2 \\varphi_2(x) + \\dots + \\alpha_k \\varphi_k(x) = 0, \\forall x \\in I$ tenglik o‘rinli bo‘lsa, $\\varphi_1(x), \\varphi_2(x), \\dots, \\varphi_k(x)$ funksiyalar $I$ intervalda...",
+            "o": ["chiziqli bog‘liq deyiladi", "chiziqli erkli deyiladi", "chiziqli bog‘lanmagan deyiladi", "uzluksiz deyiladi"],
+            "a": "chiziqli bog‘liq deyiladi"
+        },
+        {
+            "q": "Garmonik ossillyator tenglamasini ko‘rsating?",
+            "o": [
+                "$\\ddot{x} + \\omega^2 x = 0, x = x(t), \\omega \\text{-tebranish chastotasi}$",
+                "$\\dot{x} + \\omega x = 0, x = x(t), \\omega \\text{-tebranish chastotasi}$",
+                "$\\ddot{x} + \\omega y = 0, x = x(t), \\omega \\text{-tebranish chastotasi}$",
+                "$\\ddot{x} - \\omega = 0, x = x(t), \\omega \\text{-tebranish chastotasi}$"
+            ],
+            "a": "$\\ddot{x} + \\omega^2 x = 0, x = x(t), \\omega \\text{-tebranish chastotasi}$"
+        },
+        {
+            "q": "Ushbu $-y''(x) + q(x)y = \\lambda y(x), x \\in [0, \\pi], y(0) = 0, y(\\pi) = 0$ chegaraviy masalaning xos qiymati deb...",
+            "o": [
+                "noldan farqli yechimiga mos keluvchi $\\lambda$ parametrga aytiladi",
+                "nol yechimiga mos keluvchi $\\lambda$ parametrga aytiladi",
+                "ixtiyoriy yechimiga mos keluvchi $\\lambda$ parametrga aytiladi",
+                "har qanday $\\lambda$ parametrga aytiladi"
+            ],
+            "a": "noldan farqli yechimiga mos keluvchi $\\lambda$ parametrga aytiladi"
+        },
+        {
+            "q": "Ushbu $\\begin{cases} y_1' = f_1(x, y_1, y_2, \\dots, y_n) \\\\ y_2' = f_2(x, y_1, y_2, \\dots, y_n) \\\\ \\dots \\\\ y_n' = f_n(x, y_1, y_2, \\dots, y_n) \\end{cases}$ tenglamalar sistemasi...",
+            "o": [
+                "oddiy differensial tenglamalar sistemasining normal sistemasi deyiladi",
+                "$n$-tartibli oddiy differensial tenglamalar sistemasi deyiladi",
+                "1-tartibli chiziqli differensial tenglamalar sistemasi deyiladi",
+                "1-tartibli o‘zgarmas koeffitsiyentli chiziqli differensial tenglamalar sistemasi deyiladi"
+            ],
+            "a": "oddiy differensial tenglamalar sistemasining normal sistemasi deyiladi"
+        },
+        {
+            "q": "Ushbu $\\frac{dy_i}{dx} = \\sum_{j=1}^n a_{ij}y_j + b_i(x), i = 1, 2, \\dots, n$ tenglamalar sistemasi...",
+            "o": [
+                "chiziqli differensial tenglamalar sistemasining normal sistemasi deyiladi",
+                "$n$-tartibli nochiziqli differensial tenglamalar sistemasi deyiladi",
+                "1-tartibli nochiziqli differensial tenglamalar sistemasi deyiladi",
+                "1-tartibli o‘zgarmas koeffitsiyentli nochiziqli differensial tenglamalar sistemasi deyiladi"
+            ],
+            "a": "chiziqli differensial tenglamalar sistemasining normal sistemasi deyiladi"
+        },
+        {
+            "q": "Ushbu $M(x,y)dx + N(x,y)dy = 0$ differensial tenglama uchun integrallovchi ko‘paytuvchi $\\mu(x,y) = \\mu(x)$ bo‘lsa, u holda...",
+            "o": [
+                "$\\mu(x) = C e^{\\int \\frac{\\frac{\\partial M}{\\partial y} - \\frac{\\partial N}{\\partial x}}{N} dx}$",
+                "$\\mu(x) = C e^{-\\int \\frac{\\frac{\\partial M}{\\partial y} - \\frac{\\partial N}{\\partial x}}{N} dx}$",
+                "$\\mu(x) = C e^{\\int \\frac{\\frac{\\partial M}{\\partial y} - \\frac{\\partial N}{\\partial x}}{M} dx}$",
+                "$\\mu(x) = C e^{\\int \\frac{\\frac{\\partial M}{\\partial x} + \\frac{\\partial N}{\\partial y}}{N} dx}$"
+            ],
+            "a": "$\\mu(x) = C e^{\\int \\frac{\\frac{\\partial M}{\\partial y} - \\frac{\\partial N}{\\partial x}}{N} dx}$"
+        },
+        {
+            "q": "Ushbu $M(x,y)dx + N(x,y)dy = 0$ differensial tenglama uchun integrallovchi ko‘paytuvchi $\\mu(x,y) = \\mu(y)$ bo‘lsa, u holda...",
+            "o": [
+                "$\\mu(y) = C e^{\\int \\frac{\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}}{M} dy}$",
+                "$\\mu(y) = C e^{-\\int \\frac{\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}}{M} dy}$",
+                "$\\mu(y) = C e^{\\int \\frac{\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}}{N} dy}$",
+                "$\\mu(y) = C e^{\\int \\frac{\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}}{M} dx}$"
+            ],
+            "a": "$\\mu(y) = C e^{\\int \\frac{\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}}{M} dy}$"
+        },
+        {
+            "q": "Ushbu $y' = f(ax + by + c)$ differensial tenglamada $z = ax + by + c$ almashtirish bajarilsa, u qanday ko‘rinishga keladi?",
+            "o": [
+                "$z' = a + bf(z)$",
+                "$yz' = a + bf(z)$",
+                "$xz' = a + bf(z)$",
+                "$yz' = ax + bf(z)$"
+            ],
+            "a": "$z' = a + bf(z)$"
+        },
+        {
+            "q": "Agar $f(x,y)$ funksiya uchun $f(\\lambda^\\alpha x, \\lambda^\\beta y) = \\lambda^{\\beta - \\alpha} f(x,y), \\forall \\lambda > 0$ shart bajarilsa, $y' = f(x,y)$ tenglamaga...",
+            "o": [
+                "kvazi bir jinsli differensial tenglama deyiladi",
+                "bir jinslimas differensial tenglama deyiladi",
+                "Bernulli differensial tenglamasi deyiladi",
+                "o‘zgaruvchilari ajraladigan differensial tenglama deyiladi"
+            ],
+            "a": "kvazi bir jinsli differensial tenglama deyiladi"
+        },
+        {
+            "q": "Ushbu $y' = Ay^2 + Bx^{\\alpha}, A \\neq 0, B \\neq 0$ Rikkati tenglamasi kvadraturada integrallanuvchi bo'ladi, agarda...",
+            "o": [
+                "$\\frac{\\alpha}{2\\alpha + 4}$ soni butun bo'lsa",
+                "$\\frac{1}{\\alpha + 4}$ soni butun bo'lsa",
+                "$\\frac{1}{2\\alpha - 4}$ soni butun bo'lsa",
+                "$\\frac{\\alpha}{2\\alpha + 4}$ soni musbat bo'lsa"
+            ],
+            "a": "$\\frac{\\alpha}{2\\alpha + 4}$ soni butun bo'lsa"
+        },
+        {
+            "q": "Chiziqli bir jinsli $\\frac{dy}{dx} = p(x)y + q(x)$ differensial tenglamaning integrallovchi ko'paytuvchisini ko'rinishini aniqlang?",
+            "o": [
+                "$\\mu(x) = \\exp\\left\\{ - \\int p(x)dx \\right\\}$",
+                "$\\mu(x) = \\exp\\left\\{ \\int p(x)dx \\right\\}$",
+                "$\\mu(x) = \\exp\\left\\{ x + \\int p(x)dx \\right\\}$",
+                "$\\mu(x) = \\exp\\left\\{ 2x + \\int p(x)dx \\right\\}$"
+            ],
+            "a": "$\\mu(x) = \\exp\\left\\{ - \\int p(x)dx \\right\\}$"
+        },
+        {
+            "q": "Agar $f(x,y)$ funksiya $P$ sohaning har bir nuqtasida $f'_y(x,y)$ xususiy hosilaga ega bo'lib, $|f'_y(x,y)| \\leq C, C=const$ bo'lsa, u holda bu funksiya $P$ to'g'ri to'rtburchakda...",
+            "o": [
+                "$y$ - o'zgaruvchi bo'yicha Lipshits shartini qanoatlantiradi",
+                "$y$ - o'zgaruvchi bo'yicha Lipshits shartini qanoatlantirmaydi",
+                "$x$ - o'zgaruvchi bo'yicha Koshi shartini qanoatlantiradi",
+                "$x$ - o'zgaruvchi bo'yicha uzilishga ega bo'ladi"
+            ],
+            "a": "$y$ - o'zgaruvchi bo'yicha Lipshits shartini qanoatlantiradi"
+        },
+        {
+            "q": "$u(x), v(x)$ funksiyalar $[x_0, x]$ oraliqda uzluksiz va manfiymas va $u(x) \\leq A + \\int_{x_0}^x u(t)v(t) dt, A \\geq 0$ o‘rinli bo‘lsa, u holda $u(x)$ uchun qaysi tengsizlik bajariladi?",
+            "o": [
+                "$u(x) \\leq A \\exp \\left| \\int_{x_0}^x v(t) dt \\right|$",
+                "$u(x) \\geq A \\exp \\left| \\int_{x_0}^x v(t) dt \\right|$",
+                "$u(x) \\geq A \\left| \\int_{x_0}^x v(t) dt \\right|$",
+                "$u(x) \\leq A - \\exp \\left| \\int_{x_0}^x v(t) dt \\right|$"
+            ],
+            "a": "$u(x) \\leq A \\exp \\left| \\int_{x_0}^x v(t) dt \\right|$"
+        },
+        {
+            "q": "Ushbu $y' = f(x,y), y(x_0) = y_0$ Koshi masalasining yechimi mavjud, yagona va turg‘un bo‘lsa, Koshi masalasi...",
+            "o": ["korrekt deyiladi", "nokorrekt deyiladi", "singulyar deyiladi", "bir jinsli deyiladi"],
+            "a": "korrekt deyiladi"
+        },
+        {
+            "q": "Quyidagi jumlalardan qaysi biri to‘g‘ri?",
+            "o": [
+                "Chiziqli bog‘liq funksiyalardan tuzilgan Vronskiy determinanti har doim nolga teng.",
+                "Chiziqli erkli funksiyalardan tuzilgan Vronskiy determinanti har doim nolga teng.",
+                "Chiziqli bog‘liq funksiyalardan tuzilgan Vronskiy determinanti har doim noldan farqli.",
+                "Chiziqli differensial tenglamaning fundamental yechimlar sistemasidan tuzilgan Vronskiy determinanti har doim noldan katta."
+            ],
+            "a": "Chiziqli bog‘liq funksiyalardan tuzilgan Vronskiy determinanti har doim nolga teng."
+        },
+        {
+            "q": "Quyidagi jumlalardan qaysi biri to‘g‘ri?",
+            "o": [
+                "Chiziqli differensial tenglamaning fundamental yechimlar sistemasidan tuzilgan Vronskiy determinanti har doim noldan farqli.",
+                "Chiziqli differensial tenglamaning fundamental yechimlar sistemasidan tuzilgan Vronskiy determinanti har doim nolga teng.",
+                "Chiziqli bog‘liq funksiyalardan tuzilgan Vronskiy determinanti har doim noldan farqli.",
+                "Chiziqli differensial tenglamaning fundamental yechimlar sistemasidan tuzilgan Vronskiy determinanti har doim noldan katta."
+            ],
+            "a": "Chiziqli differensial tenglamaning fundamental yechimlar sistemasidan tuzilgan Vronskiy determinanti har doim noldan farqli."
+        },
+        {
+            "q": "$y^{(V)} = f(x, y'', y''', y^{(IV)})$ tenglamaning tartibini qaysi almashtirish yordamida 2 birlikka pasaytirish mumkin?",
+            "o": ["$y'' = z$", "$y' = z$", "$y''' = z$", "$y^{(IV)} = z$"],
+            "a": "$y'' = z$"
+        },
+        {
+            "q": "Ushbu $y' + p(x)y = q(x)$ tenglamaning umumiy yechimi qaysi ko‘rinishda bo‘ladi?",
+            "o": [
+                "$y = e^{- \\int p(x)dx} \\left( C + \\int q(x) e^{\\int p(x)dx} dx \\right)$",
+                "$y = e^{\\int p(x)dx} \\left( C + \\int q(x) e^{\\int p(x)dx} dx \\right)$",
+                "$y = e^{\\int p(x)dx} \\left( C + \\int p(x) e^{\\int q(x)dx} dx \\right)$",
+                "$y = e^{- \\int q(x)dx} \\left( C + \\int p(x) e^{\\int q(x)dx} dx \\right)$"
+            ],
+            "a": "$y = e^{- \\int p(x)dx} \\left( C + \\int q(x) e^{\\int p(x)dx} dx \\right)$"
+        },
+        {
+            "q": "O‘zgarmas koeffitsiyentli ikkinchi tartibli chiziqli bir jinsli differensial tenglamaning xususiy yechimi $e^{2x} \\cos 3x$ bo‘lsa, u holda bu tenglamaning xos sonlari qanday bo‘ladi?",
+            "o": ["$2 \\pm 3i$", "2, 3", "$1 \\pm 2i$", "$3 \\pm 2i$"],
+            "a": "$2 \\pm 3i$"
+        },
+        {
+            "q": "Quyidagi $ay'' + 3xy' + 5y = 0$ tenglama Eyler tenglamasi bo‘lishi uchun $a$ nimaga teng bo‘lishi kerak?",
+            "o": ["$x^2$", "$x$", "1", "0"],
+            "a": "$x^2$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $(1+y^2)dx + (1+x^2)dy = 0$",
+            "o": [
+                "$\\text{arctg } x + \\text{arctg } y = C$",
+                "$y = \\text{tg } \\ln Cx$",
+                "$y = (1 + Cy + \\ln y) \\cos x$",
+                "$1 + e^y = C(1 + x^2)$"
+            ],
+            "a": "$\\text{arctg } x + \\text{arctg } y = C$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $(1+y^2)dx + xydy = 0$",
+            "o": [
+                "$x^2(1+y^2) = C$",
+                "$1 + e^y = C(1 + x^2)$",
+                "$\\sqrt{1-x^2} + \\sqrt{1-y^2} = C$",
+                "$y^2(1-y) = (x+C)^2, y=1$"
+            ],
+            "a": "$x^2(1+y^2) = C$"
+        },
+        {
+            "q": "Differensial tenglamaning xususiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $y' \\sin x - y \\cos x = 0, y(\\pi/2) = 1$",
+            "o": ["$y = \\sin x$", "$y = 1$", "$y = \\cos x$", "$y = \\text{tg } x$"],
+            "a": "$y = \\sin x$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(1+y^2)dx = x dy$",
+            "o": [
+                "$y = \\text{tg } \\ln Cx$",
+                "$x^2 = (x^2 - y) \\ln Cx, y = x^2$",
+                "$x = \\ln Cx$",
+                "$1 + e^y = C(1 + x^2)$"
+            ],
+            "a": "$y = \\text{tg } \\ln Cx$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $x \\sqrt{1+y^2} dx + y \\sqrt{1+x^2} dy = 0$",
+            "o": [
+                "$\\sqrt{1+x^2} + \\sqrt{1+y^2} = C$",
+                "$\\sqrt{1-x^2} + \\sqrt{1-y^2} = C$",
+                "$(x-y) \\ln Cx = x$",
+                "$e^y = C(1 - e^{-x})$"
+            ],
+            "a": "$\\sqrt{1+x^2} + \\sqrt{1+y^2} = C$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $x \\sqrt{1-y^2} + y \\sqrt{1-x^2} \\frac{dy}{dx} = 0$",
+            "o": [
+                "$\\sqrt{1-x^2} + \\sqrt{1-y^2} = C$",
+                "$y^2(1-y) = (x+C)^2, y=1$",
+                "$(x-y) \\ln Cx = x$",
+                "$1 + e^y = C(1 + x^2)$"
+            ],
+            "a": "$\\sqrt{1-x^2} + \\sqrt{1-y^2} = C$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $e^{-y}(1+y') = 1$",
+            "o": [
+                "$e^y = C(1 - e^{-x})$",
+                "$1 + e^y = C(1 + x^2)$",
+                "$y^2(1-y) = (x+C)^2, y=1$",
+                "$(x-y) \\ln Cx = x$"
+            ],
+            "a": "$e^y = C(1 - e^{-x})$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y \\ln y dx + x dy = 0, y(1) = 1$",
+            "o": ["$y = 1$", "$y = x$", "$y = 2$", "$y = 3$"],
+            "a": "$y = 1$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' = a^{x+y} (a > 0, a \\neq 1)$ ",
+            "o": [
+                "$a^x + a^{-y} = C$",
+                "$e^x + a^{-y} = C$",
+                "$a^x + e^{-y} = C$",
+                "$e^x + e^{-2y} = Ca$"
+            ],
+            "a": "$a^x + a^{-y} = C$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $e^y(1+x^2)dy - 2x(1+e^y)dx = 0$",
+            "o": [
+                "$1 + e^y = C(1 + x^2)$",
+                "$y^2(1-y) = (x+C)^2, y=1$",
+                "$x^2 = (x^2 - y) \\ln Cx, y = x^2$",
+                "$(x-y) \\ln Cx = x$"
+            ],
+            "a": "$1 + e^y = C(1 + x^2)$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $2x\\sqrt{1-y^2} = y'(1+x^2)$ ",
+            "o": [
+                "$y = \\sin \\left[ C + \\ln(1+x^2) \\right]$ ",
+                "$y = (1 + Cy + \\ln y) \\cos x$",
+                "$y = \\text{tg } \\ln Cx$",
+                "$(x-y) \\ln Cx = x$"
+            ],
+            "a": "$y = \\sin \\left[ C + \\ln(1+x^2) \\right]$ "
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $e^x \\sin^3 y + (1+e^x) \\cos y \\cdot y' = 0$",
+            "o": [
+                "$\\text{arctg } e^x = -\\frac{1}{2\\sin^2 y} + C$",
+                "$(x-y) \\ln Cx = x$",
+                "$y = (1 + Cy + \\ln y) \\cos x$",
+                "$y = \\text{tg } \\ln Cx$"
+            ],
+            "a": "$\\text{arctg } e^x = -\\frac{1}{2\\sin^2 y} + C$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y^2 \\sin x dx + \\cos^2 x \\ln y dy = 0$",
+            "o": [
+                "$y = (1 + Cy + \\ln y) \\cos x$",
+                "$x + y = \\text{atg}(C + \\frac{y}{a})$",
+                "$y = (1 + Cy + \\ln y) \\cos x$",
+                "$y = x(C - \\ln x)$"
+            ],
+            "a": "$y = (1 + Cy + \\ln y) \\cos x$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' = \\sin(x-y)$ ",
+            "o": [
+                "$x + C = \\text{ctg} \\left( \\frac{y-x}{2} + \\frac{\\pi}{4} \\right)$",
+                "$\\text{tg } y/2 - e^x \\sin x$",
+                "$1 + e^y = C(1 + x^2)$",
+                "$y = \\text{tg } \\ln Cx$"
+            ],
+            "a": "$x + C = \\text{ctg} \\left( \\frac{y-x}{2} + \\frac{\\pi}{4} \\right)$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' = ax + by + c$ ",
+            "o": [
+                "$b(ax + by + c) = C e^{bx}$",
+                "$b(by + c) = C e^{2x}$",
+                "$b(ax + c) = Cx$",
+                "$by = C e^{-ax}$"
+            ],
+            "a": "$b(ax + by + c) = C e^{bx}$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $(x+y)^2 y' = a^2$",
+            "o": [
+                "$x + y = a \\text{ tg}(C + \\frac{y}{a})$",
+                "$y = (1 + Cy + \\ln y) \\cos x$",
+                "$y^2(1-y) = (x+C)^2, y=1$",
+                "$y = \\text{tg } \\ln Cx$"
+            ],
+            "a": "$x + y = a \\text{ tg}(C + \\frac{y}{a})$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $y + xy' = a(1 + xy), y(1/a) = -a$",
+            "o": ["$y = -1/x$", "$y = \\sin x$", "$y = \\cos x$", "$y = e^x$"],
+            "a": "$y = -1/x$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $(a^2 + y^2)dx + 2x\\sqrt{ax - x^2} dy = 0, y(a) = 0$",
+            "o": [
+                "$y = a \\text{ tg} \\sqrt{\\frac{a}{x} - 1}$",
+                "$2y = a + \\text{ctg } x$",
+                "$y = \\text{tg} \\sqrt{ax - 1}$",
+                "$Cy = \\text{tg } ax$"
+            ],
+            "a": "$y = a \\text{ tg} \\sqrt{\\frac{a}{x} - 1}$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $y' + \\sin(x-y) = \\sin(x+y), y(\\pi) = \\pi/2$",
+            "o": [
+                "$\\text{tg } y/2 = e^2 \\sin x$",
+                "$1 + e^y = C(1 + x^2)$",
+                "$y = \\text{tg } \\ln Cx$",
+                "$x^2 = (x^2 - y) \\ln Cx, y = x^2$"
+            ],
+            "a": "$\\text{tg } y/2 = e^2 \\sin x$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $xy' = y + x \\cos^2(y/x)$ ",
+            "o": [
+                "$\\text{tg}(y/x) = \\ln Cx$",
+                "$y = (1 + Cy + \\ln y) \\cos x$",
+                "$y = x e^{1+Cx}$",
+                "$y + \\sqrt{y^2 - x^2} = Cx^2$"
+            ],
+            "a": "$\\text{tg}(y/x) = \\ln Cx$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(x-y)dx + xdy = 0$",
+            "o": [
+                "$y = x(C - \\ln x)$",
+                "$\\text{tg}(y/x) = \\ln Cx$",
+                "$y = (1 + Cy + \\ln y) \\cos x$",
+                "$y = x e^{1+Cx}$"
+            ],
+            "a": "$y = x(C - \\ln x)$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $xy' = y(\\ln y - \\ln x)$",
+            "o": [
+                "$y = x e^{1+Cx}$",
+                "$1 + e^y = C(1 + x^2)$",
+                "$y + \\sqrt{y^2 - x^2} = Cx^2$",
+                "$y^2 - 3xy + 2x^2 = C$"
+            ],
+            "a": "$y = x e^{1+Cx}$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $x^2 dy = (y^2 - xy + x^2) dx$",
+            "o": [
+                "$(x - y) \\ln Cx = x$",
+                "$y = (C + x^2) e^{x^2}$",
+                "$(x - y) \\ln Cx = -x$",
+                "$y + \\sqrt{y^2 - x^2} = Cx^2$"
+            ],
+            "a": "$(x - y) \\ln Cx = x$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $xy' = y + \\sqrt{y^2 - x^2}$",
+            "o": [
+                "$y + \\sqrt{y^2 - x^2} = Cx^2$",
+                "$y^2(1 - y) = (x + C)^2; y = 1$",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$",
+                "$y = C e^{-x} + e^{-x}$"
+            ],
+            "a": "$y + \\sqrt{y^2 - x^2} = Cx^2$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $2x^2 y' = x^2 + y^2$",
+            "o": [
+                "$2x = (x - y) \\ln Cx$",
+                "$y^2 - 3xy + 2x^2 = C$",
+                "$(x - y) \\ln Cx = -x$",
+                "$x = C / y + y \\ln y$"
+            ],
+            "a": "$2x = (x - y) \\ln Cx$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(4x - 3y) dx + (2y - 3x) dy = 0$",
+            "o": [
+                "$y^2 - 3xy + 2x^2 = C$",
+                "$(x - y) \\ln Cx = -x$",
+                "$x = C / y + y \\ln y$",
+                "$y = C e^{-x} + e^{-x}$"
+            ],
+            "a": "$y^2 - 3xy + 2x^2 = C$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $(y-x)dx + (y+x)dy = 0$",
+            "o": [
+                "$y^2 + 2xy - x^2 = C$",
+                "$1 + e^y = C(1 + x^2)$",
+                "$y^2(1 - y) = (x + C)^2; y = 1$",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$"
+            ],
+            "a": "$y^2 + 2xy - x^2 = C$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $y' + 2y = e^x$",
+            "o": [
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$",
+                "$(x - y) \\ln Cx = x$",
+                "$y = Cx - x^2$",
+                "$y = (C + x^2) e^{x^2}$"
+            ],
+            "a": "$x^2 - (x^2 - y) \\ln Cx; y = x^2$"
+        },
+        {
+            "q": "Differensial tenglamaning xususiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $x^2 + xy' = y, y(1) = 0$",
+            "o": [
+                "$y = x - x^2$",
+                "$y = e^x x - 2$",
+                "$y = x + \\ln x$",
+                "$y = 1 - x^2$"
+            ],
+            "a": "$y = x - x^2$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $y' - 2xy = 2xe^{x^2}$ ",
+            "o": [
+                "$y = (C + x^2) e^{x^2}$",
+                "$(x - y) \\ln Cx = x$",
+                "$y = (C + x^2) \\ln x$",
+                "$1 + e^y = C(1 + x^2)$"
+            ],
+            "a": "$y = (C + x^2) e^{x^2}$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $y' + 2xy = e^{-x^2}$ ",
+            "o": [
+                "$y = (C + x) e^{-x^2}$",
+                "$y^2(1 - y) = (x + C)^2; y = 1$",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$",
+                "$y = (C + x^2) \\ln x$"
+            ],
+            "a": "$y = (C + x) e^{-x^2}$"
+        },
+        {
+            "q": "Differensial tenglamaning xususiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $y' \cos x - y \sin x = 2x, y(0) = 0$",
+            "o": [
+                "$y = x^2 / \cos x$",
+                "$y = (1 + Cy + \ln y) \cos x$",
+                "$1 + e^y = C(1 + x^2)$",
+                "$(x - y) \ln Cx = x$"
+            ],
+            "a": "$y = x^2 / \cos x$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $xy' - 2y = x^3 \cos x$",
+            "o": [
+                "$y = Cx^2 + x^2 \sin x$",
+                "$y = x^2 / \cos x$",
+                "$y = (1 + Cy + \ln y) \cos x$",
+                "$y = \sin x / \cos^3 x$"
+            ],
+            "a": "$y = Cx^2 + x^2 \sin x$"
+        },
+        {
+            "q": "Differensial tenglamaning xususiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $y' - y \text{ tg} x = 1 / \cos^3 x, y(0) = 0$",
+            "o": [
+                "$y = \sin x / \cos^3 x$",
+                "$y = (1 + Cy + \ln y) \cos x$",
+                "$y = \text{tg } \ln Cx$",
+                "$x^2 - (x^2 - y) \ln Cx; y = x^2$"
+            ],
+            "a": "$y = \sin x / \cos^3 x$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $y'x \ln x - y = 3x^3 \ln^2 x$",
+            "o": [
+                "$y = (C + x^3) \ln x$",
+                "$1 + e^y = C(1 + x^2)$",
+                "$y = Cx^2 + x^2 \sin x$",
+                "$y = x^2 / \cos x$"
+            ],
+            "a": "$y = (C + x^3) \ln x$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to‘g‘ri ko‘rsatilgan? $(2x - y^2) y' = 2y$",
+            "o": [
+                "$x = Cy - y^2 / 2$",
+                "$y = (C + x^2) e^{x^2}$",
+                "$x^2 - (x^2 - y) \ln Cx; y = x^2$",
+                "$y' + 2xy = 2xy^2$"
+            ],
+            "a": "$x = Cy - y^2 / 2$"
+        },
+        {
+            "q": "Differensial tenglamaning xususiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' + y \cos x = \cos x, y(0) = 1$",
+            "o": ["$y = 1$", "$y = \sin x$", "$y = \cos x$", "$y = e^x$"],
+            "a": "$y = 1$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' = y / (2y \ln y + y - x)$ ",
+            "o": [
+                "$x = C/y + y \ln y$",
+                "$y^2(1 - y) = (x + C)^2; y = 1$",
+                "$(x - y) \ln Cx = x$",
+                "$x = (C + y) e^{-y^2/2}$"
+            ],
+            "a": "$x = C/y + y \ln y$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(e^{-y^2/2} - xy)dy - dx = 0$",
+            "o": [
+                "$x = (C + y) e^{-y^2/2}$",
+                "$y = (C + x) e^{(1-x)e^x}$",
+                "$1 + e^y = C(1 + x^2)$",
+                "$y' + 2xy = 2xy^2$"
+            ],
+            "a": "$x = (C + y) e^{-y^2/2}$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' - y e^x = 2x e^{e^x}$ ",
+            "o": [
+                "$y = (C + x^2) e^{e^x}$",
+                "$x^2 - (x^2 - y) \ln Cx; y = x^2$",
+                "$y^2 \ln x = C + \sin x$",
+                "$y = (1 + Cy + \ln y) \cos x$"
+            ],
+            "a": "$y = (C + x^2) e^{e^x}$"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' + x e^x y = e^{(1-x)e^x}$ ",
+            "o": [
+                "$y = (C + x) e^{(1-x)e^x}$",
+                "$1 + e^y = C(1 + x^2)$",
+                "$(x - y) \ln Cx = -x$",
+                "$y = (C + x^2) e^{e^x}$"
+            ],
+            "a": "$y = (C + x) e^{(1-x)e^x}$"
+        }
+    ]
 
 if 'dt_141_210' not in st.session_state:
     st.session_state.dt_141_210 = [] # 141-210 savollar
