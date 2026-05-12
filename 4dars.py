@@ -3918,11 +3918,561 @@ if 'dt_351_420' not in st.session_state:
                 "$y = x^2 + 2x$ \n\n"
             ],
             "a": "$y = x^2 - 4x$ \n\n"
+        },
+        {
+            "q": "$y'' + y'^2 = 2e^{-y}$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$y = \\ln x$ \n\n",
+                "$y = x + \\ln x^2$ \n\n",
+                "$y = \\ln x^2$ \n\n",
+                "$y = x + \\ln x$ \n\n"
+            ],
+            "a": "$y = \\ln x^2$ \n\n"
+        },
+        {
+            "q": "$xy^{V} = y^{IV} - xy^{IV}$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$y = C_1 (x + 2) e^{-x} + C_2 x + C_3$ \n\n",
+                "$y = C_1 (x + 2) e^x + C_2 x + C_3$ \n\n",
+                "$y = C_1 (x - 2) e^{-x} + C_2 x + C_3$ \n\n",
+                "$y = C_1 (x - 2) e^x + C_2 x + C_3$ \n\n"
+            ],
+            "a": "$y = C_1 (x + 2) e^{-x} + C_2 x + C_3$ \n\n"
+        },
+        {
+            "q": "$y''^2 = y'^2 + 1$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$y = C_1 e^{-x} + C_2 x$ \n\n",
+                "$y = \\pm \\text{ch}(x + C_1) + C_2$ \n\n",
+                "$y = \\text{sh}(x + C_1) + C_2$ \n\n",
+                "$y = \\text{ch}(x^2 + 1) + C_2 x + C_3$ \n\n"
+            ],
+            "a": "$y = \\pm \\text{ch}(x + C_1) + C_2$ \n\n"
+        },
+        {
+            "q": "$y'' = e^y$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$e^y = 2x^{-2}$ \n\n",
+                "$e^y = 2x^2$ \n\n",
+                "$e^y = x^2 + x$ \n\n",
+                "$e^y = x^2 - x$ \n\n"
+            ],
+            "a": "$e^y = 2x^{-2}$ \n\n"
+        },
+        {
+            "q": "$y''' - xy'' + y'' = 0$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$y = C_1 \\frac{x^3}{6} - C_1 \\frac{x^2}{2} + C_2 x + C_3$ \n\n",
+                "$y = C_1 \\frac{x^3}{3} + C_2 x^2 + C_3 x$ \n\n",
+                "$y = C_1 \\frac{x^4}{6} - C_1 \\frac{x^2}{2} + C_2 x^2 + C_3 x$ \n\n",
+                "$y = C_1 \\frac{x^3}{3} - C_2 \\frac{x^2}{4} + C_3 x$ \n\n"
+            ],
+            "a": "$y = C_1 \\frac{x^3}{6} - C_1 \\frac{x^2}{2} + C_2 x + C_3$ \n\n"
+        },
+        {
+            "q": "$Ly = y'' - y' + y$ bo'lsa, $L(\\cos x)$ ni toping.",
+            "o": [
+                "$\\sin x$ \n\n",
+                "$\\cos 2x$ \n\n",
+                "$0$ \n\n",
+                "$2$ \n\n"
+            ],
+            "a": "$\\sin x$ \n\n"
+        },
+        {
+            "q": "$Ly = y'' - y'$ bo'lsa, $L(e^x)$ ni toping.",
+            "o": [
+                "$0$ \n\n",
+                "$e^{2x}$ \n\n",
+                "$3e^x$ \n\n",
+                "$4$ \n\n"
+            ],
+            "a": "$0$ \n\n"
+        },
+        {
+            "q": "$Ly = y'' - y$ bo'lsa, $L(e^x)$ ni toping.",
+            "o": [
+                "$8$ \n\n",
+                "$5$ \n\n",
+                "$0$ \n\n",
+                "$4$ \n\n"
+            ],
+            "a": "$0$ \n\n"
+        },
+        {
+            "q": "$y = e^x$ funksiya quyidagi tenglamalarning qaysi birini qanoatlantiradi?",
+            "o": [
+                "$y'' - y' + 2y = 0$ \n\n",
+                "$y'' - y' - 2y = 0$ \n\n",
+                "$y'' + y' - 2y = 0$ \n\n",
+                "$2y' + y'' - 2y = 0$ \n\n"
+            ],
+            "a": "$y'' + y' - 2y = 0$ \n\n"
+        },
+        {
+            "q": "$y = e^{-2x}$ funksiya quyidagi tenglamalarning qaysi birini qanoatlantiradi?",
+            "o": [
+                "$y'' - y' + 2y = 0$ \n\n",
+                "$y'' - y' - 2y = 0$ \n\n",
+                "$y'' + y' - 2y = 0$ \n\n",
+                "$2y' + y'' - 2y = 0$ \n\n"
+            ],
+            "a": "$y'' + y' - 2y = 0$ \n\n"
+        },
+        {
+            "q": "$W[1, e^x]$ Vronskiy determinantining $W(1)$ qiymatini toping.",
+            "o": [
+                "$0$ \n\n",
+                "$e^x$ \n\n",
+                "$e^{2x}$ \n\n",
+                "$e$ \n\n"
+            ],
+            "a": "$e$ \n\n"
+        },
+        {
+            "q": "$W[\\cos x, \\sin x]$ Vronskiy determinantining $W(0)$ qiymatini toping.",
+            "o": [
+                "$2$ \n\n",
+                "$0$ \n\n",
+                "$-2$ \n\n",
+                "$1$ \n\n"
+            ],
+            "a": "$1$ \n\n"
+        },
+        {
+            "q": "$y'' - y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^x, e^{-x}$ \n\n",
+                "$\\cos x, \\sin 2x$ \n\n",
+                "$\\sin x, \\cos x$ \n\n",
+                "$e^x$ \n\n"
+            ],
+            "a": "$e^x, e^{-x}$ \n\n"
+        },
+        {
+            "q": "$y'' - 4y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^x, e^{-x}$ \n\n",
+                "$\\sin 2x, \\cos 2x$ \n\n",
+                "$e^{2x}, e^{-2x}$ \n\n",
+                "$e^{4x}, e^{-4x}$ \n\n"
+            ],
+            "a": "$e^{2x}, e^{-2x}$ \n\n"
+        },
+        {
+            "q": "$y'' - 2y' + y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^{2x}, x e^{2x}$ \n\n",
+                "$e^{-x}, x e^{-x}$ \n\n",
+                "$e^x, x e^x$ \n\n",
+                "$e^{-x/2}, x e^{-x/2}$ \n\n"
+            ],
+            "a": "$e^x, x e^x$ \n\n"
+        },
+        {
+            "q": "$4y'' + 4y' + y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^{-x/2}, x e^{-x/2}$ \n\n",
+                "$e^x, x e^x$ \n\n",
+                "$e^{2x}, x e^{2x}$ \n\n",
+                "$e^{-x}, x e^{-x}$ \n\n"
+            ],
+            "a": "$e^{-x/2}, x e^{-x/2}$ \n\n"
+        },
+        {
+            "q": "$y^{IV} + 2y'' + y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$\\cos x, x \\cos x, \\sin x, x \\sin x$ \n\n",
+                "$\\cos x, x \\cos x, -\\sin x, -x \\sin x$ \n\n",
+                "$\\cos 2x, x \\cos 2x, \\sin x, x \\sin x$ \n\n",
+                "$\\cos x, x \\cos x, \\sin 2x, x \\sin 2x$ \n\n"
+            ],
+            "a": "$\\cos x, x \\cos x, \\sin x, x \\sin x$ \n\n"
+        },
+        {
+            "q": "$y''' - 3y'' + 3y' - y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^x, x e^x, e^{2x}$ \n\n",
+                "$e^x, x e^x, e^{-x}$ \n\n",
+                "$e^x, x e^x, x^2 e^x$ \n\n",
+                "$e^{2x}, x e^{2x}, x^2 e^{2x}$ \n\n"
+            ],
+            "a": "$e^x, x e^x, x^2 e^x$ \n\n"
+        },
+        {
+            "q": "$y''' - y'' - y' + y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^x, x e^x, e^{-x}$ \n\n",
+                "$e^{-x}, x e^{-x}, e^x$ \n\n",
+                "$e^{2x}, x e^{2x}, e^{-x}$ \n\n",
+                "$e^x, x e^x, e^{-2x}$ \n\n"
+            ],
+            "a": "$e^x, x e^x, e^{-x}$ \n\n"
+        },
+        {
+            "q": "$y'' + y' - 2y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^x, e^{-2x}$ \n\n",
+                "$e^{2x}, e^{-2x}$ \n\n",
+                "$e^x, e^{-x}$ \n\n",
+                "$e^{-x}, e^{-2x}$ \n\n"
+            ],
+            "a": "$e^x, e^{-2x}$ \n\n"
+        },
+        {
+            "q": "$y'' + 4y' + 3y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^x, e^{-3x}$ \n\n",
+                "$e^{3x}, e^{-2x}$ \n\n",
+                "$e^{-x}, e^{-3x}$ \n\n",
+                "$e^x, e^{3x}$ \n\n"
+            ],
+            "a": "$e^{-x}, e^{-3x}$ \n\n"
+        },
+        {
+            "q": "$2y'' - 5y' + 2y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^{2x}, e^{x/2}$ \n\n",
+                "$e^x, e^{-2x}$ \n\n",
+                "$e^{-x}, e^{-2x}$ \n\n",
+                "$e^{-x/2}, e^{-2x}$ \n\n"
+            ],
+            "a": "$e^{2x}, e^{x/2}$ \n\n"
+        },
+        {
+            "q": "$y'' - 2y' = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^x, e^{-2x}$ \n\n",
+                "$1, e^{2x}$ \n\n",
+                "$e^{2x}, e^{-2x}$ \n\n",
+                "$e^{3x}, e^{-2x}$ \n\n"
+            ],
+            "a": "$1, e^{2x}$ \n\n"
+        },
+        {
+            "q": "$y'' - 4y' + 5y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^{-x} \\cos \\sqrt{3}x, e^{-x} \\sin \\sqrt{3}x$ \n\n",
+                "$e^{2x} \\cos x, e^{2x} \\sin x$ \n\n",
+                "$e^{-x} \\cos 3x, e^{-x} \\sin 3x$ \n\n",
+                "$e^x \\cos 3x, e^x \\sin 3x$ \n\n"
+            ],
+            "a": "$e^{2x} \\cos x, e^{2x} \\sin x$ \n\n"
+        },
+        {
+            "q": "$y'' + 2y' + 10y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^{-x} \\cos 3x, e^{-x} \\sin 3x$ \n\n",
+                "$e^{-x} \\cos \\sqrt{3}x, e^{-x} \\sin \\sqrt{3}x$ \n\n",
+                "$e^x \\cos \\sqrt{3}x, e^x \\sin \\sqrt{3}x$ \n\n",
+                "$e^x \\cos 3x, e^x \\sin 3x$ \n\n"
+            ],
+            "a": "$e^{-x} \\cos 3x, e^{-x} \\sin 3x$ \n\n"
+        },
+        {
+            "q": "$y'' + 4y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$\\cos x, \\sin 2x$ \n\n",
+                "$\\cos 2x, \\sin x$ \n\n",
+                "$\\cos 2x, \\sin 2x$ \n\n",
+                "$2 \\cos x, 2 \\sin x$ \n\n"
+            ],
+            "a": "$\\cos 2x, \\sin 2x$ \n\n"
+        },
+        {
+            "q": "$y''' - 8y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^{2x}, e^{-x} \\cos \\sqrt{3}x, e^{-x} \\sin \\sqrt{3}x$ \n\n",
+                "$e^x \\cos 3x, e^x \\sin 3x, \\sin \\sqrt{3}x$ \n\n",
+                "$e^{-x}, \\cos x, \\sin x$ \n\n",
+                "$e^x, \\cos x, \\sin x$ \n\n"
+            ],
+            "a": "$e^{2x}, e^{-x} \\cos \\sqrt{3}x, e^{-x} \\sin \\sqrt{3}x$ \n\n"
+        },
+        {
+            "q": "$y^{IV} - y = 0$ differensial tenglamaning yechimlar fundamental sistemasini toping.",
+            "o": [
+                "$e^x, -e^{-x}, \\cos x, \\sin x$ \n\n",
+                "$e^x, e^{-x}, \\cos x, \\sin x$ \n\n",
+                "$e^x, e^{-x}, -\\cos x, -\\sin x$ \n\n",
+                "$e^{2x}, e^{-2x}, -\\cos x, -\\sin x$ \n\n"
+            ],
+            "a": "$e^x, e^{-x}, \\cos x, \\sin x$ \n\n"
+        },
+        {
+            "q": "$y' = \\frac{x}{y} + \\frac{y}{x}$ tenglamani yeching.",
+            "o": [
+                "$y^2 = x^2(C + \\ln x^2)$ \n\n",
+                "$y = x \\sqrt{C - \\ln x^2}$ \n\n",
+                "$y = x \\sqrt{C + 0.5 \\ln x}$ \n\n",
+                "$y = x \\sqrt{C + \\ln \\frac{1}{x}}$ \n\n"
+            ],
+            "a": "$y^2 = x^2(C + \\ln x^2)$ \n\n"
+        },
+        {
+            "q": "Quyidagi to'liq differensialli tenglamani yeching: $y dx + (x - y) dy = 0$",
+            "o": [
+                "$2xy - y^2 = C$ \n\n",
+                "$2x^2 - xy^2 = C$ \n\n",
+                "$x^2 - y^2 = C$ \n\n",
+                "$2x^2 - y^2 = C$ \n\n"
+            ],
+            "a": "$2xy - y^2 = C$ \n\n"
+        },
+        {
+            "q": "$y = \\sin x$ funksiya quyidagi differensial tenglamalardan qaysi birini qanoatlantiradi?",
+            "o": [
+                "$y = xy'$ \n\n",
+                "$y'' = y'$ \n\n",
+                "$(y'')^2 + (y')^2 - 1 = 0$ \n\n",
+                "$y'' = 0$ \n\n"
+            ],
+            "a": "$(y'')^2 + (y')^2 - 1 = 0$ \n\n"
+        },
+        {
+            "q": "$y'' - y' = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^x + C_2$ \n\n",
+                "$y = C_1 e^x$ \n\n",
+                "$y = C_1 e^x + C_2 x$ \n\n",
+                "$y = x(C_1 e^x + C_2)$ \n\n"
+            ],
+            "a": "$y = C_1 e^x + C_2$ \n\n"
+        },
+        {
+            "q": "$y'' - 9y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^{-3x} + 3x$ \n\n",
+                "$y = C_1 e^{3x} + C_2 e^{-3x}$ \n\n",
+                "$y = C_1 \\sin 3x + C_2 \\cos 3x$ \n\n",
+                "$y = x(C_1 e^{3x} + C_2)$ \n\n"
+            ],
+            "a": "$y = C_1 e^{3x} + C_2 e^{-3x}$ \n\n"
+        },
+        {
+            "q": "$y'' - 2y' + y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^{3x} + C_2 e^{-3x}$ \n\n",
+                "$y = x(C_1 e^{3x} + C_2)$ \n\n",
+                "$y = C_1 e^x + C_2$ \n\n",
+                "$y = (C_1 + C_2 x) e^x$ \n\n"
+            ],
+            "a": "$y = (C_1 + C_2 x) e^x$ \n\n"
+        },
+        {
+            "q": "Tenglamaning umumiy yechimini toping: $x(1+y^2)dx + y(x^2+1)dy = 0$",
+            "o": [
+                "$(x^2 + 1)(y^2 + 1) = C$ \n\n",
+                "$(x + 1)(y^2 + 1) = C$ \n\n",
+                "$(x^2 + 1)(y + 1) = C$ \n\n",
+                "$(x^3 + 1)(y^2 + 1) = C$ \n\n"
+            ],
+            "a": "$(x^2 + 1)(y^2 + 1) = C$ \n\n"
+        },
+        {
+            "q": "Tenglamaning umumiy yechimini toping: $ydx = xdy$",
+            "o": [
+                "$x = -y(C + \\ln y)$ \n\n",
+                "$x = y(C - \\ln y)$ \n\n",
+                "$y = Cx$ \n\n",
+                "$y = \\sin x$ \n\n"
+            ],
+            "a": "$y = Cx$ \n\n"
+        },
+        {
+            "q": "$y' - xy^2 = 2xy$ differensial tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$\\frac{y}{2+y} = e^{x^2} C$ \n\n",
+                "$\\frac{y}{2-y} = e^{x^2} C$ \n\n",
+                "$y = e^{x^2} C + x$ \n\n",
+                "$y + 2 = C e^{x^2}$ \n\n"
+            ],
+            "a": "$\\frac{y}{2+y} = e^{x^2} C$ \n\n"
+        },
+        {
+            "q": "$y = x(y' - x \\cos x)$ differensial tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$y = \\cos x(\\sin x + C)$ \n\n",
+                "$y = x(\\sin x + C)$ \n\n",
+                "$y = x(\\cos x + C)$ \n\n",
+                "$y = \\cos x + C$ \n\n"
+            ],
+            "a": "$y = x(\\sin x + C)$ \n\n"
+        },
+        {
+            "q": "$2xy dx + (x^2 - y^2) dy = 0$ differensial tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$x^2 y - \\frac{y^3}{3} = C$ \n\n",
+                "$xy - \\frac{y^3}{3} = C$ \n\n",
+                "$x^2 - y^3 = C$ \n\n",
+                "$y - \\frac{x^3}{2} = C$ \n\n"
+            ],
+            "a": "$x^2 y - \\frac{y^3}{3} = C$ \n\n"
+        },
+        {
+            "q": "$xy dx + (x+1) dy = 0$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$y = \\frac{C}{e^x (x+1)}$ \n\n",
+                "$y = e^x C$ \n\n",
+                "$x^2 - y^3 = C$ \n\n",
+                "$y - \\frac{x^2}{2} e^x = C$ \n\n"
+            ],
+            "a": "$y = \\frac{C}{e^x (x+1)}$ \n\n"
+        },
+        {
+            "q": "$y'' + y' = 0$ tenglamani yeching.",
+            "o": [
+                "$y = Ce^{-x} + C_2 x$ \n\n",
+                "$y = C_1 e^{-x}$ \n\n",
+                "$y = C_1 e^{-x} + C_2$ \n\n",
+                "$y = x(C_1 e^x + C_2)$ \n\n"
+            ],
+            "a": "$y = C_1 e^{-x} + C_2$ \n\n"
+        },
+        {
+            "q": "$y'' + 9y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 \\sin 3x + C_2 \\cos 3x$ \n\n",
+                "$y = C_1 e^{3x} + C_2 e^{-3x}$ \n\n",
+                "$y = C_1 e^{-3x} + 3x$ \n\n",
+                "$y = C_1 e^{-3x} - 3x$ \n\n"
+            ],
+            "a": "$y = C_1 \\sin 3x + C_2 \\cos 3x$ \n\n"
+        },
+        {
+            "q": "$y'' - 4y' + 4y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^{2x} + C_2$ \n\n",
+                "$y = (C_1 + C_2 x) e^{2x}$ \n\n",
+                "$y = C_1 e^{2x}$ \n\n",
+                "$y = x(C_1 e^{2x} + C_2)$ \n\n"
+            ],
+            "a": "$y = (C_1 + C_2 x) e^{2x}$ \n\n"
+        },
+        {
+            "q": "Tenglamaning umumiy yechimini toping: $x(1+y^2) dx - y(1+x^2) dy = 0$",
+            "o": [
+                "$(x+1)(y^2+1) = C$ \n\n",
+                "$(x^2+1)(y+1) = C$ \n\n",
+                "$(x^2+1)(y^2+1) = C$ \n\n",
+                "$(1+y^2) = C(1+x^2)$ \n\n"
+            ],
+            "a": "$(1+y^2) = C(1+x^2)$ \n\n"
+        },
+        {
+            "q": "Ushbu $y'' = xy'$ tenglamaning tartibini qaysi almashtirish yordamida pasaytirish mumkin?",
+            "o": [
+                "$z = y'$ \n\n",
+                "$z = y''$ \n\n",
+                "$z = y'$ \n\n",
+                "$z = y^2$ \n\n"
+            ],
+            "a": "$z = y'$ \n\n"
+        },
+        {
+            "q": "Quyidagilarning qaysi biri $y' = 2xy$ tenglamaning umumiy yechimi bo'ladi?",
+            "o": [
+                "$y = Ce^x$ \n\n",
+                "$y = Ce^x + x$ \n\n",
+                "$y = Ce^{x^2}$ \n\n",
+                "$y = Cx + e^x$ \n\n"
+            ],
+            "a": "$y = Ce^{x^2}$ \n\n"
+        },
+        {
+            "q": "Quyidagilarning qaysi biri $y' = y \\cos x$ tenglamaning umumiy yechimi bo'ladi?",
+            "o": [
+                "$y = Ce^{\\sin x}$ \n\n",
+                "$y = C \\sin x$ \n\n",
+                "$y = Ce^x + \\sin x$ \n\n",
+                "$y = C \\cos x + e^x$ \n\n"
+            ],
+            "a": "$y = Ce^{\\sin x}$ \n\n"
+        },
+        {
+            "q": "Tenglamaning umumiy yechimini toping: $xdy - ydx = ydy$",
+            "o": [
+                "$x = -y(C + \\ln y)$ \n\n",
+                "$x = y(C - \\ln y)$ \n\n",
+                "$x = y(C + \\ln y)$ \n\n",
+                "$x = Cy$ \n\n"
+            ],
+            "a": "$x = y(C - \\ln y)$ \n\n"
+        },
+        {
+            "q": "$(2x - 4y + 6)dx + (x + y - 3)dy = 0$ tenglama qanday almashtirish yordamida o'zgaruvchilari ajraladigan differensial tenglamaga keltiriladi?",
+            "o": [
+                "$\\begin{cases} x = u - 2 \\\\ y = v - 1 \\end{cases}$ \n\n",
+                "$\\begin{cases} x = u + 8 \\\\ y = v - 18 \\end{cases}$ \n\n",
+                "$\\begin{cases} x = u - 1 \\\\ y = v - 2 \\end{cases}$ \n\n",
+                "$\\begin{cases} x = u + 1 \\\\ y = v + 2 \\end{cases}$ \n\n"
+            ],
+            "a": "$\\begin{cases} x = u + 1 \\\\ y = v + 2 \\end{cases}$ \n\n"
+        },
+        {
+            "q": "$y' = \\frac{y+2}{x+1} + \\text{tg } \\left( \\frac{y-2x}{x+1} \\right)$ tenglama qanday almashtirish yordamida o'zgaruvchilari ajraladigan differensial tenglamaga keltiriladi?",
+            "o": [
+                "$\\frac{y-2x}{x+1} = u$ \n\n",
+                "$\\frac{y+2}{x+1} = u$ \n\n",
+                "$\\frac{y+2x}{x+1} = u$ \n\n",
+                "$\\frac{2y+1}{3x-1} = u$ \n\n"
+            ],
+            "a": "$\\frac{y-2x}{x+1} = u$ \n\n"
+        },
+        {
+            "q": "$y = \\frac{\\sin x}{x}$ funksiya quyidagi tenglamalarning qaysi birini qanoatlantiradi?",
+            "o": [
+                "$y' = 0$ \n\n",
+                "$x + y' = C$ \n\n",
+                "$xy' + y = \\cos x$ \n\n",
+                "$y'' + y = 0$ \n\n"
+            ],
+            "a": "$xy' + y = \\cos x$ \n\n"
+        },
+        {
+            "q": "$x - y - 1 + (y - x + 2)y' = 0$ tenglama qanday almashtirish yordamida o'zgaruvchilari ajraladigan differensial tenglamaga keltiriladi?",
+            "o": [
+                "$x - y = u$ \n\n",
+                "$x - 2y - 1 = u$ \n\n",
+                "$2x - y = u$ \n\n",
+                "$2x - 3y = u$ \n\n"
+            ],
+            "a": "$x - y = u$ \n\n"
+        },
+        {
+            "q": "$y' = f \\left( \\frac{x + y - 2}{x - y} \\right)$ ko'rinishidagi tenglamani yechish uchun qanday almashtirish bajarish kerak?",
+            "o": [
+                "$x - y + 1 = z$ \n\n",
+                "$t = x - 1, u = y - 1$ \n\n",
+                "$x - y = t$ \n\n",
+                "$t = x - 3, u = y + 1$ \n\n"
+            ],
+            "a": "$t = x - 1, u = y - 1$ \n\n"
+        },
+        {
+            "q": "$y'' - 2y' = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^x + xC_2$ \n\n",
+                "$y = C_1 e^{-2x} + C_2$ \n\n",
+                "$y = C_1 e^{2x} + xC_2$ \n\n",
+                "$y = C_1 e^{2x} + C_2$ \n\n"
+            ],
+            "a": "$y = C_1 e^{2x} + C_2$ \n\n"
+        },
+        {
+            "q": "$y'' + 36y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 \\sin 6x + C_2 \\cos 6x$ \n\n",
+                "$y = C_1 e^{6x} + C_2 e^{-6x}$ \n\n",
+                "$y = Ce^{6x} + \\sin 6x + \\cos 6x$ \n\n",
+                "$y = (C_1 x + C_2) e^{6x}$ \n\n"
+            ],
+            "a": "$y = C_1 \\sin 6x + C_2 \\cos 6x$ \n\n"
         }
     ]
     
-if 'dt_351_420' not in st.session_state:
-     st.session_state.dt_251_420 = []
+if 'dt_421_494' not in st.session_state:
+     st.session_state.dt_421_494 = []
     
 # 4. Holatlarni boshqarish
 if 'logged_in' not in st.session_state: st.session_state.logged_in = False
