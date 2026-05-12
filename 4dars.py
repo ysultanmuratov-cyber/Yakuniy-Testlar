@@ -522,29 +522,36 @@ else:
         
     else:
         # --- TEST JARAYONI ---
-        q_idx = st.session_state.get('current_q_index', 0)
-        questions = st.session_state.get('active_questions', [])
-        
-        if q_idx < len(questions):
-            curr = questions[q_idx]
-            st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
-            st.markdown(f"<h3 style='text-align: center;'>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
-            st.markdown(f"<p style='font-size: 18px; font-weight: bold; text-align: center;'>{curr['q']}</p>", unsafe_allow_html=True)
+q_idx = st.session_state.get('current_q_index', 0)
+questions = st.session_state.get('active_questions', [])
 
-            if not st.session_state.get('answered', False):
-                ans = st.radio("Variantlar:", curr['o'], index=None, key=f"q_{q_idx}", label_visibility="collapsed")
-                
-                col_a, col_b = st.columns([1, 1])
-                with col_a:
-                    if st.button("✅ TASDIQLASH"):
-                        if ans:
-                            st.session_state.answered = True
-                            st.session_state.selected_option = ans
-                            if ans == curr['a']: 
-                                st.session_state.user_score += 1
-                            st.rerun()
-                        else:
-                            st.warning("Iltimos, variantni tanlang!")
+if q_idx < len(questions):
+    curr = questions[q_idx]
+    st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+    
+    # Savol raqami
+    st.markdown(f"<h3 style='text-align: center;'>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
+    
+    # MUHIM: Savol matnini LaTeX bilan chiqarish (Kitobdagidek chiroyli qiladi)
+    st.write("---")
+    st.markdown(f"#### {curr['q']}") 
+    st.write("---")
+
+    if not st.session_state.get('answered', False):
+        # Variantlarni chiqarish
+        ans = st.radio("Javobingizni tanlang:", curr['o'], index=None, key=f"q_{q_idx}")
+        
+        col_a, col_b = st.columns([1, 1])
+        with col_a:
+            if st.button("✅ TASDIQLASH"):
+                if ans:
+                    st.session_state.answered = True
+                    st.session_state.selected_option = ans
+                    if ans == curr['a']: 
+                        st.session_state.user_score += 1
+                    st.rerun()
+                else:
+                    st.warning("Iltimos, variantni tanlang!")
                 
                 with col_b:
                     if st.button("🛑 TO'XTATISH"):
