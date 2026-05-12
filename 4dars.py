@@ -4472,7 +4472,349 @@ if 'dt_351_420' not in st.session_state:
     ]
     
 if 'dt_421_494' not in st.session_state:
-     st.session_state.dt_421_494 = []
+     st.session_state.dt_421_494 = [
+         {
+            "q": "$y'' - 16y' + 64y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = Ce^{8x}$ \n\n",
+                "$y = Ce^{8x} + x$ \n\n",
+                "$y = (C_1 x + C_2) e^{8x}$ \n\n",
+                "$y = (C_1 x + C_2) e^{16x}$ \n\n"
+            ],
+            "a": "$y = (C_1 x + C_2) e^{8x}$ \n\n"
+        },
+        {
+            "q": "Tenglamaning umumiy yechimini toping: $\\frac{dy}{dx} = \\frac{e^{-y} x \\cos x}{y}$",
+            "o": [
+                "$e^y (y - 1) = x \\sin x + \\cos x + C$ \n\n",
+                "$e^{-y} (y - 1) = x \\sin x - \\cos x + C$ \n\n",
+                "$e^y (y + 1) = x \\sin x + \\cos x + C$ \n\n",
+                "$e^{-y} (y - 1) = x \\sin x + \\cos x + C$ \n\n"
+            ],
+            "a": "$e^y (y - 1) = x \\sin x + \\cos x + C$ \n\n"
+        },
+        {
+            "q": "$y'' - 13y' + 36y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^{4x} + C_2 e^{-9x}$ \n\n",
+                "$y = C_1 e^{4x} + C_2 e^{9x}$ \n\n",
+                "$y = C_1 e^{-4x} + C_2 e^{9x}$ \n\n",
+                "$y = C_1 e^{-4x} + C_2 e^{-9x}$ \n\n"
+            ],
+            "a": "$y = C_1 e^{4x} + C_2 e^{9x}$ \n\n"
+        },
+        {
+            "q": "$y'' - y' - 12y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^{4x} + C_2 e^{5x}$ \n\n",
+                "$y = C_1 e^x + C_2 e^{12x}$ \n\n",
+                "$y = C_1 e^{4x} + C_2 e^{3x}$ \n\n",
+                "$y = C_1 e^{4x} + C_2 e^{-3x}$ \n\n"
+            ],
+            "a": "$y = C_1 e^{4x} + C_2 e^{-3x}$ \n\n"
+        },
+        {
+            "q": "$y'' - 2y' - 48y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^{8x} + C_2 e^{-6x}$ \n\n",
+                "$y = C_1 e^{-8x} + C_2 e^{6x}$ \n\n",
+                "$y = C_1 e^{4x} + C_2 e^{-12x}$ \n\n",
+                "$y = C_1 e^{-4x} + C_2 e^{6x}$ \n\n"
+            ],
+            "a": "$y = C_1 e^{8x} + C_2 e^{-6x}$ \n\n"
+        },
+         {
+            "q": "$y^{(IV)} = -4y'''$ tenglama tartibini 3 birlikka pasaytiruvchi almashtirishni ko'rsating:",
+            "o": [
+                "$y' = z$ \n\n",
+                "$y'' = z$ \n\n",
+                "$y''' = z$ \n\n",
+                "$y^{(IV)} = z$ \n\n"
+            ],
+            "a": "$y''' = z$ \n\n"
+        },
+        {
+            "q": "$y'' - 6y' + 8y = 4e^{2x}$ tenglamaning umumiy yechimi ko'rinishini toping.",
+            "o": [
+                "$y = C_1 e^{2x} + C_2 e^{4x} + axe^{2x}$ \n\n",
+                "$y = a \\sin x$ \n\n",
+                "$y = a \\sin x + b$ \n\n",
+                "$y = a \\cos x + bx$ \n\n"
+            ],
+            "a": "$y = C_1 e^{2x} + C_2 e^{4x} + axe^{2x}$ \n\n"
+        },
+        {
+            "q": "$y'' + 4y' - 32y = 2 \\sin x$ tenglamaning umumiy yechimi ko'rinishini toping.",
+            "o": [
+                "$y = a \\sin x$ \n\n",
+                "$y = C_1 e^{-8x} + C_2 e^{4x} + a \\sin x + b \\cos x$ \n\n",
+                "$y = a \\sin x + b$ \n\n",
+                "$y = a \\cos x + bx$ \n\n"
+            ],
+            "a": "$y = C_1 e^{-8x} + C_2 e^{4x} + a \\sin x + b \\cos x$ \n\n"
+        },
+        {
+            "q": "$y'' - 7y' + 10y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^{-2x} + C_2 e^{-5x}$ \n\n",
+                "$y = C_1 e^{2x} + C_2 e^{-10x}$ \n\n",
+                "$y = C_1 e^{-2x} + C_2 e^{-6x}$ \n\n",
+                "$y = C_1 e^{2x} + C_2 e^{5x}$ \n\n"
+            ],
+            "a": "$y = C_1 e^{2x} + C_2 e^{5x}$ \n\n"
+        },
+        {
+            "q": "$y'' + 4y' + 12y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = e^{-2x} (C_1 \\sin 2\\sqrt{2}x + C_2 \\cos 2\\sqrt{2}x)$ \n\n",
+                "$y = e^{-2x} (C_1 \\sin \\sqrt{2}x + C_2 \\cos \\sqrt{2}x)$ \n\n",
+                "$y = e^{2x} (C_1 \\sin 2\\sqrt{2}x + C_2 \\cos 2\\sqrt{2}x)$ \n\n",
+                "$y = e^{-2x} (C_1 \\sin 2x + C_2 \\cos 2x)$ \n\n"
+            ],
+            "a": "$y = e^{-2x} (C_1 \\sin 2\\sqrt{2}x + C_2 \\cos 2\\sqrt{2}x)$ \n\n"
+        },
+         {
+            "q": "$y'' + 4y = 0$ tenglamaning umumiy yechimini ko'rsating.",
+            "o": [
+                "$y = C_1 \\sin 2x + C_2 \\cos 2x$ \n\n",
+                "$y = \\sin 2x + \\cos 2x$ \n\n",
+                "$y = C \\sin 2x + \\cos 2x$ \n\n",
+                "$y = C \\sin 2x \\cos 2x$ \n\n"
+            ],
+            "a": "$y = C_1 \\sin 2x + C_2 \\cos 2x$ \n\n"
+        },
+        {
+            "q": "$L$ chiziqli operator bo'lsa, u holda ...",
+            "o": [
+                "$L[cy_1] = cL[y_1]$ \n\n",
+                "$L[cy_1 + y_2] = L[y_1] + cL[y_2]$ \n\n",
+                "$L[cy_1] = L[c]L[y_1]$ \n\n",
+                "$L[cy_1] = L[c] + L[y_1]$ \n\n"
+            ],
+            "a": "$L[cy_1] = cL[y_1]$ \n\n"
+        },
+        {
+            "q": "$y'' - 4y' = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^{4x} + C_2$ \n\n",
+                "$y = C_1 e^{2x} + C_2 x$ \n\n",
+                "$y = C_1 e^{2x}$ \n\n",
+                "$y = x(C_1 e^x + C_2)$ \n\n"
+            ],
+            "a": "$y = C_1 e^{4x} + C_2$ \n\n"
+        },
+        {
+            "q": "$y'' - 25y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = x(C_1 e^{5x} + C_2)$ \n\n",
+                "$y = C_1 e^{-5x} + 5x$ \n\n",
+                "$y = C_1 e^{5x}$ \n\n",
+                "$y = C_1 e^{5x} + C_2 e^{-5x}$ \n\n"
+            ],
+            "a": "$y = C_1 e^{5x} + C_2 e^{-5x}$ \n\n"
+        },
+         {
+            "q": "$y'' - 6y' + 9y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = (C_1 + C_2 x) e^{3x}$ \n\n",
+                "$y = x(C_1 e^{3x} + C_2)$ \n\n",
+                "$y = C_1 e^{3x} + C_2$ \n\n",
+                "$y = C_1 e^{3x}$ \n\n"
+            ],
+            "a": "$y = (C_1 + C_2 x) e^{3x}$ \n\n"
+        },
+        {
+            "q": "Ushbu tenglamaning umumiy yechimini toping: $\\frac{dy}{dx} = e^{-y} \\cos x$",
+            "o": [
+                "$e^{-y} = x \\sin x - \\cos x + C$ \n\n",
+                "$e^{-y} = \\sin x + \\cos x + C$ \n\n",
+                "$e^y = \\sin x + C$ \n\n",
+                "$e^y (y + 1) = x \\sin x + \\cos x + C$ \n\n"
+            ],
+            "a": "$e^y = \\sin x + C$ \n\n"
+        },
+        {
+            "q": "$y'' + 6y' + 10y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = e^{-3x} (C_1 \\sin 2x + C_2 \\cos 2x)$ \n\n",
+                "$y = e^{3x} (C_1 \\sin 2x + C_2 \\cos 2x)$ \n\n",
+                "$y = e^{2x} (C_1 \\sin 3x + C_2 \\cos 3x)$ \n\n",
+                "$y = e^{-2x} (C_1 \\sin 2x + C_2 \\cos 2x)$ \n\n"
+            ],
+            "a": "$y = e^{-3x} (C_1 \\sin 2x + C_2 \\cos 2x)$ \n\n"
+        },
+        {
+            "q": "Ushbu $y' + y = 0$ tenglamaning umumiy yechimini toping?",
+            "o": [
+                "$y = (C - x)$ \n\n",
+                "$y = Ce^{-x}$ \n\n",
+                "$y = (C + x^2)$ \n\n",
+                "$y = e^x (C + x^2)$ \n\n"
+            ],
+            "a": "$y = Ce^{-x}$ \n\n"
+        },
+        {
+            "q": "$xdy - (x + 2y)dx = 0$ tenglamani yeching.",
+            "o": [
+                "$x + y^2 = Cx^2$ \n\n",
+                "$2x + y = Cx^2$ \n\n",
+                "$x + 3y = Cx$ \n\n",
+                "$x + y = Cx^2$ \n\n"
+            ],
+            "a": "$x + y = Cx^2$ \n\n"
+        },
+         {
+            "q": "$x^2 dy + (y^2 - 2xy) dx = 0$ tenglamani yeching.",
+            "o": [
+                "$x(y - x) = Cy, y = 0$ \n\n",
+                "$y = 0$ \n\n",
+                "$x(y - 2x) = Cy, y = 0$ \n\n",
+                "$2x(2y - x) = Cy, y = 0$ \n\n"
+            ],
+            "a": "$x(y - x) = Cy, y = 0$ \n\n"
+        },
+        {
+            "q": "$y^{(n)} = f(x, y^{(k+1)}, ..., y^{(n-1)})$ tenglamaning tartibi qanday almashtirish yordamida $k$ birlikka pasayadi?",
+            "o": [
+                "$y^{(k-1)} = z$ \n\n",
+                "$y^{(k)} = z$ \n\n",
+                "$y^{(k+1)} = z$ \n\n",
+                "$y^{(k+2)} = z$ \n\n"
+            ],
+            "a": "$y^{(k+1)} = z$ \n\n"
+        },
+        {
+            "q": "$y^{(5)} + 4y^{(4)} = 0$ tenglama tartibini 4 birlikka pasaytiruvchi almashtirishni ko'rsating:",
+            "o": [
+                "$y^{(4)} = z$ \n\n",
+                "$y^{(3)} = z$ \n\n",
+                "$y'' = z$ \n\n",
+                "$y' = z$ \n\n"
+            ],
+            "a": "$y^{(4)} = z$ \n\n"
+        },
+        {
+            "q": "$y'' + 4y' - 32y = 2 \\sin x$ tenglamani bir jinsli bo'lmagan qismining yechimi qanday ko'rinishda axtariladi?",
+            "o": [
+                "$y_1 = a \\sin x$ \n\n",
+                "$y_1 = a \\sin x + b \\cos x$ \n\n",
+                "$y_1 = a \\sin x + b$ \n\n",
+                "$y_1 = 2 \\sin x + b$ \n\n"
+            ],
+            "a": "$y_1 = a \\sin x + b \\cos x$ \n\n"
+        },
+        {
+            "q": "$y'' + 4y' - 32y = 4 \\cos x$ tenglamani bir jinsli bo'lmagan qismining yechimi qanday ko'rinishda axtariladi?",
+            "o": [
+                "$y_1 = a \\sin x$ \n\n",
+                "$y_1 = a \\sin x + b$ \n\n",
+                "$y_1 = 2 \\sin x + b$ \n\n",
+                "$y_1 = a \\sin x + b \\cos x$ \n\n"
+            ],
+            "a": "$y_1 = a \\sin x + b \\cos x$ \n\n"
+        },
+         {
+            "q": "$y'' + 6y' + 8y = 2x^2 + 5x - 6$ tenglamani bir jinslimas qismining yechimi qanday ko'rinishda axtariladi?",
+            "o": [
+                "$y_1 = ax^2 + bx + c$ \n\n",
+                "$y_1 = ax^2 + b$ \n\n",
+                "$y_1 = ax + b$ \n\n",
+                "$y_1 = ax^2 / c$ \n\n"
+            ],
+            "a": "$y_1 = ax^2 + bx + c$ \n\n"
+        },
+        {
+            "q": "$y'' - 4y' + 5y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = e^{-2x} (C_1 \\sin 3x + C_2 \\cos 3x)$ \n\n",
+                "$y = e^{-4x} (C_1 \\sin x + C_2 \\cos x)$ \n\n",
+                "$y = e^{2x} (C_1 \\sin x + C_2 \\cos x)$ \n\n",
+                "$y = e^{-2x} (C_1 \\sin x + C_2 \\cos x)$ \n\n"
+            ],
+            "a": "$y = e^{2x} (C_1 \\sin x + C_2 \\cos x)$ \n\n"
+        },
+        {
+            "q": "$y' - 2x = 0$ tenglamaning umumiy yechimini ko'rsating.",
+            "o": [
+                "$y = x^2 + C$ \n\n",
+                "$y = x^2$ \n\n",
+                "$y = x$ \n\n",
+                "$y = x + C$ \n\n"
+            ],
+            "a": "$y = x^2 + C$ \n\n"
+        },
+        {
+            "q": "$y'' - 15y' + 36y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = x(C_1 e^{3x} + C_2)$ \n\n",
+                "$y = C_1 e^{3x} + C_2 e^{12x}$ \n\n",
+                "$y = C_1 e^{3x}$ \n\n",
+                "$y = x(C_1 e^{5x} + C_2)$ \n\n"
+            ],
+            "a": "$y = C_1 e^{3x} + C_2 e^{12x}$ \n\n"
+        },
+        {
+            "q": "$y'' - 4y' = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^{4x} + C_2$ \n\n",
+                "$y = C_1 e^{2x}$ \n\n",
+                "$y = C_1 e^{2x} + C_2 x$ \n\n",
+                "$y = x(C_1 e^x + C_2)$ \n\n"
+            ],
+            "a": "$y = C_1 e^{4x} + C_2$ \n\n"
+        },
+         {
+            "q": "$y'' + 8y' + 16y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = (C_1 x + C_2) e^{-4x}$ \n\n",
+                "$y = x(C_1 e^{3x} + C_2)$ \n\n",
+                "$y = C_1 e^{2x}$ \n\n",
+                "$y = x(C_1 e^{5x} + C_2)$ \n\n"
+            ],
+            "a": "$y = (C_1 x + C_2) e^{-4x}$ \n\n"
+        },
+        {
+            "q": "$y'' - 2y' + 10y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = e^{3x} (C_1 \\sin 2x + C_2 \\cos 2x)$ \n\n",
+                "$y = e^{-x} (C_1 \\sin 3x + C_2 \\cos 3x)$ \n\n",
+                "$y = e^x (C_1 \\sin 3x + C_2 \\cos 3x)$ \n\n",
+                "$y = e^{3x} (C_1 \\sin 4x + C_2 \\cos 4x)$ \n\n"
+            ],
+            "a": "$y = e^x (C_1 \\sin 3x + C_2 \\cos 3x)$ \n\n"
+        },
+        {
+            "q": "Tenglamaning umumiy yechimini toping: $y x dx + (x + 1) dy = 0$",
+            "o": [
+                "$y = C(x + 1) e^{-x}$ \n\n",
+                "$y = C(x + 1) e^{2x}$ \n\n",
+                "$y = C(x + 1) e^x$ \n\n",
+                "$y = C(x + 2) e^{-x}$ \n\n"
+            ],
+            "a": "$y = C(x + 1) e^{-x}$ \n\n"
+        },
+        {
+            "q": "Tenglamaning umumiy yechimini toping: $\\frac{dy}{dx} = e^y \\sin x$",
+            "o": [
+                "$e^y \\cos x = C$ \n\n",
+                "$e^{-y} = \\cos x + C$ \n\n",
+                "$e^y + \\cos x = C$ \n\n",
+                "$e^y = \\sin x + C$ \n\n"
+            ],
+            "a": "$e^{-y} = \\cos x + C$ \n\n"
+        },
+        {
+            "q": "$y'' - 4y' + 20y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = e^{-8x} (C_1 \\sin 2x + C_2 \\cos 2x)$ \n\n",
+                "$y = e^{8x} (C_1 \\sin 2x + C_2 \\cos 2x)$ \n\n",
+                "$y = e^{-2x} (C_1 \\sin 8x + C_2 \\cos 8x)$ \n\n",
+                "$y = e^{2x} (C_1 \\sin 4x + C_2 \\cos 4x)$ \n\n"
+            ],
+            "a": "$y = e^{2x} (C_1 \\sin 4x + C_2 \\cos 4x)$ \n\n"
+        }
+         
+     ]
     
 # 4. Holatlarni boshqarish
 if 'logged_in' not in st.session_state: st.session_state.logged_in = False
