@@ -3737,8 +3737,8 @@ if 'dt_281_350' not in st.session_state:
             "a": "$4y \\ln x + y^4 = C$ \n\n"
         }
     ]
-if 'dt_351_395' not in st.session_state:
-    st.session_state.dt_251_395 = []
+if 'dt_351_420' not in st.session_state:
+    st.session_state.dt_251_420 = []
     
 # 4. Holatlarni boshqarish
 if 'logged_in' not in st.session_state: st.session_state.logged_in = False
@@ -3826,7 +3826,7 @@ else:
                 blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
             elif fan == "Differensial tenglamalar":
                 st.markdown("<p style='text-align: center; color: #475569;'>📐 Blokni tanlang:</p>", unsafe_allow_html=True)
-                blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-280", "281-350", "351-395"], key="diff_blok", label_visibility="collapsed")
+                blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-280", "281-350", "351-420", 421-494], key="diff_blok", label_visibility="collapsed")
             else:
                 st.markdown("<p style='text-align: center; color: #475569;'>🐍 Python dasturlash testi</p>", unsafe_allow_html=True)
                 blok = "Python_Test"
@@ -3852,9 +3852,11 @@ else:
                         st.session_state.active_questions = list(st.session_state.dt_211_280)
                     elif blok == "281-350":
                         st.session_state.active_questions = list(st.session_state.dt_281_350)
-                    elif blok == "351-395":
-                        st.session_state.active_questions = list(st.session_state.dt_351_395)
-                     
+                    elif blok == "351-420":
+                        st.session_state.active_questions = list(st.session_state.dt_351_420)
+                    elif blok == "421-494":
+                        st.session_state.active_questions = list(st.session_state.dt_421_494)
+                        
                 elif fan == "Python Dasturlash":
                     st.session_state.active_questions = list(st.session_state.python_testlar)
                 
