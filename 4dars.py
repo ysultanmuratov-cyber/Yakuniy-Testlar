@@ -538,8 +538,8 @@ else:
                 st.markdown("<p style='text-align: center; color: #475569;'>📚 Bo'limni tanlang:</p>", unsafe_allow_html=True)
                 blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
             elif fan == "Differensial tenglamalar":
-                st.markdown("<p style='text-align: center; color: #475569;'>📐 Differensial tenglamalar testi</p>", unsafe_allow_html=True)
-                blok = "Diff_Tenglamalar"
+                st.markdown("<p style='text-align: center; color: #475569;'>📐 Differensial tenglamalar blokini tanlang:</p>", unsafe_allow_html=True)
+                blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"], key="diff_blok", label_visibility="collapsed")
             else:
                 st.markdown("<p style='text-align: center; color: #475569;'>🐍 Python dasturlash testi</p>", unsafe_allow_html=True)
                 blok = "Python_Test"
