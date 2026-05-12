@@ -342,8 +342,56 @@ if 'ms_211_300' not in st.session_state:
     # Differensial tenglamalar bloklari
 if 'dt_1_70' not in st.session_state:
     st.session_state.dt_1_70 = [
-        {"q": "1-savol matni?", "o": ["V1", "V2", "V3", "V4"], "a": "V1"},
-        # Bu yerda 70 tagacha savol bo'ladi
+        {
+            "q": "Erkli o‘zgaruvchi $x \in (a,b)$, noma’lum funksiyasi $y(x)$ va uning $y'(x), y''(x), \dots, y^{(n)}(x)$ hosilalari orasidagi ushbu $F(x,y(x),y'(x),\dots,y^{(n)}(x))=0$ funksional bog‘lanishga...",
+            "o": [
+                "1-tartibli oddiy differensial tenglama deyiladi",
+                "3-tartibli oddiy differensial tenglama deyiladi",
+                "2-tartibli oddiy differensial tenglama deyiladi",
+                "n-tartibli oddiy differensial tenglama deyiladi"
+            ],
+            "a": "n-tartibli oddiy differensial tenglama deyiladi"
+        },
+        {
+            "q": "Quyidagi masalalardan qaysi biriga birinchi tartibli hosilaga nisbatan yechilgan differensial tenglama uchun Koshi masalasi deyiladi?",
+            "o": [
+                "$y' = f(x,y), y(x_0) = y_0$",
+                "$y'' = f(x,y), y(x_0) = y_0$",
+                "$y' = f(x,y), y'(x_0) = y_0$",
+                "$y'' = f(x,y), y'(x_0) = y_0$"
+            ],
+            "a": "$y' = f(x,y), y(x_0) = y_0$"
+        },
+        {
+            "q": "Quyidagi masalalardan qaysi biriga ikkinchi tartibli hosilaga nisbatan yechilgan differensial tenglama uchun Koshi masalasi deyiladi?",
+            "o": [
+                "$y'' = f(x,y,y'), y(x_0) = y_0, y'(x_0) = y_0$",
+                "$y' = f(x,y,y'), y(x_0) = y_0, y'(x_0) = y_0$",
+                "$y' = f(x,y), y'(x_0) = y_0$",
+                "$y'' = f(x,y), y'(x_0) = y_0$"
+            ],
+            "a": "$y'' = f(x,y,y'), y(x_0) = y_0, y'(x_0) = y_0$"
+        },
+        {
+            "q": "Izoklina deb nimaga aytiladi?",
+            "o": [
+                "Tekislikdagi shunday nuqtalarning geometrik o‘rniga aytiladiki, u nuqtalarda berilgan differensial tenglama integral chiziqlariga o‘tkazilgan urinmalar Ox o‘qining musbat yo‘nalishi bilan bir xil burchak tashkil etadi.",
+                "Tekislikdagi shunday nuqtalarga aytiladiki, u nuqtalarda berilgan differensial tenglama yagona yechimga ega bo‘ladi.",
+                "Tekislikdagi shunday nuqtalarning geometrik o‘rniga aytiladiki, u nuqtalarda berilgan differensial tenglama integral chiziqlariga o‘tkazilgan urinmalar Oy o‘qi bilan bir xil burchak tashkil etadi.",
+                "Tekislikdagi shunday nuqtalarning geometrik o‘rniga aytiladiki, u nuqtalar faqat ellipsdan iborat bo‘ladi."
+            ],
+            "a": "Tekislikdagi shunday nuqtalarning geometrik o‘rniga aytiladiki, u nuqtalarda berilgan differensial tenglama integral chiziqlariga o‘tkazilgan urinmalar Ox o‘qining musbat yo‘nalishi bilan bir xil burchak tashkil etadi."
+        },
+        {
+            "q": "Ushbu $y' = f(x) \cdot g(y)$ ko‘rinishdagi differensial tenglama qanday differensial tenglama deyiladi?",
+            "o": [
+                "Koshi tenglamasi",
+                "O‘zgaruvchilari ajraladigan differensial tenglama",
+                "Rikkati differensial tenglamasi",
+                "Bernulli differensial tenglamasi"
+            ],
+            "a": "O‘zgaruvchilari ajraladigan differensial tenglama"
+        }
     ]
 
 if 'dt_71_140' not in st.session_state:
