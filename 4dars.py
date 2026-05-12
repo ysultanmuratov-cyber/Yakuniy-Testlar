@@ -3738,7 +3738,191 @@ if 'dt_281_350' not in st.session_state:
         }
     ]
 if 'dt_351_420' not in st.session_state:
-    st.session_state.dt_251_420 = []
+    st.session_state.dt_251_420 = [
+        {
+            "q": "Ushbu $\\frac{3x^2 + y^2}{y^2} dx - \\frac{2x^3 + 5y}{y^3} dy = 0$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$2x + \\frac{x^3}{y^2} + \\frac{5}{y} = C$ \n\n",
+                "$x + \\frac{x^3}{y^2} + \\frac{5}{y} = C$ \n\n",
+                "$2x - \\frac{x^3}{y^2} + \\frac{5}{y} = C$ \n\n",
+                "$x + \\frac{x^2}{y^3} + \\frac{5}{x} = C$ \n\n"
+            ],
+            "a": "$x + \\frac{x^3}{y^2} + \\frac{5}{y} = C$ \n\n"
+        },
+        {
+            "q": "Ushbu $2x(1 + \\sqrt{x^2 - y}) dx - \\sqrt{x^2 - y} dy = 0$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$x^2 + \\frac{2}{3}(x^2 - y)^{3/2} = C$ \n\n",
+                "$x^2 + \\frac{2}{3}(x^2 + y)^{3/2} = C$ \n\n",
+                "$x^2 - \\frac{3}{2}(x^2 - y)^{3/2} = C$ \n\n",
+                "$x^2 + \\frac{3}{2}(x^2 + y)^{3/2} = C$ \n\n"
+            ],
+            "a": "$x^2 + \\frac{2}{3}(x^2 - y)^{3/2} = C$ \n\n"
+        },
+        {
+            "q": "Ushbu $(1 + y^2 \\sin 2x) dx - 2y \\cos^2 x dy = 0$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$x - y^2 \\cos^2 x = C$ \n\n",
+                "$x + y^2 \\cos^2 x = C$ \n\n",
+                "$2x + y^2 \\cos^2 x = C$ \n\n",
+                "$x - 2y^2 \\cos^2 x = C$ \n\n"
+            ],
+            "a": "$x - y^2 \\cos^2 x = C$ \n\n"
+        },
+        {
+            "q": "Ushbu $3x^2 (1 + \\ln y) dx + (2y - \\frac{x^3}{y}) dy = 0$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$x^3 + x^2 \\ln y - y^2 = C$ \n\n",
+                "$x^3 - x^3 \\ln y - y^2 = C$ \n\n",
+                "$x^3 + x^3 \\ln y - y^2 = C$ \n\n",
+                "$x^2 + x^3 \\ln y + y^2 = C$ \n\n"
+            ],
+            "a": "$x^3 + x^3 \\ln y - y^2 = C$ \n\n"
+        },
+        {
+            "q": "Ushbu $(\\frac{x}{\\sin y} + 2) dx + \\frac{(x^2 + 1) \\cos y}{\\cos 2y - 1} dy = 0$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$x^2 + 1 = 2(C - 2x) \\sin y$ \n\n",
+                "$x^2 + 1 = (C + 2x) \\sin y$ \n\n",
+                "$x^2 - 1 = 2(C - x) \\sin y$ \n\n",
+                "$x^2 + 1 = (C - x) \\sin y$ \n\n"
+            ],
+            "a": "$x^2 + 1 = 2(C - 2x) \\sin y$ \n\n"
+        },
+        {
+            "q": "$x^2 y'' = y'^2$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$y = -\\ln |C_1 x + 1| + C_2; 2y = x^2 + C; y = C$ \n\n",
+                "$C_1 x - C_1^2 y = \\ln |C_1 x + 1| + C_2; 2y = x^2 + C; y = C$ \n\n",
+                "$y = -\\ln |C_1 x + 1| + C_2 x; 2y = x^2 + C; y = C$ \n\n",
+                "$y = C_1 \\ln |x + 1| + C_2 x; 2y = x^2 + C; y = C$ \n\n"
+            ],
+            "a": "$C_1 x - C_1^2 y = \\ln |C_1 x + 1| + C_2; 2y = x^2 + C; y = C$ \n\n"
+        },
+        {
+            "q": "$2xy'y'' = y'^2 - 1$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$y = x$ \n\n",
+                "$y = x^2 + 1$ \n\n",
+                "$y = -x^2 + x$ \n\n",
+                "$y = 2x$ \n\n"
+            ],
+            "a": "$y = x$ \n\n"
+        },
+        {
+            "q": "$y' y'' = 1$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$C_1 y^2 - 1 = (C_1 x + C_2)^2$ \n\n",
+                "$y = (C_1 x + C_2)^2$ \n\n",
+                "$C_1 y^2 + x = (C_1 x + C_2)^2$ \n\n",
+                "$C_1 y - 1 = (C_1 x + C_2)^2$ \n\n"
+            ],
+            "a": "$C_1 y^2 - 1 = (C_1 x + C_2)^2$ \n\n"
+        },
+        {
+            "q": "$y'^2 + 2yy'' = 0$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$y = x^2$ \n\n",
+                "$y = x$ \n\n",
+                "$y = 2$ \n\n",
+                "$y = 2x$ \n\n"
+            ],
+            "a": "$y = 2$ \n\n"
+        },
+        {
+            "q": "$y'' = 2yy'$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$y = 1$ \n\n",
+                "$y = x$ \n\n",
+                "$y = x^2$ \n\n",
+                "$y = 2x$ \n\n"
+            ],
+            "a": "$y = 1$ \n\n"
+        },
+        {
+            "q": "$yy'' + 1 = y'^2$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$y = 2x + 1$ \n\n",
+                "$y = x + 1$ \n\n",
+                "$y = x^2 + 2$ \n\n",
+                "$y = 1$ \n\n"
+            ],
+            "a": "$y = x + 1$ \n\n"
+        },
+        {
+            "q": "$y''(e^x + 1) + y' = 0$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$y = C_1(x - e^{-x}) + C_2$ \n\n",
+                "$y = C_1(x + e^{-x}) + C_2$ \n\n",
+                "$y = C_1(1 - e^{-x}) + C_2$ \n\n",
+                "$y = C_1(x + e^x) + C_2$ \n\n"
+            ],
+            "a": "$y = C_1(x - e^{-x}) + C_2$ \n\n"
+        },
+        {
+            "q": "$y'' = 3y'^2$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$y = x + 1$ \n\n",
+                "$y = 2(x - e^{-x}) + 1$ \n\n",
+                "$y = 2(x - e^{-x})$ \n\n",
+                "$y = x^2 + 2$ \n\n"
+            ],
+            "a": "$y = x + 1$ \n\n"
+        },
+        {
+            "q": "$yy'' = y'^2 - y^3$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$y = x^2 + 2$ \n\n",
+                "$y = x + 1$ \n\n",
+                "$y = 2$ \n\n",
+                "$y = 2x + 1$ \n\n"
+            ],
+            "a": "$y = 2$ \n\n"
+        },
+        {
+            "q": "$y^{IV} = 2(y'' - 1) \\text{ctg } x$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$2y = C_1 \\cos 2x + (1 + 2C_1)x^2 + C_2 x + C_3$ \n\n",
+                "$2y = C_1 \\cos 2x + C_2 x + C_3$ \n\n",
+                "$y = C_1 \\cos 2x + (1 + 2C_1)x^2 + C_2 x + C_3$ \n\n",
+                "$y = C_1 \\cos 2x + C_2 x + C_3$ \n\n"
+            ],
+            "a": "$2y = C_1 \\cos 2x + (1 + 2C_1)x^2 + C_2 x + C_3$ \n\n"
+        },
+        {
+            "q": "$2yy'' = y'^2 + y^2$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$y = e^{2x}$ \n\n",
+                "$y = e^x$ \n\n",
+                "$y = x e^x$ \n\n",
+                "$y = x e^{2x}$ \n\n"
+            ],
+            "a": "$y = e^x$ \n\n"
+        },
+        {
+            "q": "$3y''' + xy'' = 2y'$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$y = 1$ \n\n",
+                "$y = 2x + 1$ \n\n",
+                "$y = x^2 + 2$ \n\n",
+                "$y = x + 2$ \n\n"
+            ],
+            "a": "$y = 1$ \n\n"
+        },
+        {
+            "q": "$y''^2 + y' = xy''$ tenglamaning biror xususiy yechimini toping.",
+            "o": [
+                "$y = 2x + 1$ \n\n",
+                "$y = x^2 - 2x$ \n\n",
+                "$y = x^2 - 4x$ \n\n",
+                "$y = x^2 + 2x$ \n\n"
+            ],
+            "a": "$y = x^2 - 4x$ \n\n"
+        }
+    ]
+    
+if 'dt_351_420' not in st.session_state:
+     st.session_state.dt_251_420 = []
     
 # 4. Holatlarni boshqarish
 if 'logged_in' not in st.session_state: st.session_state.logged_in = False
@@ -3764,7 +3948,7 @@ if not st.session_state.get('logged_in', False):
         "Samandarov": "Shoxrux06", "Xudayberganova": "Sevinch06", "Erkayev": "Akmal06", 
         "CharosD": "DCh07172005", "Rozimova": "Sevinch2", "MadrimovaG": "Gulshoda006", 
         "Rozmetov": "Bekchon05", "admin": "murat_admin", "Yuldashova":"Zuxra05", "otaboyeva": "sevinch01",
-        "iskandarova": "maftuna12", "qadamova": "aziza23", "urinbayev": "zafarbek77"
+        "iskandarova": "maftuna12", "qadamova": "aziza23", "urinbayev": "zafarbek77", "pulatova": "dilnoza34"
     }
     
     u_login = st.text_input("Foydalanuvchi nomi (Login):")
