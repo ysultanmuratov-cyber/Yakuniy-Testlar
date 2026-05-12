@@ -522,42 +522,40 @@ else:
         
     else:
         # --- TEST JARAYONI ---
-          q_idx = st.session_state.get('current_q_index', 0)
-          questions = st.session_state.get('active_questions', [])
+        q_idx = st.session_state.get('current_q_index', 0)
+        questions = st.session_state.get('active_questions', [])
 
-          if q_idx < len(questions):
-              curr = questions[q_idx]
-              st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
-    
-    # Savol raqami
-              st.markdown(f"<h3 style='text-align: center;'>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
-    
-    # MUHIM: Savol matnini LaTeX bilan chiqarish (Kitobdagidek chiroyli qiladi)
-              st.write("---")
-              st.markdown(f"#### {curr['q']}") 
-              st.write("---")
+        if q_idx < len(questions):
+            curr = questions[q_idx]
+            st.markdown('<div class="quiz-card">', unsafe_allow_html=True)
+            
+            # Savol raqami
+            st.markdown(f"<h3 style='text-align: center;'>Savol {q_idx + 1}/{len(questions)}</h3>", unsafe_allow_html=True)
+            
+            # Savol matnini LaTeX bilan chiqarish (Kitobdagidek chiroyli chiqadi)
+            st.write("---")
+            st.markdown(f"#### {curr['q']}") 
+            st.write("---")
 
-              if not st.session_state.get('answered', False):
-        # Variantlarni chiqarish
-                  ans = st.radio("Javobingizni tanlang:", curr['o'], index=None, key=f"q_{q_idx}")
-        
-                  col_a, col_b = st.columns([1, 1])
-                  with col_a:
-                      if st.button("✅ TASDIQLASH"):
-                          if ans:
-                              st.session_state.answered = True
-                              st.session_state.selected_option = ans
-                              if ans == curr['a']: 
-                                  st.session_state.user_score += 1
-                              st.rerun()
-                          else:
-                              st.warning("Iltimos, variantni tanlang!")
+            if not st.session_state.get('answered', False):
+                # Variantlarni chiqarish
+                ans = st.radio("Javobingizni tanlang:", curr['o'], index=None, key=f"q_{q_idx}")
+                
+                col_a, col_b = st.columns([1, 1])
+                with col_a:
+                    if st.button("✅ TASDIQLASH"):
+                        if ans:
+                            st.session_state.answered = True
+                            st.session_state.selected_option = ans
+                            if ans == curr['a']: 
+                                st.session_state.user_score += 1
+                            st.rerun()
+                        else:
+                            st.warning("Iltimos, variantni tanlang!")
                 
                 with col_b:
                     if st.button("🛑 TO'XTATISH"):
-                        # To'xtatganda sessiyadan savollar uzunligini olib, oxirgi sahifaga o'tamiz
-                        questions_len = len(st.session_state.get('active_questions', []))
-                        st.session_state.current_q_index = questions_len
+                        st.session_state.current_q_index = len(questions)
                         st.rerun()
             
             else:  
@@ -592,37 +590,35 @@ else:
             st.markdown('</div>', unsafe_allow_html=True)
 
         else:
-           
             # --- NATIJALAR SAHIFASI ---
             st.markdown('<div class="quiz-card" style="text-align: center;">', unsafe_allow_html=True)
             st.balloons()
             
-            # Xatolikni oldini olish uchun sessiyadan ma'lumotlarni xavfsiz olamiz
-            # Agar 'fan' topilmasa, 'Noma'lum fan' deb yozadi
             current_user = st.session_state.get('u_login', 'Mehmon')
-            current_subject = fan if 'fan' in locals() else "Aniqlanmagan fan"
+            current_subject = st.session_state.get('current_fan', 'Aniqlanmagan fan')
             current_score = st.session_state.get('user_score', 0)
-            total_questions = len(questions) if 'questions' in locals() else 0
+            total_questions = len(questions)
             
-            # Ma'lumotlarni yozish (faqat bir marta)
             if 'log_saved' not in st.session_state:
                 save_log(current_user, current_subject, current_score, total_questions)
-                st.session_state.log_saved = True # Qayta-qayta yozmaslik uchun
+                st.session_state.log_saved = True
             
             st.markdown("<h2>Test yakunlandi!</h2>", unsafe_allow_html=True)
-            st.markdown(f"<h1>Natija: {current_score} / {total_questions}</h1>", unsafe_allow_html=True)
+            st.markdown(f"<h1 style='color: #2563eb;'>Natija: {current_score} / {total_questions}</h1>", unsafe_allow_html=True)
             
             if st.button("🏠 ASOSIY MENUGA QAYTISH"):
                 st.session_state.test_started = False
                 st.session_state.current_q_index = 0
                 st.session_state.user_score = 0
                 st.session_state.answered = False
-                if 'log_saved' in st.session_state: del st.session_state.log_saved
+                if 'log_saved' in st.session_state: 
+                    del st.session_state.log_saved
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
+
 # 3. Footer (Har doim ko'rinadi)
 st.markdown(f"""
-    <div class="footer" style="text-align: center; padding-top: 20px; padding-bottom: 20px;">
+    <div class="footer" style="text-align: center; padding-top: 40px; padding-bottom: 20px;">
         <p style="margin: 0; font-size: 13px; color: #64748B; font-family: sans-serif;">Yaratuvchi: <b>Murat Sultanov</b></p>
         <div style="margin-top: 8px; display: flex; justify-content: center; align-items: center; gap: 20px;">
             <a href="https://t.me/murat_sultanov" target="_blank" style="display: flex; align-items: center; gap: 5px; color: #0088cc; text-decoration: none; font-size: 14px;">
