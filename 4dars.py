@@ -392,6 +392,56 @@ if 'dt_1_70' not in st.session_state:
             ],
             "a": "O‘zgaruvchilari ajraladigan differensial tenglama"
         }
+        {
+            "q": "Agar quyidagi $y' = f(x,y)$ differensial tenglamaning o‘ng tomonidagi $f(x,y)$ funksiya $\\forall \\lambda > 0$ uchun $f(\\lambda x, \\lambda y) = f(x,y)$ shartni bajarsa, u holda bu tenglamaga qanday differensial tenglama deyiladi?",
+            "o": [
+                "Koshi tenglamasi",
+                "Bir jinsli differensial tenglama",
+                "O‘zgaruvchilari ajraladigan differensial tenglama",
+                "Bernulli differensial tenglamasi"
+            ],
+            "a": "Bir jinsli differensial tenglama"
+        },
+        {
+            "q": "Ushbu $y' = a(x)y + b(x)$ ko‘rinishdagi tenglamaga qanday differensial tenglama deyiladi?",
+            "o": [
+                "Birinchi tartibli chiziqli differensial tenglamasi",
+                "Bernulli differensial tenglamasi",
+                "Rikkati differensial tenglamasi",
+                "Eyler differensial tenglamasi"
+            ],
+            "a": "Birinchi tartibli chiziqli differensial tenglamasi"
+        },
+        {
+            "q": "Bernulli differensial tenglamasining ko‘rinishini aniqlang?",
+            "o": [
+                "$y' = a(x)y' + b(x)y^3$",
+                "$y' = a(x)y' + b(x)y$",
+                "$y' = a(x)y' + b(x)y^n$",
+                "$y' = a(x)y + b(x)y^n$"
+            ],
+            "a": "$y' = a(x)y + b(x)y^n$"
+        },
+        {
+            "q": "Ushbu $y' = a(x)y + b(x)y^n$ Bernulli differensial tenglamasida $n=0$ bo‘lsa, qanday differensial tenglama hosil bo‘ladi?",
+            "o": [
+                "Chiziqli differensial tenglamasi",
+                "Bir jinsli differensial tenglama",
+                "Rikkati differensial tenglamasi",
+                "Bernulli differensial tenglamasi"
+            ],
+            "a": "Chiziqli differensial tenglamasi"
+        },
+        {
+            "q": "Rikkati differensial tenglamasining ko‘rinishini aniqlang?",
+            "o": [
+                "$y'' = a(x)y^2 + b(x)y + c(x)$",
+                "$y' = a(x)y^2 + b(x)y'$",
+                "$y' = a(x)y^2 + b(x)y + c(x)$",
+                "$y' = a(x)y^4 + b(x)y' + c(x)$"
+            ],
+            "a": "$y' = a(x)y^2 + b(x)y + c(x)$"
+        }
     ]
 
 if 'dt_71_140' not in st.session_state:
