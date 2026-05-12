@@ -21,43 +21,27 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 # To'liq Premium CSS (Yuqoriga surilgan varianti)
 st.markdown("""
     <style>
-    /* Sahifani eng yuqoriga majburan ko'tarish */
-    .stApp {
-        margin-top: -100px !important;
-    }
-    
-    .main .block-container {
-        padding-top: 0rem !important;
-        padding-bottom: 0rem !important;
+    /* Sahifani tepaga surish */
+    .stApp { margin-top: -100px !important; }
+    header, [data-testid="stHeader"] { display: none !important; }
+
+    /* VARIANTLAR ORASINI MAJBURAN KENGAYTIRISH */
+    /* st.radio elementining har bir variantini alohida nishonga olamiz */
+    [data-testid="stWidgetLabel"] + div div[role="radiogroup"] > label {
+        margin-bottom: 28px !important; /* Variantlar orasidagi masofa */
+        padding: 10px 5px !important;   /* Variant ichidagi bo'shliq */
+        display: flex !important;
+        align-items: center !important;
     }
 
-    /* Tepadagi ortiqcha bo'sh joylarni butunlay yo'q qilish */
-    header, [data-testid="stHeader"] {
-        display: none !important;
-    }
-
-    /* Elementlar orasini zich qilish (Umumiy bloklar uchun) */
-    [data-testid="stVerticalBlock"] {
-        gap: 0.2rem !important;
-    }
-    
-    /* VARIANTLAR ORASINI KENGAYTIRISH */
-    [data-testid="stMarkdownContainer"] + div [data-testid="stVerticalBlock"] > div {
-        margin-bottom: 25px !important; /* Javoblar orasidagi bo'shliq */
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-    }
-
-    /* LaTeX formulalari balandligini to'g'rilash */
+    /* LaTeX matnlari balandligi */
     .stMarkdown p {
-        line-height: 1.6 !important;
+        line-height: 1.7 !important;
+        margin-bottom: 0px !important;
     }
 
-    /* Logotipni tepaga taqash */
-    .logo-container {
-        margin-top: 0px !important;
-        padding-top: 0px !important;
-    }
+    /* Elementlar orasini zich qilish */
+    [data-testid="stVerticalBlock"] { gap: 0.2rem !important; }
     </style>
 """, unsafe_allow_html=True)
 # 3. Savollar Bazasi
