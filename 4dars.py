@@ -441,7 +441,7 @@ if 'dt_1_70' not in st.session_state:
                 "$y' = a(x)y^4 + b(x)y' + c(x)$"
             ],
             "a": "$y' = a(x)y^2 + b(x)y + c(x)$"
-        }
+        },
         {
             "q": "Umumiy holda Rikkati differensial tenglamasi kvadraturada integrallanadimi?",
             "o": [
