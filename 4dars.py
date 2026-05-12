@@ -3738,7 +3738,7 @@ if 'dt_281_350' not in st.session_state:
         }
     ]
 if 'dt_351_420' not in st.session_state:
-    st.session_state.dt_251_420 = [
+    st.session_state.dt_351_420 = [
         {
             "q": "Ushbu $\\frac{3x^2 + y^2}{y^2} dx - \\frac{2x^3 + 5y}{y^3} dy = 0$ tenglamaning umumiy yechimini toping.",
             "o": [
