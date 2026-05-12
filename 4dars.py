@@ -563,9 +563,9 @@ else:
                     elif blok == "211-280":
                         st.session_state.active_questions = list(st.session_state.dt_211_280)
                     elif blok == "281-350":
-                        st.session_state.active_questions = list(st.session_state.dt_211_280)
+                        st.session_state.active_questions = list(st.session_state.dt_281_350)
                     elif blok == "351-395":
-                        st.session_state.active_questions = list(st.session_state.dt_211_280)
+                        st.session_state.active_questions = list(st.session_state.dt_351_395)
                      
                 elif fan == "Python Dasturlash":
                     st.session_state.active_questions = list(st.session_state.python_testlar)
