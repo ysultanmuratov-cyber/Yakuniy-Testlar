@@ -554,7 +554,19 @@ else:
                     elif blok == "141-210": st.session_state.active_questions = list(st.session_state.ms_141_210)
                     elif blok == "211-300": st.session_state.active_questions = list(st.session_state.ms_211_300)
                 elif fan == "Differensial tenglamalar":
-                    st.session_state.active_questions = list(st.session_state.dt_1_70)
+                    if blok == "1-70":
+                        st.session_state.active_questions = list(st.session_state.dt_1_70)
+                    elif blok == "71-140":
+                        st.session_state.active_questions = list(st.session_state.dt_71_140)
+                    elif blok == "141-210":
+                        st.session_state.active_questions = list(st.session_state.dt_141_210)
+                    elif blok == "211-280":
+                        st.session_state.active_questions = list(st.session_state.dt_211_280)
+                    elif blok == "281-350":
+                        st.session_state.active_questions = list(st.session_state.dt_211_280)
+                    elif blok == "351-395":
+                        st.session_state.active_questions = list(st.session_state.dt_211_280)
+                     
                 elif fan == "Python Dasturlash":
                     st.session_state.active_questions = list(st.session_state.python_testlar)
                 
