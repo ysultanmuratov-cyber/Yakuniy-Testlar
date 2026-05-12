@@ -538,8 +538,8 @@ else:
                 st.markdown("<p style='text-align: center; color: #475569;'>📚 Bo'limni tanlang:</p>", unsafe_allow_html=True)
                 blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"], label_visibility="collapsed")
             elif fan == "Differensial tenglamalar":
-                st.markdown("<p style='text-align: center; color: #475569;'>📐 Differensial tenglamalar blokini tanlang:</p>", unsafe_allow_html=True)
-                blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-300"], key="diff_blok", label_visibility="collapsed")
+                st.markdown("<p style='text-align: center; color: #475569;'>📐 Blokni tanlang:</p>", unsafe_allow_html=True)
+                blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-280", "281-350", "351-395"], key="diff_blok", label_visibility="collapsed")
             else:
                 st.markdown("<p style='text-align: center; color: #475569;'>🐍 Python dasturlash testi</p>", unsafe_allow_html=True)
                 blok = "Python_Test"
@@ -554,8 +554,7 @@ else:
                     elif blok == "141-210": st.session_state.active_questions = list(st.session_state.ms_141_210)
                     elif blok == "211-300": st.session_state.active_questions = list(st.session_state.ms_211_300)
                 elif fan == "Differensial tenglamalar":
-                    st.markdown("<p style='text-align: center; color: #475569;'>📐 Blokni tanlang:</p>", unsafe_allow_html=True)
-                    blok = st.radio("Blok:", ["1-70", "71-140", "141-210", "211-280", "281-350", "351-395"], key="diff_blok", label_visibility="collapsed")
+                
                     if blok == "1-70":
                         st.session_state.active_questions = list(st.session_state.dt_1_70)
                     elif blok == "71-140":
