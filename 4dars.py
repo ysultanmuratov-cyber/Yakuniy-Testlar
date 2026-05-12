@@ -21,23 +21,30 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 # To'liq Premium CSS (Yuqoriga surilgan varianti)
 st.markdown("""
     <style>
-    /* Sahifani tepaga surish */
+    /* Sahifani tepaga surish va header-ni yo'qotish */
     .stApp { margin-top: -100px !important; }
     header, [data-testid="stHeader"] { display: none !important; }
 
-    /* VARIANTLAR ORASINI MAJBURAN KENGAYTIRISH */
-    /* st.radio elementining har bir variantini alohida nishonga olamiz */
+    /* VARIANTLAR ORASINI MAKSIMAL KENGAYTIRISH */
+    /* margin-bottom qiymatini 45px qildim - bu juda keng masofa beradi */
     [data-testid="stWidgetLabel"] + div div[role="radiogroup"] > label {
-        margin-bottom: 28px !important; /* Variantlar orasidagi masofa */
-        padding: 10px 5px !important;   /* Variant ichidagi bo'shliq */
-        display: flex !important;
-        align-items: center !important;
+        margin-bottom: 45px !important; 
+        padding: 15px 10px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Variantlar chegarasini biroz ko'rsatish uchun */
+        border-radius: 12px;
+        background-color: rgba(255, 255, 255, 0.03); /* Yengil fon berish */
     }
 
-    /* LaTeX matnlari balandligi */
+    /* LaTeX formulalari o'zaro to'qnashmasligi uchun qator balandligi */
     .stMarkdown p {
-        line-height: 1.7 !important;
+        line-height: 2.0 !important;
         margin-bottom: 0px !important;
+    }
+
+    /* Radio doirachalarini (checkbox) formula bilan tekisda turishini ta'minlash */
+    [data-testid="stWidgetLabel"] + div div[role="radiogroup"] [data-testid="stWidgetLabel"] {
+        display: flex;
+        align-items: center;
     }
 
     /* Elementlar orasini zich qilish */
