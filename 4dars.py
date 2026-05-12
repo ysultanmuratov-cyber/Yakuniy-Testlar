@@ -2310,9 +2310,713 @@ if 'dt_141_210' not in st.session_state:
         }
     ]
 
-if 'dt_211_300' not in st.session_state:
-    st.session_state.dt_211_300 = [] # 211-300 savollar
+if 'dt_211_280' not in st.session_state:
+    st.session_state.dt_211_280 = [
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $8y'^3 = 27y$",
+            "o": [
+                "$y^2 = (x + C)^3$ \n\n",
+                "$(x + C)^2 + y^2 = 1$ \n\n",
+                "$x^2 y \\ln Cy - 1y = 0$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n"
+            ],
+            "a": "$y^2 = (x + C)^3$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y'^2 (y'^2 + 1) = 1$",
+            "o": [
+                "$(x + C)^2 y = 1$ \n\n",
+                "$x^2 y \\ln Cy = 1$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n",
+                "$(x - 1)^{4/3} + y^{4/3} = C$ \n\n"
+            ],
+            "a": "$(x + C)^2 y = 1$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $2y + (x^2 y + 1) xy' = 0$",
+            "o": [
+                "$x^2 y \\ln Cy - 1y = 0$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n",
+                "$(x - 1)^{4/3} + y^{4/3} = C$ \n\n",
+                "$y^2(1 - y) = (x + C)^2; y = 1$ \n\n"
+            ],
+            "a": "$x^2 y \\ln Cy - 1y = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $yy'^3 + x = 1$",
+            "o": [
+                "$(x - 1)^{4/3} + y^{4/3} = C$ \n\n",
+                "$y^2(1 - y) = (x + C)^2; y = 1$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$x^2 y = C; y = Cx$ \n\n"
+            ],
+            "a": "$(x - 1)^{4/3} + y^{4/3} = C$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $4(1 - y) = (3y - 2)^2 y'^2$",
+            "o": [
+                "$y^2(1 - y) = (x + C)^2; y = 1$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$x^2 y = C; y = Cx$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n"
+            ],
+            "a": "$y^2(1 - y) = (x + C)^2; y = 1$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $xy'(xy' + y) = 2y^2$",
+            "o": [
+                "$x^2 y = C; y = Cx^2$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n",
+                "$(x + C)^2 = 4Cy; y = 0, y = -x$ \n\n",
+                "$(x + 2)^{4/3} + C = 4e^{-y/3}$ \n\n"
+            ],
+            "a": "$x^2 y = C; y = Cx^2$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $xy'^2 = y(2y' - 1)$ ",
+            "o": [
+                "$(x + C)^2 = 4Cy; y = 0, y = x$ \n\n",
+                "$(x + 2)^{4/3} + C = 4e^{-y/3}$ \n\n",
+                "$y = Cx^2 \\pm 2\\sqrt{x/7}$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n"
+            ],
+            "a": "$(x + C)^2 = 4Cy; y = 0, y = x$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y'^3 + (x + 2) e^y = 0$",
+            "o": [
+                "$3(x + 2)^{4/3} + C = 4e^{-y/3}$ \n\n",
+                "$y = Cx^{-3} \\pm 2\\sqrt{x/7}$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n"
+            ],
+            "a": "$3(x + 2)^{4/3} + C = 4e^{-y/3}$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(xy' + 3y)^2 = 7x$",
+            "o": [
+                "$y = Cx^{-3} \\pm 2\\sqrt{x/7}$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n",
+                "$\\ln Cy = x \\pm \\sin x; y = 0$ \n\n"
+            ],
+            "a": "$y = Cx^{-3} \\pm 2\\sqrt{x/7}$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y'(2y - y') = y^2 \\sin^2 x$",
+            "o": [
+                "$\\ln Cy = x \\pm \\sin x; y = 0$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n",
+                "$x^2 + (Cy + 1)^2 = 1; y = 0$ \n\n",
+                "$2(x - C)^2 + 2y^2 = C^2; y = \\pm x$ \n\n"
+            ],
+            "a": "$\\ln Cy = x \\pm \\sin x; y = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $x(y - xy')^2 = xy'^2 - 2yy'$ ",
+            "o": [
+                "$x^2 + (Cy + 1)^2 = 1; y = 0$ \n\n",
+                "$2(x - C)^2 + 2y^2 = C^2; y = \\pm x$ \n\n",
+                "$y = C e^{x^2} - x^2$ \n\n",
+                "$y = C(x + 1) e^{-x}; x = -1$ \n\n"
+            ],
+            "a": "$x^2 + (Cy + 1)^2 = 1; y = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $yy'(yy' - 2x) = x^2 - 2y^2$",
+            "o": [
+                "$2(x - C)^2 + 2y^2 = C^2; y = \\pm x$ \n\n",
+                "$y = C e^{x^2} - x^2$ \n\n",
+                "$y = C(x + 1) e^{-x}; x = -1$ \n\n",
+                "$\\ln |x| = C + \\ln(y^2 + 1); x = 0$ \n\n"
+            ],
+            "a": "$2(x - C)^2 + 2y^2 = C^2; y = \\pm x$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y'^2 + 4xy' - y^2 - 2x^2 y - x^4 - 4x^2 = 0$",
+            "o": [
+                "$y = C e^x - x^2$ \n\n",
+                "$y = C(x + 1) e^{-x}; x = -1$ \n\n",
+                "$\\ln |x| = C + \\ln(y^2 + 1); x = 0$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n"
+            ],
+            "a": "$y = C e^x - x^2$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $xy dx + (x + 1) dy = 0$",
+            "o": [
+                "$y = C(x + 1) e^{-x}; x = -1$ \n\n",
+                "$\\ln |x| = C + \\ln(y^2 + 1); x = 0$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$y = C e^{x^2} - x^2$ \n\n"
+            ],
+            "a": "$y = C(x + 1) e^{-x}; x = -1$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $\\sqrt{y^2 + 1} dx = xy dy$",
+            "o": [
+                "$\\ln |x| = C + \\ln(y + \\sqrt{y^2 + 1}); x = 0$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$y = C(x + 1) e^{-x}; x = -1$ \n\n",
+                "$y = C e^{x^2} - x^2$ \n\n"
+            ],
+            "a": "$\\ln |x| = C + \\ln(y + \\sqrt{y^2 + 1}); x = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(x^2 - 1)y' + 2xy^2 = 0; y(0) = 1$",
+            "o": [
+                "$y(\\ln |x^2 - 1| + C) = 1; y = 0; y[\\ln(1 - x^2) + 1] = 1$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n",
+                "$y = 2 + C \\cos x; y = 2 - 3 \\cos x$ \n\n"
+            ],
+            "a": "$y(\\ln |x^2 - 1| + C) = 1; y = 0; y[\\ln(1 - x^2) + 1] = 1$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' \\text{ctg } x + y = 2; y(x) \\to -1$",
+            "o": [
+                "$y = 2 + C \\cos x; y = 2 - 3 \\cos x$ \n\n",
+                "$y^2 - 2 = C e^{1/x}$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n"
+            ],
+            "a": "$y = 2 + C \\cos x; y = 2 - 3 \\cos x$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' = 3 \\sqrt[3]{y^2}; y(2) = 0$",
+            "o": [
+                "$y = (x - C)^3; y = 0; y = (x - 2)^3; y = 0$ \n\n",
+                "$y(1 - Cx) = 1; y = 0; y(1 + x) = 1$ \n\n",
+                "$y^2 - 2 = C e^{1/x}$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n"
+            ],
+            "a": "$y = (x - C)^3; y = 0; y = (x - 2)^3; y = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $xy' + y = y^2; y(1) = 0.5$",
+            "o": [
+                "$y(1 - Cx) = 1; y = 0; y(1 + x) = 1$ \n\n",
+                "$y^2 - 2 = C e^{1/x}$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n"
+            ],
+            "a": "$y(1 - Cx) = 1; y = 0; y(1 + x) = 1$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $2x^2 yy' + y^2 = 2$",
+            "o": [
+                "$y^2 - 2 = C e^{1/x}$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$(C e^{-x^2} - 1)y - 2y = 0$ \n\n"
+            ],
+            "a": "$y^2 - 2 = C e^{1/x}$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y - xy' = 2xy$",
+            "o": [
+                "$(C e^{-2x} - 1)y - 2y = 0$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$y^2 - 2 = C e^{1/x}$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n"
+            ],
+            "a": "$(C e^{-2x} - 1)y - 2y = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $e^{-s}(1 + \\frac{ds}{dt}) = 1$",
+            "o": [
+                "$e^{-s} = 1 + C e^t$ \n\n",
+                "$e^s = x + C e^t$ \n\n",
+                "$e^{-s} + C = 1$ \n\n",
+                "$s + e^s = C + e^t$ \n\n"
+            ],
+            "a": "$e^{-s} = 1 + C e^t$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $z' = 10^{x+z}$ ",
+            "o": [
+                "$z = -\\lg(C - 10^x)$ \n\n",
+                "$z = \\sin(C - 10^x)$ \n\n",
+                "$z = \\text{tg }(C - 10^x)$ \n\n",
+                "$z = \\cos(C - 10^x)$ \n\n"
+            ],
+            "a": "$z = -\\lg(C - 10^x)$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $x \\frac{dy}{dx} + t = 1$",
+            "o": [
+                "$x^2 + t^2 - 2t + C = 0$ \n\n",
+                "$x + t - 2t^2 + C = 0$ \n\n",
+                "$2x^2 + t + C = 0$ \n\n",
+                "$x + 2t^2 - t = C$ \n\n"
+            ],
+            "a": "$x^2 + t^2 - 2t + C = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' = \\cos(y - x)$ ",
+            "o": [
+                "$\\text{ctg } \\frac{y-x}{2} = x + C; y - x = 2\\pi k, k = 0, \\pm 1, \\dots$ \n\n",
+                "$2x + y - 1 = C e^x$ \n\n",
+                "$y' - x^2 = Cy; y = 0$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n"
+            ],
+            "a": "$\\text{ctg } \\frac{y-x}{2} = x + C; y - x = 2\\pi k, k = 0, \\pm 1, \\dots$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' - y = 2x - 3$",
+            "o": [
+                "$2x + y - 1 = C e^x$ \n\n",
+                "$y' - x^2 = Cy; y = 0$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n"
+            ],
+            "a": "$2x + y - 1 = C e^x$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(x + 2y)y' = 1; y(0) = -1$",
+            "o": [
+                "$x + 2y + 2 = C e^y; x + 2y + 2 = 0$ \n\n",
+                "$(x - y) \\ln Cx = -x$ \n\n",
+                "$\\sqrt{4x + 2y - 1} - 2 \\ln(\\sqrt{4x + 2y - 1} + 2) = x + C$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n"
+            ],
+            "a": "$x + 2y + 2 = C e^y; x + 2y + 2 = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' = \\sqrt{4x + 2y - 1}$ ",
+            "o": [
+                "$\\sqrt{4x + 2y - 1} - 2 \\ln(\\sqrt{4x + 2y - 1} + 2) = x + C$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$x + y = Cx^2; x = 0$ \n\n",
+                "$\\ln(x^2 + y^2) = C - 2 \\text{arctg }(y/x)$ \n\n"
+            ],
+            "a": "$\\sqrt{4x + 2y - 1} - 2 \\ln(\\sqrt{4x + 2y - 1} + 2) = x + C$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(x + 2y)dx - xdy = 0$",
+            "o": [
+                "$x + y = Cx^2; x = 0$ \n\n",
+                "$\\ln(x^2 + y^2) = C - 2 \\text{arctg }(y/x)$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n"
+            ],
+            "a": "$x + y = Cx^2; x = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(x - y)dx + (x + y)dy = 0$",
+            "o": [
+                "$\\ln(x^2 + y^2) = C - 2 \\text{arctg }(y/x)$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n",
+                "$x + y = Cx^2; x = 0$ \n\n"
+            ],
+            "a": "$\\ln(x^2 + y^2) = C - 2 \\text{arctg }(y/x)$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(y^2 - 2xy)dx + 2x^2 dy = 0$",
+            "o": [
+                "$x(y - x) = Cy; y = 0$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$\\ln(x^2 + y^2) = C - 2 \\text{arctg }(y/x)$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n"
+            ],
+            "a": "$x(y - x) = Cy; y = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $2x^3 y = xyy'$ ",
+            "o": [
+                "$x = \\pm y \\sqrt{\\ln Cx}; y = 0$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n",
+                "$y = C e^{x^2}$ \n\n",
+                "$y^2 - x^2 = Cy; y = 0$ \n\n"
+            ],
+            "a": "$x = \\pm y \\sqrt{\\ln Cx}; y = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y^2 + x^2 y' = xyy'$ ",
+            "o": [
+                "$y = C e^{y/x}$ \n\n",
+                "$y^2 - x^2 = Cy; y = 0$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n"
+            ],
+            "a": "$y = C e^{y/x}$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(x^2 + y^2)y' = 2xy$",
+            "o": [
+                "$y^2 - x^2 = Cy; y = 0$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$y = -x \\ln \\ln Cx$ \n\n"
+            ],
+            "a": "$y^2 - x^2 = Cy; y = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $xy' - y = x \\text{tg } \\frac{y}{x}$ ",
+            "o": [
+                "$\\sin \\frac{y}{x} = Cx$ \n\n",
+                "$y^2 - x^2 = Cy; y = 0$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n"
+            ],
+            "a": "$\\sin \\frac{y}{x} = Cx$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $xy' = y \\ln e^{y/x}$ ",
+            "o": [
+                "$y = -x \\ln \\ln Cx$ \n\n",
+                "$x^2 = (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n"
+            ],
+            "a": "$y = -x \\ln \\ln Cx$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $xy' - y = (x + y) \\ln \\frac{x+y}{x}$ ",
+            "o": [
+                "$\\ln \\frac{x+y}{x} = Cx$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n",
+                "$x^2 = (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n"
+            ],
+            "a": "$\\ln \\frac{x+y}{x} = Cx$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $xy' = y \\cos \\ln \\frac{y}{x}$ ",
+            "o": [
+                "$\\ln Cx = \\text{ctg } (\\frac{1}{2} \\ln \\frac{y}{x}); y = x e^{2\\pi k}$ \n\n",
+                "$2x + y - 1 = C e^{e^x}$ \n\n",
+                "$(y - x + 2)^2 + 2x = C$ \n\n",
+                "$\\ln \\frac{x+y}{x} = Cx$ \n\n"
+            ],
+            "a": "$\\ln Cx = \\text{ctg } (\\frac{1}{2} \\ln \\frac{y}{x}); y = x e^{2\\pi k}$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(y + \\sqrt{xy}) dx = x dy$",
+            "o": [
+                "$2 \\sqrt{y/x} = \\ln Cx; y = 0; x = 0$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n"
+            ],
+            "a": "$2 \\sqrt{y/x} = \\ln Cx; y = 0; x = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(2x - 4y + 6) dx + (x + y - 3) dy = 0$",
+            "o": [
+                "$(y - 2x)^3 = C(y - x - 1)^2; y = x + 1$ \n\n",
+                "$x^2 = (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$2x + y - 1 = C e^{e^x}$ \n\n",
+                "$(y - x + 2)^2 + 2x = C$ \n\n"
+            ],
+            "a": "$(y - 2x)^3 = C(y - x - 1)^2; y = x + 1$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(2x + y + 1)dx - (4x + 2y - 3)dy = 0$",
+            "o": [
+                "$2x + y - 1 = C e^{2y-x}$ \n\n",
+                "$(y - x + 2)^2 + 2x = C$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n",
+                "$(y - x + 5)^5 (x + 2y - 2) = C$ \n\n"
+            ],
+            "a": "$2x + y - 1 = C e^{2y-x}$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $x - y - 1 + (y - x + 2) y' = 0$",
+            "o": [
+                "$(y - x + 2)^2 + 2x = C$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n",
+                "$(y - x + 5)^5 (x + 2y - 2) = C$ \n\n",
+                "$(y + 2)^2 = C(x + y - 1); y = 1 - x$ \n\n"
+            ],
+            "a": "$(y - x + 2)^2 + 2x = C$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(x + 4y)y' = 2x + 3y - 5$",
+            "o": [
+                "$(y - x + 5)^5 (x + 2y - 2) = C$ \n\n",
+                "$(y + 2)^2 = C(x + y - 1); y = 1 - x$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$(y - x + 2)^2 + 2x = C$ \n\n"
+            ],
+            "a": "$(y - x + 5)^5 (x + 2y - 2) = C$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(y + 2)dx - (2x + y - 4)dy = 0$",
+            "o": [
+                "$(y + 2)^2 = C(x + y - 1); y = 1 - x$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$(y - x + 2)^2 + 2x = C$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n"
+            ],
+            "a": "$(y + 2)^2 = C(x + y - 1); y = 1 - x$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' = 2 (\\frac{y+2}{x+y-1})^2$ ",
+            "o": [
+                "$y + 2 = C e^{-2 \\text{arctg } \\frac{y+2}{x-3}}$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n"
+            ],
+            "a": "$y + 2 = C e^{-2 \\text{arctg } \\frac{y+2}{x-3}}$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $(y' + 1) \\ln \\frac{y+x}{x+3} = \\frac{y+x}{x+3}$",
+            "o": [
+                "$\\ln \\frac{y+x}{x+3} = 1 + \\frac{C}{x+y}$ \n\n",
+                "$\\sin \\frac{y-2x}{x+1} = C(x + 1)$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n"
+            ],
+            "a": "$\\ln \\frac{y+x}{x+3} = 1 + \\frac{C}{x+y}$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' = \\frac{y+2}{x+1} + \\text{tg } \\frac{y-2x}{x+1}$ ",
+            "o": [
+                "$\\sin \\frac{y-2x}{x+1} = C(x + 1)$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n"
+            ],
+            "a": "$\\sin \\frac{y-2x}{x+1} = C(x + 1)$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $x^2(y' - x) = y^2$",
+            "o": [
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n",
+                "$2x + y - 1 = C e^{e^x}$ \n\n"
+            ],
+            "a": "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $2x^2 y' = y^3 + xy$",
+            "o": [
+                "$x = -y^2 \\ln Cx$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$x^2 y \\ln Cx^2 - 1y = 0; x = 0$ \n\n"
+            ],
+            "a": "$x = -y^2 \\ln Cx$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $2x dy + (x^2 y^2 + 1) y dx = 0$",
+            "o": [
+                "$x^2 y \\ln Cx^2 - 1y = 0; x = 0$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n"
+            ],
+            "a": "$x^2 y \\ln Cx^2 - 1y = 0; x = 0$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y dx + x(2xy + 1) dy = 0$",
+            "o": [
+                "$1 + e^y = C(1 + x^2)$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$(2\\sqrt{y} - x) \\ln C(2\\sqrt{y} - x) = x; 2\\sqrt{y} = x$ \n\n"
+            ],
+            "a": "$1 + e^y = C(1 + x^2)$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $2y' + x = 4\\sqrt{y}$ ",
+            "o": [
+                "$(2\\sqrt{y} - x) \\ln C(2\\sqrt{y} - x) = x; 2\\sqrt{y} = x$ \n\n",
+                "$x^2 y \\ln Cx^2 - 1y = 0; x = 0$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$x = -y^2 \\ln Cx$ \n\n"
+            ],
+            "a": "$(2\\sqrt{y} - x) \\ln C(2\\sqrt{y} - x) = x; 2\\sqrt{y} = x$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $y' = y^2 - \\frac{2}{x^2}$ ",
+            "o": [
+                "$1 - xy = Cx^3(2 + xy); xy = -2$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n",
+                "$1 + e^y = C(1 + x^2)$ \n\n"
+            ],
+            "a": "$1 - xy = Cx^3(2 + xy); xy = -2$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamaning umumiy yechimi qaysi qatorda to'g'ri ko'rsatilgan? $2xy' + y = y^2 \\sqrt{x - x^2 y^2}$ ",
+            "o": [
+                "$2 \\sqrt{1/(xy^2 - 1)} = -\\ln Cx; y = 0; xy^2 = 0$ \n\n",
+                "$(x - y) \\ln Cx = x$ \n\n",
+                "$x^2 - (x^2 - y) \\ln Cx; y = x^2$ \n\n",
+                "$y = (1 + Cy + \\ln y) \\cos x$ \n\n"
+            ],
+            "a": "$2 \\sqrt{1/(xy^2 - 1)} = -\\ln Cx; y = 0; xy^2 = 0$ \n\n"
+        },
+        {
+            "q": "$y = x^3 + C_1 x + C_2$ parabolalar oilasining differensial tenglamasini toping:",
+            "o": [
+                "$y'' = 6x$ \n\n",
+                "$y' = 6x + 2$ \n\n",
+                "$y' = 6x^2 + 2$ \n\n",
+                "$y = xy - e^{y'}$ \n\n"
+            ],
+            "a": "$y'' = 6x$ \n\n"
+        },
+        {
+            "q": "$y = e^{y'}$ chiziqlar oilasining differensial tenglamasini toping:",
+            "o": [
+                "$y = e^{xy'/y}$ \n\n",
+                "$y = e^{y'}$ \n\n",
+                "$y = 1 + e^{y'}$ \n\n",
+                "$y = xy' - e^{y'}$ \n\n"
+            ],
+            "a": "$y = xy' - e^{y'}$ \n\n"
+        },
+        {
+            "q": "$b$ sonining qanday qiymatlarida $y'' + by = 0$ tenglamaning barcha yechimlari butun sonlar o'qi $(-\\infty, +\\infty)$ da chegaralangan?",
+            "o": [
+                "$b > 0$ \n\n",
+                "$b < 0$ \n\n",
+                "$b = 0$ \n\n",
+                "$b = -1$ \n\n"
+            ],
+            "a": "$b > 0$ \n\n"
+        },
+        {
+            "q": "$y' e^{x^2} = x \\cdot e^{x^2} - y$ differensial tenglamaning turini aniqlang:",
+            "o": [
+                "Bir jinsli bo'lmagan chiziqli differensial tenglama \n\n",
+                "Bernulli tenglamasi \n\n",
+                "Rikatti tenglamasi \n\n",
+                "Eyler tenglamasi \n\n"
+            ],
+            "a": "Bir jinsli bo'lmagan chiziqli differensial tenglama \n\n"
+        },
+        {
+            "q": "Quyidagilarning qaysi biri $y' + p(x)y = 0$ tenglamaning umumiy yechimi bo'ladi?",
+            "o": [
+                "$y = p(x)$ \n\n",
+                "$y = C e^{p(x)}$ \n\n",
+                "$y = p'(x)$ \n\n",
+                "$y = C e^{-\\int p(x) dx}$ \n\n"
+            ],
+            "a": "$y = C e^{-\\int p(x) dx}$ \n\n"
+        },
+        {
+            "q": "$y' + x \\cdot y = y^3$ tenglamani qaysi almashtirish yordamida chiziqli tenglamaga keltirish mumkin?",
+            "o": [
+                "$z = y^{-2}$ \n\n",
+                "$z = y^{-3}$ \n\n",
+                "$z = y^2$ \n\n",
+                "$z = y^3$ \n\n"
+            ],
+            "a": "$z = y^{-2}$ \n\n"
+        },
+        {
+            "q": "$y^{IV} + 8y'' + 16 = 0$ tenglamaning umumiy yechimini toping.",
+            "o": [
+                "$y = [C_1 \\cos 2x + C_2 \\sin 2x] e^{3x}$ \n\n",
+                "$y = [(C_1 + C_2 x) \\cos 5x + (C_3 + C_4 x) \\sin 5x] e^{3x}$ \n\n",
+                "$y = [(C_1 + C_2 x) \\cos 2x + (C_3 + C_4 x) \\sin 2x] e^{0x}$ \n\n",
+                "$y = [(C_1 + C_2 x) \\cos 2x + (C_3 + C_4 x) \\sin 2x] e^{3x}$ \n\n"
+            ],
+            "a": "$y = [(C_1 + C_2 x) \\cos 2x + (C_3 + C_4 x) \\sin 2x] e^{0x}$ \n\n"
+        },
+        {
+            "q": "$y''' - 8y = 0$ tenglamani yeching.",
+            "o": [
+                "$y = C_1 e^{2x} + e^{-x}(C_2 \\cos \\sqrt{3}x + C_3 \\sin \\sqrt{3}x)$ \n\n",
+                "$y = C_1 e^{-x} + e^x(C_2 \\cos \\sqrt{3}x + C_3 \\sin \\sqrt{3}x)$ \n\n",
+                "$y = C_1 e^{-x} + e^{2x}(C_2 \\cos \\sqrt{3}x + C_3 \\sin \\sqrt{3}x)$ \n\n",
+                "$y = C_1 e^{-x} + e^{3x}(C_2 \\cos 4x + C_3 \\sin 4x)$ \n\n"
+            ],
+            "a": "$y = C_1 e^{2x} + e^{-x}(C_2 \\cos \\sqrt{3}x + C_3 \\sin \\sqrt{3}x)$ \n\n"
+        },
+        {
+            "q": "$y'' + y' - 2y = 3x e^x$ tenglamaning bir jinsli bo'lmagan qismining yechimi qanday ko'rinishda izlanadi?",
+            "o": [
+                "$y_1 = x e^x (ax + b)$ \n\n",
+                "$y_1 = e^x (ax + b)$ \n\n",
+                "$y_1 = e^{-x} (ax + b)$ \n\n",
+                "$y_1 = ax e^x$ \n\n"
+            ],
+            "a": "$y_1 = x e^x (ax + b)$ \n\n"
+        },
+        {
+            "q": "$x^2 y'' - 4xy' + 6y = 0$ tenglamani yeching.",
+            "o": [
+                "$y(x) = C_1 x^{-2} + C_2 x^{-3}$ \n\n",
+                "$y(x) = C_1 x^2 + C_2 x^{-3}$ \n\n",
+                "$y(x) = C_1 x^{-2} + C_2 x^3$ \n\n",
+                "$y(x) = C_1 x^2 + C_2 x^3$ \n\n"
+            ],
+            "a": "$y(x) = C_1 x^2 + C_2 x^3$ \n\n"
+        },
+        {
+            "q": "$(x-2)^2 y'' - 3(x-2)y' + 4y = x$ Eyler tenglamasini yechish uchun qanday almashtirish bajarish kerak?",
+            "o": [
+                "$x - 2 = e^t$ \n\n",
+                "$x + 2 = e^t$ \n\n",
+                "$x = e^t$ \n\n",
+                "$x = e^{-t}$ \n\n"
+            ],
+            "a": "$x - 2 = e^t$ \n\n"
+        },
+        {
+            "q": "Differensial tenglamada: $y' = f(\\frac{a_1 x + b_1 y + c_1}{k(a_1 x + b_1 y) + c_2})$ qanday shakl almashtirish bajarib o'zgaruvchilari ajraladigan differensial tenglamaga olib kelinadi?",
+            "o": [
+                "$z^{-2} = a_1 x + b_1 y$ \n\n",
+                "$z = a_1 x - b_1 y$ \n\n",
+                "$z = a_1 x + b_1 y$ \n\n",
+                "$z^{-1} = a_1 x + b_1 y$ \n\n"
+            ],
+            "a": "$z = a_1 x + b_1 y$ \n\n"
+        },
+        {
+            "q": "Ushbu $y' = f(\\frac{2x + 3y + 6}{4x + 6y - 8})$ differensial tenglamada qanday shakl almashtirish bajarib o'zgaruvchilari ajraladigan differensial tenglamaga olib kelinadi?",
+            "o": [
+                "$z = 2x + 3y$ \n\n",
+                "$z = 2x - 3y$ \n\n",
+                "$z^{-1} = 2x - 3y$ \n\n",
+                "$z^{-2} = 2x + 3y$ \n\n"
+            ],
+            "a": "$z = 2x + 3y$ \n\n"
+        },
+        {
+            "q": "$y' = a(x)y^2 + b(x)y + c(x)$ Rikkati tenglamasini bitta xususiy yechimi berilgan bo'lsa, uni qanday turdagi tenglamaga keltirish mumkin?",
+            "o": [
+                "Lagranj tenglamasiga \n\n",
+                "Bernulli tenglamasiga \n\n",
+                "Eyler tenglamasiga \n\n",
+                "Eyri tenglamasiga \n\n"
+            ],
+            "a": "Bernulli tenglamasiga \n\n"
+        },
+        {
+            "q": "Ushbu $x' + p(t)x = f(t)x^m$ Bernulli tenglamasi $m$ ning qanday qiymatida chiziqli differensial tenglama bo'ladi?",
+            "o": [
+                "$0$ \n\n",
+                "$-2$ \n\n",
+                "$2$ \n\n",
+                "$-1$ \n\n"
+            ],
+            "a": "$0$ \n\n"
+        },
+        {
+            "q": "Ushbu $\\frac{dx}{dt} + p(t)x = f(t)x^m$ Bernulli tenglamasi $m$ ning qaysi qiymatida chiziqli bir jinsli differensial tenglamaga aylanadi?",
+            "o": [
+                "$1$ \n\n",
+                "$3$ \n\n",
+                "$4$ \n\n",
+                "$0$ \n\n"
+            ],
+            "a": "$1$ \n\n"
+        }
+    ]
 
+if 'dt_281_350' not in st.session_state:
+    st.session_state.dt_281_350 = []
+    
 # 4. Holatlarni boshqarish
 if 'logged_in' not in st.session_state: st.session_state.logged_in = False
 if 'test_started' not in st.session_state: st.session_state.test_started = False
