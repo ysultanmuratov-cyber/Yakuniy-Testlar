@@ -504,7 +504,7 @@ else:
                     elif blok == "141-210": st.session_state.active_questions = list(st.session_state.ms_141_210)
                     elif blok == "211-300": st.session_state.active_questions = list(st.session_state.ms_211_300)
                 elif fan == "Differensial tenglamalar":
-                    st.session_state.active_questions = list(st.session_state.diff_tenglamalar)
+                    st.session_state.active_questions = list(st.session_state.dt_1_70)
                 elif fan == "Python Dasturlash":
                     st.session_state.active_questions = list(st.session_state.python_testlar)
                 
