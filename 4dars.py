@@ -20,10 +20,11 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 
 # To'liq Premium CSS (Yuqoriga surilgan varianti)
 st.markdown("""
+    st.markdown("""
     <style>
     /* Sahifani eng yuqoriga majburan ko'tarish */
     .stApp {
-        margin-top: -100px !important; /* Bu qiymatni oshirsangiz yanada tepaga chiqadi */
+        margin-top: -100px !important;
     }
     
     .main .block-container {
@@ -31,16 +32,28 @@ st.markdown("""
         padding-bottom: 0rem !important;
     }
 
-    /* Tepadagi ortiqcha bo'sh joylarni (header) butunlay yo'q qilish */
+    /* Tepadagi ortiqcha bo'sh joylarni butunlay yo'q qilish */
     header, [data-testid="stHeader"] {
         display: none !important;
     }
 
-    /* Elementlar orasini yanada zich qilish */
+    /* Elementlar orasini zich qilish (Umumiy bloklar uchun) */
     [data-testid="stVerticalBlock"] {
         gap: 0.2rem !important;
     }
     
+    /* VARIANTLAR ORASINI KENGAYTIRISH (Siz so'ragan qism) */
+    [data-testid="stMarkdownContainer"] + div [data-testid="stVerticalBlock"] > div {
+        margin-bottom: 22px !important; /* Javoblar orasidagi bo'shliq */
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    /* LaTeX formulalari balandligini to'g'rilash */
+    .stMarkdown p {
+        line-height: 1.5 !important;
+    }
+
     /* Logotipni tepaga taqash */
     .logo-container {
         margin-top: 0px !important;
