@@ -391,7 +391,7 @@ if 'dt_1_70' not in st.session_state:
                 "Bernulli differensial tenglamasi"
             ],
             "a": "O‘zgaruvchilari ajraladigan differensial tenglama"
-        }
+        },
         {
             "q": "Agar quyidagi $y' = f(x,y)$ differensial tenglamaning o‘ng tomonidagi $f(x,y)$ funksiya $\\forall \\lambda > 0$ uchun $f(\\lambda x, \\lambda y) = f(x,y)$ shartni bajarsa, u holda bu tenglamaga qanday differensial tenglama deyiladi?",
             "o": [
