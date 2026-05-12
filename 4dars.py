@@ -21,34 +21,14 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 # To'liq Premium CSS (Yuqoriga surilgan varianti)
 st.markdown("""
     <style>
-    /* Sahifani tepaga surish */
     .stApp { margin-top: -100px !important; }
     header, [data-testid="stHeader"] { display: none !important; }
-
-    /* VARIANTLARNI BIR-BIRIDAN MAJBURAN UZOQLASHTIRISH */
-    /* Radio buttonlarning butun konteynerini nishonga olamiz */
-    div[role="radiogroup"] > div {
-        padding-top: 25px !important;    /* Yuqoridan masofa */
-        padding-bottom: 25px !important; /* Pastdan masofa */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; /* Vizual ajratish */
+    
+    /* Radio button matni uchun qo'shimcha havo */
+    .stRadio label {
+        padding: 20px 0px !important;
+        line-height: 2.5 !important;
     }
-
-    /* Har bir variant matni va radio doirachasi uchun qo'shimcha bo'shliq */
-    [data-testid="stWidgetLabel"] + div div[role="radiogroup"] label {
-        margin-top: 15px !important;
-        margin-bottom: 15px !important;
-        min-height: 60px !important; /* Har bir variant uchun minimal balandlik */
-        display: flex !important;
-        align-items: center !important;
-    }
-
-    /* LaTeX formulalari uchun havo (line-height) */
-    .stMarkdown p {
-        line-height: 2.2 !important; /* Formulalar ichidagi masofa */
-    }
-
-    /* Elementlar zichligini saqlash */
-    [data-testid="stVerticalBlock"] { gap: 0.1rem !important; }
     </style>
 """, unsafe_allow_html=True)
 # 3. Savollar Bazasi
