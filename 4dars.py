@@ -476,6 +476,506 @@ if 'dt_1_70' not in st.session_state:
                 "$z = y^{n-1}$"
             ],
             "a": "$z = y^{1-n}$"
+        },
+        {
+            "q": "To‘liq differensialli tenglamaning ko‘rinishini aniqlang?",
+            "o": [
+                "$M(x,y)dx + N(x,y)dy = 0, \\frac{\partial M}{\partial y} = \\frac{\partial N}{\partial y}$",
+                "$M(x,y)dy + N(x,y)dx = 0, \\frac{\partial M}{\partial y} = \\frac{\partial N}{\partial x}$",
+                "$M(x,y)dx + N(x,y)dy = 0, \\frac{\partial M}{\partial y} = \\frac{\partial N}{\partial x}$",
+                "$M(x,y)dx + N(x,y)dy = 0, \\frac{\partial M}{\partial y} < \\frac{\partial N}{\partial x}$"
+            ],
+            "a": "$M(x,y)dx + N(x,y)dy = 0, \\frac{\partial M}{\partial y} = \\frac{\partial N}{\partial x}$"
+        },
+        {
+            "q": "Ushbu $M(x,y)dx + N(x,y)dy = 0$ differensial tenglama to‘liq differensial tenglama bo‘lishi uchun qanday shart bajarilishini ko‘rsating?",
+            "o": [
+                "$\\frac{\partial M}{\partial y} = -\\frac{\partial N}{\partial x}$",
+                "$\\frac{\partial M}{\partial y} = \\frac{\partial N}{\partial y}$",
+                "$-\\frac{\partial M}{\partial y} = \\frac{\partial N}{\partial x}$",
+                "$\\frac{\partial M}{\partial y} = \\frac{\partial N}{\partial x}$"
+            ],
+            "a": "$\\frac{\partial M}{\partial y} = \\frac{\partial N}{\partial x}$"
+        },
+        {
+            "q": "$y' = f(x,y)$ tenglama uchun qo‘yilgan Koshi masalasi yechimi mavjud va yagona bo‘lishi uchun quyidagi shartlardan qaysi biri bajarilishi zarur?",
+            "o": [
+                "$f(x,y)$ funksiya yopiq sohada aniqlangan va uzluksiz bo‘lib, $y$ o‘zgaruvchi bo‘yicha Lipshits shartini qanoatlantirsa",
+                "$f(x,y)$ funksiya yopiq sohada aniqlangan va uzluksiz bo‘lib, $x$ o‘zgaruvchi bo‘yicha o‘suvchi bo‘lsa",
+                "$f(x,y)$ funksiya yopiq sohada aniqlangan va uzluksiz bo‘lib, $x$ o‘zgaruvchi bo‘yicha kamayuvchi bo‘lsa",
+                "$f(x,y)$ funksiya yopiq sohada aniqlangan va uzluksiz bo‘lib, $x$ o‘zgaruvchi bo‘yicha davriy bo‘lsa"
+            ],
+            "a": "$f(x,y)$ funksiya yopiq sohada aniqlangan va uzluksiz bo‘lib, $y$ o‘zgaruvchi bo‘yicha Lipshits shartini qanoatlantirsa"
+        },
+        {
+            "q": "Ushbu $y' = f(x,y)$ differensial tenglamada $f(x,y)$ funksiya $x, y$ o‘zgaruvchilar bo‘yicha $n \\geq 1$ marta uzluksiz differensiallanuvchi bo‘lsa, u holda qaralayotgan differensial tenglamaning ixtiyoriy yechimi:",
+            "o": [
+                "$(n+1)$ marta differensiallanuvchi bo‘ladi",
+                "$(n+2)$ marta differensiallanuvchi bo‘ladi",
+                "$(n+3)$ marta differensiallanuvchi bo‘ladi",
+                "$(n+4)$ marta differensiallanuvchi bo‘ladi"
+            ],
+            "a": "$(n+1)$ marta differensiallanuvchi bo‘ladi"
+        },
+        {
+            "q": "$P$ to‘g‘ri to‘rtburchakda aniqlangan $f(x,y)$ funksiya uchun $y$ o‘zgaruvchi bo‘yicha Lipshits shartini ko‘rsating?",
+            "o": [
+                "$|f(x,y_1) - f(x,y_2)| \\leq N |y_1 - y_2|, \\forall (x, y_j) \\in P, j=1,2, \\exists N > 0$",
+                "$|f(x,y_1) - f(x,y_2)| = |f(x,y_1)|$",
+                "$|f(x,y_1) - f(x,y_2)| > N |y_1 - y_2|, \\forall (x, y_j) \\in P, j=1,2, \\exists N > 0$",
+                "$|f(x,y_1) - f(x,y_2)| \\geq |y_1 - y_2|, \\exists N > 0$"
+            ],
+            "a": "$|f(x,y_1) - f(x,y_2)| \\leq N |y_1 - y_2|, \\forall (x, y_j) \\in P, j=1,2, \\exists N > 0$"
+        },
+        {
+            "q": "$y_1(x)$ va $y_2(x)$ funksiyalarning Vronskiy determinantini ko'rsating?",
+            "o": [
+                "$W(x) = \\begin{vmatrix} y_1(x) & y_2(x) \\\\ y_1'(x) & y_2'(x) \\end{vmatrix}$",
+                "$W(x) = \\begin{vmatrix} -y_1(x) & y_2(x) \\\\ y_1'(x) & y_2'(x) \\end{vmatrix}$",
+                "$W(x) = \\begin{vmatrix} y_1(x) & -y_2(x) \\\\ y_1'(x) & y_2'(x) \\end{vmatrix}$",
+                "$W(x) = \\begin{vmatrix} y_1(x) & y_2(x) \\\\ y_1''(x) & y_2''(x) \\end{vmatrix}$"
+            ],
+            "a": "$W(x) = \\begin{vmatrix} y_1(x) & y_2(x) \\\\ y_1'(x) & y_2'(x) \\end{vmatrix}$"
+        },
+        {
+            "q": "Ushbu $y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y = 0$ differensial tenglamaning ixtiyoriy $n$ ta $y_1(x), y_2(x), \\dots, y_n(x)$ chiziqli bog'lanmagan yechimlariga...",
+            "o": [
+                "normalangan yechimlar sistemasi deyiladi",
+                "maxsus yechimlar sistemasi deyiladi",
+                "fundamental yechimlar sistemasi deyiladi",
+                "ortonormallangan yechimlar sistemasi deyiladi"
+            ],
+            "a": "fundamental yechimlar sistemasi deyiladi"
+        },
+        {
+            "q": "Fundamental yechimlar sistemasi $\\cos x$ va $\\sin x$ bo'lgan differensial tenglamani toping?",
+            "o": [
+                "$y'' + y = 0$",
+                "$y'' - y = 0$",
+                "$y'' + y' = 0$",
+                "$y'' = 0$"
+            ],
+            "a": "$y'' + y = 0$"
+        },
+        {
+            "q": "Quyidagi shartlardan qaysi biri ushbu $y''' = f(x, y, y', y'')$ differensial tenglama uchun $x_0$ nuqtada qo'yilgan Koshi boshlang'ich sharti bo'ladi?",
+            "o": [
+                "$y(x_0) = y_0$",
+                "$y(x_0) = y_0, y'(x_0) = y'_0, y''(x_0) = y''_0$",
+                "$y(x_0) = y_0, y'(x_0) = y'_0$",
+                "$y(x_0) = y_0, y'(x_0) = y'_0, y'''(x_0) = y'''_0$"
+            ],
+            "a": "$y(x_0) = y_0, y'(x_0) = y'_0, y''(x_0) = y''_0$"
+        },
+        {
+            "q": "Eyler differensial tenglamasini ko'rsating?",
+            "o": [
+                "$y^{(n)} + y^{(n-1)} + \\dots + a_{n-1}y' = 0$",
+                "$x^n y^{(n)} + a_1 x^{n-1} y^{(n-1)} + \\dots + a_{n-1} x y' + a_n y = 0$",
+                "$x y^{(n)} + a_1 x y^{(n-1)} + \\dots + a_{n-1} x y' + a_n y = 0$",
+                "$x y^{(n)} + a_1 x^{n-1} y^{(n-1)} + \\dots + a_{n-1} y' + y = 0$"
+            ],
+            "a": "$x^n y^{(n)} + a_1 x^{n-1} y^{(n-1)} + \\dots + a_{n-1} x y' + a_n y = 0$"
+        },
+        {
+            "q": "Eyri differensial tenglamasini ko'rsating?",
+            "o": [
+                "$y'' - x^2 y = 0$",
+                "$y'' - x y' = 0$",
+                "$y'' + x y = 0$",
+                "$y'' + y = 0$"
+            ],
+            "a": "$y'' + x y = 0$"
+        },
+        {
+            "q": "Bessel differensial tenglamasini ko‘rsating?",
+            "o": [
+                "$x^2 y'' + xy' + (x^2 - \\nu^2)y = 0, \\nu \\text{-haqiqiy parametr}$",
+                "$xy'' + xy' + (x^2 - \\nu^2)y = 0, \\nu \\text{-haqiqiy parametr}$",
+                "$y'' + xy' + \\nu^2 y = 0, \\nu \\text{-haqiqiy parametr}$",
+                "$y'' + y' + (x^2 - \\nu^2)y = 0, \\nu \\text{-haqiqiy parametr}$"
+            ],
+            "a": "$x^2 y'' + xy' + (x^2 - \\nu^2)y = 0, \\nu \\text{-haqiqiy parametr}$"
+        },
+        {
+            "q": "Vandermond determinantini ko‘rsating?",
+            "o": [
+                "$V_n = \\begin{vmatrix} 2 & 2 & \\dots & 2 \\\\ 2 & 2 & \\dots & 2 \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ \\lambda_1^n & \\lambda_2^n & \\dots & \\lambda_n^n \\end{vmatrix}$",
+                "$V_n = \\begin{vmatrix} 1 & 1 & \\dots & 1 \\\\ 1 & 1 & \\dots & 1 \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ \\lambda_1^n & \\lambda_2^n & \\dots & \\lambda_n^n \\end{vmatrix}$",
+                "$V_n = \\begin{vmatrix} 1 & 1 & \\dots & 1 \\\\ \\lambda_1 & \\lambda_2 & \\dots & \\lambda_n \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ \\lambda_1^{n-1} & \\lambda_2^{n-1} & \\dots & \\lambda_n^{n-1} \\end{vmatrix}$",
+                "$V_n = \\begin{vmatrix} 1 & 1 & \\dots & 1 \\\\ \\lambda_1 & \\lambda_2 & \\dots & \\lambda_n \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ \\lambda_1 & \\lambda_2 & \\dots & \\lambda_n \\end{vmatrix}$"
+            ],
+            "a": "$V_n = \\begin{vmatrix} 1 & 1 & \\dots & 1 \\\\ \\lambda_1 & \\lambda_2 & \\dots & \\lambda_n \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ \\lambda_1^{n-1} & \\lambda_2^{n-1} & \\dots & \\lambda_n^{n-1} \\end{vmatrix}$"
+        },
+        {
+            "q": "Ushbu $x^n y^{(n)} + a_1 x^{n-1} y^{(n-1)} + \\dots + a_{n-1} xy' + a_n y = 0$ Eyler tenglamasini qanday almashtirish yordamida n-tartibli bir jinsli o‘zgarmas koeffitsiyentli differensial tenglamaga keltirish mumkin?",
+            "o": [
+                "$x = 2e^t$",
+                "$y = 1 + e^{2x}$",
+                "$y = 1 - e^x$",
+                "$x = e^t$"
+            ],
+            "a": "$x = e^t$"
+        },
+        {
+            "q": "Agar $f(x)$ funksiyani $x_0 \\in \\mathbb{R}$ nuqtaning biror atrofida darajali qatorga yoyish mumkin bo‘lsa, $f(x)$ ga ...",
+            "o": [
+                "davriy funksiya deyiladi",
+                "golomorf funksiya deyiladi",
+                "uzluksiz funksiya deyiladi",
+                "meromorf funksiya deyiladi"
+            ],
+            "a": "golomorf funksiya deyiladi"
+        },
+        {
+            "q": "Ushbu $y^{(n)} = f(x)$ tenglamaning umumiy yechimi qanday ko‘rinishda bo‘ladi?",
+            "o": [
+                "$y(x) = C_1 \\frac{x^{n-1}}{(n-1)!} + C_2 \\frac{x^{n-2}}{(n-2)!} + \\dots + C_{n-1}x + C_n$",
+                "$y(x) = \\frac{1}{(n-1)!} \\int_{x_0}^x f(t)(x-t)^{n-1} dt + C_1 \\frac{x^{n-1}}{(n-1)!} + C_2 \\frac{x^{n-2}}{(n-2)!} + \\dots + C_{n-1}x + C_n$",
+                "$y(x) = \\frac{1}{(n-1)!} \\int_{x_0}^x f(t)(x-t)^{n-1} dt$",
+                "$y(x) = \\frac{1}{n!} \\int_{x_0}^x f(t)(x-t)^n dt$"
+            ],
+            "a": "$y(x) = \\frac{1}{(n-1)!} \\int_{x_0}^x f(t)(x-t)^{n-1} dt + C_1 \\frac{x^{n-1}}{(n-1)!} + C_2 \\frac{x^{n-2}}{(n-2)!} + \\dots + C_{n-1}x + C_n$"
+        },
+        {
+            "q": "Bir jinsli o‘zgarmas koeffitsiyentli chiziqli differensial tenglamaning umumiy ko‘rinishini toping?",
+            "o": [
+                "$y^{(n)} + a_1(x)y^{(n-1)} + \\dots + a_{n-1}(x)y' = 0$",
+                "$y^{(n)} + a_1(x)y^{(n-1)} + \\dots + a_{n-1}(x)y' + a_n(x)y = 0$",
+                "$y^{(n)} + c_1 y^{(n-1)} + \\dots + c_{n-1}y' + c_n y = 0$",
+                "$y^{(n)} + a_1 x y^{n-1} + \\dots + a_{n-1} x y' = 0$"
+            ],
+            "a": "$y^{(n)} + c_1 y^{(n-1)} + \\dots + c_{n-1}y' + c_n y = 0$"
+        },
+        {
+            "q": "Bir jinsli bo‘lmagan o‘zgarmas koeffitsiyentli chiziqli differensial tenglamaning umumiy ko‘rinishini toping?",
+            "o": [
+                "$y^{(n)} + a_1(x)y^{(n-1)} + \\dots + a_{n-1}(x)y' = f(x)$",
+                "$y^{(n)} + a_1(x)y^{(n-1)} + \\dots + a_{n-1}(x)y' + a_n(x)y = f(x)$",
+                "$y^{(n)} + c_1 y^{(n-1)} + \\dots + c_{n-1}y' + c_n y = f(x)$",
+                "$y^{(n)} + a_1 x y^{n-1} + \\dots + a_{n-1} x y' = f(x)$"
+            ],
+            "a": "$y^{(n)} + c_1 y^{(n-1)} + \\dots + c_{n-1}y' + c_n y = f(x)$"
+        },
+        {
+            "q": "Hosilaga nisbatan yechilmagan birinchi tartibli differensial tenglamaning umumiy ko‘rinishini toping?",
+            "o": [
+                "$F(x, y, y') = 0$",
+                "$F(x, y') = 0$",
+                "$F(y, y') = f(x)$",
+                "$F(y, y', y'') = f(x)$"
+            ],
+            "a": "$F(x, y, y') = 0$"
+        },
+        {
+            "q": "Ushbu $y'' + f_1(x)y' + f_2(x)y = 0$ tenglama uchun Ostragradskiy-Liuvill formulasini toping?",
+            "o": [
+                "$W(x) = W(x_0) e^{- \\int_{x_0}^x f_1(t) dt}$",
+                "$W(x) = -W(x_0) e^{\\int_{x_0}^x f_1(t) dt}$",
+                "$W(x) = W(x_0) e^{1 - \\int_{x_0}^x f_1(t) dt}$",
+                "$W(x) = -2W(x_0) e^{\\int_{x_0}^x f_1(t) dt}$"
+            ],
+            "a": "$W(x) = W(x_0) e^{- \\int_{x_0}^x f_1(t) dt}$"
+        },
+        {
+            "q": "Ushbu $y'' + p_1(x)y' + p_2(x)y = 0$ tenglama uchun Ostragradskiy-Liuvill formulasini toping?",
+            "o": [
+                "$W(x) = W(x_0) e^{- \\int_{x_0}^x p_1(t) dt}$",
+                "$W(x) = W(x_0) e^{\\int_{x_0}^x p_1(t) dt}$",
+                "$W(x) = W(x_0) e^{1 - \\int_{x_0}^x p_1(t) dt}$",
+                "$W(x) = -2W(x_0) e^{\\int_{x_0}^x p_1(t) dt}$"
+            ],
+            "a": "$W(x) = W(x_0) e^{- \\int_{x_0}^x p_1(t) dt}$"
+        },
+        {
+            "q": "Lagranj differensial tenglamasini ko‘rsating?",
+            "o": [
+                "$y' = \\varphi(y')x + \\psi(y')$",
+                "$y = \\varphi(y')x + \\psi(y)$",
+                "$y = \\varphi(y')x + \\psi(y')$",
+                "$y = \\varphi(y)x^2 + \\psi(y')$"
+            ],
+            "a": "$y = \\varphi(y')x + \\psi(y')$"
+        },
+        {
+            "q": "Klero differensial tenglamasini ko‘rsating?",
+            "o": [
+                "$y' = \\varphi(y')x + \\psi(y')$",
+                "$y' = yx + \\psi(y)$",
+                "$y = y'x + \\psi(y')$",
+                "$y = \\varphi(y)x^2 + \\psi(y')$"
+            ],
+            "a": "$y = y'x + \\psi(y')$"
+        },
+        {
+            "q": "Agar $L: (y = \\varphi(x))$ chiziqning har bir nuqtasidagi urinma $\\Phi(x, y, C) = 0$ ga tegishli kamida bitta chiziqning urinmasi bilan bir xil bo‘lsa, unga $\\Phi(x, y, C) = 0$ chiziqlar oilasining ...",
+            "o": [
+                "o‘ramasi deyiladi",
+                "umumiy yechimi deyiladi",
+                "maxsus yechimi deyiladi",
+                "regulyar yechimi deyiladi"
+            ],
+            "a": "o‘ramasi deyiladi"
+        },
+        {
+            "q": "Ushbu $M(x,y)dx + N(x,y)dy = 0$ differensial tenglama uchun $\\mu(x,y)$ integrallovchi ko‘paytuvchi deyiladi, agarda:",
+            "o": [
+                "$\\mu(x,y)M(x,y)dx + \\mu(x,y)N(x,y)dy = 0$ o‘zgaruvchilarga ajraladigan tenglama bo‘lsa",
+                "$\\mu(x,y)M(x,y)dx + \\mu(x,y)N(x,y)dy = 0$ bir jinsli tenglama bo‘lsa",
+                "$\\mu(x,y)M(x,y)dx + \\mu(x,y)N(x,y)dy = 0$ Bernulli tenglamasi bo‘lsa",
+                "$\\mu(x,y)M(x,y)dx + \\mu(x,y)N(x,y)dy = 0$ to‘la differensialli tenglama bo‘lsa"
+            ],
+            "a": "$\\mu(x,y)M(x,y)dx + \\mu(x,y)N(x,y)dy = 0$ to‘la differensialli tenglama bo‘lsa"
+        },
+        {
+            "q": "Ushbu $y^{(n)} = f(x, y^{(k)}, \\dots, y^{(n-1)})$ differensial tenglamaning tartibi qanday almashtirish yordamida $k$ birlikka pasayadi?",
+            "o": [
+                "$y^{(k)} = z$",
+                "$y^{(k+1)} = z$",
+                "$y^{(k-1)} = z$",
+                "$y^{(k+2)} = z$"
+            ],
+            "a": "$y^{(k)} = z$"
+        },
+        {
+            "q": "Agar $y_1(x)$ va $y_2(x)$ lar $y'' + a(x)y' + b(x)y = 0$ differensial tenglamaning xususiy yechimlari bo‘lsa, u holda bu tenglamaning umumiy yechimi qanday ko‘rinishda bo‘ladi?",
+            "o": [
+                "$y = y_1 + y_2$",
+                "$y = y_1 y_2$",
+                "$y = C_1 y_1 + y_2$",
+                "$y = C_1 y_1 + C_2 y_2$"
+            ],
+            "a": "$y = C_1 y_1 + C_2 y_2$"
+        },
+        {
+            "q": "$L$ chiziqli operator bo‘lsa, u holda qaysi tenglik har doim o‘rinli bo‘ladi?",
+            "o": [
+                "$L[c_1 y_1 + c_2 y_2] = L[y_1] + L[y_2]$",
+                "$L[y_1 + y_2] = L[y_1] L[y_2]$",
+                "$L[y_1 + y_2] = L[y_1] + c L[y_2]$",
+                "$L[c_1 y_1 + c_2 y_2] = c_1 L[y_1] + c_2 L[y_2]$"
+            ],
+            "a": "$L[c_1 y_1 + c_2 y_2] = c_1 L[y_1] + c_2 L[y_2]$"
+        },
+        {
+            "q": "Quyidagi tenglamalarning qaysi biri n-tartibli chiziqli bir jinsli tenglama?",
+            "o": [
+                "$y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y = f(x)$",
+                "$y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y = 0$",
+                "$y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y^2 = 0$",
+                "$y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y^3 = 0$"
+            ],
+            "a": "$y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y = 0$"
+        },
+        {
+            "q": "Quyidagi tenglamalarning qaysi biri n-tartibli chiziqli bir jinsli bo'lmas (bo'lmagan) tenglama?",
+            "o": [
+                "$y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y = f(x)$",
+                "$y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y = 0$",
+                "$p_1(x)y^{(n-1)} + \\dots + p_n(x)y^2 = f(x)$",
+                "$y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y^4 = f(x)$"
+            ],
+            "a": "$y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y = f(x)$"
+        },
+        {
+            "q": "Qaysi shart bajarilganda ushbu $y' = a(x)y^2 + b(x)y + c(x)$ Rikkati tenglamasi Bernulli tenglamasiga aylanadi?",
+            "o": [
+                "$c(x) = 0$",
+                "$c(x) = 0, a(x) = 0$",
+                "$c(x) = 0, b(x) = 0$",
+                "$a(x) = 0, b(x) = 0$"
+            ],
+            "a": "$c(x) = 0$"
+        },
+        {
+            "q": "Birinchi tartibli chiziqli differensial tenglamaning umumiy yechimi nechta ixtiyoriy o‘zgarmaslarga bog‘liq?",
+            "o": ["ikkita", "bitta", "uchta", "to‘rtta"],
+            "a": "bitta"
+        },
+        {
+            "q": "Birinchi tartibli $y' = \varphi \\left( \\frac{y}{x} \\right)$ bir jinsli tenglama $y = xz$ almashtirish natijasida qanday turdagi tenglamaga keladi?",
+            "o": [
+                "To‘liq differensial tenglamaga",
+                "Bernulli tenglamasiga",
+                "Chiziqli tenglamaga",
+                "O‘zgaruvchilari ajraladigan tenglamaga"
+            ],
+            "a": "O‘zgaruvchilari ajraladigan tenglamaga"
+        },
+        {
+            "q": "$n$-tartibli differensial tenglamaning umumiy yechimi nechta ixtiyoriy o‘zgarmasga bog‘liq?",
+            "o": ["$n$ ta", "$n+1$ ta", "$n+2$ ta", "4 ta"],
+            "a": "$n$ ta"
+        },
+        {
+            "q": "Ushbu $x^2 y'' + a_1 x y' + a_2 y = 0$ differensial tenglama turini toping?",
+            "o": [
+                "Rikkati tenglamasi",
+                "O‘zgarmas koeffitsiyentli chiziqli tenglama",
+                "Bernulli tenglamasi",
+                "Eylerning ikkinchi tartibli bir jinsli tenglamasi"
+            ],
+            "a": "Eylerning ikkinchi tartibli bir jinsli tenglamasi"
+        },
+        {
+            "q": "Ikkinchi tartibli chiziqli bir jinsli differensial tenglamaning chiziqli erkli yechimlarining maksimal sonini toping?",
+            "o": ["uchta", "ikkita", "to‘rtta", "bitta"],
+            "a": "ikkita"
+        },
+        {
+            "q": "$x^k y'' + axy' + by = 0$ tenglama $k$ ning qanday qiymatida Eyler tenglamasi bo‘ladi?",
+            "o": ["$k = 2$", "$k = 1$", "$k = 3$", "$k = 4$"],
+            "a": "$k = 2$"
+        },
+        {
+            "q": "Quyidagi tenglamalarning qaysi biri chiziqli bir jinsli tenglama?",
+            "o": [
+                "$y' + a(x)y^2 = b(x)$",
+                "$y' + a(x)y^3 = b(x)$",
+                "$y' + a(x)y = b(x)y^n, n \\neq 0, n \\neq 1$",
+                "$y' + a(x)y = 0$"
+            ],
+            "a": "$y' + a(x)y = 0$"
+        },
+        {
+            "q": "Hosilaga nisbatan yechilgan birinchi tartibli differensial tenglamaning umumiy ko‘rinishini toping?",
+            "o": [
+                "$y' = f(x)g(y)$",
+                "$y' = f(x,y)$",
+                "$y' = f(x, y, y')$",
+                "$y = f(x, y')$"
+            ],
+            "a": "$y' = f(x,y)$"
+        },
+        {
+            "q": "Ushbu $y^{(n)} = f(y^{(n-1)})$ tenglamaning tartibini qaysi almashtirish yordamida pasaytirish mumkin?",
+            "o": ["$z = y^{(n-1)}$", "$z = y^{(n)}$", "$z = y'$", "$z = y^2$"],
+            "a": "$z = y^{(n-1)}$"
+        },
+        {
+            "q": "$y^{(V)}(x) = -4y''$ tenglama tartibini 3 birlikka pasaytiruvchi almashtirishni ko‘rsating?",
+            "o": ["$z = y'$", "$z = y'''$", "$z = y''$", "$z = y^{(V)}$"],
+            "a": "$z = y''$"
+        },
+        {
+            "q": "Ushbu $y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y = 0$ bir jinsli differensial tenglamaning $y_1(x), y_2(x), \\dots, y_n(x)$ yechimlari chiziqli bog‘langan bo‘ladi, agarda ulardan tuzilgan Vronskiy determinanti uchun quyidagi shart bajarilsa:",
+            "o": [
+                "$W(y_1(x), y_2(x), \\dots, y_n(x)) = 0$",
+                "$W(y_1(x), y_2(x), \\dots, y_n(x)) \\neq 0$",
+                "$W(y_1(x), y_2(x), \\dots, y_n(x)) > 0$",
+                "$W(y_1(x), y_2(x), \\dots, y_n(x)) < 0$"
+            ],
+            "a": "$W(y_1(x), y_2(x), \\dots, y_n(x)) = 0$"
+        },
+        {
+            "q": "Ushbu $y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y = 0$ bir jinsli differensial tenglamaning $y_1(x), y_2(x), \\dots, y_n(x)$ yechimlari chiziqli bog‘lanmagan bo‘ladi, agarda ulardan tuzilgan Vronskiy determinanti uchun quyidagi shart bajarilsa:",
+            "o": [
+                "$W(y_1(x), y_2(x), \\dots, y_n(x)) = 0$",
+                "$W(y_1(x), y_2(x), \\dots, y_n(x)) \\neq 0$",
+                "$W(y_1(0), y_2(0), \\dots, y_n(0)) = 0$",
+                "$W(y_1(x_0), y_2(x_0), \\dots, y_n(x_0)) = 0$"
+            ],
+            "a": "$W(y_1(x), y_2(x), \\dots, y_n(x)) \\neq 0$"
+        },
+        {
+            "q": "Ushbu $y_1(x), y_2(x), \\dots, y_n(x)$ funksiyalar $y^{(n)} + p_1(x)y^{(n-1)} + \\dots + p_n(x)y = 0$ bir jinsli differensial tenglamaning fundamental yechimlar sistemasini tashkil qilsa, tenglamaning umumiy yechimi qaysi javobda to‘g‘ri ko‘rsatilgan?",
+            "o": [
+                "$y(x) = \\sum_{i=1}^n c_i y_i(x), c_i = const$",
+                "$y(x) = \\sum_{i=1}^n y_i(x)$",
+                "$y(x) = \\sum_{i=1}^n c_i y_i(x^2), c_i = const$",
+                "$y(x) = \\sum_{i=1}^n (1 + y_i(x))$"
+            ],
+            "a": "$y(x) = \\sum_{i=1}^n c_i y_i(x), c_i = const$"
+        },
+        {
+            "q": "$y_1, y_2$ va $y_3$ o‘zgarmas koeffitsiyentli 3-tartibli oddiy differensial tenglamaning chiziqli erkli xususiy yechimlari bo‘lsa, tenglamaning umumiy yechimini ko‘rsating?",
+            "o": [
+                "$y = c_1 y_1 + c_2 y_2 + c_3 y_3, c_1, c_2, c_3 \\text{- o‘zgarmas son}$",
+                "$y = y_1 + c_1(y_2 + y_3), c_1 \\text{- o‘zgarmas son}$",
+                "$y = c(y_1 + y_2), c_1 \\text{- o‘zgarmas son}$",
+                "$y = e^{(y_1 + y_2)}$"
+            ],
+            "a": "$y = c_1 y_1 + c_2 y_2 + c_3 y_3, c_1, c_2, c_3 \\text{- o‘zgarmas son}$"
+        },
+        {
+            "q": "Umumiy yechimdan olingan va undagi ixtiyoriy o‘zgarmas $c$ ga aniq $c = c_0$ qiymat berishdan hosil bo‘lgan $\\varphi(x, c_0)$ yechimga tenglamaning...",
+            "o": [
+                "Xususiy yechimi deyiladi",
+                "Umumiy yechimi deyiladi",
+                "Karrali yechimi deyiladi",
+                "Umumiy integrali deyiladi"
+            ],
+            "a": "Xususiy yechimi deyiladi"
+        },
+        {
+            "q": "Ushbu $\\begin{cases} \\frac{dx}{dt} = ax^k + by^l \\\\ \\frac{dy}{dt} = cx^m + dy^n \\end{cases}$ differensial tenglamalar sistemasining tartibini toping?",
+            "o": ["1", "2", "$k$", "$n$"],
+            "a": "1"
+        },
+        {
+            "q": "Ushbu $\\begin{cases} \\frac{dx}{dt} = f(t,x,y) \\\\ \\frac{dy}{dt} = g(t,x,y) \\end{cases}$ normal sistemaning umumiy yechimi nechta ixtiyoriy o‘zgarmaslarga bog‘liq?",
+            "o": ["2", "3", "4", "$n$"],
+            "a": "2"
+        },
+        {
+            "q": "$x' + g(t)x = f(t)x^k, k \\neq 0, k \\neq 1$ tenglamaning turini aniqlang?",
+            "o": [
+                "Bernulli tenglamasi",
+                "Chiziqli tenglamasi",
+                "O‘zgaruvchilari ajraladigan tenglama",
+                "Klero tenglamasi"
+            ],
+            "a": "Bernulli tenglamasi"
+        },
+        {
+            "q": "$x' + g(t)x = f(t)x^k$ tenglama qachon chiziqli tenglama bo‘ladi?",
+            "o": ["$k = 0$", "$k = 1$", "$k = 2$", "$k = 3$"],
+            "a": "$k = 0$"
+        },
+        {
+            "q": "$n$-tartibli differensial tenglamaning oshkormas ko‘rinishdagi umumiy yechimi qaysi javobda berilgan?",
+            "o": [
+                "$\\Phi(x, y, C_1, \\dots, C_n) = 0$",
+                "$y = \\varphi(x)$",
+                "$\\Phi(x, y) = 0$",
+                "$y = y(x)$"
+            ],
+            "a": "$\\Phi(x, y, C_1, \\dots, C_n) = 0$"
+        },
+        {
+            "q": "Ikkinchi tartibli chiziqli o‘zgarmas koeffitsiyentli bir jinsli sistemaning xarakteristik sonlari haqiqiy va bir xil ishorali sonlar bo‘lsa, unda (0,0) maxsus nuqta turi qaysi javobda berilgan?",
+            "o": ["Tugun tipidagi nuqta", "Egarsimon tipidagi nuqta", "Fokus", "Markaz"],
+            "a": "Tugun tipidagi nuqta"
+        },
+        {
+            "q": "Ikkinchi tartibli chiziqli o‘zgarmas koeffitsiyentli bir jinsli sistemaning xarakteristik sonlari haqiqiy har xil ishorali sonlar bo‘lsa, unda (0,0) maxsus nuqta turi qaysi javobda berilgan?",
+            "o": ["Egarsimon tipidagi nuqta", "Tugun tipidagi nuqta", "Fokus", "Markaz"],
+            "a": "Egarsimon tipidagi nuqta"
+        },
+        {
+            "q": "Ikkinchi tartibli chiziqli o‘zgarmas koeffitsiyentli bir jinsli sistemaning xarakteristik sonlari kompleks son bo‘lib, uning haqiqiy qismi nolga teng bo‘lib ya’ni sof mavhum son bo‘lsa (0,0) maxsus nuqta turi qaysi javobda berilgan?",
+            "o": ["Markaz tipidagi nuqta", "Tugun tipidagi nuqta", "Fokus", "Egarsimon tipidagi nuqta"],
+            "a": "Markaz tipidagi nuqta"
+        },
+        {
+            "q": "Quyidagi tenglamalarning qaysi biri ikkinchi tartibli differensial tenglama?",
+            "o": [
+                "$\\frac{d^2y}{dx^2} + \\sin(x+y) = 0$",
+                "$\\frac{dy}{dx} + \\sin(x+y^2) = 0$",
+                "$\\frac{d^2y}{dx^2} + \\cos(x+y'') = 0$",
+                "$\\frac{d^3y}{dx^3} - \\sin x^2 = 0$"
+            ],
+            "a": "$\\frac{d^2y}{dx^2} + \\sin(x+y) = 0$"
+        },
+        {
+            "q": "$y' = f(x+y-3)$ ko‘rinishdagi tenglamani yechish uchun qanday almashtirish bajarish kerak?",
+            "o": [
+                "$z = x + y - 3$",
+                "$z = 2x + f(y) - 3$",
+                "$z = xy - 3$",
+                "$z = f(xy) - 3$"
+            ],
+            "a": "$z = x + y - 3$"
         }
     ]
 
