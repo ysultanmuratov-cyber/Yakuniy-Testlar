@@ -442,6 +442,41 @@ if 'dt_1_70' not in st.session_state:
             ],
             "a": "$y' = a(x)y^2 + b(x)y + c(x)$"
         }
+        {
+            "q": "Umumiy holda Rikkati differensial tenglamasi kvadraturada integrallanadimi?",
+            "o": [
+                "integrallanadi",
+                "integrallanmaydi",
+                "(0,1) oraliqda integrallanadi",
+                "(0,2) oraliqda integrallanadi"
+            ],
+            "a": "integrallanmaydi"
+        },
+        {
+            "q": "Rikkati tenglamasining kamida nechta xususiy yechimi ma'lum bo'lsa, u holda uning umumiy yechimi bitta kvadratura yordamida topiladi?",
+            "o": ["2 ta", "3 ta", "1 ta", "4 ta"],
+            "a": "2 ta"
+        },
+        {
+            "q": "Rikkati tenglamasining kamida nechta xususiy yechimi ma'lum bo'lsa, u holda uning umumiy yechimi kvadraturasiz topiladi?",
+            "o": ["2 ta", "3 ta", "1 ta", "4 ta"],
+            "a": "3 ta"
+        },
+        {
+            "q": "Rikkati tenglamasining kamida nechta xususiy yechimi ma'lum bo'lsa, u holda uning umumiy yechimi ikkita kvadratura yordamida topiladi?",
+            "o": ["2 ta", "3 ta", "1 ta", "4 ta"],
+            "a": "1 ta"
+        },
+        {
+            "q": "Ushbu $y' = a(x)y + b(x)y^n$ Bernulli differensial tenglamasining umumiy yechimini topishda quyidagi almashtirishlardan qaysi biri qo'llaniladi?",
+            "o": [
+                "$z = y^{1-n}$",
+                "$z = y^{1+n}$",
+                "$z = y^n$",
+                "$z = y^{n-1}$"
+            ],
+            "a": "$z = y^{1-n}$"
+        }
     ]
 
 if 'dt_71_140' not in st.session_state:
