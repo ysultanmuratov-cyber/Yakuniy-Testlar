@@ -21,34 +21,34 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 # To'liq Premium CSS (Yuqoriga surilgan varianti)
 st.markdown("""
     <style>
-    /* Sahifani tepaga surish va header-ni yo'qotish */
+    /* Sahifani tepaga surish */
     .stApp { margin-top: -100px !important; }
     header, [data-testid="stHeader"] { display: none !important; }
 
-    /* VARIANTLAR ORASINI MAKSIMAL KENGAYTIRISH */
-    /* margin-bottom qiymatini 45px qildim - bu juda keng masofa beradi */
-    [data-testid="stWidgetLabel"] + div div[role="radiogroup"] > label {
-        margin-bottom: 45px !important; 
-        padding: 15px 10px !important;
-        border: 1px solid rgba(255, 255, 255, 0.1); /* Variantlar chegarasini biroz ko'rsatish uchun */
-        border-radius: 12px;
-        background-color: rgba(255, 255, 255, 0.03); /* Yengil fon berish */
+    /* VARIANTLARNI BIR-BIRIDAN MAJBURAN UZOQLASHTIRISH */
+    /* Radio buttonlarning butun konteynerini nishonga olamiz */
+    div[role="radiogroup"] > div {
+        padding-top: 25px !important;    /* Yuqoridan masofa */
+        padding-bottom: 25px !important; /* Pastdan masofa */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; /* Vizual ajratish */
     }
 
-    /* LaTeX formulalari o'zaro to'qnashmasligi uchun qator balandligi */
+    /* Har bir variant matni va radio doirachasi uchun qo'shimcha bo'shliq */
+    [data-testid="stWidgetLabel"] + div div[role="radiogroup"] label {
+        margin-top: 15px !important;
+        margin-bottom: 15px !important;
+        min-height: 60px !important; /* Har bir variant uchun minimal balandlik */
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* LaTeX formulalari uchun havo (line-height) */
     .stMarkdown p {
-        line-height: 2.0 !important;
-        margin-bottom: 0px !important;
+        line-height: 2.2 !important; /* Formulalar ichidagi masofa */
     }
 
-    /* Radio doirachalarini (checkbox) formula bilan tekisda turishini ta'minlash */
-    [data-testid="stWidgetLabel"] + div div[role="radiogroup"] [data-testid="stWidgetLabel"] {
-        display: flex;
-        align-items: center;
-    }
-
-    /* Elementlar orasini zich qilish */
-    [data-testid="stVerticalBlock"] { gap: 0.2rem !important; }
+    /* Elementlar zichligini saqlash */
+    [data-testid="stVerticalBlock"] { gap: 0.1rem !important; }
     </style>
 """, unsafe_allow_html=True)
 # 3. Savollar Bazasi
