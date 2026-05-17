@@ -21,16 +21,329 @@ st.set_page_config(page_title="Testlar Markazi", page_icon="🎯", layout="cente
 # To'liq Premium CSS (Yuqoriga surilgan varianti)
 st.markdown("""
     <style>
-    .stApp { margin-top: -100px !important; }
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+
+    /* ============ ASOSIY SOZLAMALAR ============ */
+    :root {
+        --bg-main:       #F2EDE7;
+        --bg-card:       #FAF7F4;
+        --bg-soft:       #EDE8E1;
+        --border:        #DDD6CC;
+        --accent:        #8B6F5E;
+        --accent-hover:  #7A5F4F;
+        --accent-light:  #C4A898;
+        --text-dark:     #2C2420;
+        --text-mid:      #6B5C54;
+        --text-soft:     #9C8C84;
+        --success:       #5A8A6A;
+        --error:         #A05A5A;
+        --radius-lg:     20px;
+        --radius-md:     14px;
+        --radius-sm:     10px;
+        --shadow:        0 4px 24px rgba(80,60,40,0.10);
+        --shadow-sm:     0 2px 10px rgba(80,60,40,0.07);
+    }
+
+    /* ============ GLOBAL ============ */
+    .stApp {
+        margin-top: -80px !important;
+        background: var(--bg-main) !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+    }
+
     header, [data-testid="stHeader"] { display: none !important; }
-    
-    /* Radio button matni uchun qo'shimcha havo */
-    .stRadio label {
-        padding: 20px 0px !important;
-        line-height: 2.5 !important;
+
+    /* Subtle gradient background */
+    .stApp::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background:
+            radial-gradient(ellipse 60% 40% at 20% 10%, rgba(139,111,94,0.08) 0%, transparent 70%),
+            radial-gradient(ellipse 50% 50% at 80% 90%, rgba(90,110,138,0.06) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* ============ BLOKLAR ============ */
+    .block-container {
+        padding: 2rem 1.5rem !important;
+        max-width: 780px !important;
+    }
+
+    /* ============ SARLAVHALAR ============ */
+    h1, h2, h3, h4 {
+        font-family: 'DM Serif Display', serif !important;
+        color: var(--text-dark) !important;
+        letter-spacing: -0.3px;
+    }
+
+    h1 { font-size: 2rem !important; }
+    h2 { font-size: 1.55rem !important; }
+    h3 { font-size: 1.2rem !important; }
+
+    p, label, div {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        color: var(--text-mid) !important;
+    }
+
+    /* ============ KARTALAR (divider orqali ajratilgan bloklar) ============ */
+    [data-testid="stVerticalBlock"] > div {
+        background: transparent !important;
+    }
+
+    /* Expander (Admin panel) */
+    [data-testid="stExpander"] {
+        background: var(--bg-card) !important;
+        border: 1.5px solid var(--border) !important;
+        border-radius: var(--radius-lg) !important;
+        box-shadow: var(--shadow-sm) !important;
+        overflow: hidden;
+    }
+
+    [data-testid="stExpander"] summary {
+        font-weight: 600 !important;
+        color: var(--text-dark) !important;
+        padding: 14px 20px !important;
+    }
+
+    /* ============ INPUT MAYDONLARI ============ */
+    [data-testid="stTextInput"] > div > div > input {
+        background: var(--bg-card) !important;
+        border: 1.5px solid var(--border) !important;
+        border-radius: var(--radius-md) !important;
+        padding: 14px 18px !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 0.97rem !important;
+        color: var(--text-dark) !important;
+        transition: border-color 0.2s, box-shadow 0.2s !important;
+        box-shadow: var(--shadow-sm) !important;
+    }
+
+    [data-testid="stTextInput"] > div > div > input:focus {
+        border-color: var(--accent) !important;
+        box-shadow: 0 0 0 3px rgba(139,111,94,0.12) !important;
+        outline: none !important;
+    }
+
+    [data-testid="stTextInput"] label {
+        font-weight: 600 !important;
+        font-size: 0.85rem !important;
+        color: var(--text-mid) !important;
+        letter-spacing: 0.3px !important;
+        text-transform: uppercase !important;
+    }
+
+    /* ============ TUGMALAR ============ */
+    .stButton > button {
+        background: var(--accent) !important;
+        color: #fff !important;
+        border: none !important;
+        border-radius: var(--radius-md) !important;
+        padding: 13px 28px !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 3px 12px rgba(139,111,94,0.25) !important;
+        letter-spacing: 0.2px !important;
+        width: 100% !important;
+    }
+
+    .stButton > button:hover {
+        background: var(--accent-hover) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 6px 20px rgba(139,111,94,0.30) !important;
+    }
+
+    .stButton > button:active {
+        transform: translateY(0) !important;
+    }
+
+    /* ============ SELECTBOX ============ */
+    [data-testid="stSelectbox"] > div > div {
+        background: var(--bg-card) !important;
+        border: 1.5px solid var(--border) !important;
+        border-radius: var(--radius-md) !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        color: var(--text-dark) !important;
+        box-shadow: var(--shadow-sm) !important;
+    }
+
+    [data-testid="stSelectbox"] label {
+        font-weight: 600 !important;
+        font-size: 0.85rem !important;
+        color: var(--text-mid) !important;
+        letter-spacing: 0.3px !important;
+        text-transform: uppercase !important;
+    }
+
+    /* ============ RADIO TUGMALAR ============ */
+    [data-testid="stRadio"] label {
+        background: var(--bg-card) !important;
+        border: 1.5px solid var(--border) !important;
+        border-radius: var(--radius-md) !important;
+        padding: 14px 18px !important;
+        margin-bottom: 8px !important;
+        display: flex !important;
+        align-items: center !important;
+        cursor: pointer !important;
+        transition: all 0.18s ease !important;
+        line-height: 1.5 !important;
+        color: var(--text-dark) !important;
+        font-size: 0.97rem !important;
+        box-shadow: var(--shadow-sm) !important;
+    }
+
+    [data-testid="stRadio"] label:hover {
+        border-color: var(--accent-light) !important;
+        background: var(--bg-soft) !important;
+        transform: translateX(4px) !important;
+    }
+
+    [data-testid="stRadio"] label[data-checked="true"] {
+        border-color: var(--accent) !important;
+        background: rgba(139,111,94,0.08) !important;
+    }
+
+    [data-testid="stRadio"] > div {
+        gap: 0px !important;
+    }
+
+    [data-testid="stRadio"] > label:first-child {
+        font-weight: 600 !important;
+        font-size: 0.85rem !important;
+        letter-spacing: 0.3px !important;
+        text-transform: uppercase !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 0 8px 0 !important;
+        transform: none !important;
+    }
+
+    /* ============ XABAR BLOKLARI ============ */
+    /* Success */
+    [data-testid="stAlert"][kind="success"],
+    .stSuccess {
+        background: rgba(90,138,106,0.10) !important;
+        border: 1.5px solid var(--success) !important;
+        border-radius: var(--radius-md) !important;
+        color: var(--success) !important;
+        font-weight: 500 !important;
+    }
+
+    /* Error */
+    [data-testid="stAlert"][kind="error"],
+    .stError {
+        background: rgba(160,90,90,0.10) !important;
+        border: 1.5px solid var(--error) !important;
+        border-radius: var(--radius-md) !important;
+        color: var(--error) !important;
+        font-weight: 500 !important;
+    }
+
+    /* Warning */
+    [data-testid="stAlert"][kind="warning"],
+    .stWarning {
+        background: rgba(196,168,152,0.15) !important;
+        border: 1.5px solid var(--accent-light) !important;
+        border-radius: var(--radius-md) !important;
+        color: var(--accent) !important;
+    }
+
+    /* Info */
+    [data-testid="stAlert"][kind="info"],
+    .stInfo {
+        background: rgba(90,110,138,0.08) !important;
+        border: 1.5px solid #8FA3C0 !important;
+        border-radius: var(--radius-md) !important;
+    }
+
+    /* ============ DATAFRAME ============ */
+    [data-testid="stDataFrame"] {
+        border-radius: var(--radius-md) !important;
+        overflow: hidden !important;
+        border: 1.5px solid var(--border) !important;
+        box-shadow: var(--shadow-sm) !important;
+    }
+
+    /* ============ DIVIDER ============ */
+    hr {
+        border: none !important;
+        border-top: 1.5px solid var(--border) !important;
+        margin: 16px 0 !important;
+    }
+
+    /* ============ RASM (Logo) ============ */
+    [data-testid="stImage"] img {
+        border-radius: var(--radius-lg) !important;
+        box-shadow: var(--shadow) !important;
+    }
+
+    /* ============ USTUNLAR ============ */
+    [data-testid="column"] {
+        gap: 10px !important;
+    }
+
+    /* ============ YASHIRIN STREAMLIT ELEMENTLAR ============ */
+    #MainMenu, footer, [data-testid="stToolbar"] {
+        display: none !important;
+    }
+
+    /* ============ SCROLLBAR ============ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-main); }
+    ::-webkit-scrollbar-thumb {
+        background: var(--accent-light);
+        border-radius: 10px;
+    }
+
+    /* ============ QUIZ KARTA (st.markdown orqali chiqariladiganlar) ============ */
+    .quiz-card {
+        background: var(--bg-card) !important;
+        border-radius: var(--radius-lg) !important;
+        padding: 36px 32px !important;
+        border: 1.5px solid var(--border) !important;
+        box-shadow: var(--shadow) !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+        margin-top: 40px !important;
+        padding: 24px !important;
+        background: var(--bg-card) !important;
+        border-radius: var(--radius-lg) !important;
+        border: 1.5px solid var(--border) !important;
+        box-shadow: var(--shadow-sm) !important;
+    }
+
+    /* ============ ANIMATSIYA ============ */
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .block-container {
+        animation: fadeUp 0.5s ease !important;
+    }
+
+    /* Markdown matnlar */
+    [data-testid="stMarkdownContainer"] p {
+        font-size: 1rem !important;
+        line-height: 1.7 !important;
+        color: var(--text-mid) !important;
+    }
+
+    [data-testid="stMarkdownContainer"] h3,
+    [data-testid="stMarkdownContainer"] h4 {
+        margin-bottom: 12px !important;
     }
     </style>
 """, unsafe_allow_html=True)
+
 # 3. Savollar Bazasi
 # 1-70 bloki
 if 'ms_1_70' not in st.session_state:
