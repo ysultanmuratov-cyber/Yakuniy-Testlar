@@ -5145,17 +5145,7 @@ if not st.session_state.get('logged_in', False):
     st.image("sayt.jpg", width=260)
     
     users = {
-        "Murat": "12062006", "Nilufar": "Nilufar0455", "Radjabboyeva_m": "12345678",
-        "Minjiq_qiz": "Minjiq_qiz1234", "Lola": "Lola0504", "341241101229": "Oydin005",
-        "Sultanovamarufa": "02112006Sm", "Shahriyor": "Poxxuy", "Ixtiyor": "200606",
-        "Xudayberganovaf": "Farangiz0616", "Urunbayevasevinch": "Sevinch07042005",
-        "Abdullayev": "Kamol05", "Ixlos": "Ixlos05", "Gulsanam": "2810xaydarova",
-        "Samandarov": "Shoxrux06", "Xudayberganova": "Sevinch06", "Erkayev": "Akmal06", 
-        "CharosD": "DCh07172005", "Rozimova": "Sevinch2", "MadrimovaG": "Gulshoda006", 
-        "Rozmetov": "Bekchon05", "admin": "murat_admin", "Yuldashova":"Zuxra05", "otaboyeva": "sevinch01",
-        "iskandarova": "maftuna12", "qadamova": "aziza23", "urinbayev": "zafarbek77", "pulatova": "dilnoza34",
-        "rustambekov": "maqsadbek66", "shonazarova": "gulmira55", "masharipov": "shoxjaxon88", "yuldashova": "zuxra55",
-        "asadboyev": "otabek99", "odamboyev": "yusufboy88"
+        "admin": "murat_admin
     }
     
     u_login = st.text_input("Foydalanuvchi nomi (Login):")
