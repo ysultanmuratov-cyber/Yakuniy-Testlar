@@ -5145,7 +5145,7 @@ if not st.session_state.get('logged_in', False):
     st.image("sayt.jpg", width=260)
     
     users = {
-        "admin": "murat_admin
+        
     }
     
     u_login = st.text_input("Foydalanuvchi nomi (Login):")
