@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechStore - Modern E-Commerce PWA</title>
+  <title>TechStore - Modern E-Commerce</title>
 
   <!-- PWA Metadata -->
-  <meta name="theme-color" content="#7c3aed">
+  <meta name="theme-color" content="#7000ff">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="TechStore">
   
@@ -22,64 +22,53 @@
 <body id="appBody" class="bg-gray-50 text-gray-900 pb-20 md:pb-0 min-h-screen flex flex-col justify-between transition-colors duration-300">
 
   <!-- Header (Uzum Market Uslubida) -->
-  <header class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm transition-colors duration-300 dark:bg-gray-900 dark:border-gray-800">
+  <header class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       
       <!-- Logo -->
-      <a href="#" onclick="resetFilter()" class="text-2xl font-black tracking-tight text-violet-700 dark:text-violet-400 flex items-center gap-1.5 shrink-0">
+      <a href="#" onclick="resetFilter()" class="text-2xl font-black tracking-tight text-[#7000ff] flex items-center gap-1.5 shrink-0">
         <i class="fa-solid fa-bolt text-yellow-500"></i> TechStore
       </a>
 
       <!-- Katalog Tugmasi -->
-      <button onclick="toggleCategoryMenu()" class="hidden sm:flex items-center gap-2 bg-violet-100 hover:bg-violet-200 dark:bg-violet-900/40 dark:hover:bg-violet-800/60 text-violet-700 dark:text-violet-300 font-semibold px-4 py-2.5 rounded-xl transition-all shrink-0">
+      <button onclick="filterCategory('all')" class="hidden sm:flex items-center gap-2 bg-[#f2e8ff] hover:bg-[#e4d1ff] text-[#7000ff] font-semibold px-4 py-2.5 rounded-xl transition-all shrink-0">
         <i class="fa-solid fa-border-all text-lg"></i>
         <span data-i18n="catalog">Katalog</span>
       </button>
 
       <!-- Qidiruv paneli -->
       <div class="flex-1 max-w-xl mx-2">
-        <div class="flex items-center border border-gray-300 dark:border-gray-700 rounded-xl overflow-hidden focus-within:border-violet-600 transition-all bg-white dark:bg-gray-800">
+        <div class="flex items-center border border-gray-300 rounded-xl overflow-hidden focus-within:border-[#7000ff] transition-all bg-white">
           <input type="text" id="searchInput" oninput="handleSearch(this.value)"
-                 class="w-full py-2.5 px-4 text-sm text-gray-800 dark:text-gray-100 dark:bg-gray-800 outline-none placeholder-gray-400"
+                 class="w-full py-2.5 px-4 text-sm text-gray-800 outline-none placeholder-gray-400"
                  placeholder="Mahsulotlar va turkumlar izlash">
-          <button class="bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-200 px-5 py-2.5 transition-all border-l border-gray-200 dark:border-gray-700 shrink-0">
+          <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-5 py-2.5 transition-all border-l border-gray-200 shrink-0">
             <i class="fa-solid fa-magnifying-glass text-base"></i>
           </button>
         </div>
       </div>
 
-      <!-- O'ng taraf: Kirish, Ro'yxatdan o'tish, Saralangan, Savat, Sozlamalar -->
-      <div class="flex items-center gap-1 sm:gap-3 shrink-0">
+      <!-- O'ng taraf: Kirish, Saralangan, Savat -->
+      <div class="flex items-center gap-1 sm:gap-4 shrink-0">
         
-        <!-- Kirish -->
-        <button onclick="openAuthModal('login')" class="flex items-center gap-1.5 text-gray-700 dark:text-gray-200 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-xs lg:text-sm">
-          <i class="fa-regular fa-user text-lg"></i>
+        <!-- Kirish (Uzum ID Style Modal) -->
+        <button onclick="openAuthModal()" class="flex items-center gap-2 text-gray-800 hover:text-[#7000ff] font-medium px-2 py-1.5 rounded-lg transition-all text-sm">
+          <i class="fa-regular fa-user text-xl"></i>
           <span class="hidden md:inline" data-i18n="login">Kirish</span>
         </button>
 
-        <!-- Ro'yxatdan o'tish -->
-        <button onclick="openAuthModal('register')" class="flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white font-medium px-3 py-1.5 rounded-lg transition-all text-xs shadow-sm">
-          <i class="fa-solid fa-user-plus text-xs"></i>
-          <span class="hidden lg:inline" data-i18n="register">Ro'yxatdan o'tish</span>
-        </button>
-
         <!-- Saralangan -->
-        <button onclick="filterFavorites()" class="flex items-center gap-1.5 text-gray-700 dark:text-gray-200 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-xs lg:text-sm relative">
-          <i class="fa-regular fa-heart text-lg"></i>
+        <button onclick="filterFavorites()" class="flex items-center gap-2 text-gray-800 hover:text-[#7000ff] font-medium px-2 py-1.5 rounded-lg transition-all text-sm relative">
+          <i class="fa-regular fa-heart text-xl"></i>
           <span class="hidden md:inline" data-i18n="favorites">Saralangan</span>
-          <span id="favBadge" class="hidden absolute -top-1 -right-1 bg-violet-600 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+          <span id="favBadge" class="hidden absolute -top-1 -right-1 bg-[#7000ff] text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
         </button>
 
         <!-- Savat -->
-        <button onclick="toggleCart(true)" class="flex items-center gap-1.5 text-gray-700 dark:text-gray-200 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-xs lg:text-sm relative">
-          <i class="fa-solid fa-bag-shopping text-lg"></i>
+        <button onclick="toggleCart(true)" class="flex items-center gap-2 text-gray-800 hover:text-[#7000ff] font-medium px-2 py-1.5 rounded-lg transition-all text-sm relative">
+          <i class="fa-solid fa-bag-shopping text-xl"></i>
           <span class="hidden md:inline" data-i18n="cart">Savat</span>
-          <span id="cartBadge" class="absolute -top-1 -right-1 bg-violet-600 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
-        </button>
-
-        <!-- Sozlamalar -->
-        <button onclick="openSettingsModal()" class="flex items-center justify-center text-gray-700 dark:text-gray-200 hover:text-violet-600 p-2 rounded-lg transition-all text-lg" title="Sozlamalar">
-          <i class="fa-solid fa-gear"></i>
+          <span id="cartBadge" class="absolute -top-1 -right-1 bg-[#7000ff] text-white text-[10px] font-bold rounded-full h-4.5 w-4.5 flex items-center justify-center">0</span>
         </button>
       </div>
     </div>
@@ -87,133 +76,103 @@
 
   <!-- Asosiy Tarkib -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
-
     <!-- Kategoriyalar -->
-    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-4" id="categoryList">
-      <!-- JavaScript orqali generatsiya qilinadi -->
-    </div>
+    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-4" id="categoryList"></div>
 
     <!-- Mahsulotlar Tarmog'i -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="productGrid">
-      <!-- JavaScript orqali generatsiya qilinadi -->
-    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="productGrid"></div>
   </main>
 
-  <!-- Bottom Navigation (Mobil uchun) -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 md:hidden z-30 safe-bottom">
-    <div class="grid grid-cols-5 py-2 text-center text-[10px]">
-      <button onclick="resetFilter()" class="text-violet-600 dark:text-violet-400 flex flex-col items-center gap-1">
-        <i class="fa-solid fa-house text-base"></i>
-        <span data-i18n="home">Asosiy</span>
+  <!-- Uzum ID Uslubidagi Kirish Modali (Modal Window) -->
+  <div id="authModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl relative transition-all transform scale-100">
+      
+      <!-- Yopish tugmasi -->
+      <button onclick="closeAuthModal()" class="absolute top-5 right-5 w-9 h-9 bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-full flex items-center justify-center transition-all">
+        <i class="fa-solid fa-xmark text-lg"></i>
       </button>
-      <button onclick="filterFavorites()" class="text-gray-500 dark:text-gray-400 hover:text-violet-600 flex flex-col items-center gap-1">
-        <i class="fa-regular fa-heart text-base"></i>
-        <span data-i18n="favorites">Saralangan</span>
-      </button>
-      <button onclick="toggleCart(true)" class="text-gray-500 dark:text-gray-400 hover:text-violet-600 flex flex-col items-center gap-1 relative">
-        <i class="fa-solid fa-bag-shopping text-base"></i>
-        <span data-i18n="cart">Savat</span>
-      </button>
-      <button onclick="openAuthModal('login')" class="text-gray-500 dark:text-gray-400 hover:text-violet-600 flex flex-col items-center gap-1">
-        <i class="fa-regular fa-user text-base"></i>
-        <span data-i18n="login">Kirish</span>
-      </button>
-      <button onclick="openSettingsModal()" class="text-gray-500 dark:text-gray-400 hover:text-violet-600 flex flex-col items-center gap-1">
-        <i class="fa-solid fa-gear text-base"></i>
-        <span data-i18n="settings">Sozlamalar</span>
-      </button>
+
+      <!-- Logo & Sarlavha -->
+      <div class="text-center space-y-3 pt-2">
+        <div class="inline-flex items-center justify-center gap-1.5 bg-[#f2e8ff] px-4 py-1.5 rounded-full">
+          <i class="fa-solid fa-bolt text-[#7000ff] text-base"></i>
+          <span class="text-[#7000ff] font-black text-lg tracking-tight">TechStore <span class="font-bold text-gray-700">ID</span></span>
+        </div>
+        <h2 id="authTitle" class="text-2xl font-extrabold text-gray-900 tracking-tight" data-i18n="uzumLoginTitle">
+          TechStore'ga kirish
+        </h2>
+      </div>
+
+      <!-- 1-BOSQICH: Telefon raqam kiritish -->
+      <div id="stepPhone" class="space-y-5">
+        <div class="relative">
+          <input type="tel" id="userPhone" placeholder="+998 00 000-00-00" value="+998 "
+                 class="w-full bg-[#f2f4f7] border-none rounded-2xl py-4 px-5 text-gray-900 font-semibold text-lg focus:ring-2 focus:ring-[#7000ff] outline-none transition-all placeholder-gray-400">
+        </div>
+
+        <button onclick="sendSmsCode()" class="w-full bg-[#7000ff] hover:bg-[#5c00d6] active:scale-[0.98] text-white font-bold py-4 rounded-2xl text-base shadow-md transition-all duration-200" data-i18n="getCode">
+          Kodni olish
+        </button>
+
+        <!-- Oferta va Rozilik matni -->
+        <p class="text-[11px] text-gray-500 text-center leading-relaxed px-2">
+          Davom etgan holda men 
+          <a href="#" class="underline hover:text-[#7000ff]">shaxsiy ma'lumotlarni qayta ishlash siyosatiga rozilik bildirasiz</a> va 
+          <a href="#" class="underline hover:text-[#7000ff]">TechStore ID ommaviy oferta bilan rozi bo'laman</a>
+        </p>
+        <div class="text-center pt-1">
+          <a href="#" class="text-xs font-semibold text-gray-500 hover:text-[#7000ff] underline">TechStore ID nima?</a>
+        </div>
+      </div>
+
+      <!-- 2-BOSQICH: SMS Kodini kiritish -->
+      <div id="stepOtp" class="space-y-5 hidden">
+        <p class="text-xs text-center text-gray-600">
+          <span id="sentPhoneDisplay" class="font-bold text-gray-900"></span> raqamiga yuborilgan 4 xonali kodni kiriting
+        </p>
+
+        <div class="flex justify-center gap-3 py-2">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border border-transparent focus:border-[#7000ff] focus:bg-white outline-none">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border border-transparent focus:border-[#7000ff] focus:bg-white outline-none">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border border-transparent focus:border-[#7000ff] focus:bg-white outline-none">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border border-transparent focus:border-[#7000ff] focus:bg-white outline-none">
+        </div>
+
+        <button onclick="verifyOtp()" class="w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-4 rounded-2xl text-base shadow-md transition-all" data-i18n="confirm">
+          Tasdiqlash
+        </button>
+
+        <div class="text-center">
+          <button onclick="backToPhoneStep()" class="text-xs text-[#7000ff] font-semibold hover:underline">
+            Raqamni o'zgartirish
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Savat Modali -->
+  <!-- Savat Drawer -->
   <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300">
-    <div id="cartPanel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white dark:bg-gray-900 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
-      <div class="p-4 border-b dark:border-gray-800 flex items-center justify-between bg-gray-50 dark:bg-gray-800">
-        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
-          <i class="fa-solid fa-bag-shopping text-violet-600"></i> <span data-i18n="cart">Savat</span>
+    <div id="cartPanel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+      <div class="p-4 border-b flex items-center justify-between bg-gray-50">
+        <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+          <i class="fa-solid fa-bag-shopping text-[#7000ff]"></i> <span data-i18n="cart">Savat</span>
         </h2>
-        <button onclick="toggleCart(false)" class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 rounded-full">
+        <button onclick="toggleCart(false)" class="p-2 text-gray-400 hover:text-gray-600 rounded-full">
           <i class="fa-solid fa-xmark text-xl"></i>
         </button>
       </div>
       <div class="flex-1 overflow-y-auto p-4 space-y-4" id="cartItemsContainer"></div>
-      <div class="p-4 border-t dark:border-gray-800 bg-gray-50 dark:bg-gray-800 space-y-3">
-        <div class="flex items-center justify-between text-base font-bold text-gray-800 dark:text-gray-100">
+      <div class="p-4 border-t bg-gray-50 space-y-3">
+        <div class="flex items-center justify-between text-base font-bold text-gray-800">
           <span data-i18n="total">Jami summasi:</span>
-          <span id="cartTotalSum" class="text-xl text-violet-600 dark:text-violet-400">$0</span>
+          <span id="cartTotalSum" class="text-xl text-[#7000ff]">$0</span>
         </div>
-        <button onclick="openCheckoutModal()" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
-          <i class="fa-solid fa-check"></i> <span data-i18n="checkout">Buyurtma berish</span>
+        <button class="w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-3 rounded-xl shadow-lg transition-all" data-i18n="checkout">
+          Buyurtma berish
         </button>
       </div>
-    </div>
-  </div>
-
-  <!-- Auth Modal (Kirish va Ro'yxatdan o'tish) -->
-  <div id="authModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center p-4">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl">
-      <div class="flex items-center justify-between border-b dark:border-gray-700 pb-3">
-        <h3 id="authModalTitle" class="text-lg font-bold text-gray-800 dark:text-gray-100" data-i18n="login">Kirish</h3>
-        <button onclick="closeAuthModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
-      
-      <form onsubmit="handleAuthSubmit(event)" class="space-y-3">
-        <div id="nameFieldContainer" class="hidden">
-          <label class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1" data-i18n="fullName">Ism va Familiya</label>
-          <input type="text" id="authNameInput" class="w-full border dark:border-gray-700 dark:bg-gray-900 dark:text-white rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1" data-i18n="phone">Telefon raqam</label>
-          <input type="tel" required placeholder="+998 90 123 45 67" class="w-full border dark:border-gray-700 dark:bg-gray-900 dark:text-white rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1" data-i18n="password">Parol</label>
-          <input type="password" required placeholder="••••••••" class="w-full border dark:border-gray-700 dark:bg-gray-900 dark:text-white rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
-        </div>
-        <button type="submit" id="authSubmitBtn" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-2.5 rounded-lg text-sm transition-all" data-i18n="login">Kirish</button>
-      </form>
-
-      <div class="text-center pt-2 border-t dark:border-gray-700">
-        <button onclick="toggleAuthMode()" id="toggleAuthBtn" class="text-xs text-violet-600 dark:text-violet-400 font-semibold hover:underline">
-          Hisobingiz yo'qmi? Ro'yxatdan o'ting
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sozlamalar Modali (Settings Modal) -->
-  <div id="settingsModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center p-4">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-sm w-full p-6 space-y-5 shadow-2xl">
-      <div class="flex items-center justify-between border-b dark:border-gray-700 pb-3">
-        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
-          <i class="fa-solid fa-gear text-violet-600"></i> <span data-i18n="settings">Sozlamalar</span>
-        </h3>
-        <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
-
-      <!-- Til Sozlamasi -->
-      <div class="space-y-2">
-        <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider" data-i18n="language">Til (Language)</label>
-        <select id="langSelectModal" onchange="changeLanguage(this.value)" class="w-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 text-sm font-semibold p-2.5 rounded-xl border-none outline-none cursor-pointer">
-          <option value="uz">🇺🇿 O'zbekcha (UZ)</option>
-          <option value="ru">🇷🇺 Русский (RU)</option>
-          <option value="en">🇬🇧 English (EN)</option>
-        </select>
-      </div>
-
-      <!-- Tungi/Yorug' Rejim -->
-      <div class="flex items-center justify-between py-2 border-t dark:border-gray-700">
-        <div class="flex items-center gap-2">
-          <i class="fa-solid fa-moon text-gray-600 dark:text-gray-300"></i>
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-200" data-i18n="darkMode">Tungi rejim</span>
-        </div>
-        <label class="relative inline-flex items-center cursor-pointer">
-          <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode(this.checked)" class="sr-only peer">
-          <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-violet-600"></div>
-        </label>
-      </div>
-
-      <button onclick="closeSettingsModal()" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-2.5 rounded-xl text-sm" data-i18n="ok">Saqlash</button>
     </div>
   </div>
 
@@ -221,220 +180,33 @@
   <script>
     const translations = {
       uz: {
-        searchPlaceholder: "Mahsulotlar va turkumlar izlash",
         catalog: "Katalog",
         login: "Kirish",
-        register: "Ro'yxatdan o'tish",
-        settings: "Sozlamalar",
         favorites: "Saralangan",
         cart: "Savat",
-        installApp: "Ilovani yuklash",
-        all: "Barchasi",
-        phones: "Telefonlar",
-        laptops: "Noutbuklar",
-        accessories: "Aksessuarlar",
-        addToCart: "Savatga qo'shish",
+        uzumLoginTitle: "TechStore'ga kirish",
+        getCode: "Kodni olish",
+        confirm: "Tasdiqlash",
         emptyCart: "Savatchangiz hozircha bo'sh",
         total: "Jami summasi:",
-        checkout: "Buyurtma berish",
-        home: "Asosiy",
-        fullName: "Ism va Familiya",
-        phone: "Telefon raqam",
-        password: "Parol",
-        cancel: "Bekor qilish",
-        confirm: "Tasdiqlash",
-        language: "Til",
-        darkMode: "Tungi rejim",
-        ok: "Saqlash",
-        orderSuccess: "Buyurtmangiz qabul qilindi! Tez orada aloqaga chiqamiz."
-      },
-      ru: {
-        searchPlaceholder: "Искать товары и категории",
-        catalog: "Каталог",
-        login: "Войти",
-        register: "Регистрация",
-        settings: "Настройки",
-        favorites: "Избранное",
-        cart: "Корзина",
-        installApp: "Скачать прил.",
-        all: "Все",
-        phones: "Телефоны",
-        laptops: "Ноутбуки",
-        accessories: "Аксессуары",
-        addToCart: "В корзину",
-        emptyCart: "Ваша корзина пуста",
-        total: "Итого:",
-        checkout: "Оформить заказ",
-        home: "Главная",
-        fullName: "Имя и Фамилия",
-        phone: "Номер телефона",
-        password: "Пароль",
-        cancel: "Отмена",
-        confirm: "Подтвердить",
-        language: "Язык",
-        darkMode: "Ночной режим",
-        ok: "Сохранить",
-        orderSuccess: "Ваш заказ принят! Мы скоро свяжемся с вами."
-      },
-      en: {
-        searchPlaceholder: "Search products and categories",
-        catalog: "Catalog",
-        login: "Sign In",
-        register: "Register",
-        settings: "Settings",
-        favorites: "Favorites",
-        cart: "Cart",
-        installApp: "Install App",
-        all: "All",
-        phones: "Phones",
-        laptops: "Laptops",
-        accessories: "Accessories",
-        addToCart: "Add to Cart",
-        emptyCart: "Your cart is currently empty",
-        total: "Total:",
-        checkout: "Checkout",
-        home: "Home",
-        fullName: "Full Name",
-        phone: "Phone Number",
-        password: "Password",
-        cancel: "Cancel",
-        confirm: "Confirm",
-        language: "Language",
-        darkMode: "Dark Mode",
-        ok: "Save",
-        orderSuccess: "Your order has been received! We will contact you soon."
+        checkout: "Buyurtma berish"
       }
     };
-
-    let currentLang = localStorage.getItem('appLang') || 'uz';
-    let isDarkMode = localStorage.getItem('appTheme') === 'dark';
-    let currentAuthMode = 'login'; // 'login' or 'register'
 
     const products = [
       { id: 1, name: "iPhone 15 Pro", cat: "phones", price: 999, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400" },
       { id: 2, name: "MacBook Air M2", cat: "laptops", price: 1199, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400" },
       { id: 3, name: "AirPods Pro 2", cat: "accessories", price: 249, img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400" },
-      { id: 4, name: "Samsung Galaxy S24", cat: "phones", price: 899, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400" },
-      { id: 5, name: "Dell XPS 13", cat: "laptops", price: 1299, img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400" },
-      { id: 6, name: "Apple Watch S9", cat: "accessories", price: 399, img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400" }
+      { id: 4, name: "Samsung Galaxy S24", cat: "phones", price: 899, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400" }
     ];
 
     let cart = JSON.parse(localStorage.getItem('cartData') || '[]');
     let favorites = JSON.parse(localStorage.getItem('favData') || '[]');
-    let selectedCategory = 'all';
-    let searchQuery = '';
-    let showOnlyFavs = false;
 
-    function changeLanguage(lang) {
-      currentLang = lang;
-      localStorage.setItem('appLang', lang);
-      document.getElementById('langSelectModal').value = lang;
-      updateUI();
-    }
-
-    function toggleDarkMode(enable) {
-      isDarkMode = enable;
-      localStorage.setItem('appTheme', enable ? 'dark' : 'light');
-      if (enable) {
-        document.documentElement.classList.add('dark');
-        document.getElementById('appBody').classList.add('bg-gray-950', 'text-gray-100');
-        document.getElementById('appBody').classList.remove('bg-gray-50', 'text-gray-900');
-      } else {
-        document.documentElement.classList.remove('dark');
-        document.getElementById('appBody').classList.remove('bg-gray-950', 'text-gray-100');
-        document.getElementById('appBody').classList.add('bg-gray-50', 'text-gray-900');
-      }
-    }
-
-    function updateUI() {
-      const t = translations[currentLang];
-      
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (t[key]) el.innerText = t[key];
-      });
-
-      document.getElementById('searchInput').placeholder = t.searchPlaceholder;
-
-      renderCategories();
-      renderProducts();
-      renderCart();
-      updateFavBadge();
-    }
-
-    function renderCategories() {
-      const t = translations[currentLang];
-      const categories = [
-        { id: 'all', name: t.all },
-        { id: 'phones', name: t.phones },
-        { id: 'laptops', name: t.laptops },
-        { id: 'accessories', name: t.accessories }
-      ];
-
-      const container = document.getElementById('categoryList');
-      container.innerHTML = categories.map(c => `
-        <button onclick="filterCategory('${c.id}')" 
-          class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${selectedCategory === c.id && !showOnlyFavs ? 'bg-violet-600 text-white shadow-md' : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300'}">
-          ${c.name}
-        </button>
-      `).join('');
-    }
-
-    function renderProducts() {
-      const t = translations[currentLang];
-      const filtered = products.filter(p => {
-        const matchCat = selectedCategory === 'all' || p.cat === selectedCategory;
-        const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchFav = showOnlyFavs ? favorites.includes(p.id) : true;
-        return matchCat && matchSearch && matchFav;
-      });
-
-      const grid = document.getElementById('productGrid');
-      grid.innerHTML = filtered.map(p => {
-        const isFav = favorites.includes(p.id);
-        return `
-        <div class="bg-white dark:bg-gray-800 rounded-2xl p-3 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-all flex flex-col justify-between relative group">
-          <button onclick="toggleFav(${p.id})" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md flex items-center justify-center text-gray-400 hover:text-red-500 shadow-sm transition-all">
-            <i class="${isFav ? 'fa-solid fa-heart text-red-500' : 'fa-regular fa-heart'}"></i>
-          </button>
-          <div>
-            <img src="${p.img}" class="w-full h-36 object-cover rounded-xl mb-3" alt="${p.name}">
-            <h3 class="font-bold text-gray-800 dark:text-gray-100 text-sm line-clamp-1">${p.name}</h3>
-            <p class="text-violet-600 dark:text-violet-400 font-extrabold text-base mt-1">$${p.price}</p>
-          </div>
-          <button onclick="addToCart(${p.id})" class="mt-3 w-full bg-violet-50 dark:bg-violet-900/30 hover:bg-violet-600 hover:text-white text-violet-600 dark:text-violet-300 text-xs font-bold py-2 rounded-xl transition-all flex items-center justify-center gap-1">
-            <i class="fa-solid fa-plus"></i> ${t.addToCart}
-          </button>
-        </div>
-      `}).join('');
-    }
-
-    function openAuthModal(mode = 'login') {
-      currentAuthMode = mode;
-      const title = document.getElementById('authModalTitle');
-      const submitBtn = document.getElementById('authSubmitBtn');
-      const nameContainer = document.getElementById('nameFieldContainer');
-      const toggleBtn = document.getElementById('toggleAuthBtn');
-      const t = translations[currentLang];
-
-      if (mode === 'register') {
-        title.innerText = t.register;
-        submitBtn.innerText = t.register;
-        nameContainer.classList.remove('hidden');
-        toggleBtn.innerText = "Hisobingiz bormi? Kirish";
-      } else {
-        title.innerText = t.login;
-        submitBtn.innerText = t.login;
-        nameContainer.classList.add('hidden');
-        toggleBtn.innerText = "Hisobingiz yo'qmi? Ro'yxatdan o'ting";
-      }
-
+    function openAuthModal() {
       document.getElementById('authModal').classList.remove('hidden');
       document.getElementById('authModal').classList.add('flex');
-    }
-
-    function toggleAuthMode() {
-      openAuthModal(currentAuthMode === 'login' ? 'register' : 'login');
+      backToPhoneStep();
     }
 
     function closeAuthModal() {
@@ -442,53 +214,61 @@
       document.getElementById('authModal').classList.remove('flex');
     }
 
-    function handleAuthSubmit(e) {
-      e.preventDefault();
-      alert(currentAuthMode === 'register' ? "Muvaffaqiyatli ro'yxatdan o'tdingiz!" : "Xush kelibsiz!");
+    function sendSmsCode() {
+      const phone = document.getElementById('userPhone').value.trim();
+      if (phone.length < 9) {
+        alert("Iltimos, telefon raqamingizni to'liq kiriting!");
+        return;
+      }
+      document.getElementById('sentPhoneDisplay').innerText = phone;
+      document.getElementById('stepPhone').classList.add('hidden');
+      document.getElementById('stepOtp').classList.remove('hidden');
+    }
+
+    function backToPhoneStep() {
+      document.getElementById('stepOtp').classList.add('hidden');
+      document.getElementById('stepPhone').classList.remove('hidden');
+    }
+
+    function verifyOtp() {
+      alert("Tizimga muvaffaqiyatli kirdingiz!");
       closeAuthModal();
     }
 
-    function openSettingsModal() {
-      document.getElementById('darkModeToggle').checked = isDarkMode;
-      document.getElementById('settingsModal').classList.remove('hidden');
-      document.getElementById('settingsModal').classList.add('flex');
-    }
+    // OTP Auto focus input
+    document.querySelectorAll('.otp-input').forEach((input, index, inputs) => {
+      input.addEventListener('input', (e) => {
+        if (e.target.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+    });
 
-    function closeSettingsModal() {
-      document.getElementById('settingsModal').classList.add('hidden');
-      document.getElementById('settingsModal').classList.remove('flex');
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = products.map(p => `
+        <div class="bg-white rounded-2xl p-3 border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <img src="${p.img}" class="w-full h-36 object-cover rounded-xl mb-3">
+            <h3 class="font-bold text-gray-800 text-sm line-clamp-1">${p.name}</h3>
+            <p class="text-[#7000ff] font-extrabold text-base mt-1">$${p.price}</p>
+          </div>
+          <button onclick="addToCart(${p.id})" class="mt-3 w-full bg-[#f2e8ff] hover:bg-[#7000ff] hover:text-white text-[#7000ff] text-xs font-bold py-2 rounded-xl transition-all">
+            + Savatga qo'shish
+          </button>
+        </div>
+      `).join('');
     }
-
-    // Boshqa funksiyalar
-    function toggleFav(id) {
-      if (favorites.includes(id)) { favorites = favorites.filter(fId => fId !== id); }
-      else { favorites.push(id); }
-      localStorage.setItem('favData', JSON.stringify(favorites));
-      updateFavBadge(); renderProducts();
-    }
-
-    function updateFavBadge() {
-      const badge = document.getElementById('favBadge');
-      if (favorites.length > 0) { badge.innerText = favorites.length; badge.classList.remove('hidden'); }
-      else { badge.classList.add('hidden'); }
-    }
-
-    function filterFavorites() { showOnlyFavs = !showOnlyFavs; renderCategories(); renderProducts(); }
-    function resetFilter() { showOnlyFavs = false; selectedCategory = 'all'; renderCategories(); renderProducts(); }
-    function filterCategory(cat) { showOnlyFavs = false; selectedCategory = cat; renderCategories(); renderProducts(); }
-    function handleSearch(val) { searchQuery = val; renderProducts(); }
 
     function addToCart(id) {
       const p = products.find(prod => prod.id === id);
       const existing = cart.find(item => item.id === id);
       if (existing) { existing.qty++; } else { cart.push({ ...p, qty: 1 }); }
-      saveCart();
+      localStorage.setItem('cartData', JSON.stringify(cart));
+      renderCart();
     }
 
-    function saveCart() { localStorage.setItem('cartData', JSON.stringify(cart)); renderCart(); }
-
     function renderCart() {
-      const t = translations[currentLang];
       const container = document.getElementById('cartItemsContainer');
       const badge = document.getElementById('cartBadge');
       const totalSum = document.getElementById('cartTotalSum');
@@ -499,19 +279,20 @@
       totalSum.innerText = `$${totalPrice}`;
 
       if (cart.length === 0) {
-        container.innerHTML = `<div class="text-center text-gray-400 py-10"><i class="fa-solid fa-basket-shopping text-4xl mb-2"></i><p class="text-sm">${t.emptyCart}</p></div>`;
+        container.innerHTML = `<div class="text-center text-gray-400 py-10"><p class="text-sm">Savatchangiz hozircha bo'sh</p></div>`;
         return;
       }
 
       container.innerHTML = cart.map(item => `
-        <div class="flex items-center justify-between gap-2 border-b dark:border-gray-800 pb-3">
+        <div class="flex items-center justify-between border-b pb-3">
           <div class="flex items-center gap-3">
             <img src="${item.img}" class="w-12 h-12 rounded-lg object-cover">
             <div>
-              <h4 class="font-bold text-xs text-gray-800 dark:text-gray-200">${item.name}</h4>
-              <p class="text-violet-600 dark:text-violet-400 font-bold text-xs">$${item.price}</p>
+              <h4 class="font-bold text-xs text-gray-800">${item.name}</h4>
+              <p class="text-[#7000ff] font-bold text-xs">$${item.price}</p>
             </div>
           </div>
+          <span class="text-xs font-bold">x${item.qty}</span>
         </div>
       `).join('');
     }
@@ -523,9 +304,8 @@
       else { drawer.classList.add('opacity-0', 'pointer-events-none'); panel.classList.add('translate-x-full'); }
     }
 
-    // Boshlang'ich sozlamalarni yuklash
-    toggleDarkMode(isDarkMode);
-    changeLanguage(currentLang);
+    renderProducts();
+    renderCart();
   </script>
 </body>
 </html>
