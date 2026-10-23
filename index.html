@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechStore - E-Commerce</title>
+  <title>TechStore - Modern E-Commerce PWA</title>
 
   <!-- PWA Metadata -->
   <meta name="theme-color" content="#7c3aed">
@@ -19,75 +19,74 @@
     .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 1rem); }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900 pb-20 md:pb-0 min-h-screen flex flex-col justify-between">
+<body id="appBody" class="bg-gray-50 text-gray-900 pb-20 md:pb-0 min-h-screen flex flex-col justify-between transition-colors duration-300">
 
   <!-- Header (Uzum Market Uslubida) -->
-  <header class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+  <header class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm transition-colors duration-300 dark:bg-gray-900 dark:border-gray-800">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       
       <!-- Logo -->
-      <a href="#" class="text-2xl font-black tracking-tight text-violet-700 flex items-center gap-1.5 shrink-0">
+      <a href="#" onclick="resetFilter()" class="text-2xl font-black tracking-tight text-violet-700 dark:text-violet-400 flex items-center gap-1.5 shrink-0">
         <i class="fa-solid fa-bolt text-yellow-500"></i> TechStore
       </a>
 
-      <!-- Katalog Tugmasi (Desktop & Tablet) -->
-      <button onclick="toggleCategoryMenu()" class="hidden sm:flex items-center gap-2 bg-violet-100 hover:bg-violet-200 text-violet-700 font-semibold px-4 py-2.5 rounded-xl transition-all shrink-0">
+      <!-- Katalog Tugmasi -->
+      <button onclick="toggleCategoryMenu()" class="hidden sm:flex items-center gap-2 bg-violet-100 hover:bg-violet-200 dark:bg-violet-900/40 dark:hover:bg-violet-800/60 text-violet-700 dark:text-violet-300 font-semibold px-4 py-2.5 rounded-xl transition-all shrink-0">
         <i class="fa-solid fa-border-all text-lg"></i>
         <span data-i18n="catalog">Katalog</span>
       </button>
 
       <!-- Qidiruv paneli -->
-      <div class="flex-1 max-w-2xl mx-2">
-        <div class="flex items-center border border-gray-300 rounded-xl overflow-hidden focus-within:border-violet-600 transition-all bg-white">
+      <div class="flex-1 max-w-xl mx-2">
+        <div class="flex items-center border border-gray-300 dark:border-gray-700 rounded-xl overflow-hidden focus-within:border-violet-600 transition-all bg-white dark:bg-gray-800">
           <input type="text" id="searchInput" oninput="handleSearch(this.value)"
-                 class="w-full py-2.5 px-4 text-sm text-gray-800 outline-none placeholder-gray-400"
+                 class="w-full py-2.5 px-4 text-sm text-gray-800 dark:text-gray-100 dark:bg-gray-800 outline-none placeholder-gray-400"
                  placeholder="Mahsulotlar va turkumlar izlash">
-          <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-5 py-2.5 transition-all border-l border-gray-200 shrink-0">
+          <button class="bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-200 px-5 py-2.5 transition-all border-l border-gray-200 dark:border-gray-700 shrink-0">
             <i class="fa-solid fa-magnifying-glass text-base"></i>
           </button>
         </div>
       </div>
 
-      <!-- O'ng taraf: Kirish, Saralangan, Savat va Til -->
-      <div class="flex items-center gap-1 sm:gap-4 shrink-0">
+      <!-- O'ng taraf: Kirish, Ro'yxatdan o'tish, Saralangan, Savat, Sozlamalar -->
+      <div class="flex items-center gap-1 sm:gap-3 shrink-0">
         
-        <!-- Tilni tanlash -->
-        <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-gray-100 text-gray-700 text-xs font-semibold py-2 px-2.5 rounded-lg border-none focus:ring-2 focus:ring-violet-500 outline-none cursor-pointer hidden md:block">
-          <option value="uz">🇺🇿 UZ</option>
-          <option value="ru">🇷🇺 RU</option>
-          <option value="en">🇬🇧 EN</option>
-        </select>
-
         <!-- Kirish -->
-        <button onclick="openAuthModal()" class="flex items-center gap-2 text-gray-700 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-sm">
-          <i class="fa-regular fa-user text-xl"></i>
+        <button onclick="openAuthModal('login')" class="flex items-center gap-1.5 text-gray-700 dark:text-gray-200 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-xs lg:text-sm">
+          <i class="fa-regular fa-user text-lg"></i>
           <span class="hidden md:inline" data-i18n="login">Kirish</span>
         </button>
 
-        <!-- Saralangan (Favorites) -->
-        <button onclick="filterFavorites()" class="flex items-center gap-2 text-gray-700 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-sm relative">
-          <i class="fa-regular fa-heart text-xl"></i>
+        <!-- Ro'yxatdan o'tish -->
+        <button onclick="openAuthModal('register')" class="flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white font-medium px-3 py-1.5 rounded-lg transition-all text-xs shadow-sm">
+          <i class="fa-solid fa-user-plus text-xs"></i>
+          <span class="hidden lg:inline" data-i18n="register">Ro'yxatdan o'tish</span>
+        </button>
+
+        <!-- Saralangan -->
+        <button onclick="filterFavorites()" class="flex items-center gap-1.5 text-gray-700 dark:text-gray-200 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-xs lg:text-sm relative">
+          <i class="fa-regular fa-heart text-lg"></i>
           <span class="hidden md:inline" data-i18n="favorites">Saralangan</span>
           <span id="favBadge" class="hidden absolute -top-1 -right-1 bg-violet-600 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
         </button>
 
         <!-- Savat -->
-        <button onclick="toggleCart(true)" class="flex items-center gap-2 text-gray-700 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-sm relative">
-          <i class="fa-solid fa-bag-shopping text-xl"></i>
+        <button onclick="toggleCart(true)" class="flex items-center gap-1.5 text-gray-700 dark:text-gray-200 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-xs lg:text-sm relative">
+          <i class="fa-solid fa-bag-shopping text-lg"></i>
           <span class="hidden md:inline" data-i18n="cart">Savat</span>
-          <span id="cartBadge" class="absolute -top-1 -right-1 bg-violet-600 text-white text-[10px] font-bold rounded-full h-4.5 w-4.5 flex items-center justify-center">0</span>
+          <span id="cartBadge" class="absolute -top-1 -right-1 bg-violet-600 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
         </button>
 
-        <!-- PWA Install Tugmasi -->
-        <button id="installBtn" onclick="triggerInstall()" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-all flex items-center gap-1 shadow-sm">
-          <i class="fa-solid fa-download"></i> <span class="hidden lg:inline" data-i18n="installApp">Ilovani yuklash</span>
+        <!-- Sozlamalar -->
+        <button onclick="openSettingsModal()" class="flex items-center justify-center text-gray-700 dark:text-gray-200 hover:text-violet-600 p-2 rounded-lg transition-all text-lg" title="Sozlamalar">
+          <i class="fa-solid fa-gear"></i>
         </button>
       </div>
     </div>
   </header>
 
   <!-- Asosiy Tarkib -->
-  <main class="max-w-7xl mx-auto px-4 py-6 flex-1">
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
 
     <!-- Kategoriyalar -->
     <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-4" id="categoryList">
@@ -101,51 +100,47 @@
   </main>
 
   <!-- Bottom Navigation (Mobil uchun) -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden z-30 safe-bottom">
-    <div class="grid grid-cols-4 py-2 text-center text-[11px]">
-      <button onclick="resetFilter()" class="text-violet-600 flex flex-col items-center gap-1">
-        <i class="fa-solid fa-house text-lg"></i>
+  <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 md:hidden z-30 safe-bottom">
+    <div class="grid grid-cols-5 py-2 text-center text-[10px]">
+      <button onclick="resetFilter()" class="text-violet-600 dark:text-violet-400 flex flex-col items-center gap-1">
+        <i class="fa-solid fa-house text-base"></i>
         <span data-i18n="home">Asosiy</span>
       </button>
-      <button onclick="filterFavorites()" class="text-gray-500 hover:text-violet-600 flex flex-col items-center gap-1">
-        <i class="fa-regular fa-heart text-lg"></i>
+      <button onclick="filterFavorites()" class="text-gray-500 dark:text-gray-400 hover:text-violet-600 flex flex-col items-center gap-1">
+        <i class="fa-regular fa-heart text-base"></i>
         <span data-i18n="favorites">Saralangan</span>
       </button>
-      <button onclick="toggleCart(true)" class="text-gray-500 hover:text-violet-600 flex flex-col items-center gap-1 relative">
-        <i class="fa-solid fa-bag-shopping text-lg"></i>
+      <button onclick="toggleCart(true)" class="text-gray-500 dark:text-gray-400 hover:text-violet-600 flex flex-col items-center gap-1 relative">
+        <i class="fa-solid fa-bag-shopping text-base"></i>
         <span data-i18n="cart">Savat</span>
       </button>
-      <button onclick="openAuthModal()" class="text-gray-500 hover:text-violet-600 flex flex-col items-center gap-1">
-        <i class="fa-regular fa-user text-lg"></i>
+      <button onclick="openAuthModal('login')" class="text-gray-500 dark:text-gray-400 hover:text-violet-600 flex flex-col items-center gap-1">
+        <i class="fa-regular fa-user text-base"></i>
         <span data-i18n="login">Kirish</span>
+      </button>
+      <button onclick="openSettingsModal()" class="text-gray-500 dark:text-gray-400 hover:text-violet-600 flex flex-col items-center gap-1">
+        <i class="fa-solid fa-gear text-base"></i>
+        <span data-i18n="settings">Sozlamalar</span>
       </button>
     </div>
   </div>
 
-  <!-- Savat Modali (Slide Drawer) -->
+  <!-- Savat Modali -->
   <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300">
-    <div id="cartPanel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
-      
-      <!-- Header -->
-      <div class="p-4 border-b flex items-center justify-between bg-gray-50">
-        <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+    <div id="cartPanel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white dark:bg-gray-900 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+      <div class="p-4 border-b dark:border-gray-800 flex items-center justify-between bg-gray-50 dark:bg-gray-800">
+        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
           <i class="fa-solid fa-bag-shopping text-violet-600"></i> <span data-i18n="cart">Savat</span>
         </h2>
-        <button onclick="toggleCart(false)" class="p-2 text-gray-400 hover:text-gray-600 rounded-full">
+        <button onclick="toggleCart(false)" class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 rounded-full">
           <i class="fa-solid fa-xmark text-xl"></i>
         </button>
       </div>
-
-      <!-- Items List -->
-      <div class="flex-1 overflow-y-auto p-4 space-y-4" id="cartItemsContainer">
-        <!-- JS dynamically renders items -->
-      </div>
-
-      <!-- Footer -->
-      <div class="p-4 border-t bg-gray-50 space-y-3">
-        <div class="flex items-center justify-between text-base font-bold text-gray-800">
+      <div class="flex-1 overflow-y-auto p-4 space-y-4" id="cartItemsContainer"></div>
+      <div class="p-4 border-t dark:border-gray-800 bg-gray-50 dark:bg-gray-800 space-y-3">
+        <div class="flex items-center justify-between text-base font-bold text-gray-800 dark:text-gray-100">
           <span data-i18n="total">Jami summasi:</span>
-          <span id="cartTotalSum" class="text-xl text-violet-600">$0</span>
+          <span id="cartTotalSum" class="text-xl text-violet-600 dark:text-violet-400">$0</span>
         </div>
         <button onclick="openCheckoutModal()" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
           <i class="fa-solid fa-check"></i> <span data-i18n="checkout">Buyurtma berish</span>
@@ -154,41 +149,71 @@
     </div>
   </div>
 
-  <!-- Checkout Modal -->
-  <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
-      <h3 class="text-xl font-bold text-gray-800" data-i18n="checkout">Buyurtma berish</h3>
-      <form onsubmit="confirmOrder(event)" class="space-y-3">
-        <div>
-          <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="fullName">Ism va Familiya</label>
-          <input type="text" required class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
+  <!-- Auth Modal (Kirish va Ro'yxatdan o'tish) -->
+  <div id="authModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b dark:border-gray-700 pb-3">
+        <h3 id="authModalTitle" class="text-lg font-bold text-gray-800 dark:text-gray-100" data-i18n="login">Kirish</h3>
+        <button onclick="closeAuthModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      
+      <form onsubmit="handleAuthSubmit(event)" class="space-y-3">
+        <div id="nameFieldContainer" class="hidden">
+          <label class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1" data-i18n="fullName">Ism va Familiya</label>
+          <input type="text" id="authNameInput" class="w-full border dark:border-gray-700 dark:bg-gray-900 dark:text-white rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
         </div>
         <div>
-          <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="phone">Telefon raqam</label>
-          <input type="tel" required placeholder="+998 90 123 45 67" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
+          <label class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1" data-i18n="phone">Telefon raqam</label>
+          <input type="tel" required placeholder="+998 90 123 45 67" class="w-full border dark:border-gray-700 dark:bg-gray-900 dark:text-white rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
         </div>
-        <div class="flex gap-2 pt-2">
-          <button type="button" onclick="closeCheckoutModal()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2.5 rounded-lg" data-i18n="cancel">Bekor qilish</button>
-          <button type="submit" class="flex-1 bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2.5 rounded-lg" data-i18n="confirm">Tasdiqlash</button>
+        <div>
+          <label class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1" data-i18n="password">Parol</label>
+          <input type="password" required placeholder="••••••••" class="w-full border dark:border-gray-700 dark:bg-gray-900 dark:text-white rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
         </div>
+        <button type="submit" id="authSubmitBtn" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-2.5 rounded-lg text-sm transition-all" data-i18n="login">Kirish</button>
       </form>
+
+      <div class="text-center pt-2 border-t dark:border-gray-700">
+        <button onclick="toggleAuthMode()" id="toggleAuthBtn" class="text-xs text-violet-600 dark:text-violet-400 font-semibold hover:underline">
+          Hisobingiz yo'qmi? Ro'yxatdan o'ting
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Auth Modal (Kirish) -->
-  <div id="authModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl">
-      <div class="flex items-center justify-between border-b pb-3">
-        <h3 class="text-lg font-bold text-gray-800" data-i18n="login">Kirish</h3>
-        <button onclick="closeAuthModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+  <!-- Sozlamalar Modali (Settings Modal) -->
+  <div id="settingsModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-sm w-full p-6 space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between border-b dark:border-gray-700 pb-3">
+        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
+          <i class="fa-solid fa-gear text-violet-600"></i> <span data-i18n="settings">Sozlamalar</span>
+        </h3>
+        <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
-      <form onsubmit="handleLogin(event)" class="space-y-3">
-        <div>
-          <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="phone">Telefon raqam</label>
-          <input type="tel" required placeholder="+998 90 123 45 67" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
+
+      <!-- Til Sozlamasi -->
+      <div class="space-y-2">
+        <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider" data-i18n="language">Til (Language)</label>
+        <select id="langSelectModal" onchange="changeLanguage(this.value)" class="w-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 text-sm font-semibold p-2.5 rounded-xl border-none outline-none cursor-pointer">
+          <option value="uz">🇺🇿 O'zbekcha (UZ)</option>
+          <option value="ru">🇷🇺 Русский (RU)</option>
+          <option value="en">🇬🇧 English (EN)</option>
+        </select>
+      </div>
+
+      <!-- Tungi/Yorug' Rejim -->
+      <div class="flex items-center justify-between py-2 border-t dark:border-gray-700">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-moon text-gray-600 dark:text-gray-300"></i>
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-200" data-i18n="darkMode">Tungi rejim</span>
         </div>
-        <button type="submit" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-2.5 rounded-lg text-sm" data-i18n="login">Kirish</button>
-      </form>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode(this.checked)" class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-violet-600"></div>
+        </label>
+      </div>
+
+      <button onclick="closeSettingsModal()" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-2.5 rounded-xl text-sm" data-i18n="ok">Saqlash</button>
     </div>
   </div>
 
@@ -199,6 +224,8 @@
         searchPlaceholder: "Mahsulotlar va turkumlar izlash",
         catalog: "Katalog",
         login: "Kirish",
+        register: "Ro'yxatdan o'tish",
+        settings: "Sozlamalar",
         favorites: "Saralangan",
         cart: "Savat",
         installApp: "Ilovani yuklash",
@@ -213,14 +240,20 @@
         home: "Asosiy",
         fullName: "Ism va Familiya",
         phone: "Telefon raqam",
+        password: "Parol",
         cancel: "Bekor qilish",
         confirm: "Tasdiqlash",
+        language: "Til",
+        darkMode: "Tungi rejim",
+        ok: "Saqlash",
         orderSuccess: "Buyurtmangiz qabul qilindi! Tez orada aloqaga chiqamiz."
       },
       ru: {
         searchPlaceholder: "Искать товары и категории",
         catalog: "Каталог",
         login: "Войти",
+        register: "Регистрация",
+        settings: "Настройки",
         favorites: "Избранное",
         cart: "Корзина",
         installApp: "Скачать прил.",
@@ -235,14 +268,20 @@
         home: "Главная",
         fullName: "Имя и Фамилия",
         phone: "Номер телефона",
+        password: "Пароль",
         cancel: "Отмена",
         confirm: "Подтвердить",
+        language: "Язык",
+        darkMode: "Ночной режим",
+        ok: "Сохранить",
         orderSuccess: "Ваш заказ принят! Мы скоро свяжемся с вами."
       },
       en: {
         searchPlaceholder: "Search products and categories",
         catalog: "Catalog",
         login: "Sign In",
+        register: "Register",
+        settings: "Settings",
         favorites: "Favorites",
         cart: "Cart",
         installApp: "Install App",
@@ -257,13 +296,19 @@
         home: "Home",
         fullName: "Full Name",
         phone: "Phone Number",
+        password: "Password",
         cancel: "Cancel",
         confirm: "Confirm",
+        language: "Language",
+        darkMode: "Dark Mode",
+        ok: "Save",
         orderSuccess: "Your order has been received! We will contact you soon."
       }
     };
 
     let currentLang = localStorage.getItem('appLang') || 'uz';
+    let isDarkMode = localStorage.getItem('appTheme') === 'dark';
+    let currentAuthMode = 'login'; // 'login' or 'register'
 
     const products = [
       { id: 1, name: "iPhone 15 Pro", cat: "phones", price: 999, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400" },
@@ -279,13 +324,26 @@
     let selectedCategory = 'all';
     let searchQuery = '';
     let showOnlyFavs = false;
-    let deferredPrompt = null;
 
     function changeLanguage(lang) {
       currentLang = lang;
       localStorage.setItem('appLang', lang);
-      document.getElementById('langSelect').value = lang;
+      document.getElementById('langSelectModal').value = lang;
       updateUI();
+    }
+
+    function toggleDarkMode(enable) {
+      isDarkMode = enable;
+      localStorage.setItem('appTheme', enable ? 'dark' : 'light');
+      if (enable) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('appBody').classList.add('bg-gray-950', 'text-gray-100');
+        document.getElementById('appBody').classList.remove('bg-gray-50', 'text-gray-900');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('appBody').classList.remove('bg-gray-950', 'text-gray-100');
+        document.getElementById('appBody').classList.add('bg-gray-50', 'text-gray-900');
+      }
     }
 
     function updateUI() {
@@ -316,7 +374,7 @@
       const container = document.getElementById('categoryList');
       container.innerHTML = categories.map(c => `
         <button onclick="filterCategory('${c.id}')" 
-          class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${selectedCategory === c.id && !showOnlyFavs ? 'bg-violet-600 text-white shadow-md' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}">
+          class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${selectedCategory === c.id && !showOnlyFavs ? 'bg-violet-600 text-white shadow-md' : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300'}">
           ${c.name}
         </button>
       `).join('');
@@ -335,100 +393,105 @@
       grid.innerHTML = filtered.map(p => {
         const isFav = favorites.includes(p.id);
         return `
-        <div class="bg-white rounded-2xl p-3 border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between relative group">
-          <button onclick="toggleFav(${p.id})" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-gray-400 hover:text-red-500 shadow-sm transition-all">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-3 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-all flex flex-col justify-between relative group">
+          <button onclick="toggleFav(${p.id})" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md flex items-center justify-center text-gray-400 hover:text-red-500 shadow-sm transition-all">
             <i class="${isFav ? 'fa-solid fa-heart text-red-500' : 'fa-regular fa-heart'}"></i>
           </button>
           <div>
             <img src="${p.img}" class="w-full h-36 object-cover rounded-xl mb-3" alt="${p.name}">
-            <h3 class="font-bold text-gray-800 text-sm line-clamp-1">${p.name}</h3>
-            <p class="text-violet-600 font-extrabold text-base mt-1">$${p.price}</p>
+            <h3 class="font-bold text-gray-800 dark:text-gray-100 text-sm line-clamp-1">${p.name}</h3>
+            <p class="text-violet-600 dark:text-violet-400 font-extrabold text-base mt-1">$${p.price}</p>
           </div>
-          <button onclick="addToCart(${p.id})" class="mt-3 w-full bg-violet-50 hover:bg-violet-600 hover:text-white text-violet-600 text-xs font-bold py-2 rounded-xl transition-all flex items-center justify-center gap-1">
+          <button onclick="addToCart(${p.id})" class="mt-3 w-full bg-violet-50 dark:bg-violet-900/30 hover:bg-violet-600 hover:text-white text-violet-600 dark:text-violet-300 text-xs font-bold py-2 rounded-xl transition-all flex items-center justify-center gap-1">
             <i class="fa-solid fa-plus"></i> ${t.addToCart}
           </button>
         </div>
       `}).join('');
     }
 
-    function toggleFav(id) {
-      if (favorites.includes(id)) {
-        favorites = favorites.filter(fId => fId !== id);
+    function openAuthModal(mode = 'login') {
+      currentAuthMode = mode;
+      const title = document.getElementById('authModalTitle');
+      const submitBtn = document.getElementById('authSubmitBtn');
+      const nameContainer = document.getElementById('nameFieldContainer');
+      const toggleBtn = document.getElementById('toggleAuthBtn');
+      const t = translations[currentLang];
+
+      if (mode === 'register') {
+        title.innerText = t.register;
+        submitBtn.innerText = t.register;
+        nameContainer.classList.remove('hidden');
+        toggleBtn.innerText = "Hisobingiz bormi? Kirish";
       } else {
-        favorites.push(id);
+        title.innerText = t.login;
+        submitBtn.innerText = t.login;
+        nameContainer.classList.add('hidden');
+        toggleBtn.innerText = "Hisobingiz yo'qmi? Ro'yxatdan o'ting";
       }
+
+      document.getElementById('authModal').classList.remove('hidden');
+      document.getElementById('authModal').classList.add('flex');
+    }
+
+    function toggleAuthMode() {
+      openAuthModal(currentAuthMode === 'login' ? 'register' : 'login');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.add('hidden');
+      document.getElementById('authModal').classList.remove('flex');
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      alert(currentAuthMode === 'register' ? "Muvaffaqiyatli ro'yxatdan o'tdingiz!" : "Xush kelibsiz!");
+      closeAuthModal();
+    }
+
+    function openSettingsModal() {
+      document.getElementById('darkModeToggle').checked = isDarkMode;
+      document.getElementById('settingsModal').classList.remove('hidden');
+      document.getElementById('settingsModal').classList.add('flex');
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settingsModal').classList.add('hidden');
+      document.getElementById('settingsModal').classList.remove('flex');
+    }
+
+    // Boshqa funksiyalar
+    function toggleFav(id) {
+      if (favorites.includes(id)) { favorites = favorites.filter(fId => fId !== id); }
+      else { favorites.push(id); }
       localStorage.setItem('favData', JSON.stringify(favorites));
-      updateFavBadge();
-      renderProducts();
+      updateFavBadge(); renderProducts();
     }
 
     function updateFavBadge() {
       const badge = document.getElementById('favBadge');
-      if (favorites.length > 0) {
-        badge.innerText = favorites.length;
-        badge.classList.remove('hidden');
-      } else {
-        badge.classList.add('hidden');
-      }
+      if (favorites.length > 0) { badge.innerText = favorites.length; badge.classList.remove('hidden'); }
+      else { badge.classList.add('hidden'); }
     }
 
-    function filterFavorites() {
-      showOnlyFavs = !showOnlyFavs;
-      renderCategories();
-      renderProducts();
-    }
-
-    function resetFilter() {
-      showOnlyFavs = false;
-      selectedCategory = 'all';
-      renderCategories();
-      renderProducts();
-    }
-
-    function filterCategory(cat) {
-      showOnlyFavs = false;
-      selectedCategory = cat;
-      renderCategories();
-      renderProducts();
-    }
-
-    function handleSearch(val) {
-      searchQuery = val;
-      renderProducts();
-    }
+    function filterFavorites() { showOnlyFavs = !showOnlyFavs; renderCategories(); renderProducts(); }
+    function resetFilter() { showOnlyFavs = false; selectedCategory = 'all'; renderCategories(); renderProducts(); }
+    function filterCategory(cat) { showOnlyFavs = false; selectedCategory = cat; renderCategories(); renderProducts(); }
+    function handleSearch(val) { searchQuery = val; renderProducts(); }
 
     function addToCart(id) {
       const p = products.find(prod => prod.id === id);
       const existing = cart.find(item => item.id === id);
-      if (existing) {
-        existing.qty++;
-      } else {
-        cart.push({ ...p, qty: 1 });
-      }
+      if (existing) { existing.qty++; } else { cart.push({ ...p, qty: 1 }); }
       saveCart();
     }
 
-    function changeQty(id, delta) {
-      const item = cart.find(i => i.id === id);
-      if (!item) return;
-      item.qty += delta;
-      if (item.qty <= 0) {
-        cart = cart.filter(i => i.id !== id);
-      }
-      saveCart();
-    }
-
-    function saveCart() {
-      localStorage.setItem('cartData', JSON.stringify(cart));
-      renderCart();
-    }
+    function saveCart() { localStorage.setItem('cartData', JSON.stringify(cart)); renderCart(); }
 
     function renderCart() {
       const t = translations[currentLang];
       const container = document.getElementById('cartItemsContainer');
       const badge = document.getElementById('cartBadge');
       const totalSum = document.getElementById('cartTotalSum');
-
       const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
       const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
@@ -441,18 +504,13 @@
       }
 
       container.innerHTML = cart.map(item => `
-        <div class="flex items-center justify-between gap-2 border-b pb-3">
+        <div class="flex items-center justify-between gap-2 border-b dark:border-gray-800 pb-3">
           <div class="flex items-center gap-3">
             <img src="${item.img}" class="w-12 h-12 rounded-lg object-cover">
             <div>
-              <h4 class="font-bold text-xs text-gray-800">${item.name}</h4>
-              <p class="text-violet-600 font-bold text-xs">$${item.price}</p>
+              <h4 class="font-bold text-xs text-gray-800 dark:text-gray-200">${item.name}</h4>
+              <p class="text-violet-600 dark:text-violet-400 font-bold text-xs">$${item.price}</p>
             </div>
-          </div>
-          <div class="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
-            <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 bg-white rounded text-gray-600 font-bold text-xs">-</button>
-            <span class="text-xs font-bold px-1">${item.qty}</span>
-            <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 bg-white rounded text-gray-600 font-bold text-xs">+</button>
           </div>
         </div>
       `).join('');
@@ -461,65 +519,12 @@
     function toggleCart(open) {
       const drawer = document.getElementById('cartDrawer');
       const panel = document.getElementById('cartPanel');
-      if (open) {
-        drawer.classList.remove('opacity-0', 'pointer-events-none');
-        panel.classList.remove('translate-x-full');
-      } else {
-        drawer.classList.add('opacity-0', 'pointer-events-none');
-        panel.classList.add('translate-x-full');
-      }
+      if (open) { drawer.classList.remove('opacity-0', 'pointer-events-none'); panel.classList.remove('translate-x-full'); }
+      else { drawer.classList.add('opacity-0', 'pointer-events-none'); panel.classList.add('translate-x-full'); }
     }
 
-    function openCheckoutModal() {
-      if (cart.length === 0) return;
-      toggleCart(false);
-      document.getElementById('checkoutModal').classList.remove('hidden');
-      document.getElementById('checkoutModal').classList.add('flex');
-    }
-
-    function closeCheckoutModal() {
-      document.getElementById('checkoutModal').classList.add('hidden');
-      document.getElementById('checkoutModal').classList.remove('flex');
-    }
-
-    function confirmOrder(e) {
-      e.preventDefault();
-      alert(translations[currentLang].orderSuccess);
-      cart = [];
-      saveCart();
-      closeCheckoutModal();
-    }
-
-    function openAuthModal() {
-      document.getElementById('authModal').classList.remove('hidden');
-      document.getElementById('authModal').classList.add('flex');
-    }
-
-    function closeAuthModal() {
-      document.getElementById('authModal').classList.add('hidden');
-      document.getElementById('authModal').classList.remove('flex');
-    }
-
-    function handleLogin(e) {
-      e.preventDefault();
-      alert("Xush kelibsiz!");
-      closeAuthModal();
-    }
-
-    // PWA Prompt
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      document.getElementById('installBtn').classList.remove('hidden');
-    });
-
-    function triggerInstall() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
-      }
-    }
-
+    // Boshlang'ich sozlamalarni yuklash
+    toggleDarkMode(isDarkMode);
     changeLanguage(currentLang);
   </script>
 </body>
