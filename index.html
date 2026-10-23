@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechStore - Modern E-Commerce PWA</title>
+  <title>TechStore - E-Commerce</title>
 
-  <!-- PWA Metadata & Manifest -->
-  <meta name="theme-color" content="#2563eb">
+  <!-- PWA Metadata -->
+  <meta name="theme-color" content="#7c3aed">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="TechStore">
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,55 +19,69 @@
     .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 1rem); }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900 pb-20 md:pb-0 min-h-screen flex flex-direction-col justify-between">
+<body class="bg-gray-50 text-gray-900 pb-20 md:pb-0 min-h-screen flex flex-col justify-between">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+  <!-- Header (Uzum Market Uslubida) -->
+  <header class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       
       <!-- Logo -->
-      <a href="#" class="text-2xl font-black tracking-tight text-blue-600 flex items-center gap-2">
+      <a href="#" class="text-2xl font-black tracking-tight text-violet-700 flex items-center gap-1.5 shrink-0">
         <i class="fa-solid fa-bolt text-yellow-500"></i> TechStore
       </a>
 
-      <!-- Qidiruv (Desktop) -->
-      <div class="hidden md:flex flex-1 max-w-md mx-6 relative">
-        <input type="text" id="searchInputDesktop" oninput="handleSearch(this.value)"
-               class="w-full bg-gray-100 border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
+      <!-- Katalog Tugmasi (Desktop & Tablet) -->
+      <button onclick="toggleCategoryMenu()" class="hidden sm:flex items-center gap-2 bg-violet-100 hover:bg-violet-200 text-violet-700 font-semibold px-4 py-2.5 rounded-xl transition-all shrink-0">
+        <i class="fa-solid fa-border-all text-lg"></i>
+        <span data-i18n="catalog">Katalog</span>
+      </button>
+
+      <!-- Qidiruv paneli -->
+      <div class="flex-1 max-w-2xl mx-2">
+        <div class="flex items-center border border-gray-300 rounded-xl overflow-hidden focus-within:border-violet-600 transition-all bg-white">
+          <input type="text" id="searchInput" oninput="handleSearch(this.value)"
+                 class="w-full py-2.5 px-4 text-sm text-gray-800 outline-none placeholder-gray-400"
+                 placeholder="Mahsulotlar va turkumlar izlash">
+          <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-5 py-2.5 transition-all border-l border-gray-200 shrink-0">
+            <i class="fa-solid fa-magnifying-glass text-base"></i>
+          </button>
+        </div>
       </div>
 
-      <!-- O'ng taraf: Tillarchik & Install & Savat -->
-      <div class="flex items-center gap-2">
+      <!-- O'ng taraf: Kirish, Saralangan, Savat va Til -->
+      <div class="flex items-center gap-1 sm:gap-4 shrink-0">
         
         <!-- Tilni tanlash -->
-        <div class="relative inline-block">
-          <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-gray-100 text-gray-700 text-xs md:text-sm font-semibold py-2 px-3 rounded-lg border-none focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer">
-            <option value="uz">🇺🇿 UZ</option>
-            <option value="ru">🇷🇺 RU</option>
-            <option value="en">🇬🇧 EN</option>
-          </select>
-        </div>
+        <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-gray-100 text-gray-700 text-xs font-semibold py-2 px-2.5 rounded-lg border-none focus:ring-2 focus:ring-violet-500 outline-none cursor-pointer hidden md:block">
+          <option value="uz">🇺🇿 UZ</option>
+          <option value="ru">🇷🇺 RU</option>
+          <option value="en">🇬🇧 EN</option>
+        </select>
+
+        <!-- Kirish -->
+        <button onclick="openAuthModal()" class="flex items-center gap-2 text-gray-700 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-sm">
+          <i class="fa-regular fa-user text-xl"></i>
+          <span class="hidden md:inline" data-i18n="login">Kirish</span>
+        </button>
+
+        <!-- Saralangan (Favorites) -->
+        <button onclick="filterFavorites()" class="flex items-center gap-2 text-gray-700 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-sm relative">
+          <i class="fa-regular fa-heart text-xl"></i>
+          <span class="hidden md:inline" data-i18n="favorites">Saralangan</span>
+          <span id="favBadge" class="hidden absolute -top-1 -right-1 bg-violet-600 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+        </button>
+
+        <!-- Savat -->
+        <button onclick="toggleCart(true)" class="flex items-center gap-2 text-gray-700 hover:text-violet-600 font-medium px-2 py-1.5 rounded-lg transition-all text-sm relative">
+          <i class="fa-solid fa-bag-shopping text-xl"></i>
+          <span class="hidden md:inline" data-i18n="cart">Savat</span>
+          <span id="cartBadge" class="absolute -top-1 -right-1 bg-violet-600 text-white text-[10px] font-bold rounded-full h-4.5 w-4.5 flex items-center justify-center">0</span>
+        </button>
 
         <!-- PWA Install Tugmasi -->
         <button id="installBtn" onclick="triggerInstall()" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-all flex items-center gap-1 shadow-sm">
-          <i class="fa-solid fa-download"></i> <span class="hidden sm:inline" data-i18n="installApp">Ilovani yuklash</span>
+          <i class="fa-solid fa-download"></i> <span class="hidden lg:inline" data-i18n="installApp">Ilovani yuklash</span>
         </button>
-
-        <!-- Savat Tugmasi -->
-        <button onclick="toggleCart(true)" class="relative bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded-lg transition-all shadow-md flex items-center justify-center">
-          <i class="fa-solid fa-bag-shopping text-lg"></i>
-          <span id="cartBadge" class="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-sm">0</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobil Qidiruv -->
-    <div class="px-4 pb-3 md:hidden">
-      <div class="relative">
-        <input type="text" id="searchInputMobile" oninput="handleSearch(this.value)"
-               class="w-full bg-gray-100 border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
       </div>
     </div>
   </header>
@@ -89,18 +102,22 @@
 
   <!-- Bottom Navigation (Mobil uchun) -->
   <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden z-30 safe-bottom">
-    <div class="grid grid-cols-3 py-2 text-center text-xs">
-      <button class="text-blue-600 flex flex-col items-center gap-1">
+    <div class="grid grid-cols-4 py-2 text-center text-[11px]">
+      <button onclick="resetFilter()" class="text-violet-600 flex flex-col items-center gap-1">
         <i class="fa-solid fa-house text-lg"></i>
         <span data-i18n="home">Asosiy</span>
       </button>
-      <button onclick="toggleCart(true)" class="text-gray-500 hover:text-blue-600 flex flex-col items-center gap-1 relative">
+      <button onclick="filterFavorites()" class="text-gray-500 hover:text-violet-600 flex flex-col items-center gap-1">
+        <i class="fa-regular fa-heart text-lg"></i>
+        <span data-i18n="favorites">Saralangan</span>
+      </button>
+      <button onclick="toggleCart(true)" class="text-gray-500 hover:text-violet-600 flex flex-col items-center gap-1 relative">
         <i class="fa-solid fa-bag-shopping text-lg"></i>
         <span data-i18n="cart">Savat</span>
       </button>
-      <button onclick="showPwaGuide()" class="text-gray-500 hover:text-blue-600 flex flex-col items-center gap-1">
-        <i class="fa-solid fa-mobile-screen-button text-lg"></i>
-        <span data-i18n="app">Ilova</span>
+      <button onclick="openAuthModal()" class="text-gray-500 hover:text-violet-600 flex flex-col items-center gap-1">
+        <i class="fa-regular fa-user text-lg"></i>
+        <span data-i18n="login">Kirish</span>
       </button>
     </div>
   </div>
@@ -112,7 +129,7 @@
       <!-- Header -->
       <div class="p-4 border-b flex items-center justify-between bg-gray-50">
         <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
-          <i class="fa-solid fa-cart-shopping text-blue-600"></i> <span data-i18n="cart">Savat</span>
+          <i class="fa-solid fa-bag-shopping text-violet-600"></i> <span data-i18n="cart">Savat</span>
         </h2>
         <button onclick="toggleCart(false)" class="p-2 text-gray-400 hover:text-gray-600 rounded-full">
           <i class="fa-solid fa-xmark text-xl"></i>
@@ -128,9 +145,9 @@
       <div class="p-4 border-t bg-gray-50 space-y-3">
         <div class="flex items-center justify-between text-base font-bold text-gray-800">
           <span data-i18n="total">Jami summasi:</span>
-          <span id="cartTotalSum" class="text-xl text-blue-600">$0</span>
+          <span id="cartTotalSum" class="text-xl text-violet-600">$0</span>
         </div>
-        <button onclick="openCheckoutModal()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+        <button onclick="openCheckoutModal()" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
           <i class="fa-solid fa-check"></i> <span data-i18n="checkout">Buyurtma berish</span>
         </button>
       </div>
@@ -144,89 +161,366 @@
       <form onsubmit="confirmOrder(event)" class="space-y-3">
         <div>
           <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="fullName">Ism va Familiya</label>
-          <input type="text" required class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+          <input type="text" required class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
         </div>
         <div>
           <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="phone">Telefon raqam</label>
-          <input type="tel" required placeholder="+998 90 123 45 67" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+          <input type="tel" required placeholder="+998 90 123 45 67" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
         </div>
         <div class="flex gap-2 pt-2">
           <button type="button" onclick="closeCheckoutModal()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2.5 rounded-lg" data-i18n="cancel">Bekor qilish</button>
-          <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg" data-i18n="confirm">Tasdiqlash</button>
+          <button type="submit" class="flex-1 bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2.5 rounded-lg" data-i18n="confirm">Tasdiqlash</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- PWA Guide Modal -->
-  <div id="pwaGuideModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl text-center">
-      <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto text-2xl">
-        <i class="fa-solid fa-mobile-screen"></i>
+  <!-- Auth Modal (Kirish) -->
+  <div id="authModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-gray-800" data-i18n="login">Kirish</h3>
+        <button onclick="closeAuthModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
-      <h3 class="text-lg font-bold" data-i18n="pwaGuideTitle">Ilovani ekranga o'rnatish</h3>
-      <p class="text-xs text-gray-600 leading-relaxed" data-i18n="pwaGuideDesc">
-        Smartfoningizda ushbu saytni alohida ilova kabi ishlatish uchun brauzer menyusidan <b>"Ekranga qo'shish" (Add to Home Screen)</b> tugmasini bosing.
-      </p>
-      <button onclick="document.getElementById('pwaGuideModal').classList.add('hidden')" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg text-sm" data-i18n="ok">Tushunarli</button>
+      <form onsubmit="handleLogin(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="phone">Telefon raqam</label>
+          <input type="tel" required placeholder="+998 90 123 45 67" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
+        </div>
+        <button type="submit" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-2.5 rounded-lg text-sm" data-i18n="login">Kirish</button>
+      </form>
     </div>
   </div>
 
   <!-- JavaScript Logika -->
   <script>
-    // Lug'at va Tillarni boshqarish
     const translations = {
       uz: {
-        searchPlaceholder: "Mahsulotlarni qidirish...",
+        searchPlaceholder: "Mahsulotlar va turkumlar izlash",
+        catalog: "Katalog",
+        login: "Kirish",
+        favorites: "Saralangan",
+        cart: "Savat",
         installApp: "Ilovani yuklash",
         all: "Barchasi",
         phones: "Telefonlar",
         laptops: "Noutbuklar",
         accessories: "Aksessuarlar",
         addToCart: "Savatga qo'shish",
-        cart: "Savat",
         emptyCart: "Savatchangiz hozircha bo'sh",
         total: "Jami summasi:",
         checkout: "Buyurtma berish",
         home: "Asosiy",
-        app: "Ilova",
         fullName: "Ism va Familiya",
         phone: "Telefon raqam",
         cancel: "Bekor qilish",
         confirm: "Tasdiqlash",
-        pwaGuideTitle: "Ilovani o'rnatish",
-        pwaGuideDesc: "Saytdan ilova sifatida foydalanish uchun brauzer menyusidan 'Ekranga qo'shish' tugmasini bosing.",
-        ok: "Tushunarli",
         orderSuccess: "Buyurtmangiz qabul qilindi! Tez orada aloqaga chiqamiz."
       },
       ru: {
-        searchPlaceholder: "Поиск товаров...",
+        searchPlaceholder: "Искать товары и категории",
+        catalog: "Каталог",
+        login: "Войти",
+        favorites: "Избранное",
+        cart: "Корзина",
         installApp: "Скачать прил.",
         all: "Все",
         phones: "Телефоны",
         laptops: "Ноутбуки",
         accessories: "Аксессуары",
         addToCart: "В корзину",
-        cart: "Корзина",
         emptyCart: "Ваша корзина пуста",
         total: "Итого:",
         checkout: "Оформить заказ",
         home: "Главная",
-        app: "Приложение",
         fullName: "Имя и Фамилия",
         phone: "Номер телефона",
         cancel: "Отмена",
         confirm: "Подтвердить",
-        pwaGuideTitle: "Установка приложения",
-        pwaGuideDesc: "Чтобы использовать сайт как приложение, нажмите 'Добавить на главный экран' в меню браузера.",
-        ok: "Понятно",
         orderSuccess: "Ваш заказ принят! Мы скоро свяжемся с вами."
       },
       en: {
-        searchPlaceholder: "Search products...",
+        searchPlaceholder: "Search products and categories",
+        catalog: "Catalog",
+        login: "Sign In",
+        favorites: "Favorites",
+        cart: "Cart",
         installApp: "Install App",
         all: "All",
         phones: "Phones",
         laptops: "Laptops",
         accessories: "Accessories",
-        addTo
+        addToCart: "Add to Cart",
+        emptyCart: "Your cart is currently empty",
+        total: "Total:",
+        checkout: "Checkout",
+        home: "Home",
+        fullName: "Full Name",
+        phone: "Phone Number",
+        cancel: "Cancel",
+        confirm: "Confirm",
+        orderSuccess: "Your order has been received! We will contact you soon."
+      }
+    };
+
+    let currentLang = localStorage.getItem('appLang') || 'uz';
+
+    const products = [
+      { id: 1, name: "iPhone 15 Pro", cat: "phones", price: 999, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400" },
+      { id: 2, name: "MacBook Air M2", cat: "laptops", price: 1199, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400" },
+      { id: 3, name: "AirPods Pro 2", cat: "accessories", price: 249, img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400" },
+      { id: 4, name: "Samsung Galaxy S24", cat: "phones", price: 899, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400" },
+      { id: 5, name: "Dell XPS 13", cat: "laptops", price: 1299, img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400" },
+      { id: 6, name: "Apple Watch S9", cat: "accessories", price: 399, img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400" }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('cartData') || '[]');
+    let favorites = JSON.parse(localStorage.getItem('favData') || '[]');
+    let selectedCategory = 'all';
+    let searchQuery = '';
+    let showOnlyFavs = false;
+    let deferredPrompt = null;
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('appLang', lang);
+      document.getElementById('langSelect').value = lang;
+      updateUI();
+    }
+
+    function updateUI() {
+      const t = translations[currentLang];
+      
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.innerText = t[key];
+      });
+
+      document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+
+      renderCategories();
+      renderProducts();
+      renderCart();
+      updateFavBadge();
+    }
+
+    function renderCategories() {
+      const t = translations[currentLang];
+      const categories = [
+        { id: 'all', name: t.all },
+        { id: 'phones', name: t.phones },
+        { id: 'laptops', name: t.laptops },
+        { id: 'accessories', name: t.accessories }
+      ];
+
+      const container = document.getElementById('categoryList');
+      container.innerHTML = categories.map(c => `
+        <button onclick="filterCategory('${c.id}')" 
+          class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${selectedCategory === c.id && !showOnlyFavs ? 'bg-violet-600 text-white shadow-md' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}">
+          ${c.name}
+        </button>
+      `).join('');
+    }
+
+    function renderProducts() {
+      const t = translations[currentLang];
+      const filtered = products.filter(p => {
+        const matchCat = selectedCategory === 'all' || p.cat === selectedCategory;
+        const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchFav = showOnlyFavs ? favorites.includes(p.id) : true;
+        return matchCat && matchSearch && matchFav;
+      });
+
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = filtered.map(p => {
+        const isFav = favorites.includes(p.id);
+        return `
+        <div class="bg-white rounded-2xl p-3 border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between relative group">
+          <button onclick="toggleFav(${p.id})" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-gray-400 hover:text-red-500 shadow-sm transition-all">
+            <i class="${isFav ? 'fa-solid fa-heart text-red-500' : 'fa-regular fa-heart'}"></i>
+          </button>
+          <div>
+            <img src="${p.img}" class="w-full h-36 object-cover rounded-xl mb-3" alt="${p.name}">
+            <h3 class="font-bold text-gray-800 text-sm line-clamp-1">${p.name}</h3>
+            <p class="text-violet-600 font-extrabold text-base mt-1">$${p.price}</p>
+          </div>
+          <button onclick="addToCart(${p.id})" class="mt-3 w-full bg-violet-50 hover:bg-violet-600 hover:text-white text-violet-600 text-xs font-bold py-2 rounded-xl transition-all flex items-center justify-center gap-1">
+            <i class="fa-solid fa-plus"></i> ${t.addToCart}
+          </button>
+        </div>
+      `}).join('');
+    }
+
+    function toggleFav(id) {
+      if (favorites.includes(id)) {
+        favorites = favorites.filter(fId => fId !== id);
+      } else {
+        favorites.push(id);
+      }
+      localStorage.setItem('favData', JSON.stringify(favorites));
+      updateFavBadge();
+      renderProducts();
+    }
+
+    function updateFavBadge() {
+      const badge = document.getElementById('favBadge');
+      if (favorites.length > 0) {
+        badge.innerText = favorites.length;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    function filterFavorites() {
+      showOnlyFavs = !showOnlyFavs;
+      renderCategories();
+      renderProducts();
+    }
+
+    function resetFilter() {
+      showOnlyFavs = false;
+      selectedCategory = 'all';
+      renderCategories();
+      renderProducts();
+    }
+
+    function filterCategory(cat) {
+      showOnlyFavs = false;
+      selectedCategory = cat;
+      renderCategories();
+      renderProducts();
+    }
+
+    function handleSearch(val) {
+      searchQuery = val;
+      renderProducts();
+    }
+
+    function addToCart(id) {
+      const p = products.find(prod => prod.id === id);
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ ...p, qty: 1 });
+      }
+      saveCart();
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+      }
+      saveCart();
+    }
+
+    function saveCart() {
+      localStorage.setItem('cartData', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function renderCart() {
+      const t = translations[currentLang];
+      const container = document.getElementById('cartItemsContainer');
+      const badge = document.getElementById('cartBadge');
+      const totalSum = document.getElementById('cartTotalSum');
+
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+      badge.innerText = totalItems;
+      totalSum.innerText = `$${totalPrice}`;
+
+      if (cart.length === 0) {
+        container.innerHTML = `<div class="text-center text-gray-400 py-10"><i class="fa-solid fa-basket-shopping text-4xl mb-2"></i><p class="text-sm">${t.emptyCart}</p></div>`;
+        return;
+      }
+
+      container.innerHTML = cart.map(item => `
+        <div class="flex items-center justify-between gap-2 border-b pb-3">
+          <div class="flex items-center gap-3">
+            <img src="${item.img}" class="w-12 h-12 rounded-lg object-cover">
+            <div>
+              <h4 class="font-bold text-xs text-gray-800">${item.name}</h4>
+              <p class="text-violet-600 font-bold text-xs">$${item.price}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+            <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 bg-white rounded text-gray-600 font-bold text-xs">-</button>
+            <span class="text-xs font-bold px-1">${item.qty}</span>
+            <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 bg-white rounded text-gray-600 font-bold text-xs">+</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleCart(open) {
+      const drawer = document.getElementById('cartDrawer');
+      const panel = document.getElementById('cartPanel');
+      if (open) {
+        drawer.classList.remove('opacity-0', 'pointer-events-none');
+        panel.classList.remove('translate-x-full');
+      } else {
+        drawer.classList.add('opacity-0', 'pointer-events-none');
+        panel.classList.add('translate-x-full');
+      }
+    }
+
+    function openCheckoutModal() {
+      if (cart.length === 0) return;
+      toggleCart(false);
+      document.getElementById('checkoutModal').classList.remove('hidden');
+      document.getElementById('checkoutModal').classList.add('flex');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+      document.getElementById('checkoutModal').classList.remove('flex');
+    }
+
+    function confirmOrder(e) {
+      e.preventDefault();
+      alert(translations[currentLang].orderSuccess);
+      cart = [];
+      saveCart();
+      closeCheckoutModal();
+    }
+
+    function openAuthModal() {
+      document.getElementById('authModal').classList.remove('hidden');
+      document.getElementById('authModal').classList.add('flex');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.add('hidden');
+      document.getElementById('authModal').classList.remove('flex');
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      alert("Xush kelibsiz!");
+      closeAuthModal();
+    }
+
+    // PWA Prompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('installBtn').classList.remove('hidden');
+    });
+
+    function triggerInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
+      }
+    }
+
+    changeLanguage(currentLang);
+  </script>
+</body>
+</html>
