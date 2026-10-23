@@ -3,402 +3,230 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zamonaviy Online Do'kon</title>
+  <title>TechStore - Modern E-Commerce PWA</title>
+
+  <!-- PWA Metadata & Manifest -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TechStore">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
-    :root {
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    header {
-      background-color: var(--card-bg);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .header-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    .search-box input {
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      width: 250px;
-      outline: none;
-    }
-
-    .cart-btn {
-      position: relative;
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .cart-count {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: #ef4444;
-      color: white;
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 0.75rem;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 2rem;
-    }
-
-    .categories {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .cat-btn {
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--border);
-      background: var(--card-bg);
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    .cat-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .product-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s;
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .product-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-
-    .product-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .product-price {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-top: auto;
-      margin-bottom: 1rem;
-    }
-
-    .add-to-cart {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.6rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      width: 100%;
-    }
-
-    .add-to-cart:hover {
-      background: var(--primary-hover);
-    }
-
-    /* Modal for Cart */
-    .cart-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      justify-content: flex-end;
-      z-index: 1000;
-    }
-
-    .cart-modal.open {
-      display: flex;
-    }
-
-    .cart-content {
-      background: var(--card-bg);
-      width: 100%;
-      max-width: 400px;
-      height: 100%;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1rem;
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .cart-items {
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.5rem;
-    }
-
-    .cart-footer {
-      border-top: 1px solid var(--border);
-      padding-top: 1rem;
-      margin-top: auto;
-    }
-
-    .checkout-btn {
-      width: 100%;
-      background: #10b981;
-      color: white;
-      border: none;
-      padding: 0.8rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 1rem;
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 1rem); }
   </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-900 pb-20 md:pb-0 min-h-screen flex flex-direction-col justify-between">
 
-  <header>
-    <div class="header-container">
-      <a href="#" class="logo">TechStore</a>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Mahsulotlarni qidirish..." oninput="filterProducts()">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      
+      <!-- Logo -->
+      <a href="#" class="text-2xl font-black tracking-tight text-blue-600 flex items-center gap-2">
+        <i class="fa-solid fa-bolt text-yellow-500"></i> TechStore
+      </a>
+
+      <!-- Qidiruv (Desktop) -->
+      <div class="hidden md:flex flex-1 max-w-md mx-6 relative">
+        <input type="text" id="searchInputDesktop" oninput="handleSearch(this.value)"
+               class="w-full bg-gray-100 border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
       </div>
-      <button class="cart-btn" onclick="toggleCart()">
-        Savatcha <span class="cart-count" id="cartCount">0</span>
-      </button>
+
+      <!-- O'ng taraf: Tillarchik & Install & Savat -->
+      <div class="flex items-center gap-2">
+        
+        <!-- Tilni tanlash -->
+        <div class="relative inline-block">
+          <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-gray-100 text-gray-700 text-xs md:text-sm font-semibold py-2 px-3 rounded-lg border-none focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer">
+            <option value="uz">🇺🇿 UZ</option>
+            <option value="ru">🇷🇺 RU</option>
+            <option value="en">🇬🇧 EN</option>
+          </select>
+        </div>
+
+        <!-- PWA Install Tugmasi -->
+        <button id="installBtn" onclick="triggerInstall()" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-all flex items-center gap-1 shadow-sm">
+          <i class="fa-solid fa-download"></i> <span class="hidden sm:inline" data-i18n="installApp">Ilovani yuklash</span>
+        </button>
+
+        <!-- Savat Tugmasi -->
+        <button onclick="toggleCart(true)" class="relative bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded-lg transition-all shadow-md flex items-center justify-center">
+          <i class="fa-solid fa-bag-shopping text-lg"></i>
+          <span id="cartBadge" class="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-sm">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobil Qidiruv -->
+    <div class="px-4 pb-3 md:hidden">
+      <div class="relative">
+        <input type="text" id="searchInputMobile" oninput="handleSearch(this.value)"
+               class="w-full bg-gray-100 border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
+      </div>
     </div>
   </header>
 
-  <main>
-    <div class="categories" id="categoryButtons">
-      <button class="cat-btn active" onclick="filterCategory('all', this)">Barchasi</button>
-      <button class="cat-btn" onclick="filterCategory('phone', this)">Telefonlar</button>
-      <button class="cat-btn" onclick="filterCategory('laptop', this)">Noutbuklar</button>
-      <button class="cat-btn" onclick="filterCategory('acc', this)">Aksessuarlar</button>
+  <!-- Asosiy Tarkib -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1">
+
+    <!-- Kategoriyalar -->
+    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-4" id="categoryList">
+      <!-- JavaScript orqali generatsiya qilinadi -->
     </div>
 
-    <div class="products-grid" id="productGrid"></div>
+    <!-- Mahsulotlar Tarmog'i -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="productGrid">
+      <!-- JavaScript orqali generatsiya qilinadi -->
+    </div>
   </main>
 
-  <!-- Savatcha Modali -->
-  <div class="cart-modal" id="cartModal">
-    <div class="cart-content">
-      <div class="cart-header">
-        <h2>Xarid Savatchasi</h2>
-        <button class="close-btn" onclick="toggleCart()">&times;</button>
+  <!-- Bottom Navigation (Mobil uchun) -->
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden z-30 safe-bottom">
+    <div class="grid grid-cols-3 py-2 text-center text-xs">
+      <button class="text-blue-600 flex flex-col items-center gap-1">
+        <i class="fa-solid fa-house text-lg"></i>
+        <span data-i18n="home">Asosiy</span>
+      </button>
+      <button onclick="toggleCart(true)" class="text-gray-500 hover:text-blue-600 flex flex-col items-center gap-1 relative">
+        <i class="fa-solid fa-bag-shopping text-lg"></i>
+        <span data-i18n="cart">Savat</span>
+      </button>
+      <button onclick="showPwaGuide()" class="text-gray-500 hover:text-blue-600 flex flex-col items-center gap-1">
+        <i class="fa-solid fa-mobile-screen-button text-lg"></i>
+        <span data-i18n="app">Ilova</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Savat Modali (Slide Drawer) -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="cartPanel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+      
+      <!-- Header -->
+      <div class="p-4 border-b flex items-center justify-between bg-gray-50">
+        <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+          <i class="fa-solid fa-cart-shopping text-blue-600"></i> <span data-i18n="cart">Savat</span>
+        </h2>
+        <button onclick="toggleCart(false)" class="p-2 text-gray-400 hover:text-gray-600 rounded-full">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
       </div>
-      <div class="cart-items" id="cartItems"></div>
-      <div class="cart-footer">
-        <h3>Jami: <span id="cartTotal">$0</span></h3>
-        <button class="checkout-btn" onclick="checkout()">Buyurtma berish</button>
+
+      <!-- Items List -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-4" id="cartItemsContainer">
+        <!-- JS dynamically renders items -->
+      </div>
+
+      <!-- Footer -->
+      <div class="p-4 border-t bg-gray-50 space-y-3">
+        <div class="flex items-center justify-between text-base font-bold text-gray-800">
+          <span data-i18n="total">Jami summasi:</span>
+          <span id="cartTotalSum" class="text-xl text-blue-600">$0</span>
+        </div>
+        <button onclick="openCheckoutModal()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-check"></i> <span data-i18n="checkout">Buyurtma berish</span>
+        </button>
       </div>
     </div>
   </div>
 
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <h3 class="text-xl font-bold text-gray-800" data-i18n="checkout">Buyurtma berish</h3>
+      <form onsubmit="confirmOrder(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="fullName">Ism va Familiya</label>
+          <input type="text" required class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="phone">Telefon raqam</label>
+          <input type="tel" required placeholder="+998 90 123 45 67" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+        <div class="flex gap-2 pt-2">
+          <button type="button" onclick="closeCheckoutModal()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2.5 rounded-lg" data-i18n="cancel">Bekor qilish</button>
+          <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg" data-i18n="confirm">Tasdiqlash</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- PWA Guide Modal -->
+  <div id="pwaGuideModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl text-center">
+      <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto text-2xl">
+        <i class="fa-solid fa-mobile-screen"></i>
+      </div>
+      <h3 class="text-lg font-bold" data-i18n="pwaGuideTitle">Ilovani ekranga o'rnatish</h3>
+      <p class="text-xs text-gray-600 leading-relaxed" data-i18n="pwaGuideDesc">
+        Smartfoningizda ushbu saytni alohida ilova kabi ishlatish uchun brauzer menyusidan <b>"Ekranga qo'shish" (Add to Home Screen)</b> tugmasini bosing.
+      </p>
+      <button onclick="document.getElementById('pwaGuideModal').classList.add('hidden')" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg text-sm" data-i18n="ok">Tushunarli</button>
+    </div>
+  </div>
+
+  <!-- JavaScript Logika -->
   <script>
-    const products = [
-      { id: 1, name: "iPhone 15 Pro", category: "phone", price: 999, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400" },
-      { id: 2, name: "MacBook Air M2", category: "laptop", price: 1199, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400" },
-      { id: 3, name: "AirPods Pro 2", category: "acc", price: 249, img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400" },
-      { id: 4, name: "Samsung Galaxy S24", category: "phone", price: 899, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400" },
-      { id: 5, name: "Dell XPS 13", category: "laptop", price: 1299, img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400" },
-      { id: 6, name: "Apple Watch Series 9", category: "acc", price: 399, img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400" }
-    ];
-
-    let cart = [];
-    let currentCategory = 'all';
-
-    function renderProducts(items) {
-      const grid = document.getElementById('productGrid');
-      grid.innerHTML = items.map(p => `
-        <div class="product-card">
-          <img src="${p.img}" alt="${p.name}" class="product-img">
-          <h3 class="product-title">${p.name}</h3>
-          <div class="product-price">$${p.price}</div>
-          <button class="add-to-cart" onclick="addToCart(${p.id})">Savatga qo'shish</button>
-        </div>
-      `).join('');
-    }
-
-    function addToCart(id) {
-      const product = products.find(p => p.id === id);
-      const existing = cart.find(item => item.id === id);
-
-      if (existing) {
-        existing.qty++;
-      } else {
-        cart.push({ ...product, qty: 1 });
-      }
-
-      updateCart();
-    }
-
-    function updateCart() {
-      const cartItems = document.getElementById('cartItems');
-      const cartCount = document.getElementById('cartCount');
-      const cartTotal = document.getElementById('cartTotal');
-
-      cartCount.innerText = cart.reduce((acc, item) => acc + item.qty, 0);
-
-      if (cart.length === 0) {
-        cartItems.innerHTML = '<p>Savatchangiz bo\'sh.</p>';
-        cartTotal.innerText = '$0';
-        return;
-      }
-
-      cartItems.innerHTML = cart.map(item => `
-        <div class="cart-item">
-          <div>
-            <strong>${item.name}</strong>
-            <div>$${item.price} x ${item.qty}</div>
-          </div>
-          <div>
-            <button onclick="changeQty(${item.id}, -1)">-</button>
-            <button onclick="changeQty(${item.id}, 1)">+</button>
-          </div>
-        </div>
-      `).join('');
-
-      const total = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
-      cartTotal.innerText = `$${total}`;
-    }
-
-    function changeQty(id, delta) {
-      const item = cart.find(i => i.id === id);
-      if (!item) return;
-
-      item.qty += delta;
-      if (item.qty <= 0) {
-        cart = cart.filter(i => i.id !== id);
-      }
-      updateCart();
-    }
-
-    function toggleCart() {
-      document.getElementById('cartModal').classList.toggle('open');
-    }
-
-    function filterCategory(category, btn) {
-      currentCategory = category;
-      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      filterProducts();
-    }
-
-    function filterProducts() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const filtered = products.filter(p => {
-        const matchesCategory = currentCategory === 'all' || p.category === currentCategory;
-        const matchesQuery = p.name.toLowerCase().includes(query);
-        return matchesCategory && matchesQuery;
-      });
-      renderProducts(filtered);
-    }
-
-    function checkout() {
-      if (cart.length === 0) {
-        alert("Savatcha bo'sh!");
-        return;
-      }
-      alert("Xaridingiz uchun rahmat! Buyurtmangiz qabul qilindi.");
-      cart = [];
-      updateCart();
-      toggleCart();
-    }
-
-    // Boshlang'ich yuklanish
-    renderProducts(products);
-  </script>
-</body>
-</html>
+    // Lug'at va Tillarni boshqarish
+    const translations = {
+      uz: {
+        searchPlaceholder: "Mahsulotlarni qidirish...",
+        installApp: "Ilovani yuklash",
+        all: "Barchasi",
+        phones: "Telefonlar",
+        laptops: "Noutbuklar",
+        accessories: "Aksessuarlar",
+        addToCart: "Savatga qo'shish",
+        cart: "Savat",
+        emptyCart: "Savatchangiz hozircha bo'sh",
+        total: "Jami summasi:",
+        checkout: "Buyurtma berish",
+        home: "Asosiy",
+        app: "Ilova",
+        fullName: "Ism va Familiya",
+        phone: "Telefon raqam",
+        cancel: "Bekor qilish",
+        confirm: "Tasdiqlash",
+        pwaGuideTitle: "Ilovani o'rnatish",
+        pwaGuideDesc: "Saytdan ilova sifatida foydalanish uchun brauzer menyusidan 'Ekranga qo'shish' tugmasini bosing.",
+        ok: "Tushunarli",
+        orderSuccess: "Buyurtmangiz qabul qilindi! Tez orada aloqaga chiqamiz."
+      },
+      ru: {
+        searchPlaceholder: "Поиск товаров...",
+        installApp: "Скачать прил.",
+        all: "Все",
+        phones: "Телефоны",
+        laptops: "Ноутбуки",
+        accessories: "Аксессуары",
+        addToCart: "В корзину",
+        cart: "Корзина",
+        emptyCart: "Ваша корзина пуста",
+        total: "Итого:",
+        checkout: "Оформить заказ",
+        home: "Главная",
+        app: "Приложение",
+        fullName: "Имя и Фамилия",
+        phone: "Номер телефона",
+        cancel: "Отмена",
+        confirm: "Подтвердить",
+        pwaGuideTitle: "Установка приложения",
+        pwaGuideDesc: "Чтобы использовать сайт как приложение, нажмите 'Добавить на главный экран' в меню браузера.",
+        ok: "Понятно",
+        orderSuccess: "Ваш заказ принят! Мы скоро свяжемся с вами."
+      },
+      en: {
+        searchPlaceholder: "Search products...",
+        installApp: "Install App",
+        all: "All",
+        phones: "Phones",
+        laptops: "Laptops",
+        accessories: "Accessories",
+        addTo
