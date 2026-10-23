@@ -33,7 +33,7 @@
       <!-- Katalog Tugmasi -->
       <button onclick="filterCategory('all')" class="hidden sm:flex items-center gap-2 bg-[#f2e8ff] hover:bg-[#e4d1ff] text-[#7000ff] font-semibold px-4 py-2.5 rounded-xl transition-all shrink-0">
         <i class="fa-solid fa-border-all text-lg"></i>
-        <span data-i18n="catalog">Katalog</span>
+        <span>Katalog</span>
       </button>
 
       <!-- Qidiruv paneli -->
@@ -50,24 +50,20 @@
 
       <!-- O'ng taraf: Kirish, Saralangan, Savat -->
       <div class="flex items-center gap-1 sm:gap-4 shrink-0">
-        
-        <!-- Kirish (Uzum ID Style Modal) -->
         <button onclick="openAuthModal()" class="flex items-center gap-2 text-gray-800 hover:text-[#7000ff] font-medium px-2 py-1.5 rounded-lg transition-all text-sm">
           <i class="fa-regular fa-user text-xl"></i>
-          <span class="hidden md:inline" data-i18n="login">Kirish</span>
+          <span class="hidden md:inline">Kirish</span>
         </button>
 
-        <!-- Saralangan -->
         <button onclick="filterFavorites()" class="flex items-center gap-2 text-gray-800 hover:text-[#7000ff] font-medium px-2 py-1.5 rounded-lg transition-all text-sm relative">
           <i class="fa-regular fa-heart text-xl"></i>
-          <span class="hidden md:inline" data-i18n="favorites">Saralangan</span>
+          <span class="hidden md:inline">Saralangan</span>
           <span id="favBadge" class="hidden absolute -top-1 -right-1 bg-[#7000ff] text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
         </button>
 
-        <!-- Savat -->
         <button onclick="toggleCart(true)" class="flex items-center gap-2 text-gray-800 hover:text-[#7000ff] font-medium px-2 py-1.5 rounded-lg transition-all text-sm relative">
           <i class="fa-solid fa-bag-shopping text-xl"></i>
-          <span class="hidden md:inline" data-i18n="cart">Savat</span>
+          <span class="hidden md:inline">Savat</span>
           <span id="cartBadge" class="absolute -top-1 -right-1 bg-[#7000ff] text-white text-[10px] font-bold rounded-full h-4.5 w-4.5 flex items-center justify-center">0</span>
         </button>
       </div>
@@ -76,79 +72,116 @@
 
   <!-- Asosiy Tarkib -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
-    <!-- Kategoriyalar -->
     <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-4" id="categoryList"></div>
-
-    <!-- Mahsulotlar Tarmog'i -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="productGrid"></div>
   </main>
 
-  <!-- Uzum ID Uslubidagi Kirish Modali (Modal Window) -->
-  <div id="authModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl relative transition-all transform scale-100">
+  <!-- MAHSULOT BATAFSIL MODALI (Product Details Popup) -->
+  <div id="productDetailModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-3 md:p-6">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-5 md:p-8 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto transition-all">
       
-      <!-- Yopish tugmasi -->
-      <button onclick="closeAuthModal()" class="absolute top-5 right-5 w-9 h-9 bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-full flex items-center justify-center transition-all">
+      <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-full flex items-center justify-center transition-all">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
-      <!-- Logo & Sarlavha -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <!-- Rasm -->
+        <div class="bg-gray-50 p-4 rounded-2xl flex items-center justify-center">
+          <img id="detailImg" src="" class="w-full h-64 object-contain rounded-xl">
+        </div>
+
+        <!-- Ma'lumotlar -->
+        <div class="space-y-4">
+          <div>
+            <span id="detailCat" class="bg-violet-100 text-[#7000ff] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Kategoriya</span>
+            <h2 id="detailTitle" class="text-xl md:text-2xl font-extrabold text-gray-900 mt-2">Mahsulot nomi</h2>
+            
+            <div class="flex items-center gap-2 mt-1 text-xs text-gray-500">
+              <span class="text-amber-500 font-bold flex items-center gap-1">
+                <i class="fa-solid fa-star"></i> <span id="detailRating">4.9</span>
+              </span>
+              <span>•</span>
+              <span id="detailReviews">128 ta sharh</span>
+              <span>•</span>
+              <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check"></i> Omborda bor</span>
+            </div>
+          </div>
+
+          <div class="border-t border-b py-3">
+            <div class="flex items-baseline gap-3">
+              <span id="detailPrice" class="text-2xl font-black text-[#7000ff]">$0</span>
+              <span id="detailOldPrice" class="text-sm font-semibold text-gray-400 line-through">$0</span>
+            </div>
+            <p class="text-[11px] text-gray-500 mt-1"><i class="fa-solid fa-truck-fast text-gray-400 mr-1"></i> Bepul yetkazib berish (1 kun)</p>
+          </div>
+
+          <div class="space-y-2">
+            <h4 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Tavsif:</h4>
+            <p id="detailDesc" class="text-xs text-gray-600 leading-relaxed">
+              Mahsulot tavsifi bu yerda ko'rinadi. Yuqori sifatli va kafolatga ega original mahsulot.
+            </p>
+          </div>
+
+          <!-- Miqdor va Xarid tugmalari -->
+          <div class="space-y-3 pt-2">
+            <div class="flex items-center gap-3">
+              <span class="text-xs font-bold text-gray-700">Miqdori:</span>
+              <div class="flex items-center border rounded-xl bg-gray-50 p-1">
+                <button onclick="adjustDetailQty(-1)" class="w-7 h-7 bg-white rounded-lg text-gray-700 font-bold text-sm shadow-sm">-</button>
+                <span id="detailQty" class="px-3 text-sm font-bold">1</span>
+                <button onclick="adjustDetailQty(1)" class="w-7 h-7 bg-white rounded-lg text-gray-700 font-bold text-sm shadow-sm">+</button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <button onclick="addDetailToCart()" class="bg-[#f2e8ff] hover:bg-[#e4d1ff] text-[#7000ff] font-bold py-3 px-4 rounded-2xl text-xs md:text-sm transition-all flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-cart-plus"></i> Savatga
+              </button>
+              <button onclick="buyNowFromDetail()" class="bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-3 px-4 rounded-2xl text-xs md:text-sm shadow-md transition-all flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-bolt"></i> Hoziroq xarid qilish
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Uzum ID Kirish Modali -->
+  <div id="authModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl relative">
+      <button onclick="closeAuthModal()" class="absolute top-5 right-5 w-9 h-9 bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-full flex items-center justify-center">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
       <div class="text-center space-y-3 pt-2">
         <div class="inline-flex items-center justify-center gap-1.5 bg-[#f2e8ff] px-4 py-1.5 rounded-full">
           <i class="fa-solid fa-bolt text-[#7000ff] text-base"></i>
-          <span class="text-[#7000ff] font-black text-lg tracking-tight">TechStore <span class="font-bold text-gray-700">ID</span></span>
+          <span class="text-[#7000ff] font-black text-lg">TechStore <span class="font-bold text-gray-700">ID</span></span>
         </div>
-        <h2 id="authTitle" class="text-2xl font-extrabold text-gray-900 tracking-tight" data-i18n="uzumLoginTitle">
-          TechStore'ga kirish
-        </h2>
+        <h2 class="text-2xl font-extrabold text-gray-900">TechStore'ga kirish</h2>
       </div>
 
-      <!-- 1-BOSQICH: Telefon raqam kiritish -->
       <div id="stepPhone" class="space-y-5">
-        <div class="relative">
-          <input type="tel" id="userPhone" placeholder="+998 00 000-00-00" value="+998 "
-                 class="w-full bg-[#f2f4f7] border-none rounded-2xl py-4 px-5 text-gray-900 font-semibold text-lg focus:ring-2 focus:ring-[#7000ff] outline-none transition-all placeholder-gray-400">
-        </div>
-
-        <button onclick="sendSmsCode()" class="w-full bg-[#7000ff] hover:bg-[#5c00d6] active:scale-[0.98] text-white font-bold py-4 rounded-2xl text-base shadow-md transition-all duration-200" data-i18n="getCode">
+        <input type="tel" id="userPhone" placeholder="+998 00 000-00-00" value="+998 "
+               class="w-full bg-[#f2f4f7] border-none rounded-2xl py-4 px-5 text-gray-900 font-semibold text-lg focus:ring-2 focus:ring-[#7000ff] outline-none">
+        <button onclick="sendSmsCode()" class="w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-4 rounded-2xl text-base shadow-md">
           Kodni olish
         </button>
-
-        <!-- Oferta va Rozilik matni -->
-        <p class="text-[11px] text-gray-500 text-center leading-relaxed px-2">
-          Davom etgan holda men 
-          <a href="#" class="underline hover:text-[#7000ff]">shaxsiy ma'lumotlarni qayta ishlash siyosatiga rozilik bildirasiz</a> va 
-          <a href="#" class="underline hover:text-[#7000ff]">TechStore ID ommaviy oferta bilan rozi bo'laman</a>
-        </p>
-        <div class="text-center pt-1">
-          <a href="#" class="text-xs font-semibold text-gray-500 hover:text-[#7000ff] underline">TechStore ID nima?</a>
-        </div>
       </div>
 
-      <!-- 2-BOSQICH: SMS Kodini kiritish -->
       <div id="stepOtp" class="space-y-5 hidden">
-        <p class="text-xs text-center text-gray-600">
-          <span id="sentPhoneDisplay" class="font-bold text-gray-900"></span> raqamiga yuborilgan 4 xonali kodni kiriting
-        </p>
-
+        <p class="text-xs text-center text-gray-600"><span id="sentPhoneDisplay" class="font-bold text-gray-900"></span> raqamiga yuborilgan 4 xonali kodni kiriting</p>
         <div class="flex justify-center gap-3 py-2">
-          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border border-transparent focus:border-[#7000ff] focus:bg-white outline-none">
-          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border border-transparent focus:border-[#7000ff] focus:bg-white outline-none">
-          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border border-transparent focus:border-[#7000ff] focus:bg-white outline-none">
-          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border border-transparent focus:border-[#7000ff] focus:bg-white outline-none">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border focus:border-[#7000ff] outline-none">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border focus:border-[#7000ff] outline-none">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border focus:border-[#7000ff] outline-none">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border focus:border-[#7000ff] outline-none">
         </div>
-
-        <button onclick="verifyOtp()" class="w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-4 rounded-2xl text-base shadow-md transition-all" data-i18n="confirm">
-          Tasdiqlash
-        </button>
-
-        <div class="text-center">
-          <button onclick="backToPhoneStep()" class="text-xs text-[#7000ff] font-semibold hover:underline">
-            Raqamni o'zgartirish
-          </button>
-        </div>
+        <button onclick="verifyOtp()" class="w-full bg-[#7000ff] text-white font-bold py-4 rounded-2xl">Tasdiqlash</button>
       </div>
-
     </div>
   </div>
 
@@ -157,7 +190,7 @@
     <div id="cartPanel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
       <div class="p-4 border-b flex items-center justify-between bg-gray-50">
         <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
-          <i class="fa-solid fa-bag-shopping text-[#7000ff]"></i> <span data-i18n="cart">Savat</span>
+          <i class="fa-solid fa-bag-shopping text-[#7000ff]"></i> <span>Savat</span>
         </h2>
         <button onclick="toggleCart(false)" class="p-2 text-gray-400 hover:text-gray-600 rounded-full">
           <i class="fa-solid fa-xmark text-xl"></i>
@@ -166,10 +199,10 @@
       <div class="flex-1 overflow-y-auto p-4 space-y-4" id="cartItemsContainer"></div>
       <div class="p-4 border-t bg-gray-50 space-y-3">
         <div class="flex items-center justify-between text-base font-bold text-gray-800">
-          <span data-i18n="total">Jami summasi:</span>
+          <span>Jami summasi:</span>
           <span id="cartTotalSum" class="text-xl text-[#7000ff]">$0</span>
         </div>
-        <button class="w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-3 rounded-xl shadow-lg transition-all" data-i18n="checkout">
+        <button onclick="checkoutCart()" class="w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-3 rounded-xl shadow-lg transition-all">
           Buyurtma berish
         </button>
       </div>
@@ -178,92 +211,90 @@
 
   <!-- JavaScript Logika -->
   <script>
-    const translations = {
-      uz: {
-        catalog: "Katalog",
-        login: "Kirish",
-        favorites: "Saralangan",
-        cart: "Savat",
-        uzumLoginTitle: "TechStore'ga kirish",
-        getCode: "Kodni olish",
-        confirm: "Tasdiqlash",
-        emptyCart: "Savatchangiz hozircha bo'sh",
-        total: "Jami summasi:",
-        checkout: "Buyurtma berish"
-      }
-    };
-
     const products = [
-      { id: 1, name: "iPhone 15 Pro", cat: "phones", price: 999, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400" },
-      { id: 2, name: "MacBook Air M2", cat: "laptops", price: 1199, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400" },
-      { id: 3, name: "AirPods Pro 2", cat: "accessories", price: 249, img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400" },
-      { id: 4, name: "Samsung Galaxy S24", cat: "phones", price: 899, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400" }
+      { id: 1, name: "iPhone 15 Pro Max 256GB", cat: "phones", price: 1199, oldPrice: 1299, rating: 4.9, reviews: 340, desc: "Eng so'nggi A17 Pro chip, titan korpus, professional uchta kamera tizimi hamda kun bo'yi yetuvchi quvvat.", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500" },
+      { id: 2, name: "MacBook Air M2 13.6 inch", cat: "laptops", price: 1099, oldPrice: 1199, rating: 4.8, reviews: 215, desc: "Yupqa va yengil dizayn, M2 chip, Liquid Retina ekrani hamda 18 soatgacha batareya ishlash muddati.", img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500" },
+      { id: 3, name: "AirPods Pro 2 Type-C", cat: "accessories", price: 239, oldPrice: 269, rating: 4.9, reviews: 512, desc: "Faol shovqinni bekor qilish (ANC), shaffoflik rejimi hamda maxsus moslashtirilgan akustik ovoz.", img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=500" },
+      { id: 4, name: "Samsung Galaxy S24 Ultra", cat: "phones", price: 1249, oldPrice: 1349, rating: 4.7, reviews: 180, desc: "Galaxy AI sun'iy intellekti, S Pen qalami, 200MP kamera hamda titan ramka bilan ta'minlangan.", img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500" }
     ];
 
     let cart = JSON.parse(localStorage.getItem('cartData') || '[]');
     let favorites = JSON.parse(localStorage.getItem('favData') || '[]');
-
-    function openAuthModal() {
-      document.getElementById('authModal').classList.remove('hidden');
-      document.getElementById('authModal').classList.add('flex');
-      backToPhoneStep();
-    }
-
-    function closeAuthModal() {
-      document.getElementById('authModal').classList.add('hidden');
-      document.getElementById('authModal').classList.remove('flex');
-    }
-
-    function sendSmsCode() {
-      const phone = document.getElementById('userPhone').value.trim();
-      if (phone.length < 9) {
-        alert("Iltimos, telefon raqamingizni to'liq kiriting!");
-        return;
-      }
-      document.getElementById('sentPhoneDisplay').innerText = phone;
-      document.getElementById('stepPhone').classList.add('hidden');
-      document.getElementById('stepOtp').classList.remove('hidden');
-    }
-
-    function backToPhoneStep() {
-      document.getElementById('stepOtp').classList.add('hidden');
-      document.getElementById('stepPhone').classList.remove('hidden');
-    }
-
-    function verifyOtp() {
-      alert("Tizimga muvaffaqiyatli kirdingiz!");
-      closeAuthModal();
-    }
-
-    // OTP Auto focus input
-    document.querySelectorAll('.otp-input').forEach((input, index, inputs) => {
-      input.addEventListener('input', (e) => {
-        if (e.target.value.length === 1 && index < inputs.length - 1) {
-          inputs[index + 1].focus();
-        }
-      });
-    });
+    let selectedDetailProduct = null;
+    let detailQtyValue = 1;
 
     function renderProducts() {
       const grid = document.getElementById('productGrid');
       grid.innerHTML = products.map(p => `
-        <div class="bg-white rounded-2xl p-3 border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+        <div onclick="openProductModal(${p.id})" class="bg-white rounded-2xl p-3 border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer group">
           <div>
-            <img src="${p.img}" class="w-full h-36 object-cover rounded-xl mb-3">
-            <h3 class="font-bold text-gray-800 text-sm line-clamp-1">${p.name}</h3>
-            <p class="text-[#7000ff] font-extrabold text-base mt-1">$${p.price}</p>
+            <div class="overflow-hidden rounded-xl mb-3 bg-gray-50">
+              <img src="${p.img}" class="w-full h-36 object-contain group-hover:scale-105 transition-all duration-300">
+            </div>
+            <h3 class="font-bold text-gray-800 text-sm line-clamp-1 group-hover:text-[#7000ff] transition-colors">${p.name}</h3>
+            <div class="flex items-center gap-1.5 text-[11px] text-gray-500 mt-1">
+              <span class="text-amber-500 font-bold"><i class="fa-solid fa-star"></i> ${p.rating}</span>
+              <span>(${p.reviews})</span>
+            </div>
+            <div class="mt-2">
+              <span class="text-[#7000ff] font-black text-base">$${p.price}</span>
+              <span class="text-xs text-gray-400 line-through ml-1">$${p.oldPrice}</span>
+            </div>
           </div>
-          <button onclick="addToCart(${p.id})" class="mt-3 w-full bg-[#f2e8ff] hover:bg-[#7000ff] hover:text-white text-[#7000ff] text-xs font-bold py-2 rounded-xl transition-all">
-            + Savatga qo'shish
+          <button onclick="event.stopPropagation(); addToCart(${p.id})" class="mt-3 w-full bg-[#f2e8ff] hover:bg-[#7000ff] hover:text-white text-[#7000ff] text-xs font-bold py-2 rounded-xl transition-all">
+            + Savatga
           </button>
         </div>
       `).join('');
     }
 
-    function addToCart(id) {
+    // Mahsulot Modali
+    function openProductModal(id) {
+      selectedDetailProduct = products.find(p => p.id === id);
+      if (!selectedDetailProduct) return;
+
+      detailQtyValue = 1;
+      document.getElementById('detailQty').innerText = detailQtyValue;
+      document.getElementById('detailImg').src = selectedDetailProduct.img;
+      document.getElementById('detailTitle').innerText = selectedDetailProduct.name;
+      document.getElementById('detailCat').innerText = selectedDetailProduct.cat;
+      document.getElementById('detailRating').innerText = selectedDetailProduct.rating;
+      document.getElementById('detailReviews').innerText = `${selectedDetailProduct.reviews} ta sharh`;
+      document.getElementById('detailPrice').innerText = `$${selectedDetailProduct.price}`;
+      document.getElementById('detailOldPrice').innerText = `$${selectedDetailProduct.oldPrice}`;
+      document.getElementById('detailDesc').innerText = selectedDetailProduct.desc;
+
+      document.getElementById('productDetailModal').classList.remove('hidden');
+      document.getElementById('productDetailModal').classList.add('flex');
+    }
+
+    function closeProductModal() {
+      document.getElementById('productDetailModal').classList.add('hidden');
+      document.getElementById('productDetailModal').classList.remove('flex');
+    }
+
+    function adjustDetailQty(delta) {
+      detailQtyValue = Math.max(1, detailQtyValue + delta);
+      document.getElementById('detailQty').innerText = detailQtyValue;
+    }
+
+    function addDetailToCart() {
+      if (!selectedDetailProduct) return;
+      addToCart(selectedDetailProduct.id, detailQtyValue);
+      closeProductModal();
+    }
+
+    function buyNowFromDetail() {
+      if (!selectedDetailProduct) return;
+      addToCart(selectedDetailProduct.id, detailQtyValue);
+      closeProductModal();
+      toggleCart(true);
+    }
+
+    function addToCart(id, qty = 1) {
       const p = products.find(prod => prod.id === id);
       const existing = cart.find(item => item.id === id);
-      if (existing) { existing.qty++; } else { cart.push({ ...p, qty: 1 }); }
+      if (existing) { existing.qty += qty; } else { cart.push({ ...p, qty }); }
       localStorage.setItem('cartData', JSON.stringify(cart));
       renderCart();
     }
@@ -286,7 +317,7 @@
       container.innerHTML = cart.map(item => `
         <div class="flex items-center justify-between border-b pb-3">
           <div class="flex items-center gap-3">
-            <img src="${item.img}" class="w-12 h-12 rounded-lg object-cover">
+            <img src="${item.img}" class="w-12 h-12 rounded-lg object-contain bg-gray-50 p-1">
             <div>
               <h4 class="font-bold text-xs text-gray-800">${item.name}</h4>
               <p class="text-[#7000ff] font-bold text-xs">$${item.price}</p>
@@ -302,6 +333,34 @@
       const panel = document.getElementById('cartPanel');
       if (open) { drawer.classList.remove('opacity-0', 'pointer-events-none'); panel.classList.remove('translate-x-full'); }
       else { drawer.classList.add('opacity-0', 'pointer-events-none'); panel.classList.add('translate-x-full'); }
+    }
+
+    function checkoutCart() {
+      alert("Buyurtmangiz qabul qilindi! Rahmat.");
+      cart = [];
+      localStorage.removeItem('cartData');
+      renderCart();
+      toggleCart(false);
+    }
+
+    function openAuthModal() {
+      document.getElementById('authModal').classList.remove('hidden');
+      document.getElementById('authModal').classList.add('flex');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.add('hidden');
+      document.getElementById('authModal').classList.remove('flex');
+    }
+
+    function sendSmsCode() {
+      document.getElementById('stepPhone').classList.add('hidden');
+      document.getElementById('stepOtp').classList.remove('hidden');
+    }
+
+    function verifyOtp() {
+      alert("Xush kelibsiz!");
+      closeAuthModal();
     }
 
     renderProducts();
