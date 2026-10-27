@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechStore - Modern & Minimal</title>
+  <title>TechStore - Uzum Market Style</title>
 
   <!-- PWA Metadata -->
-  <meta name="theme-color" content="#1e293b">
+  <meta name="theme-color" content="#7000ff">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="TechStore">
   
@@ -19,61 +19,60 @@
     .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 1rem); }
   </style>
 </head>
-<body id="appBody" class="bg-slate-50 text-slate-900 pb-20 md:pb-0 min-h-screen flex flex-col justify-between transition-colors duration-300 antialiased">
+<body id="appBody" class="bg-gray-50 text-gray-900 pb-20 md:pb-0 min-h-screen flex flex-col justify-between transition-colors duration-300">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
-    <div class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between gap-3">
+  <!-- Header (Uzum Market Uslubida) -->
+  <header class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       
       <!-- Logo -->
-      <a href="#" onclick="resetFilter()" class="text-xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2 shrink-0">
-        <span class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-sm font-black shadow-xs">TS</span>
-        <span>TechStore</span>
+      <a href="#" onclick="resetFilter()" class="text-2xl font-black tracking-tight text-[#7000ff] flex items-center gap-1.5 shrink-0">
+        <i class="fa-solid fa-bolt text-yellow-500"></i> TechStore
       </a>
 
       <!-- Katalog Tugmasi -->
-      <button onclick="filterCategory('all')" class="hidden sm:flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold px-4 py-2.5 rounded-xl transition-all shrink-0 text-xs">
-        <i class="fa-solid fa-grid-2 text-sm"></i>
+      <button onclick="filterCategory('all')" class="hidden sm:flex items-center gap-2 bg-[#f2e8ff] hover:bg-[#e4d1ff] text-[#7000ff] font-semibold px-4 py-2.5 rounded-xl transition-all shrink-0">
+        <i class="fa-solid fa-border-all text-lg"></i>
         <span data-i18n="catalog">Katalog</span>
       </button>
 
       <!-- Qidiruv paneli -->
       <div class="flex-1 max-w-xl mx-2">
-        <div class="flex items-center border border-slate-200 rounded-xl overflow-hidden focus-within:border-slate-800 transition-all bg-slate-50/50">
+        <div class="flex items-center border border-gray-300 rounded-xl overflow-hidden focus-within:border-[#7000ff] transition-all bg-white">
           <input type="text" id="searchInput" oninput="handleSearch(this.value)"
-                 class="w-full py-2 px-4 text-xs text-slate-800 bg-transparent outline-none placeholder-slate-400"
+                 class="w-full py-2.5 px-4 text-sm text-gray-800 outline-none placeholder-gray-400"
                  placeholder="Mahsulotlar va turkumlar izlash">
-          <button class="text-slate-400 hover:text-slate-700 px-4 py-2 transition-all shrink-0">
-            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+          <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-5 py-2.5 transition-all border-l border-gray-200 shrink-0">
+            <i class="fa-solid fa-magnifying-glass text-base"></i>
           </button>
         </div>
       </div>
 
       <!-- O'ng taraf: Kirish, Saralangan, Savat, Sozlamalar -->
-      <div class="flex items-center gap-1 sm:gap-2 shrink-0">
+      <div class="flex items-center gap-1 sm:gap-3 shrink-0">
         
-        <!-- Kirish -->
-        <button onclick="openAuthModal()" class="flex items-center gap-1.5 text-slate-700 hover:text-slate-900 font-medium px-2.5 py-2 rounded-xl hover:bg-slate-100 transition-all text-xs">
-          <i class="fa-regular fa-user text-base"></i>
+        <!-- Kirish (Uzum ID) -->
+        <button onclick="openAuthModal()" class="flex items-center gap-1.5 text-gray-800 hover:text-[#7000ff] font-medium px-2 py-1.5 rounded-lg transition-all text-sm">
+          <i class="fa-regular fa-user text-xl"></i>
           <span class="hidden md:inline" data-i18n="login">Kirish</span>
         </button>
 
         <!-- Saralangan -->
-        <button onclick="filterFavorites()" class="flex items-center gap-1.5 text-slate-700 hover:text-slate-900 font-medium px-2.5 py-2 rounded-xl hover:bg-slate-100 transition-all text-xs relative">
-          <i class="fa-regular fa-heart text-base"></i>
+        <button onclick="filterFavorites()" class="flex items-center gap-1.5 text-gray-800 hover:text-[#7000ff] font-medium px-2 py-1.5 rounded-lg transition-all text-sm relative">
+          <i class="fa-regular fa-heart text-xl"></i>
           <span class="hidden md:inline" data-i18n="favorites">Saralangan</span>
-          <span id="favBadge" class="hidden absolute -top-1 -right-1 bg-slate-900 text-white text-[9px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+          <span id="favBadge" class="hidden absolute -top-1 -right-1 bg-[#7000ff] text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
         </button>
 
         <!-- Savat -->
-        <button onclick="toggleCart(true)" class="flex items-center gap-1.5 text-slate-700 hover:text-slate-900 font-medium px-2.5 py-2 rounded-xl hover:bg-slate-100 transition-all text-xs relative">
-          <i class="fa-solid fa-bag-shopping text-base"></i>
+        <button onclick="toggleCart(true)" class="flex items-center gap-1.5 text-gray-800 hover:text-[#7000ff] font-medium px-2 py-1.5 rounded-lg transition-all text-sm relative">
+          <i class="fa-solid fa-bag-shopping text-xl"></i>
           <span class="hidden md:inline" data-i18n="cart">Savat</span>
-          <span id="cartBadge" class="absolute -top-1 -right-1 bg-indigo-600 text-white text-[9px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+          <span id="cartBadge" class="absolute -top-1 -right-1 bg-[#7000ff] text-white text-[10px] font-bold rounded-full h-4.5 w-4.5 flex items-center justify-center">0</span>
         </button>
 
-        <!-- Sozlamalar -->
-        <button onclick="openSettingsModal()" class="flex items-center justify-center text-slate-600 hover:text-slate-900 p-2 rounded-xl hover:bg-slate-100 transition-all text-base" title="Sozlamalar">
+        <!-- Sozlamalar (Gear ⚙️) -->
+        <button onclick="openSettingsModal()" class="flex items-center justify-center text-gray-800 hover:text-[#7000ff] p-2 rounded-lg transition-all text-xl" title="Sozlamalar">
           <i class="fa-solid fa-gear"></i>
         </button>
 
@@ -83,30 +82,33 @@
 
   <!-- Asosiy Tarkib -->
   <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+    <!-- Kategoriyalar -->
     <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-4" id="categoryList"></div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5" id="productGrid"></div>
+
+    <!-- Mahsulotlar Tarmog'i -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="productGrid"></div>
   </main>
 
   <!-- Mobil Quyi Navigatsiya Bar -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200/80 md:hidden z-30 safe-bottom">
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden z-30 safe-bottom">
     <div class="grid grid-cols-5 py-2 text-center text-[10px]">
-      <button onclick="resetFilter()" class="text-slate-900 font-semibold flex flex-col items-center gap-1">
+      <button onclick="resetFilter()" class="text-[#7000ff] flex flex-col items-center gap-1">
         <i class="fa-solid fa-house text-base"></i>
         <span data-i18n="home">Asosiy</span>
       </button>
-      <button onclick="filterFavorites()" class="text-slate-500 hover:text-slate-900 flex flex-col items-center gap-1">
+      <button onclick="filterFavorites()" class="text-gray-500 hover:text-[#7000ff] flex flex-col items-center gap-1">
         <i class="fa-regular fa-heart text-base"></i>
         <span data-i18n="favorites">Saralangan</span>
       </button>
-      <button onclick="toggleCart(true)" class="text-slate-500 hover:text-slate-900 flex flex-col items-center gap-1 relative">
+      <button onclick="toggleCart(true)" class="text-gray-500 hover:text-[#7000ff] flex flex-col items-center gap-1 relative">
         <i class="fa-solid fa-bag-shopping text-base"></i>
         <span data-i18n="cart">Savat</span>
       </button>
-      <button onclick="openAuthModal()" class="text-slate-500 hover:text-slate-900 flex flex-col items-center gap-1">
+      <button onclick="openAuthModal()" class="text-gray-500 hover:text-[#7000ff] flex flex-col items-center gap-1">
         <i class="fa-regular fa-user text-base"></i>
         <span data-i18n="login">Kirish</span>
       </button>
-      <button onclick="openSettingsModal()" class="text-slate-500 hover:text-slate-900 flex flex-col items-center gap-1">
+      <button onclick="openSettingsModal()" class="text-gray-500 hover:text-[#7000ff] flex flex-col items-center gap-1">
         <i class="fa-solid fa-gear text-base"></i>
         <span data-i18n="settings">Sozlamalar</span>
       </button>
@@ -114,65 +116,68 @@
   </div>
 
   <!-- MAHSULOT BATAFSIL VA SHARHLAR MODALI -->
-  <div id="productDetailModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs hidden items-center justify-center p-3 md:p-6">
-    <div class="bg-white rounded-2xl max-w-2xl w-full p-5 md:p-8 space-y-6 shadow-xl relative max-h-[90vh] overflow-y-auto border border-slate-100">
+  <div id="productDetailModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-3 md:p-6">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-5 md:p-8 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
       
-      <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full flex items-center justify-center transition-all">
-        <i class="fa-solid fa-xmark text-sm"></i>
+      <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center">
+        <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
         <!-- Rasm -->
-        <div class="bg-slate-50/70 p-4 rounded-xl flex flex-col items-center justify-center relative border border-slate-100">
-          <img id="detailImg" src="" class="w-full h-56 object-contain">
+        <div class="bg-gray-50 p-4 rounded-2xl flex flex-col items-center justify-center relative">
+          <img id="detailImg" src="" class="w-full h-64 object-contain rounded-xl">
         </div>
 
         <!-- Ma'lumotlar -->
         <div class="space-y-4">
           <div>
-            <span class="inline-block bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider mb-2">
-              Kafolatlangan arzon narx
+            <span class="inline-block bg-[#ff3385] text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider mb-2">
+              ARZON NARX KAFOLATI
             </span>
-            <h2 id="detailTitle" class="text-lg font-bold text-slate-900">Mahsulot nomi</h2>
+            <h2 id="detailTitle" class="text-lg md:text-xl font-extrabold text-gray-900">Mahsulot nomi</h2>
             
-            <div class="flex items-center gap-2 mt-2 text-xs text-slate-500">
+            <div class="flex items-center gap-2 mt-2 text-xs text-gray-500">
               <span class="text-amber-500 font-bold flex items-center gap-1">
-                <i class="fa-solid fa-star text-xs"></i> <span id="detailRating">0.0</span>
+                <i class="fa-solid fa-star"></i> <span id="detailRating">0.0</span>
               </span>
               <span>•</span>
               <span id="detailReviewsCount">0 sharh</span>
             </div>
           </div>
 
-          <div class="border-t border-b border-slate-100 py-3 space-y-1.5">
-            <div id="detailPrice" class="text-2xl font-black text-slate-900">0 so'm</div>
+          <div class="border-t border-b py-3 space-y-2">
             <div>
-              <span id="detailNasiya" class="bg-slate-100 text-slate-700 text-[11px] font-semibold px-2 py-0.5 rounded-md">
+              <div id="detailPrice" class="text-2xl font-black text-gray-900">0 so'm</div>
+            </div>
+            <div>
+              <span id="detailNasiya" class="bg-yellow-300 text-black text-xs font-bold px-2 py-1 rounded-md">
                 0 so'm/oyidan
               </span>
             </div>
           </div>
 
           <div class="space-y-1">
-            <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wide">Tavsif:</h4>
-            <p id="detailDesc" class="text-xs text-slate-600 leading-relaxed"></p>
+            <h4 class="text-xs font-bold text-gray-800 uppercase">Tavsif:</h4>
+            <p id="detailDesc" class="text-xs text-gray-600 leading-relaxed"></p>
           </div>
 
           <!-- Sotib olish tugmasi -->
-          <button onclick="buyNowFromDetail()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-3 rounded-xl text-xs shadow-sm transition-all flex items-center justify-center gap-2">
-            <i class="fa-solid fa-bag-shopping"></i> <span data-i18n="buyNow">Xarid qilish</span>
+          <button onclick="buyNowFromDetail()" class="w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-3.5 rounded-2xl text-sm shadow-md transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-bag-shopping"></i> <span data-i18n="buyNow">Ertaga yetkazish</span>
           </button>
         </div>
       </div>
 
-      <!-- SHARH QOLDIRISH BO'LIMI -->
-      <div class="border-t border-slate-100 pt-5 space-y-4">
-        <h3 class="font-bold text-sm text-slate-900">Xaridorlar sharhlari</h3>
+      <!-- SHARH QOLDIRISH VA BAHO BERISH BO'LIMI -->
+      <div class="border-t pt-5 space-y-4">
+        <h3 class="font-extrabold text-base text-gray-900">Xaridorlar sharhlari</h3>
         
-        <div id="reviewFormContainer" class="bg-slate-50 p-4 rounded-xl space-y-3 hidden border border-slate-100">
-          <h4 class="text-xs font-semibold text-slate-700">Mahsulotni baholang va sharh qoldiring:</h4>
+        <!-- Agar sotib olgan bo'lsa -->
+        <div id="reviewFormContainer" class="bg-gray-50 p-4 rounded-2xl space-y-3 hidden">
+          <h4 class="text-xs font-bold text-gray-700">Mahsulotni baholang va sharh qoldiring:</h4>
           
-          <div class="flex items-center gap-1.5 text-lg text-slate-300 cursor-pointer" id="starRatingSelector">
+          <div class="flex items-center gap-2 text-xl text-gray-300 cursor-pointer" id="starRatingSelector">
             <i class="fa-solid fa-star hover:text-amber-500" onclick="setRating(1)"></i>
             <i class="fa-solid fa-star hover:text-amber-500" onclick="setRating(2)"></i>
             <i class="fa-solid fa-star hover:text-amber-500" onclick="setRating(3)"></i>
@@ -180,100 +185,104 @@
             <i class="fa-solid fa-star hover:text-amber-500" onclick="setRating(5)"></i>
           </div>
 
-          <textarea id="reviewText" rows="2" placeholder="Mahsulot haqidagi fikringizni qoldiring..." class="w-full border border-slate-200 rounded-lg p-2.5 text-xs outline-none focus:border-slate-800 bg-white"></textarea>
+          <textarea id="reviewText" rows="2" placeholder="Mahsulot haqidagi taassurotlaringizni yozing..." class="w-full border rounded-xl p-2.5 text-xs outline-none focus:ring-2 focus:ring-[#7000ff]"></textarea>
           
-          <button onclick="submitReview()" class="bg-slate-900 text-white text-xs font-semibold py-2 px-4 rounded-lg hover:bg-slate-800">
-            Sharhni saqlash
+          <button onclick="submitReview()" class="bg-[#7000ff] text-white text-xs font-bold py-2 px-4 rounded-xl hover:bg-[#5c00d6]">
+            Sharhni yuborish
           </button>
         </div>
 
-        <div id="noPurchaseNotice" class="bg-slate-50 border border-slate-200 p-3 rounded-xl text-xs text-slate-600 flex items-center gap-2">
-          <i class="fa-solid fa-circle-info text-slate-400"></i>
+        <!-- Agar sotib olmagan bo'lsa -->
+        <div id="noPurchaseNotice" class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-800 flex items-center gap-2">
+          <i class="fa-solid fa-circle-info text-base"></i>
           <span>Sharh va baho qoldirish uchun ushbu mahsulotni xarid qilgan bo'lishingiz kerak.</span>
         </div>
 
-        <div id="reviewsList" class="space-y-2.5 pt-1"></div>
+        <!-- Sharhlar ro'yxati -->
+        <div id="reviewsList" class="space-y-3 pt-2"></div>
       </div>
 
     </div>
   </div>
 
-  <!-- SOZLAMALAR MODALI -->
-  <div id="settingsModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-5 shadow-xl border border-slate-100">
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
-          <i class="fa-solid fa-gear text-slate-700"></i> <span data-i18n="settings">Sozlamalar</span>
+  <!-- SOZLAMALAR MODALI (Settings Modal) -->
+  <div id="settingsModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+          <i class="fa-solid fa-gear text-[#7000ff]"></i> <span data-i18n="settings">Sozlamalar</span>
         </h3>
-        <button onclick="closeSettingsModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-base"></i></button>
+        <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
 
+      <!-- Til Sozlamasi -->
       <div class="space-y-2">
-        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider" data-i18n="language">Til (Language)</label>
-        <select id="langSelectModal" onchange="changeLanguage(this.value)" class="w-full bg-slate-50 text-slate-800 text-xs font-medium p-3 rounded-xl border border-slate-200 outline-none cursor-pointer">
+        <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider" data-i18n="language">Til (Language)</label>
+        <select id="langSelectModal" onchange="changeLanguage(this.value)" class="w-full bg-gray-100 text-gray-800 text-sm font-semibold p-3 rounded-xl border-none outline-none cursor-pointer">
           <option value="uz">🇺🇿 O'zbekcha (UZ)</option>
           <option value="ru">🇷🇺 Русский (RU)</option>
           <option value="en">🇬🇧 English (EN)</option>
         </select>
       </div>
 
-      <button onclick="closeSettingsModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-xs shadow-xs" data-i18n="ok">Saqlash</button>
+      <button onclick="closeSettingsModal()" class="w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-3 rounded-xl text-sm" data-i18n="ok">Saqlash</button>
     </div>
   </div>
 
-  <!-- KIRISH MODALI -->
-  <div id="authModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-5 shadow-xl border border-slate-100 relative">
-      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-        <i class="fa-solid fa-xmark text-base"></i>
+  <!-- Uzum ID Kirish Modali -->
+  <div id="authModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl relative">
+      <button onclick="closeAuthModal()" class="absolute top-5 right-5 w-9 h-9 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center">
+        <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
-      <div class="text-center space-y-2 pt-1">
-        <div class="inline-flex items-center justify-center gap-1.5 bg-slate-100 px-3 py-1 rounded-full">
-          <span class="font-bold text-xs text-slate-800">TechStore ID</span>
+      <div class="text-center space-y-3 pt-2">
+        <div class="inline-flex items-center justify-center gap-1.5 bg-[#f2e8ff] px-4 py-1.5 rounded-full">
+          <i class="fa-solid fa-bolt text-[#7000ff] text-base"></i>
+          <span class="text-[#7000ff] font-black text-lg">TechStore <span class="font-bold text-gray-700">ID</span></span>
         </div>
-        <h2 class="text-xl font-bold text-slate-900" data-i18n="uzumLoginTitle">Tizimga kirish</h2>
+        <h2 class="text-2xl font-extrabold text-gray-900" data-i18n="uzumLoginTitle">TechStore'ga kirish</h2>
       </div>
 
-      <div id="stepPhone" class="space-y-4">
+      <div id="stepPhone" class="space-y-5">
         <input type="tel" id="userPhone" placeholder="+998 00 000-00-00" value="+998 "
-               class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-slate-900 font-medium text-sm focus:border-slate-800 outline-none">
-        <button onclick="sendSmsCode()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-3 rounded-xl text-xs transition-all" data-i18n="getCode">
+               class="w-full bg-[#f2f4f7] border-none rounded-2xl py-4 px-5 text-gray-900 font-semibold text-lg focus:ring-2 focus:ring-[#7000ff] outline-none">
+        <button onclick="sendSmsCode()" class="w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-4 rounded-2xl text-base shadow-md" data-i18n="getCode">
           Kodni olish
         </button>
       </div>
 
-      <div id="stepOtp" class="space-y-4 hidden">
-        <p class="text-xs text-center text-slate-500"><span id="sentPhoneDisplay" class="font-bold text-slate-800"></span> raqamiga yuborilgan 4 xonali kodni kiriting</p>
-        <div class="flex justify-center gap-2 py-1">
-          <input type="text" maxlength="1" class="otp-input w-10 h-12 bg-slate-50 text-center text-base font-bold rounded-lg border border-slate-200 focus:border-slate-800 outline-none">
-          <input type="text" maxlength="1" class="otp-input w-10 h-12 bg-slate-50 text-center text-base font-bold rounded-lg border border-slate-200 focus:border-slate-800 outline-none">
-          <input type="text" maxlength="1" class="otp-input w-10 h-12 bg-slate-50 text-center text-base font-bold rounded-lg border border-slate-200 focus:border-slate-800 outline-none">
-          <input type="text" maxlength="1" class="otp-input w-10 h-12 bg-slate-50 text-center text-base font-bold rounded-lg border border-slate-200 focus:border-slate-800 outline-none">
+      <div id="stepOtp" class="space-y-5 hidden">
+        <p class="text-xs text-center text-gray-600"><span id="sentPhoneDisplay" class="font-bold text-gray-900"></span> raqamiga yuborilgan 4 xonali kodni kiriting</p>
+        <div class="flex justify-center gap-3 py-2">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border focus:border-[#7000ff] outline-none">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border focus:border-[#7000ff] outline-none">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border focus:border-[#7000ff] outline-none">
+          <input type="text" maxlength="1" class="otp-input w-12 h-14 bg-[#f2f4f7] text-center text-xl font-bold rounded-xl border focus:border-[#7000ff] outline-none">
         </div>
-        <button onclick="verifyOtp()" class="w-full bg-slate-900 text-white font-medium py-3 rounded-xl text-xs" data-i18n="confirm">Tasdiqlash</button>
+        <button onclick="verifyOtp()" class="w-full bg-[#7000ff] text-white font-bold py-4 rounded-2xl" data-i18n="confirm">Tasdiqlash</button>
       </div>
     </div>
   </div>
 
   <!-- Savat Drawer -->
-  <div id="cartDrawer" class="fixed inset-0 z-50 bg-slate-900/40 opacity-0 pointer-events-none transition-opacity duration-300">
+  <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300">
     <div id="cartPanel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
-      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-        <h2 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-          <i class="fa-solid fa-bag-shopping text-slate-700"></i> <span data-i18n="cart">Savat</span>
+      <div class="p-4 border-b flex items-center justify-between bg-gray-50">
+        <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+          <i class="fa-solid fa-bag-shopping text-[#7000ff]"></i> <span data-i18n="cart">Savat</span>
         </h2>
-        <button onclick="toggleCart(false)" class="p-1 text-slate-400 hover:text-slate-600 rounded-full">
-          <i class="fa-solid fa-xmark text-lg"></i>
+        <button onclick="toggleCart(false)" class="p-2 text-gray-400 hover:text-gray-600 rounded-full">
+          <i class="fa-solid fa-xmark text-xl"></i>
         </button>
       </div>
-      <div class="flex-1 overflow-y-auto p-4 space-y-3" id="cartItemsContainer"></div>
-      <div class="p-4 border-t border-slate-100 bg-slate-50/50 space-y-3">
-        <div class="flex items-center justify-between text-sm font-bold text-slate-900">
+      <div class="flex-1 overflow-y-auto p-4 space-y-4" id="cartItemsContainer"></div>
+      <div class="p-4 border-t bg-gray-50 space-y-3">
+        <div class="flex items-center justify-between text-base font-bold text-gray-800">
           <span data-i18n="total">Jami summasi:</span>
-          <span id="cartTotalSum" class="text-base font-extrabold text-slate-900">0 so'm</span>
+          <span id="cartTotalSum" class="text-xl text-[#7000ff] font-extrabold">0 so'm</span>
         </div>
-        <button onclick="checkoutCart()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-3 rounded-xl text-xs transition-all" data-i18n="checkout">
+        <button onclick="checkoutCart()" class="w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white font-bold py-3.5 rounded-xl shadow-lg transition-all" data-i18n="checkout">
           Buyurtma berish
         </button>
       </div>
@@ -292,13 +301,13 @@
         settings: "Sozlamalar",
         language: "Til (Language)",
         ok: "Saqlash",
-        uzumLoginTitle: "Tizimga kirish",
+        uzumLoginTitle: "TechStore'ga kirish",
         getCode: "Kodni olish",
         confirm: "Tasdiqlash",
         emptyCart: "Savatchangiz hozircha bo'sh",
         total: "Jami summasi:",
         checkout: "Buyurtma berish",
-        buyNow: "Xarid qilish",
+        buyNow: "Ertaga yetkazish",
         home: "Asosiy",
         all: "Barchasi",
         phones: "Telefonlar",
@@ -314,13 +323,13 @@
         settings: "Настройки",
         language: "Язык (Language)",
         ok: "Сохранить",
-        uzumLoginTitle: "Вход в систему",
+        uzumLoginTitle: "Вход в TechStore",
         getCode: "Получить код",
         confirm: "Подтвердить",
         emptyCart: "Ваша корзина пуста",
         total: "Итого:",
         checkout: "Оформить заказ",
-        buyNow: "Купить",
+        buyNow: "Доставка завтра",
         home: "Главная",
         all: "Все",
         phones: "Телефоны",
@@ -336,13 +345,13 @@
         settings: "Settings",
         language: "Language",
         ok: "Save",
-        uzumLoginTitle: "Sign In",
+        uzumLoginTitle: "Sign in to TechStore",
         getCode: "Get code",
         confirm: "Confirm",
         emptyCart: "Your cart is empty",
         total: "Total:",
         checkout: "Checkout",
-        buyNow: "Buy Now",
+        buyNow: "Delivery Tomorrow",
         home: "Home",
         all: "All",
         phones: "Phones",
@@ -406,7 +415,7 @@
       if (!container) return;
       container.innerHTML = categories.map(c => `
         <button onclick="filterCategory('${c.id}')" 
-          class="px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${selectedCategory === c.id && !showOnlyFavs ? 'bg-slate-900 text-white shadow-xs' : 'bg-slate-200/60 text-slate-700 hover:bg-slate-200'}">
+          class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${selectedCategory === c.id && !showOnlyFavs ? 'bg-[#7000ff] text-white shadow-md' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}">
           ${c.name}
         </button>
       `).join('');
@@ -435,42 +444,42 @@
         const reviewsCount = p.reviews ? p.reviews.length : 0;
 
         return `
-        <div onclick="openProductModal(${p.id})" class="bg-white rounded-xl p-3 border border-slate-200/70 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between cursor-pointer group relative">
+        <div onclick="openProductModal(${p.id})" class="bg-white rounded-2xl p-3 border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer group relative">
           
-          <button onclick="event.stopPropagation(); toggleFav(${p.id})" class="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-400 hover:text-red-500 shadow-2xs transition-all">
+          <button onclick="event.stopPropagation(); toggleFav(${p.id})" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-gray-400 hover:text-red-500 shadow-sm transition-all">
             <i class="${isFav ? 'fa-solid fa-heart text-red-500' : 'fa-regular fa-heart'}"></i>
           </button>
 
           <div>
-            <div class="overflow-hidden rounded-lg mb-2.5 bg-slate-50 flex justify-center items-center">
-              <img src="${p.img}" class="w-full h-40 object-contain group-hover:scale-102 transition-all duration-300">
+            <div class="overflow-hidden rounded-xl mb-3 bg-gray-50 flex justify-center items-center">
+              <img src="${p.img}" class="w-full h-44 object-contain group-hover:scale-105 transition-all duration-300">
             </div>
 
-            <span class="inline-block bg-emerald-50 text-emerald-700 border border-emerald-200/80 text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider mb-1">
-              Arzon narx kafolati
+            <span class="inline-block bg-[#ff3385] text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider mb-1">
+              ARZON NARX KAFOLATI
             </span>
 
-            <div class="mt-0.5">
-              <div class="text-slate-900 font-bold text-sm">${formatPrice(p.price)}</div>
-              <div class="text-[11px] text-slate-400 line-through">${formatPrice(p.oldPrice)}</div>
+            <div class="mt-1">
+              <div class="text-gray-900 font-black text-base">${formatPrice(p.price)}</div>
+              <div class="text-xs text-gray-400 line-through">${formatPrice(p.oldPrice)}</div>
             </div>
 
-            <div class="mt-1">
-              <span class="bg-slate-100 text-slate-600 text-[10px] font-medium px-1.5 py-0.5 rounded">
-                ${formatPrice(p.nasiya)}/oy
+            <div class="mt-1.5">
+              <span class="bg-yellow-300 text-black text-[10px] font-bold px-1.5 py-0.5 rounded">
+                ${formatPrice(p.nasiya)}/oyidan
               </span>
             </div>
 
-            <h3 class="font-medium text-slate-800 text-xs mt-2 line-clamp-2">${p.name}</h3>
+            <h3 class="font-medium text-gray-800 text-xs mt-2 line-clamp-2">${p.name}</h3>
 
-            <div class="flex items-center gap-1 text-[10px] text-slate-500 mt-1.5">
-              <span class="text-amber-500 font-bold"><i class="fa-solid fa-star text-[10px]"></i> ${avgRating > 0 ? avgRating : '0'}</span>
-              <span>(${reviewsCount} sharh)</span>
+            <div class="flex items-center gap-1 text-[11px] text-gray-500 mt-1.5">
+              <span class="text-amber-500 font-bold"><i class="fa-solid fa-star"></i> ${avgRating > 0 ? avgRating : '0'}</span>
+              <span>(${reviewsCount} sharhlar)</span>
             </div>
           </div>
 
-          <button onclick="event.stopPropagation(); addToCart(${p.id})" class="mt-3 w-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium py-2 rounded-lg transition-all flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-plus text-[10px]"></i> Savatga
+          <button onclick="event.stopPropagation(); addToCart(${p.id})" class="mt-3 w-full bg-[#7000ff] hover:bg-[#5c00d6] text-white text-xs font-bold py-2.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm">
+            <i class="fa-solid fa-bag-shopping"></i> Ertaga
           </button>
         </div>
       `}).join('');
@@ -511,10 +520,10 @@
       icons.forEach((icon, idx) => {
         if (idx < stars) {
           icon.classList.add('text-amber-500');
-          icon.classList.remove('text-slate-300');
+          icon.classList.remove('text-gray-300');
         } else {
           icon.classList.remove('text-amber-500');
-          icon.classList.add('text-slate-300');
+          icon.classList.add('text-gray-300');
         }
       });
     }
@@ -547,19 +556,19 @@
     function renderReviewsList() {
       const container = document.getElementById('reviewsList');
       if (!selectedDetailProduct.reviews || selectedDetailProduct.reviews.length === 0) {
-        container.innerHTML = `<p class="text-xs text-slate-400 italic">Hali sharhlar yo'q.</p>`;
+        container.innerHTML = `<p class="text-xs text-gray-400 italic">Hali sharhlar yo'q. Birinchi bo'lib sharh qoldiring!</p>`;
         return;
       }
 
       container.innerHTML = selectedDetailProduct.reviews.map(r => `
-        <div class="bg-slate-50 p-2.5 rounded-lg space-y-0.5 border border-slate-100">
+        <div class="bg-gray-50 p-3 rounded-xl space-y-1">
           <div class="flex items-center justify-between text-xs">
-            <div class="text-amber-500 font-bold text-[11px]">
+            <div class="text-amber-500 font-bold">
               ${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}
             </div>
-            <span class="text-[10px] text-slate-400">${r.date}</span>
+            <span class="text-[10px] text-gray-400">${r.date}</span>
           </div>
-          <p class="text-xs text-slate-700">${r.text}</p>
+          <p class="text-xs text-gray-700">${r.text}</p>
         </div>
       `).join('');
     }
@@ -628,20 +637,20 @@
       totalSum.innerText = formatPrice(totalPrice);
 
       if (cart.length === 0) {
-        container.innerHTML = `<div class="text-center text-slate-400 py-10"><p class="text-xs">Savatchangiz bo'sh</p></div>`;
+        container.innerHTML = `<div class="text-center text-gray-400 py-10"><p class="text-sm">Savatchangiz hozircha bo'sh</p></div>`;
         return;
       }
 
       container.innerHTML = cart.map(item => `
-        <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
-          <div class="flex items-center gap-2.5">
-            <img src="${item.img}" class="w-10 h-10 rounded-lg object-contain bg-slate-50 p-1 border border-slate-100">
+        <div class="flex items-center justify-between border-b pb-3">
+          <div class="flex items-center gap-3">
+            <img src="${item.img}" class="w-12 h-12 rounded-lg object-contain bg-gray-50 p-1">
             <div>
-              <h4 class="font-medium text-xs text-slate-800">${item.name}</h4>
-              <p class="text-slate-900 font-bold text-xs">${formatPrice(item.price)}</p>
+              <h4 class="font-bold text-xs text-gray-800">${item.name}</h4>
+              <p class="text-[#7000ff] font-bold text-xs">${formatPrice(item.price)}</p>
             </div>
           </div>
-          <span class="text-xs font-bold text-slate-500">x${item.qty}</span>
+          <span class="text-xs font-bold">x${item.qty}</span>
         </div>
       `).join('');
     }
@@ -662,7 +671,7 @@
       });
       localStorage.setItem('purchasedItems', JSON.stringify(purchasedProductIds));
 
-      alert("Buyurtmangiz qabul qilindi! Endi ushbu mahsulotlarga sharh va baho qoldirishingiz mumkin.");
+      alert("Buyurtmangiz muvaffaqiyatli qabul qilindi! Endi ushbu mahsulotlarga sharh qoldirishingiz mumkin.");
       cart = [];
       localStorage.removeItem('cartData');
       renderCart();
@@ -685,10 +694,11 @@
     }
 
     function verifyOtp() {
-      alert("Muvaffaqiyatli kirdingiz!");
+      alert("Xush kelibsiz!");
       closeAuthModal();
     }
 
+    // Ishga tushirish
     window.addEventListener('DOMContentLoaded', () => {
       updateUI();
     });
